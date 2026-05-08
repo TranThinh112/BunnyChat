@@ -1,6 +1,13 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WebMoi",
+    "\\WebMoi\\Backend",
+    "\\WebMoi\\Backend\\Controllers",
+    "\\WebMoi\\Backend\\Data",
+    "\\WebMoi\\Backend\\Models",
+    "\\WebMoi\\Backend\\Models\\Entities"
   ],
+  "SelectedNode": "\\WebMoi\\Backend\\Controllers\\AuthController.cs",
   "PreviewInSolutionExplorer": false
 }

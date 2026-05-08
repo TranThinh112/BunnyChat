@@ -8,17 +8,16 @@ namespace WebMoi.Data
     public class MongoDbService
     {
         private readonly IConfiguration _configuration;
-        private readonly IMongoDatabase? _database;
+        private readonly IMongoDatabase _database;
 
         public MongoDbService(IConfiguration configuration)
         {
             _configuration = configuration;
 
             var connectionString = _configuration.GetConnectionString("DbConnection");
-            var mongoURL = MongoUrl.Create(connectionString);
-            var mongoClient = new MongoClient(mongoURL);
-            _database = mongoClient.GetDatabase(mongoURL.DatabaseName);
+            var mongoClient = new MongoClient(connectionString);
+            _database = mongoClient.GetDatabase("chatapp");
         }
-        public IMongoDatabase? Database => _database;
+        public IMongoDatabase Database => _database;
     }
 }

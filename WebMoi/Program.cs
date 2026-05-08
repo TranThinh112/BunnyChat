@@ -42,4 +42,6 @@ app.MapGet("/", ()=>
     }
 );
 app.MapControllers();
+
+
 app.Run();
