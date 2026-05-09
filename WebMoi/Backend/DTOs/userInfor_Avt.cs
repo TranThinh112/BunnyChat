@@ -6,12 +6,6 @@ using WebMoi.Models.Entities;
 
 namespace WebMoi.DTOs
 {
-    // public class UserAvatar
-    // {
-    //     [Required]
-    //     public string AvatarUrl {get; set; } = "";
-    // }
-
     public class UserInformation
     {   
          public string? Bio { get; set; }

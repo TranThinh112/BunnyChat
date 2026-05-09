@@ -33,155 +33,152 @@ namespace WebMoi.Controllers
         [HttpGet("search")]
         public async Task<IActionResult> Search(string? username, string? id, string? email)
         {
-            // thiếu query
-            if (
-                string.IsNullOrWhiteSpace(username) &&
-                string.IsNullOrWhiteSpace(id) &&
-                string.IsNullOrWhiteSpace(email))
+            try
             {
-                return BadRequest(new
+                // thiếu query
+                if (
+                    string.IsNullOrWhiteSpace(username) &&
+                    string.IsNullOrWhiteSpace(id) &&
+                    string.IsNullOrWhiteSpace(email))
                 {
-                    success = false,
-                    message = "username, id or email is required"
-                });
-            }
-        var filters = new List<FilterDefinition<User>>();
+                    return BadRequest(ApiResponse.Fail(
+                        message: "thiếu username, id hoặc email"
+                    ));
+                }
+                var filters = new List<FilterDefinition<User>>();
 
-            // search id, username, email
-            if (!string.IsNullOrWhiteSpace(id))
-            {
-                if (!ObjectId.TryParse(id, out var objectId))
+                // search id, username, email
+                if (!string.IsNullOrWhiteSpace(id))
                 {
-                    return BadRequest(new
-                    {
-                        success = false,
-                        message = "Invalid user id"
-                    });
+                        filters.Add(
+                            Builders<User>.Filter.Eq(x => x.Id, id)
+                        );
                 }
 
-                    filters.Add(
-                        Builders<User>.Filter.Eq("_id", objectId)
-                    );
-            }
-
-            // search username
-            if (!string.IsNullOrWhiteSpace(username))
-            {
-                filters.Add(
-                    Builders<User>.Filter.Regex(
-                        x => x.Username,
-                        new BsonRegularExpression(username, "i")
-                    )
-                );
-            }
-
-            // search email
-            if (!string.IsNullOrWhiteSpace(email))
-            {
-                filters.Add(
-                    Builders<User>.Filter.Eq(x => x.Email, email)
-                );
-            }
-
-            var finalFilter = Builders<User>.Filter.Or(filters);
-
-
-            var user = await _usersCollection
-                .Find(finalFilter)
-                .FirstOrDefaultAsync();
-
-            if (user == null)
-            {
-                return NotFound(new
+                // search username
+                if (!string.IsNullOrWhiteSpace(username))
                 {
-                    success = false,
-                    message = "User not found"
-                });
+                    filters.Add(
+                        Builders<User>.Filter.Regex(
+                            x => x.Username,
+                            new BsonRegularExpression(username, "i")
+                        )
+                    );
+                }
+
+                // search email
+                if (!string.IsNullOrWhiteSpace(email))
+                {
+                    filters.Add(
+                        Builders<User>.Filter.Eq(x => x.Email, email)
+                    );
+                }
+
+                var finalFilter = Builders<User>.Filter.Or(filters);
+
+                var user = await _usersCollection
+                    .Find(finalFilter)
+                    .ToListAsync(); // lay tat ca match
+
+                if (!user.Any())
+                {
+                    return NotFound(ApiResponse.Fail(
+                        message: "Không tìm thấy user"
+                    ));
+                }
+                
+                return Ok(ApiResponse.Success(
+                    message: "Tìm Thấy user",
+                    data: user.Select(user => new
+                    {
+                        id = user.Id,
+                        username = user.Username,
+                        displayname = user.DisplayName,
+                        email = user.Email,
+                        createdAt = user.CreatedAt,
+                        updatedAt = user.UpdatedAt
+                    })
+                ));
+               
             }
-
-            return Ok(new
+            catch
             {
-                success = true,
-                message = "User found",
-                data = user
-            });
+                return StatusCode(500, ApiResponse.Fail(
+                    message: "Lỗi khi tìm kiếm"
+                ));
+            }
         }
-       
-        //upload Avatar
-        // [HttpPatch("uploadAvatar/{id}")]
-        //  public async Task<ActionResult> UploadAvatar(string id ,UserAvatar request) 
-        // {
-        //      var update = Builders<User>.Update
-        //         .Set(x => x.AvatarUrl, request.AvatarUrl)
-        //         .Set(x => x.UpdatedAt, DateTime.UtcNow);
-
-        //     var result = await _usersCollection.UpdateOneAsync(
-        //         x => x.Id == id,
-        //         update
-        //     );
-
-        //     if (result.MatchedCount == 0)
-        //     {       
-        //         return NotFound(new
-        //         {
-        //             success = false,
-        //             message = "User not found"
-        //         });
-        //     }
-        //     return Ok(new
-        //     {
-        //         success = true,
-        //         message = "Avata updated"
-        //     });
-        // }
-        
-        
+  
         //API update Thong tIn
         [HttpPatch("updateInformation/{id}")]
         public async Task<ActionResult> UpdateInformation ( string id, UserInformation request)
         {
-             var user = await _usersCollection
-                .Find(x => x.Id == id)
-                .FirstOrDefaultAsync();
+            try{
+                 var  duplicateUser = await _usersCollection.Find(u => u.Phone == request.Phone).FirstOrDefaultAsync();
 
-            if (user == null)
-            {
-                return NotFound(new
+                if (duplicateUser != null) { 
+                    
+                    return StatusCode(409,ApiResponse.Fail(
+                      message: "Số điện thoại đã tồn tại" 
+                    ));
+                }
+
+                var user = await _usersCollection
+                    .Find(x => x.Id == id)
+                    .FirstOrDefaultAsync();
+
+                if (user == null)
                 {
-                    success = false,
-                    message = "User not found"
-                });
+                    return NotFound(ApiResponse.Fail(
+                        message: "Không tìm thấy user"
+                    ));
+                }
+                var firstName = request.FirstName ?? user.FirstName;
+                var lastName = request.LastName ?? user.LastName;
+                var nickname = request.Nickname ?? user.Nickname;
+                var bio = request.Bio ?? user.Bio;
+                var phone = request.Phone ?? user.Phone;
+                var avatar = request.AvatarUrl ?? user.AvatarUrl;
+                var username = request.AvatarUrl ?? user.Username;
+
+                var displayname = $"{firstName} {lastName}";
+
+                var update = Builders<User>.Update
+                    .Set(x => x.FirstName, firstName)
+                    .Set(x => x.LastName, lastName)
+                    .Set(x => x.Nickname, nickname)
+                    .Set(x => x.Bio, bio)
+                    .Set(x => x.Phone, phone)
+                    .Set(x => x.AvatarUrl, avatar)
+                    .Set(x => x.Username, username)
+                    .Set(x => x.UpdatedAt, DateTime.UtcNow);
+                
+                await _usersCollection.UpdateOneAsync(
+
+                    x => x.Id == id,
+                    update
+                );
+
+                return Ok(ApiResponse.Success(
+                    message: "Update thông tin thành công",
+                    new
+                    {
+                        id = user.Id,
+                        username = user.Username,
+                        displayname = user.DisplayName,
+                        email = user.Email,
+                        updateAt = user.UpdatedAt
+                        
+                    }
+                    
+                ));
             }
-            var firstName = request.FirstName ?? user.FirstName;
-            var lastName = request.LastName ?? user.LastName;
-            var nickname = request.Nickname ?? user.Nickname;
-            var bio = request.Bio ?? user.Bio;
-            var phone = request.Phone ?? user.Phone;
-            var avatar = request.AvatarUrl ?? user.AvatarUrl;
-
-            var username = $"{firstName} {lastName}";
-
-           var update = Builders<User>.Update
-                .Set(x => x.FirstName, firstName)
-                .Set(x => x.LastName, lastName)
-                .Set(x => x.Nickname, nickname)
-                .Set(x => x.Bio, bio)
-                .Set(x => x.Phone, phone)
-                .Set(x => x.AvatarUrl, avatar)
-                .Set(x => x.Username, username)
-                .Set(x => x.UpdatedAt, DateTime.UtcNow);
-            
-            await _usersCollection.UpdateOneAsync(
-
-                x => x.Id == id,
-                update
-            );
-
-            return Ok(new
+            catch
             {
-                success = true,
-                message = "Information updated"
-            });
+                return StatusCode(500, ApiResponse.Fail(
+                    message: "Lỗi khi update"
+                ));
+            }
         }
     }
 }

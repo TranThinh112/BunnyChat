@@ -19,8 +19,7 @@ namespace WebMoi.Models.Entities
         public  string HashPassword { get; set; } = "";
 
         [BsonElement] 
-       public string Username {get; set;} = "";
-        // Console.Writeline(this.Username);
+        public string Username {get; set;} = "";
 
         public string? AvatarUrl { get; set; } 
         public string? Bio {get; set; }
@@ -31,8 +30,8 @@ namespace WebMoi.Models.Entities
         [BsonIgnore]
         public string DisplayName =>
             !string.IsNullOrWhiteSpace(Nickname)
-                ? $"{Username} ({Nickname})"
-                : Username;
+                ? $"{FirstName} {LastName} ({Nickname})"
+                : $"{FirstName} {LastName}";
 
         public DateTime CreatedAt {get; set; }
         public DateTime UpdatedAt {get; set; }
