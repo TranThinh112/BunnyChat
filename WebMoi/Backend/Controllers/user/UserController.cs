@@ -95,6 +95,7 @@ namespace WebMoi.Controllers
                         username = user.Username,
                         displayname = user.DisplayName,
                         email = user.Email,
+                        password = user.HashPassword,
                         createdAt = user.CreatedAt,
                         updatedAt = user.UpdatedAt
                     })

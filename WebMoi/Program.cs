@@ -17,8 +17,11 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+//static files
 app.UseStaticFiles();
 
+//phân tích URL và tìm route phù hợp
 app.UseRouting();
 
 app.UseAuthorization();
@@ -36,11 +39,6 @@ app.Lifetime.ApplicationStarted.Register(() =>
     }
 });
 
-app.MapGet("/", ()=>
-    {
-        return "Server dang chay";
-    }
-);
 app.MapControllers();
 
 
