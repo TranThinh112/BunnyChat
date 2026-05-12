@@ -6,7 +6,7 @@ using WebMoi.Models.Entities;
 
 namespace WebMoi.DTOs
 {
-    public class SignUpRequest
+    public record SignUpRequest
     {
         // [Required]
         [EmailAddress]
@@ -28,11 +28,19 @@ namespace WebMoi.DTOs
         public string? NickName {get; set; }
     }
 
-    public class LoginRequest
-    {
-        public string? UserName {get; set; }  
+    // public record LoginRequest
+    // {
+    //     public string? UserName {get; set; }  
 
-        public string? PassWord {get; set; }  
+    //     public string? PassWord {get; set; }  
     
-    }
+    // }
+    // public record LoginRequest(string Username, string Password);
+
+    public record TokenRequest (string AccessToken, string RefreshToken);
+    public record TokenResponse (string AccessToken, string RefreshToken);
+    public record AssignRole (string Username, string RoleName);
+
+
+
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Documents\\doanWeb\\webmoi\\WebMoi.csproj": {}
+    "C:\\Users\\Admin\\Documents\\doanWeb\\WebMoi\\WebMoi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Documents\\doanWeb\\webmoi\\WebMoi.csproj": {
+    "C:\\Users\\Admin\\Documents\\doanWeb\\WebMoi\\WebMoi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\doanWeb\\webmoi\\WebMoi.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Documents\\doanWeb\\WebMoi\\WebMoi.csproj",
         "projectName": "WebMoi",
-        "projectPath": "C:\\Users\\Admin\\Documents\\doanWeb\\webmoi\\WebMoi.csproj",
+        "projectPath": "C:\\Users\\Admin\\Documents\\doanWeb\\WebMoi\\WebMoi.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\doanWeb\\webmoi\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\Documents\\doanWeb\\WebMoi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\DevExpress 25.2\\Components\\Offline Packages",

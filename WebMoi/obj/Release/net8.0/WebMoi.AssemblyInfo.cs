@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("c2c42e5d-1123-4086-8aac-2bd8143bfd62")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebMoi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8787d32fd773f4c43d6afadd03631aa938c3af96")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e62d25a74913923cc241e88bf983bcef65a9b503")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebMoi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebMoi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

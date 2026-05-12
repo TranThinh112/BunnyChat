@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gZReE8mei1A=",
+  "dgSpecHash": "gR18Vb8dGp8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Documents\\doanWeb\\webmoi\\WebMoi.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Documents\\doanWeb\\WebMoi\\WebMoi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\bcrypt.net-next\\4.1.0\\bcrypt.net-next.4.1.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",

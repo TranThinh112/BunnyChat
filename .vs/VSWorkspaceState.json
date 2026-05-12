@@ -6,9 +6,10 @@
     "\\WebMoi\\Backend\\Controllers",
     "\\WebMoi\\Backend\\Controllers\\auth",
     "\\WebMoi\\Backend\\Data",
+    "\\WebMoi\\Backend\\DTOs",
     "\\WebMoi\\Backend\\Models",
     "\\WebMoi\\Backend\\Models\\Entities"
   ],
-  "SelectedNode": "\\WebMoi\\Backend\\Controllers\\auth\\signupController.cs",
+  "SelectedNode": "\\WebMoi\\Backend\\Models\\Entities\\users.cs",
   "PreviewInSolutionExplorer": false
 }
