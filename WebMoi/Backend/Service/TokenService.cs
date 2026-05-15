@@ -23,9 +23,9 @@ namespace WebMoi.Service
             //Tạo claims mã hóa data user gồm các trường Id, Username, Email
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Id!),
-                new Claim(ClaimTypes.Name, user.Username ?? ""),
-                new Claim(ClaimTypes.Email, user.Email ?? "")
+                new Claim("userId", user.Id!),
+                // new Claim(ClaimTypes.Name, user.Username ?? ""),
+                // new Claim(ClaimTypes.Email, user.Email ?? "")
             };
 
             //Tạo secret Key

@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography.X509Certificates;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
@@ -10,8 +11,9 @@ using WebMoi.Models.Entities;
 namespace WebMoi.Controllers
 
 {
-    [Route("users/")]
+    // [Authorize]
     [ApiController]
+    [Route("users/")]
     public class UserController : ControllerBase
     {
         private readonly IMongoCollection<User> _usersCollection;

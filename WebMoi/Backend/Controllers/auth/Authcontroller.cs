@@ -32,7 +32,7 @@ namespace WebMoi.Controllers
         }
        
         [HttpPost("signup")]
-        public async Task<ActionResult> CreateUser(SignUpRequest request) 
+        public async Task<ActionResult> SignUp(SignUpRequest request) 
         {
             try
             {
@@ -43,7 +43,6 @@ namespace WebMoi.Controllers
                         message: "Không thể thiếu Eamil, Password, Firstname, Lastname và Username"
                     ));
                 }
-                Console.WriteLine(request.UserName);
                 
                 //kiểm tra username
                 var  duplicateUser = await _usersCollection.Find(u => u.Username == request.UserName || u.Email == request.Email).FirstOrDefaultAsync();
@@ -65,7 +64,7 @@ namespace WebMoi.Controllers
                     LastName = request.LastName,
                     Username = request.UserName,
                     Email = request.Email,
-                    Nickname = request.NickName, //Nickname có thể có hoawjkc ko 
+                    Nickname = request.NickName, //Nickname có thể có or ko 
                     HashPassword = HashedPassword,
                     CreatedAt = DateTime.UtcNow,
                 };
@@ -86,10 +85,12 @@ namespace WebMoi.Controllers
             }
 
             //trả về lỗi
-            catch
-            {
-               return StatusCode(500, ApiResponse.Fail(
-                    message: "Lỗi khi Signup"
+            catch(Exception ex)
+            { 
+                Console.WriteLine("Lỗi khi Signup");
+
+                return StatusCode(500, ApiResponse.Fail(
+                    message: $"{ex.Message}"
                ));
             }
         }
@@ -100,7 +101,7 @@ namespace WebMoi.Controllers
         {
             try
             {
-               //Lấy input
+               //Lấy input & kiểm tra có bị thiếu field ko 
                 if( string.IsNullOrWhiteSpace(request.UserName) || string.IsNullOrWhiteSpace(request.PassWord))
                 {
                     return BadRequest(ApiResponse.Fail(
@@ -139,24 +140,24 @@ namespace WebMoi.Controllers
 
                 //import vao collectiuon sessiuon, nếu đã có trong collection, update RefreshToken
                 await _sessionCollection.ReplaceOneAsync(
-                    s => s.Username == user.Username,
+                    s => s.UserId == user.Id,
                     new Session
                     {
-                        Username = user.Username,
+                        UserId = user.Id!,
+                        Username = user.Username!,
                         RefreshToken = refreshToken,
-                        // RefreshToken = BCrypt.Net.BCrypt.HashPassword(refreshToken, 10),
                         ExpiresAt = refreshExpiry
                     },
                     new ReplaceOptions { IsUpsert = true }
                 );
             
-                //Gắn refreshToken vào cookie
+                // menthod Gắn refreshToken vào cookie
                 Response.Cookies.Append(
                     "refreshToken",
                     refreshToken,
                     new CookieOptions
                     {
-                        //Chống XSS
+                        //Chống XSS, Chặn JavaScript đọc cookie.
                         HttpOnly = true,
 
                         //Gwuir cookie qua HTTPS, ko gửi qua HTTP
@@ -182,12 +183,53 @@ namespace WebMoi.Controllers
             // trả về lỗi
             catch(Exception ex)
             {
-                Console.WriteLine(ex);
+                Console.WriteLine("Lỗi khi gọi Login");
 
                 return StatusCode(500, ApiResponse.Fail(
-                    message: "Lỗi khi gọi Login"
+                    message: $"{ex.Message}"
                 ));
             }
         }
+    
+        //Api SignOut
+        [HttpPost("signout")]
+        public async Task<ActionResult> SignOut()
+        {
+            try
+            {
+                // lấy refresh token từ cookie
+                var token =  Request.Cookies["refreshToken"];
+
+                //Check token tồn tại trong session
+                if (!string.IsNullOrEmpty(token))
+                {
+                //xóa refresh token trong sesion
+                     await _sessionCollection.DeleteManyAsync(
+                        s => s.RefreshToken == token
+                     );
+                }
+                // xóa cookie
+                Response.Cookies.Delete("refreshToken");
+                
+                //Trả kết quả
+                return NoContent();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Lỗi khi gọi Signout");
+                return StatusCode(500, ApiResponse.Fail(
+                    message: $"{ex.Message}"
+                ));
+            }
+        }
+
+        // [HttpPost("refresh")]
+        // public IActionResult Refresh([FromBody] RefreshRequest request)
+        // {
+        //     var result = _tokenService.RefreshToken(request.RefreshToken);
+        //     return result is null ? Unauthorized() : Ok(result);
+        // }
+    
+    
     }
 }
