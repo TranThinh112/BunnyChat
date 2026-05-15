@@ -4,6 +4,7 @@ using WebMoi.Data;
 using WebMoi.DTOs;
 using WebMoi.Models;
 using WebMoi.Models.Entities;
+using WebMoi.Service;
 using  BCrypt.Net;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
@@ -18,12 +19,16 @@ namespace WebMoi.Controllers
         
         private readonly IMongoCollection<User> _usersCollection;
         private readonly IMongoCollection<Session> _sessionCollection;
+        private readonly ITokenService _tokenService;
+        private readonly IConfiguration _configuration;
 
-        public AuthController(MongoDbService mongoDbService)
+
+        public AuthController(MongoDbService mongoDbService, ITokenService tokenService, IConfiguration configuration)
         {
             _usersCollection = mongoDbService.Database.GetCollection<User>("users");
             _sessionCollection = mongoDbService.Database.GetCollection<Session>("sessions");
-            
+            _tokenService = tokenService;
+            _configuration = configuration;
         }
        
         [HttpPost("signup")]
@@ -60,6 +65,7 @@ namespace WebMoi.Controllers
                     LastName = request.LastName,
                     Username = request.UserName,
                     Email = request.Email,
+                    Nickname = request.NickName, //Nickname có thể có hoawjkc ko 
                     HashPassword = HashedPassword,
                     CreatedAt = DateTime.UtcNow,
                 };
@@ -94,7 +100,7 @@ namespace WebMoi.Controllers
         {
             try
             {
-                //kiểm tra có thiếu data hay ko 
+               //Lấy input
                 if( string.IsNullOrWhiteSpace(request.UserName) || string.IsNullOrWhiteSpace(request.PassWord))
                 {
                     return BadRequest(ApiResponse.Fail(
@@ -104,7 +110,6 @@ namespace WebMoi.Controllers
                 
                 //Kiểm tra username có tồn tại hay ko 
                 var user = await _usersCollection.Find(u => u.Username == request.UserName).FirstOrDefaultAsync();
-
                 if(user == null)
                 {
                     return Unauthorized(ApiResponse.Fail(
@@ -112,12 +117,8 @@ namespace WebMoi.Controllers
                     ));
                 }
 
-                // Console.WriteLine(request.PassWord);
-                // Console.WriteLine(user == null);
-                // Console.WriteLine(user?.HashPassword);
                 //kiểm tra password có đúng hjay ko 
                 var passwordCorrect = BCrypt.Net.BCrypt.Verify(request.PassWord, user.HashPassword);
-                //Sai password
                 if(!passwordCorrect)
                 {
                     return Unauthorized(ApiResponse.Fail(
@@ -125,29 +126,65 @@ namespace WebMoi.Controllers
                     ));
                 }
 
-                //data gui len collectiuon session
-                var session = new Session
-                {
-                    Username = request.UserName,
-                };
+                //nếu khớp, tạo accesToken với JWT
+                var accessToken = _tokenService.CreateAccessToken(user);
 
-                //import vao collectiuon sessiuon
-                await _sessionCollection.InsertOneAsync(session);
+                //tạo refreshToken
+                var refreshToken = _tokenService.CreateRefreshToken();
 
-                //trả kết quả true
+                //thời gian hết hạn của Refresh Token
+                var refreshExpiry = DateTime.UtcNow.AddDays(
+                             Convert.ToDouble(_configuration["JwtSettings:RefreshTokenExpirationDays"])
+                            );         
+
+                //import vao collectiuon sessiuon, nếu đã có trong collection, update RefreshToken
+                await _sessionCollection.ReplaceOneAsync(
+                    s => s.Username == user.Username,
+                    new Session
+                    {
+                        Username = user.Username,
+                        RefreshToken = refreshToken,
+                        // RefreshToken = BCrypt.Net.BCrypt.HashPassword(refreshToken, 10),
+                        ExpiresAt = refreshExpiry
+                    },
+                    new ReplaceOptions { IsUpsert = true }
+                );
+            
+                //Gắn refreshToken vào cookie
+                Response.Cookies.Append(
+                    "refreshToken",
+                    refreshToken,
+                    new CookieOptions
+                    {
+                        //Chống XSS
+                        HttpOnly = true,
+
+                        //Gwuir cookie qua HTTPS, ko gửi qua HTTP
+                        Secure = true,
+
+                        // Chống CSRF
+                        SameSite = SameSiteMode.Strict,
+
+                        //  hết hạn sau 7 ngày.
+                        Expires = refreshExpiry 
+                    }
+                );
+
+                //trả về accesToken
                 return Ok(ApiResponse.Success(
                     message: $"{request.UserName} đăng nhập thành công",
                     new
-                    {
-                        // accessToken = 
+                    {   
+                        accessToken,
                     }
                 ));
             }
             // trả về lỗi
-            catch
+            catch(Exception ex)
             {
+                Console.WriteLine(ex);
+
                 return StatusCode(500, ApiResponse.Fail(
-                    // Console.WriteLine("loi API login"),
                     message: "Lỗi khi gọi Login"
                 ));
             }

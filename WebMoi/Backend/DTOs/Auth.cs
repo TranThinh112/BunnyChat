@@ -16,31 +16,21 @@ namespace WebMoi.DTOs
         [MinLength(6)]
         public string? PassWord {get; set; }  
 
-        // [Required]
          public string? FirstName { get; set; }  
 
-        // [Required]
         public string? LastName { get; set; }  
 
-        // [Required]
         public string? UserName {get; set; }  
 
         public string? NickName {get; set; }
     }
 
-    // public record LoginRequest
-    // {
-    //     public string? UserName {get; set; }  
+    public record LoginRequest
+    {
+        public string? UserName {get; set; }  
 
-    //     public string? PassWord {get; set; }  
+        public string? PassWord {get; set; }  
     
-    // }
-    // public record LoginRequest(string Username, string Password);
-
-    public record TokenRequest (string AccessToken, string RefreshToken);
-    public record TokenResponse (string AccessToken, string RefreshToken);
-    public record AssignRole (string Username, string RoleName);
-
-
+    }
 
 }

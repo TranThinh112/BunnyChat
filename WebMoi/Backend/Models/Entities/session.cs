@@ -5,7 +5,9 @@ namespace WebMoi.Models.Entities
 {
     public class Session
     {
-        public  string? AcsessToken { get; set; }
+        public  string? RefreshToken { get; set; }
+        public  DateTime ExpiresAt { get; set; }
+
 
         [BsonElement] 
         public string? Username {get; set;} 

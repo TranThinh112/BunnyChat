@@ -74,3 +74,13 @@ C:\Users\Admin\Documents\doanWeb\WebMoi\bin\Debug\net8.0\ZstdSharp.dll
 C:\Users\Admin\Documents\doanWeb\WebMoi\obj\Debug\net8.0\WebMoi.csproj.AssemblyReference.cache
 C:\Users\Admin\Documents\doanWeb\WebMoi\obj\Debug\net8.0\WebMoi.csproj.Up2Date
 C:\Users\Admin\Documents\doanWeb\webmoi\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\Admin\Documents\doanWeb\webmoi\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Admin\Documents\doanWeb\webmoi\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Admin\Documents\doanWeb\webmoi\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Admin\Documents\doanWeb\webmoi\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Admin\Documents\doanWeb\webmoi\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\Admin\Documents\doanWeb\webmoi\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Admin\Documents\doanWeb\webmoi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Admin\Documents\doanWeb\webmoi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Admin\Documents\doanWeb\webmoi\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Admin\Documents\doanWeb\webmoi\obj\Debug\net8.0\WebMoi.MvcApplicationPartsAssemblyInfo.cs

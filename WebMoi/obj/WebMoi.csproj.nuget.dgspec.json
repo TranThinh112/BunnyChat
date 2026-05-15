@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Documents\\doanWeb\\WebMoi\\WebMoi.csproj": {}
+    "C:\\Users\\Admin\\Documents\\doanWeb\\webmoi\\WebMoi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Documents\\doanWeb\\WebMoi\\WebMoi.csproj": {
+    "C:\\Users\\Admin\\Documents\\doanWeb\\webmoi\\WebMoi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\doanWeb\\WebMoi\\WebMoi.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Documents\\doanWeb\\webmoi\\WebMoi.csproj",
         "projectName": "WebMoi",
-        "projectPath": "C:\\Users\\Admin\\Documents\\doanWeb\\WebMoi\\WebMoi.csproj",
+        "projectPath": "C:\\Users\\Admin\\Documents\\doanWeb\\webmoi\\WebMoi.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\doanWeb\\WebMoi\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\Documents\\doanWeb\\webmoi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\DevExpress 25.2\\Components\\Offline Packages",
@@ -57,9 +57,25 @@
               "target": "Package",
               "version": "[4.1.0, )"
             },
+            "Microsoft.IdentityModel.JsonWebTokens": {
+              "target": "Package",
+              "version": "[8.18.0, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[8.18.0, )"
+            },
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[3.8.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[10.1.7, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.18.0, )"
             }
           },
           "imports": [
