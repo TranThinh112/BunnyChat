@@ -193,7 +193,7 @@ namespace WebMoi.Controllers
     
         //Api SignOut
         [HttpPost("signout")]
-        public async Task<ActionResult> SignOut()
+        public async Task<ActionResult> LogOut()
         {
             try
             {

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebMoi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+31e6752a8d78224b38a82f7842d97441bbc854df")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fc5df0e6728dc19c6c3d01dc0565808384f3b17c")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebMoi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebMoi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

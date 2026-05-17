@@ -62,6 +62,7 @@ Backend/
  DTOs/
   Auth.cs
   UserDTO.cs
+ MiddleWares/AuthMiddleware.cs
  Models/
   ApiResponse.cs
   Entities/
@@ -385,9 +386,12 @@ Program.cs
 <NUGET>/
  bcrypt.net-next/4.1.0/lib/netstandard2.1/BCrypt.Net-Next.dll
  dnsclient/1.6.1/lib/net5.0/DnsClient.dll
+ microsoft.aspnetcore.authentication.jwtbearer/8.0.8/lib/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
  microsoft.identitymodel.abstractions/8.18.0/lib/net8.0/Microsoft.IdentityModel.Abstractions.dll
  microsoft.identitymodel.jsonwebtokens/8.18.0/lib/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
  microsoft.identitymodel.logging/8.18.0/lib/net8.0/Microsoft.IdentityModel.Logging.dll
+ microsoft.identitymodel.protocols.openidconnect/7.1.2/lib/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+ microsoft.identitymodel.protocols/7.1.2/lib/net8.0/Microsoft.IdentityModel.Protocols.dll
  microsoft.identitymodel.tokens/8.18.0/lib/net8.0/Microsoft.IdentityModel.Tokens.dll
  microsoft.openapi/2.4.1/lib/net8.0/Microsoft.OpenApi.dll
  mongodb.bson/3.8.0/lib/net6.0/MongoDB.Bson.dll

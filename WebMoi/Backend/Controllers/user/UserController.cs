@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography.X509Certificates;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,47 @@ namespace WebMoi.Controllers
         {   
             
             return await _usersCollection.Find(FilterDefinition<User>.Empty).ToListAsync();
+        }
+
+        [Authorize]
+        //API láy dữ liệu user đang login
+        [HttpGet("me")]
+       public async Task<IActionResult> GetMe()
+        {
+            try
+            {
+                var userId = User.FindFirst("userId")?.Value;
+
+            //đọc claim
+            // foreach (var claim in User.Claims)
+            // {
+            //     Console.WriteLine($"{claim.Type}: {claim.Value}");
+            // }
+
+                var user = await _usersCollection.Find(u => u.Id == userId).FirstOrDefaultAsync();
+                if(user == null)
+                {
+                    Console.WriteLine($"Không tìm thấy user");
+                    
+                    return NotFound(ApiResponse.Fail(
+                        message: "Người dùng không tồn tại"
+                    ));
+                }
+
+                Console.WriteLine(user == null ? "NULL" : user.Username);
+
+                return Ok(ApiResponse.Success(
+                    message: "Lấy thông tin thành công",
+                    data: user
+                ));
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy dữ liệu người dùng");
+                return StatusCode(500, ApiResponse.Fail(
+                    message: $"{ex.Message}"
+                ));
+            }
         }
 
         //API serach
@@ -104,10 +146,11 @@ namespace WebMoi.Controllers
                 ));
                
             }
-            catch
-            {
+            catch(Exception ex)
+            {   
+                Console.WriteLine( "Lỗi khi tìm kiếm");
                 return StatusCode(500, ApiResponse.Fail(
-                    message: "Lỗi khi tìm kiếm"
+                    message: $"{ex.Message}"
                 ));
             }
         }
