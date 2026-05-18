@@ -27,7 +27,7 @@ namespace WebMoi.Models.Entities
 
         public string? Nickname {get; set;} 
 
-        [BsonIgnore]
+        // [BsonIgnore]
         public string DisplayName =>
             !string.IsNullOrWhiteSpace(Nickname)
                 ? $"{FirstName} {LastName} ({Nickname})"

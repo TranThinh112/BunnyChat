@@ -64,6 +64,7 @@ namespace WebMoi.Controllers
                     LastName = request.LastName,
                     Username = request.UserName,
                     Email = request.Email,
+                    // DisplayName = $"{request.FirstName} {request.LastName}"
                     Nickname = request.NickName, //Nickname có thể có or ko 
                     HashPassword = HashedPassword,
                     CreatedAt = DateTime.UtcNow,

@@ -8,19 +8,6 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Text.Json;
 
-//hàm trả về lỗi trong middleware
-static async Task MiddlewareError(HttpContext context)
-{
-    context.Response.StatusCode = 500;
-    context.Response.ContentType = "application/json";
-
-    await context.Response.WriteAsync(
-        JsonSerializer.Serialize(
-            ApiResponse.Fail("Lỗi xác minh token")
-        )
-    );
-}
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,6 +42,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
                     builder.Configuration["JwtSettings:SecurityKey"]!
                 )
             ),
+            // kiểm tra "ai phát hành token"    issuer = người phát hành token
+            ValidateIssuer = false,
+            
+            // kiểm tra "token dành cho ai"     audience = người nhận token
+            ValidateAudience = false,
 
             // token có hết hạn chưa
             ValidateLifetime = true,
@@ -65,36 +57,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         //các trạng thái lỗi của middleware và respon
         options.Events = new JwtBearerEvents
         {
-            
-            // token thiếu 
-            OnChallenge = async context =>
-            {
-                try
-                {
-                    context.HandleResponse();
-
-                    context.Response.StatusCode = 401;
-                    context.Response.ContentType = "application/json";
-
-                    await context.Response.WriteAsync(
-                        JsonSerializer.Serialize(
-                            ApiResponse.Fail("Không tìm thấy access token")
-                        )
-                    );
-                }
-                catch
-                {
-                    await MiddlewareError(context.HttpContext);
-                }
-            },
-
-            //token sai or hết hạn
+             //token sai or hết hạn
             OnAuthenticationFailed = async context =>
             {
-                try
-                {
-                    context.NoResult();
+                   Console.WriteLine(context.Exception.Message);
+                context.NoResult();
 
+                if(!context.Response.HasStarted)
+                {
                     context.Response.StatusCode = 403;
                     context.Response.ContentType = "application/json";
 
@@ -104,10 +74,24 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
                         )
                     );
                 }
-                catch
-                {
-                    await MiddlewareError(context.HttpContext);
-                }
+            },
+
+            // token thiếu 
+            OnChallenge = async context =>
+            {
+                    context.HandleResponse();
+                    
+                    if (context.Response.HasStarted)
+                        return;
+
+                    context.Response.StatusCode = 401;
+                    context.Response.ContentType = "application/json";
+
+                    await context.Response.WriteAsync(
+                        JsonSerializer.Serialize(
+                            ApiResponse.Fail("Không tìm thấy access token")
+                        )
+                    );
             },
         };
     });
