@@ -91,7 +91,7 @@ namespace WebMoi.Controllers
         //API update Thong tin user đang login
         [Authorize]
         [HttpPatch("me")]
-        public async Task<ActionResult> UpdateInformation ( string id, UserInformation request)
+        public async Task<ActionResult> UpdateInformation ( string id, UserInformationDTORequest request)
         {
             try{
                  var  duplicateUser = await _usersCollection.Find(u => u.Phone == request.Phone).FirstOrDefaultAsync();

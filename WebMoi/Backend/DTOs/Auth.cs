@@ -6,13 +6,13 @@ using WebMoi.Models.Entities;
 
 namespace WebMoi.DTOs
 {
-    public record SignUpRequest
+    public record SignUpDTORequest
     {
-        // [Required]
+         [Required]
         [EmailAddress]
         public string? Email {get; set; }  
         
-        // [Required]
+         [Required]
         [MinLength(6)]
         public string? PassWord {get; set; }  
 
@@ -25,11 +25,13 @@ namespace WebMoi.DTOs
         public string? NickName {get; set; }
     }
 
-    public record LoginRequest
+    public class LoginDTORequest
     {
-        public string? UserName {get; set; }  
+        [Required]
+        public string UserName {get; set; } = "";
 
-        public string? PassWord {get; set; }  
+        [Required]
+        public string PassWord {get; set; }  = "";
     
     }
 

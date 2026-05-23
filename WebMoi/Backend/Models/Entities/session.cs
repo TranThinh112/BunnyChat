@@ -7,10 +7,10 @@ namespace WebMoi.Models.Entities
    public class Session
     {
 
-        public string UserId { get; set; }
-        public string Username { get; set; }
+        public string UserId { get; set; } = null!;
+        public string Username { get; set; } = null!;
 
-        public string RefreshToken { get; set; }
+        public string RefreshToken { get; set; } = null!;
 
         public DateTime ExpiresAt { get; set; }
     }

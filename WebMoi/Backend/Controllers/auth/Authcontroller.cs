@@ -32,7 +32,7 @@ namespace WebMoi.Controllers
         }
        
         [HttpPost("signup")]
-        public async Task<ActionResult> SignUp(SignUpRequest request) 
+        public async Task<ActionResult> SignUp(SignUpDTORequest request) 
         {
             try
             {
@@ -98,7 +98,7 @@ namespace WebMoi.Controllers
 
         //Api Login
         [HttpPost("login")]
-        public async Task<ActionResult> Login (LoginRequest request)
+        public async Task<ActionResult> Login (LoginDTORequest request)
         {
             try
             {

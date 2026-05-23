@@ -10,6 +10,6 @@
     "\\WebMoi\\Backend\\Models",
     "\\WebMoi\\Backend\\Models\\Entities"
   ],
-  "SelectedNode": "\\WebMoi\\Backend\\Models\\Entities\\users.cs",
+  "SelectedNode": "\\WebMoi\\Backend\\DTOs\\Auth.cs",
   "PreviewInSolutionExplorer": false
 }

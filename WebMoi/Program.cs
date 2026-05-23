@@ -2,14 +2,19 @@ using Microsoft.AspNetCore.Identity;
 using WebMoi.Data;
 using WebMoi.Service;
 
+
 //đăng ký authen
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Text.Json;
 
+//config cho FrontEnd
+using Microsoft.Extensions.FileProviders;
+
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 //Swwagger
 builder.Services.AddControllers();
@@ -19,7 +24,21 @@ builder.Services.AddSwaggerGen();
 
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services
+    .AddControllersWithViews()
+    .AddRazorOptions(options =>
+    {
+        options.ViewLocationFormats.Clear();
+
+        // Frontend/Views/{Controller}/{Action}.cshtml
+        options.ViewLocationFormats.Add("/Frontend/Views/{1}/{0}.cshtml");
+
+        // Frontend/Views/Shared/_Layout.cshtml
+        options.ViewLocationFormats.Add("/Frontend/Views/Shared/{0}.cshtml");
+    });
+
+
+//add mongoDB
 builder.Services.AddSingleton<MongoDbService>();
 
 //Đămg ký AccessToken
@@ -116,7 +135,13 @@ app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
 //static files
-app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(builder.Environment.ContentRootPath, "Frontend", "wwwroot")
+    ),
+    RequestPath = ""
+});;
 
 //phân tích URL và tìm route phù hợp
 app.UseRouting();
@@ -137,10 +162,10 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}"
+    pattern: "{controller=Page}/{action=Index}/{id?}"
     );
 
-// app.MapControllers();
+app.MapControllers();
 
 app.Lifetime.ApplicationStarted.Register(() =>
 {
@@ -150,7 +175,6 @@ app.Lifetime.ApplicationStarted.Register(() =>
     }
 });
 
-app.MapControllers();
 
 
 app.Run();

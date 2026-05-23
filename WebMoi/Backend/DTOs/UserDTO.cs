@@ -6,7 +6,7 @@ using WebMoi.Models.Entities;
 
 namespace WebMoi.DTOs
 {
-    public class UserInformation
+    public class UserInformationDTORequest
     {   
          public string? Bio { get; set; }
 
