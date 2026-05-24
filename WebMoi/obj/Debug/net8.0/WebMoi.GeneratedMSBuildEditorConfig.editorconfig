@@ -27,8 +27,16 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = RnJvbnRlbmRcVmlld3NcQXV0aFxBdXRoLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Admin/Documents/doanWeb/webmoi/Frontend/Views/Auth/Forgot.cshtml]
+build_metadata.AdditionalFiles.TargetPath = RnJvbnRlbmRcVmlld3NcQXV0aFxGb3Jnb3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Admin/Documents/doanWeb/webmoi/Frontend/Views/Chat/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = RnJvbnRlbmRcVmlld3NcQ2hhdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Documents/doanWeb/webmoi/Frontend/Views/Shared/AuthLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = RnJvbnRlbmRcVmlld3NcU2hhcmVkXEF1dGhMYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Admin/Documents/doanWeb/webmoi/Frontend/Views/Shared/_ChatLayout.cshtml]

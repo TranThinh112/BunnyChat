@@ -10,19 +10,19 @@ namespace WebMoi.DTOs
     {
          [Required]
         [EmailAddress]
-        public string? Email {get; set; }  
+        public string Email {get; set; } = ""; 
         
          [Required]
-        [MinLength(6)]
-        public string? PassWord {get; set; }  
+        [StringLength(100, MinimumLength = 6)]
+        public string PassWord {get; set; } = "";  
 
-         public string? FirstName { get; set; }  
+         public string FirstName { get; set; }  = "";  
 
-        public string? LastName { get; set; }  
+        public string LastName { get; set; }  = "";  
 
-        public string? UserName {get; set; }  
+        public string UserName {get; set; }  = "";  
 
-        public string? NickName {get; set; }
+        public string NickName {get; set; } = "";  
     }
 
     public class LoginDTORequest

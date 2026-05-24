@@ -12,6 +12,11 @@ public class PageController : Controller
     }
 
     
+    [HttpGet("/Forgot")]
+    public IActionResult Forgot()
+    {
+        return View("~/Frontend/Views/Auth/Forgot.cshtml");
+    }
     [HttpGet("/Chat")]
     public IActionResult Chat()
     {

@@ -1,6 +1,8 @@
 
 /* @import url("theme.css"); */
-
+*{
+    box-sizing:border-box;
+}
 
 html {
   font-size: 14px;
@@ -20,14 +22,7 @@ body {
   /* background: red !important; */
 }
 
-a{
-  color: black;
-  transition: 0.3s;
-}
 
-a:hover{
-  color: blue;
-}
 
 @media (min-width: 768px) {
   html {
