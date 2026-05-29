@@ -1,0 +1,47 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 5,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "WebMoi/Frontend/wwwroot/css/Auth.css",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 343,
+      "nonEmptyLines": 285,
+      "metrics": {}
+    },
+    {
+      "path": "WebMoi/Frontend/wwwroot/css/Chat.css",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 49,
+      "nonEmptyLines": 41,
+      "metrics": {}
+    },
+    {
+      "path": "WebMoi/Frontend/wwwroot/css/Forgot.css",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 97,
+      "nonEmptyLines": 78,
+      "metrics": {}
+    },
+    {
+      "path": "WebMoi/Frontend/wwwroot/css/main.css",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 31,
+      "nonEmptyLines": 23,
+      "metrics": {}
+    },
+    {
+      "path": "WebMoi/Frontend/wwwroot/css/theme.css",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 206,
+      "nonEmptyLines": 188,
+      "metrics": {}
+    }
+  ]
+}

@@ -1,0 +1,456 @@
+{
+  "nodes": [
+    {
+      "id": "document:C4_DIAGRAMS.md",
+      "type": "document",
+      "name": "C4_DIAGRAMS.md",
+      "filePath": "C4_DIAGRAMS.md",
+      "summary": "C4 model architecture diagrams for BunnyChat (WebMoi) rendered as Mermaid flowcharts, covering system context, container, and component views with source-folder mapping.",
+      "tags": ["documentation", "architecture", "c4-model", "diagrams", "overview"],
+      "complexity": "moderate",
+      "languageNotes": "Uses Mermaid flowchart TD syntax for three C4 zoom levels with explicit mapping to WebMoi source paths."
+    },
+    {
+      "id": "document:PROJECT_DOCUMENTATION.md",
+      "type": "document",
+      "name": "PROJECT_DOCUMENTATION.md",
+      "filePath": "PROJECT_DOCUMENTATION.md",
+      "summary": "Comprehensive technical documentation for the BunnyChat WebMoi ASP.NET Core 8 application, covering architecture, controllers, services, MongoDB schema, JWT auth, API endpoints, middleware, security, deployment, and sequence diagrams.",
+      "tags": ["documentation", "architecture", "api-reference", "authentication", "deployment"],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "Minimal project readme with API design spreadsheet link, MongoDB connection notes, and dotnet build/run/clean commands for the WebMoi project.",
+      "tags": ["documentation", "entry-point", "development", "quickstart"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:TECHNICAL_DOCUMENTATION.md",
+      "type": "document",
+      "name": "TECHNICAL_DOCUMENTATION.md",
+      "filePath": "TECHNICAL_DOCUMENTATION.md",
+      "summary": "Full technical reference for BunnyChat (WebMoi) mirroring the project documentation scope: layered monolithic architecture, startup flow, request lifecycle, REST APIs, MongoDB collections, DI, JWT security, and Mermaid sequence diagrams.",
+      "tags": ["documentation", "architecture", "api-reference", "authentication", "deployment"],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:C4_DIAGRAMS.md",
+      "target": "document:PROJECT_DOCUMENTATION.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:C4_DIAGRAMS.md",
+      "target": "file:WebMoi/Program.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:C4_DIAGRAMS.md",
+      "target": "file:WebMoi/Frontend/Controllers/PageController.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:C4_DIAGRAMS.md",
+      "target": "file:WebMoi/Backend/Controllers/auth/Authcontroller.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:C4_DIAGRAMS.md",
+      "target": "file:WebMoi/Backend/Controllers/user/UserController.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:C4_DIAGRAMS.md",
+      "target": "file:WebMoi/Backend/Controllers/friend/FriendController.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:C4_DIAGRAMS.md",
+      "target": "file:WebMoi/Backend/Service/TokenService.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:C4_DIAGRAMS.md",
+      "target": "file:WebMoi/Backend/Data/MongoDBService.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:C4_DIAGRAMS.md",
+      "target": "file:WebMoi/Backend/Utils/ApiResponse.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:C4_DIAGRAMS.md",
+      "target": "file:WebMoi/Backend/MiddleWares/authMiddleware.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "document:TECHNICAL_DOCUMENTATION.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/Program.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/WebMoi.csproj",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/appsettings.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/Frontend/Controllers/PageController.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Controllers/auth/Authcontroller.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Controllers/user/UserController.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Controllers/friend/FriendController.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Data/MongoDBService.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Service/TokenService.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Service/ITokenService.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Utils/ApiResponse.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/MiddleWares/authMiddleware.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Models/Entities/users.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Models/Entities/session.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Models/Entities/friends.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/DTOs/Auth.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/DTOs/UserDTO.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/DTOs/FriendDTO.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Models/ErrorViewModel.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/Frontend/Views/Auth/Auth.cshtml",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/Frontend/Views/Auth/Forgot.cshtml",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:PROJECT_DOCUMENTATION.md",
+      "target": "file:WebMoi/Frontend/Views/Chat/Index.cshtml",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "document:PROJECT_DOCUMENTATION.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "file:WebMoi/WebMoi.csproj",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "file:WebMoi/Program.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "document:PROJECT_DOCUMENTATION.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/Program.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/WebMoi.csproj",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/appsettings.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/Frontend/Controllers/PageController.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Controllers/auth/Authcontroller.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Controllers/user/UserController.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Controllers/friend/FriendController.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Data/MongoDBService.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Service/TokenService.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Service/ITokenService.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Utils/ApiResponse.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/MiddleWares/authMiddleware.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Models/Entities/users.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Models/Entities/session.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Models/Entities/friends.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/DTOs/Auth.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/DTOs/UserDTO.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/DTOs/FriendDTO.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/Backend/Models/ErrorViewModel.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/Frontend/Views/Auth/Auth.cshtml",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/Frontend/Views/Auth/Forgot.cshtml",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TECHNICAL_DOCUMENTATION.md",
+      "target": "file:WebMoi/Frontend/Views/Chat/Index.cshtml",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

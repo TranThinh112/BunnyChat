@@ -1,0 +1,206 @@
+{
+  "nodes": [
+    {
+      "id": "file:WebMoi/Program.cs",
+      "type": "file",
+      "name": "Program.cs",
+      "filePath": "WebMoi/Program.cs",
+      "summary": "ASP.NET Core application entry point configuring MVC views, Swagger, MongoDB, JWT Bearer authentication, static files from Frontend/wwwroot, and default Page controller routing.",
+      "tags": ["entry-point", "aspnet-core", "jwt", "mongodb", "swagger", "mvc"],
+      "complexity": "moderate",
+      "languageNotes": "Registers MongoDbService, TokenService, JWT validation with custom 401/403 JSON responses, and custom Razor view locations under Frontend/Views."
+    },
+    {
+      "id": "file:WebMoi/Frontend/Views/Shared/AuthLayout.cshtml",
+      "type": "file",
+      "name": "AuthLayout.cshtml",
+      "filePath": "WebMoi/Frontend/Views/Shared/AuthLayout.cshtml",
+      "summary": "Shared Razor layout for authentication pages with Bootstrap, main/Auth CSS, background video, and scripts for rabbit animation and auth card toggling.",
+      "tags": ["frontend", "layout", "razor", "authentication"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:WebMoi/Frontend/wwwroot/css/animation/AuthAnimation.css",
+      "type": "file",
+      "name": "AuthAnimation.css",
+      "filePath": "WebMoi/Frontend/wwwroot/css/animation/AuthAnimation.css",
+      "summary": "CSS animations for the auth card switching transition between login and signup modes.",
+      "tags": ["frontend", "css", "animation", "authentication"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:WebMoi/Frontend/wwwroot/css/animation/RabbitAnimation.css",
+      "type": "file",
+      "name": "RabbitAnimation.css",
+      "filePath": "WebMoi/Frontend/wwwroot/css/animation/RabbitAnimation.css",
+      "summary": "CSS styles for the interactive rabbit mascot animation on auth pages, including ear, eye, and hide states.",
+      "tags": ["frontend", "css", "animation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:WebMoi/Frontend/wwwroot/js/Auth.js",
+      "type": "file",
+      "name": "Auth.js",
+      "filePath": "WebMoi/Frontend/wwwroot/js/Auth.js",
+      "summary": "Client-side script toggling the auth card between login and signup modes with CSS class transitions.",
+      "tags": ["frontend", "javascript", "authentication", "ui"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:WebMoi/Frontend/wwwroot/js/rabbit.js",
+      "type": "file",
+      "name": "rabbit.js",
+      "filePath": "WebMoi/Frontend/wwwroot/js/rabbit.js",
+      "summary": "Client-side script controlling rabbit mascot eye tracking on mouse move and hiding the rabbit when password fields are focused.",
+      "tags": ["frontend", "javascript", "animation", "ui"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:WebMoi/Frontend/wwwroot/js/site.js",
+      "type": "file",
+      "name": "site.js",
+      "filePath": "WebMoi/Frontend/wwwroot/js/site.js",
+      "summary": "Minimal site-wide JavaScript placeholder for shared frontend behavior.",
+      "tags": ["frontend", "javascript"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:WebMoi/Frontend/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "type": "file",
+      "name": "jquery.validate.unobtrusive.js",
+      "filePath": "WebMoi/Frontend/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "summary": "Third-party jQuery Unobtrusive Validation library enabling ASP.NET MVC client-side form validation.",
+      "tags": ["frontend", "javascript", "validation", "third-party"],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:WebMoi/Frontend/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "type": "document",
+      "name": "LICENSE.txt",
+      "filePath": "WebMoi/Frontend/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "summary": "MIT license text for the jQuery Unobtrusive Validation library.",
+      "tags": ["license", "third-party"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:WebMoi/Frontend/wwwroot/lib/jquery-validation/LICENSE.md",
+      "type": "document",
+      "name": "LICENSE.md",
+      "filePath": "WebMoi/Frontend/wwwroot/lib/jquery-validation/LICENSE.md",
+      "summary": "MIT license text for the jQuery Validation plugin.",
+      "tags": ["license", "third-party"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:WebMoi/Frontend/wwwroot/lib/jquery/LICENSE.txt",
+      "type": "document",
+      "name": "LICENSE.txt",
+      "filePath": "WebMoi/Frontend/wwwroot/lib/jquery/LICENSE.txt",
+      "summary": "MIT license text for the jQuery library.",
+      "tags": ["license", "third-party"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:WebMoi/Properties/launchSettings.json",
+      "type": "config",
+      "name": "launchSettings.json",
+      "filePath": "WebMoi/Properties/launchSettings.json",
+      "summary": "Development launch profiles defining localhost URLs (5281/7230), IIS Express settings, and ASPNETCORE_ENVIRONMENT=Development.",
+      "tags": ["configuration", "development", "aspnet-core"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:WebMoi/Properties/launchSettings.json",
+      "target": "file:WebMoi/Program.cs",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:WebMoi/Program.cs",
+      "target": "class:WebMoi/Backend/Data/MongoDBService.cs:MongoDbService",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:WebMoi/Program.cs",
+      "target": "class:WebMoi/Backend/Service/TokenService.cs:TokenService",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:WebMoi/Program.cs",
+      "target": "class:WebMoi/Backend/Service/ITokenService.cs:ITokenService",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:WebMoi/Program.cs",
+      "target": "class:WebMoi/Backend/Utils/ApiResponse.cs:ApiResponse",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:WebMoi/Program.cs",
+      "target": "file:WebMoi/Frontend/Controllers/PageController.cs",
+      "type": "routes",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:WebMoi/Frontend/Views/Shared/AuthLayout.cshtml",
+      "target": "file:WebMoi/Frontend/wwwroot/css/main.css",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:WebMoi/Frontend/Views/Shared/AuthLayout.cshtml",
+      "target": "file:WebMoi/Frontend/wwwroot/css/Auth.css",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:WebMoi/Frontend/Views/Shared/AuthLayout.cshtml",
+      "target": "file:WebMoi/Frontend/wwwroot/js/rabbit.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:WebMoi/Frontend/Views/Shared/AuthLayout.cshtml",
+      "target": "file:WebMoi/Frontend/wwwroot/js/Auth.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:WebMoi/Frontend/wwwroot/js/Auth.js",
+      "target": "file:WebMoi/Frontend/wwwroot/css/Auth.css",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:WebMoi/Frontend/wwwroot/js/rabbit.js",
+      "target": "file:WebMoi/Frontend/wwwroot/css/animation/RabbitAnimation.css",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:WebMoi/Frontend/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "target": "file:WebMoi/Frontend/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

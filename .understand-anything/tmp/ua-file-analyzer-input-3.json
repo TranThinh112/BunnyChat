@@ -1,0 +1,15 @@
+{
+  "projectRoot": "C:\\Users\\Admin\\Documents\\doanWeb",
+  "batchFiles": [
+    {"path": "WebMoi/DoAn_web.sln", "language": "sln", "sizeLines": 34, "fileCategory": "config"},
+    {"path": "WebMoi/WebMoi.csproj", "language": "csproj", "sizeLines": 20, "fileCategory": "config"},
+    {"path": "WebMoi/appsettings.Development.json", "language": "json", "sizeLines": 21, "fileCategory": "config"},
+    {"path": "WebMoi/appsettings.json", "language": "json", "sizeLines": 22, "fileCategory": "config"}
+  ],
+  "batchImportData": {
+    "WebMoi/DoAn_web.sln": [],
+    "WebMoi/WebMoi.csproj": [],
+    "WebMoi/appsettings.Development.json": [],
+    "WebMoi/appsettings.json": []
+  }
+}

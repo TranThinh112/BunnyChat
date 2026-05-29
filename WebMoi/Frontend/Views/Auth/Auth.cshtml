@@ -15,14 +15,16 @@
                 <p class="auth-subtitle">Chào mừng quay lại BunnyChat</p>
 
                 <form class="auth-form" menthod ="post" asp-controller="Auth" asp-action="Login">
-                    <input name="UserName" type="text" placeholder="Username">
+                    <input name="UserName" type="text" placeholder="Username"><label>Username</label>
                     <input name="Password" type="password" class="rabbit-password" placeholder="Mật khẩu">
                     <button type="submit" class="auth-btn"> Đăng nhập</button>
                 </form>
 
                 <div class="auth-forgot">
-                    <a href="/Forgot" onclick="showForgot(); return false">Bạn quên mật khẩu ?</a>
+                    @* <a href="Page/Forgot" onclick="showForgot(); return false">Bạn quên mật khẩu ?</a> *@
+                    <a asp-area="" asp-controller="Page" asp-action="Forgot">Bạn quên mật khẩu ?</a>
                 </div>
+                
                 <div class="auth-link">
                     Chưa có tài khoản?
                     <a href="#Signup" onclick="showSignup(); return false">Đăng ký</a>

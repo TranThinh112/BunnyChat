@@ -1,0 +1,15 @@
+{
+  "projectRoot": "C:\\Users\\Admin\\Documents\\doanWeb",
+  "batchFiles": [
+    {"path": "C4_DIAGRAMS.md", "language": "markdown", "sizeLines": 249, "fileCategory": "docs"},
+    {"path": "PROJECT_DOCUMENTATION.md", "language": "markdown", "sizeLines": 1062, "fileCategory": "docs"},
+    {"path": "README.md", "language": "markdown", "sizeLines": 21, "fileCategory": "docs"},
+    {"path": "TECHNICAL_DOCUMENTATION.md", "language": "markdown", "sizeLines": 1062, "fileCategory": "docs"}
+  ],
+  "batchImportData": {
+    "C4_DIAGRAMS.md": [],
+    "PROJECT_DOCUMENTATION.md": [],
+    "README.md": [],
+    "TECHNICAL_DOCUMENTATION.md": []
+  }
+}

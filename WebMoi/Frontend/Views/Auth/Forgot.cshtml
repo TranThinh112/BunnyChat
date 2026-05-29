@@ -25,21 +25,14 @@
 
             <div class="forgot-container forgot-form">
 
-                 @* <button class="icon-btn" onclick="history.back()">
-
-                    <i class="bi bi-box-arrow-left">
-                    </i>
-
-                </button> *@
 
                 <div class="logo">
                     <img src="~/images/logo.png" />
                 </div>
 
+                <h1 class="auth-title">Forgot Pasword</h1>
 
-                <h1 class="forgot-title">Forgot Pasword</h1>
-
-                <form class="forgot-form" menthod ="post" asp-controller="Auth" asp-action="Forgot">
+                <form class="auth-form" menthod ="post" asp-controller="Auth" asp-action="Forgot">
                     <input name="UserName" type="text" placeholder="Username/ Email/ Phone">
                     <button type="submit" class="auth-btn"> Tiếp tục</button>
                 </form>

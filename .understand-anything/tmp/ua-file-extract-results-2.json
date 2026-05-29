@@ -1,0 +1,834 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 4,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "C4_DIAGRAMS.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 249,
+      "nonEmptyLines": 193,
+      "sections": [
+        {
+          "heading": "BunnyChat (WebMoi) — C4 Model Diagrams",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "1. System Context Diagram",
+          "level": 2,
+          "line": 13
+        },
+        {
+          "heading": "Context — narrative",
+          "level": 3,
+          "line": 37
+        },
+        {
+          "heading": "2. Container Diagram",
+          "level": 2,
+          "line": 48
+        },
+        {
+          "heading": "Container — responsibilities",
+          "level": 3,
+          "line": 78
+        },
+        {
+          "heading": "Container — internal routes (logical, same process)",
+          "level": 3,
+          "line": 85
+        },
+        {
+          "heading": "3. Component Diagram",
+          "level": 2,
+          "line": 115
+        },
+        {
+          "heading": "Component — authentication path",
+          "level": 3,
+          "line": 178
+        },
+        {
+          "heading": "Component — map to source folders",
+          "level": 3,
+          "line": 204
+        },
+        {
+          "heading": "Diagram hierarchy (C4 zoom levels)",
+          "level": 2,
+          "line": 224
+        },
+        {
+          "heading": "Related documentation",
+          "level": 2,
+          "line": 242
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "PROJECT_DOCUMENTATION.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 1062,
+      "nonEmptyLines": 817,
+      "sections": [
+        {
+          "heading": "BunnyChat (WebMoi) — Technical Documentation",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Table of Contents",
+          "level": 2,
+          "line": 10
+        },
+        {
+          "heading": "1. Project Overview",
+          "level": 2,
+          "line": 34
+        },
+        {
+          "heading": "2. Folder Structure",
+          "level": 2,
+          "line": 53
+        },
+        {
+          "heading": "3. Architecture",
+          "level": 2,
+          "line": 111
+        },
+        {
+          "heading": "Design principles in use",
+          "level": 3,
+          "line": 171
+        },
+        {
+          "heading": "4. Startup Flow",
+          "level": 2,
+          "line": 180
+        },
+        {
+          "heading": "Service registration summary",
+          "level": 3,
+          "line": 209
+        },
+        {
+          "heading": "MongoDB side effects at startup",
+          "level": 3,
+          "line": 218
+        },
+        {
+          "heading": "Default URLs (Development)",
+          "level": 3,
+          "line": 226
+        },
+        {
+          "heading": "5. Request Lifecycle",
+          "level": 2,
+          "line": 238
+        },
+        {
+          "heading": "5.1 MVC page request (e.g. `/` or `/Chat`)",
+          "level": 3,
+          "line": 240
+        },
+        {
+          "heading": "5.2 API request (e.g. `POST /auth/login`)",
+          "level": 3,
+          "line": 263
+        },
+        {
+          "heading": "5.3 Static asset request",
+          "level": 3,
+          "line": 288
+        },
+        {
+          "heading": "6. Controllers",
+          "level": 2,
+          "line": 294
+        },
+        {
+          "heading": "6.1 Frontend — `PageController`",
+          "level": 3,
+          "line": 296
+        },
+        {
+          "heading": "6.2 Backend — `AuthController`",
+          "level": 3,
+          "line": 311
+        },
+        {
+          "heading": "6.3 Backend — `UserController`",
+          "level": 3,
+          "line": 326
+        },
+        {
+          "heading": "6.4 Backend — `FriendController`",
+          "level": 3,
+          "line": 342
+        },
+        {
+          "heading": "7. Services",
+          "level": 2,
+          "line": 355
+        },
+        {
+          "heading": "7.1 `MongoDbService`",
+          "level": 3,
+          "line": 357
+        },
+        {
+          "heading": "7.2 `TokenService` / `ITokenService`",
+          "level": 3,
+          "line": 378
+        },
+        {
+          "heading": "7.3 `ApiResponse` (utility, not DI-registered)",
+          "level": 3,
+          "line": 402
+        },
+        {
+          "heading": "8. Models",
+          "level": 2,
+          "line": 416
+        },
+        {
+          "heading": "8.1 Entities (`Backend/Models/Entities/`)",
+          "level": 3,
+          "line": 418
+        },
+        {
+          "heading": "`User`",
+          "level": 4,
+          "line": 420
+        },
+        {
+          "heading": "`Session`",
+          "level": 4,
+          "line": 432
+        },
+        {
+          "heading": "`Friend`",
+          "level": 4,
+          "line": 445
+        },
+        {
+          "heading": "8.2 DTOs (`Backend/DTOs/`)",
+          "level": 3,
+          "line": 457
+        },
+        {
+          "heading": "8.3 `ErrorViewModel`",
+          "level": 3,
+          "line": 468
+        },
+        {
+          "heading": "9. Database Design",
+          "level": 2,
+          "line": 474
+        },
+        {
+          "heading": "Collections",
+          "level": 3,
+          "line": 519
+        },
+        {
+          "heading": "Connection configuration",
+          "level": 3,
+          "line": 527
+        },
+        {
+          "heading": "10. Dependency Injection",
+          "level": 2,
+          "line": 541
+        },
+        {
+          "heading": "11. Authentication & Authorization",
+          "level": 2,
+          "line": 578
+        },
+        {
+          "heading": "11.1 Authentication flow",
+          "level": 3,
+          "line": 580
+        },
+        {
+          "heading": "11.2 JWT validation rules (`Program.cs`)",
+          "level": 3,
+          "line": 602
+        },
+        {
+          "heading": "11.3 Custom error responses",
+          "level": 3,
+          "line": 612
+        },
+        {
+          "heading": "11.4 Refresh token cookie options",
+          "level": 3,
+          "line": 619
+        },
+        {
+          "heading": "11.5 Authorization attributes",
+          "level": 3,
+          "line": 628
+        },
+        {
+          "heading": "11.6 Custom `AuthMiddleware`",
+          "level": 3,
+          "line": 637
+        },
+        {
+          "heading": "11.7 Refresh endpoint",
+          "level": 3,
+          "line": 641
+        },
+        {
+          "heading": "12. API Endpoints",
+          "level": 2,
+          "line": 647
+        },
+        {
+          "heading": "12.1 Authentication — `/auth`",
+          "level": 3,
+          "line": 652
+        },
+        {
+          "heading": "12.2 Users — `/users`",
+          "level": 3,
+          "line": 664
+        },
+        {
+          "heading": "12.3 Friends — `/friend`",
+          "level": 3,
+          "line": 675
+        },
+        {
+          "heading": "12.4 MVC pages (not JSON API)",
+          "level": 3,
+          "line": 683
+        },
+        {
+          "heading": "12.5 Example requests",
+          "level": 3,
+          "line": 693
+        },
+        {
+          "heading": "13. Middleware Pipeline",
+          "level": 2,
+          "line": 732
+        },
+        {
+          "heading": "14. Security",
+          "level": 2,
+          "line": 768
+        },
+        {
+          "heading": "14.1 Implemented controls",
+          "level": 3,
+          "line": 770
+        },
+        {
+          "heading": "14.2 Risks and recommendations",
+          "level": 3,
+          "line": 781
+        },
+        {
+          "heading": "14.3 NuGet security-related packages",
+          "level": 3,
+          "line": 795
+        },
+        {
+          "heading": "15. External Integrations",
+          "level": 2,
+          "line": 806
+        },
+        {
+          "heading": "16. Deployment Flow",
+          "level": 2,
+          "line": 820
+        },
+        {
+          "heading": "16.1 Local development",
+          "level": 3,
+          "line": 822
+        },
+        {
+          "heading": "16.2 Build artifacts",
+          "level": 3,
+          "line": 839
+        },
+        {
+          "heading": "16.3 Suggested production deployment",
+          "level": 3,
+          "line": 847
+        },
+        {
+          "heading": "16.4 Configuration matrix",
+          "level": 3,
+          "line": 869
+        },
+        {
+          "heading": "17. Architecture Diagrams (Mermaid)",
+          "level": 2,
+          "line": 880
+        },
+        {
+          "heading": "17.1 Component diagram (detailed)",
+          "level": 3,
+          "line": 882
+        },
+        {
+          "heading": "17.2 Layer dependency",
+          "level": 3,
+          "line": 898
+        },
+        {
+          "heading": "18. Sequence Diagrams (Mermaid)",
+          "level": 2,
+          "line": 914
+        },
+        {
+          "heading": "18.1 User registration",
+          "level": 3,
+          "line": 916
+        },
+        {
+          "heading": "18.2 Login with tokens",
+          "level": 3,
+          "line": 939
+        },
+        {
+          "heading": "18.3 Get current user profile",
+          "level": 3,
+          "line": 967
+        },
+        {
+          "heading": "18.4 Sign out",
+          "level": 3,
+          "line": 988
+        },
+        {
+          "heading": "18.5 Friend list (authorized)",
+          "level": 3,
+          "line": 1005
+        },
+        {
+          "heading": "19. Known Gaps & Future Work",
+          "level": 2,
+          "line": 1023
+        },
+        {
+          "heading": "Appendix A — NuGet Dependencies",
+          "level": 2,
+          "line": 1039
+        },
+        {
+          "heading": "Appendix B — Razor view locations",
+          "level": 2,
+          "line": 1049
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 71
+      }
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 22,
+      "nonEmptyLines": 13,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 0
+      }
+    },
+    {
+      "path": "TECHNICAL_DOCUMENTATION.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 1062,
+      "nonEmptyLines": 817,
+      "sections": [
+        {
+          "heading": "BunnyChat (WebMoi) — Technical Documentation",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Table of Contents",
+          "level": 2,
+          "line": 10
+        },
+        {
+          "heading": "1. Project Overview",
+          "level": 2,
+          "line": 34
+        },
+        {
+          "heading": "2. Folder Structure",
+          "level": 2,
+          "line": 53
+        },
+        {
+          "heading": "3. Architecture",
+          "level": 2,
+          "line": 111
+        },
+        {
+          "heading": "Design principles in use",
+          "level": 3,
+          "line": 171
+        },
+        {
+          "heading": "4. Startup Flow",
+          "level": 2,
+          "line": 180
+        },
+        {
+          "heading": "Service registration summary",
+          "level": 3,
+          "line": 209
+        },
+        {
+          "heading": "MongoDB side effects at startup",
+          "level": 3,
+          "line": 218
+        },
+        {
+          "heading": "Default URLs (Development)",
+          "level": 3,
+          "line": 226
+        },
+        {
+          "heading": "5. Request Lifecycle",
+          "level": 2,
+          "line": 238
+        },
+        {
+          "heading": "5.1 MVC page request (e.g. `/` or `/Chat`)",
+          "level": 3,
+          "line": 240
+        },
+        {
+          "heading": "5.2 API request (e.g. `POST /auth/login`)",
+          "level": 3,
+          "line": 263
+        },
+        {
+          "heading": "5.3 Static asset request",
+          "level": 3,
+          "line": 288
+        },
+        {
+          "heading": "6. Controllers",
+          "level": 2,
+          "line": 294
+        },
+        {
+          "heading": "6.1 Frontend — `PageController`",
+          "level": 3,
+          "line": 296
+        },
+        {
+          "heading": "6.2 Backend — `AuthController`",
+          "level": 3,
+          "line": 311
+        },
+        {
+          "heading": "6.3 Backend — `UserController`",
+          "level": 3,
+          "line": 326
+        },
+        {
+          "heading": "6.4 Backend — `FriendController`",
+          "level": 3,
+          "line": 342
+        },
+        {
+          "heading": "7. Services",
+          "level": 2,
+          "line": 355
+        },
+        {
+          "heading": "7.1 `MongoDbService`",
+          "level": 3,
+          "line": 357
+        },
+        {
+          "heading": "7.2 `TokenService` / `ITokenService`",
+          "level": 3,
+          "line": 378
+        },
+        {
+          "heading": "7.3 `ApiResponse` (utility, not DI-registered)",
+          "level": 3,
+          "line": 402
+        },
+        {
+          "heading": "8. Models",
+          "level": 2,
+          "line": 416
+        },
+        {
+          "heading": "8.1 Entities (`Backend/Models/Entities/`)",
+          "level": 3,
+          "line": 418
+        },
+        {
+          "heading": "`User`",
+          "level": 4,
+          "line": 420
+        },
+        {
+          "heading": "`Session`",
+          "level": 4,
+          "line": 432
+        },
+        {
+          "heading": "`Friend`",
+          "level": 4,
+          "line": 445
+        },
+        {
+          "heading": "8.2 DTOs (`Backend/DTOs/`)",
+          "level": 3,
+          "line": 457
+        },
+        {
+          "heading": "8.3 `ErrorViewModel`",
+          "level": 3,
+          "line": 468
+        },
+        {
+          "heading": "9. Database Design",
+          "level": 2,
+          "line": 474
+        },
+        {
+          "heading": "Collections",
+          "level": 3,
+          "line": 519
+        },
+        {
+          "heading": "Connection configuration",
+          "level": 3,
+          "line": 527
+        },
+        {
+          "heading": "10. Dependency Injection",
+          "level": 2,
+          "line": 541
+        },
+        {
+          "heading": "11. Authentication & Authorization",
+          "level": 2,
+          "line": 578
+        },
+        {
+          "heading": "11.1 Authentication flow",
+          "level": 3,
+          "line": 580
+        },
+        {
+          "heading": "11.2 JWT validation rules (`Program.cs`)",
+          "level": 3,
+          "line": 602
+        },
+        {
+          "heading": "11.3 Custom error responses",
+          "level": 3,
+          "line": 612
+        },
+        {
+          "heading": "11.4 Refresh token cookie options",
+          "level": 3,
+          "line": 619
+        },
+        {
+          "heading": "11.5 Authorization attributes",
+          "level": 3,
+          "line": 628
+        },
+        {
+          "heading": "11.6 Custom `AuthMiddleware`",
+          "level": 3,
+          "line": 637
+        },
+        {
+          "heading": "11.7 Refresh endpoint",
+          "level": 3,
+          "line": 641
+        },
+        {
+          "heading": "12. API Endpoints",
+          "level": 2,
+          "line": 647
+        },
+        {
+          "heading": "12.1 Authentication — `/auth`",
+          "level": 3,
+          "line": 652
+        },
+        {
+          "heading": "12.2 Users — `/users`",
+          "level": 3,
+          "line": 664
+        },
+        {
+          "heading": "12.3 Friends — `/friend`",
+          "level": 3,
+          "line": 675
+        },
+        {
+          "heading": "12.4 MVC pages (not JSON API)",
+          "level": 3,
+          "line": 683
+        },
+        {
+          "heading": "12.5 Example requests",
+          "level": 3,
+          "line": 693
+        },
+        {
+          "heading": "13. Middleware Pipeline",
+          "level": 2,
+          "line": 732
+        },
+        {
+          "heading": "14. Security",
+          "level": 2,
+          "line": 768
+        },
+        {
+          "heading": "14.1 Implemented controls",
+          "level": 3,
+          "line": 770
+        },
+        {
+          "heading": "14.2 Risks and recommendations",
+          "level": 3,
+          "line": 781
+        },
+        {
+          "heading": "14.3 NuGet security-related packages",
+          "level": 3,
+          "line": 795
+        },
+        {
+          "heading": "15. External Integrations",
+          "level": 2,
+          "line": 806
+        },
+        {
+          "heading": "16. Deployment Flow",
+          "level": 2,
+          "line": 820
+        },
+        {
+          "heading": "16.1 Local development",
+          "level": 3,
+          "line": 822
+        },
+        {
+          "heading": "16.2 Build artifacts",
+          "level": 3,
+          "line": 839
+        },
+        {
+          "heading": "16.3 Suggested production deployment",
+          "level": 3,
+          "line": 847
+        },
+        {
+          "heading": "16.4 Configuration matrix",
+          "level": 3,
+          "line": 869
+        },
+        {
+          "heading": "17. Architecture Diagrams (Mermaid)",
+          "level": 2,
+          "line": 880
+        },
+        {
+          "heading": "17.1 Component diagram (detailed)",
+          "level": 3,
+          "line": 882
+        },
+        {
+          "heading": "17.2 Layer dependency",
+          "level": 3,
+          "line": 898
+        },
+        {
+          "heading": "18. Sequence Diagrams (Mermaid)",
+          "level": 2,
+          "line": 914
+        },
+        {
+          "heading": "18.1 User registration",
+          "level": 3,
+          "line": 916
+        },
+        {
+          "heading": "18.2 Login with tokens",
+          "level": 3,
+          "line": 939
+        },
+        {
+          "heading": "18.3 Get current user profile",
+          "level": 3,
+          "line": 967
+        },
+        {
+          "heading": "18.4 Sign out",
+          "level": 3,
+          "line": 988
+        },
+        {
+          "heading": "18.5 Friend list (authorized)",
+          "level": 3,
+          "line": 1005
+        },
+        {
+          "heading": "19. Known Gaps & Future Work",
+          "level": 2,
+          "line": 1023
+        },
+        {
+          "heading": "Appendix A — NuGet Dependencies",
+          "level": 2,
+          "line": 1039
+        },
+        {
+          "heading": "Appendix B — Razor view locations",
+          "level": 2,
+          "line": 1049
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 71
+      }
+    }
+  ]
+}

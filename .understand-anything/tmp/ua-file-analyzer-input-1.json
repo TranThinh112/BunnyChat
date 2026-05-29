@@ -1,0 +1,13 @@
+{
+  "projectRoot": "C:\\Users\\Admin\\Documents\\doanWeb",
+  "batchFiles": [
+    {"path": ".understand-anything/tmp/ua-import-map-input.json", "language": "json", "sizeLines": 0, "fileCategory": "config"},
+    {"path": ".understand-anything/tmp/ua-import-map-output.json", "language": "json", "sizeLines": 111, "fileCategory": "config"},
+    {"path": ".understand-anything/tmp/ua-scan-files.json", "language": "json", "sizeLines": 650, "fileCategory": "config"}
+  ],
+  "batchImportData": {
+    ".understand-anything/tmp/ua-import-map-input.json": [],
+    ".understand-anything/tmp/ua-import-map-output.json": [],
+    ".understand-anything/tmp/ua-scan-files.json": []
+  }
+}

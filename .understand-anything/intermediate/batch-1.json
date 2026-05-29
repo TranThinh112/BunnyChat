@@ -1,0 +1,71 @@
+{
+  "nodes": [
+    {
+      "id": "config:.understand-anything/tmp/ua-import-map-input.json",
+      "type": "config",
+      "name": "ua-import-map-input.json",
+      "filePath": ".understand-anything/tmp/ua-import-map-input.json",
+      "summary": "Understand-Anything pipeline input manifest listing the project root and all 53 discovered source files with language, line count, and file-category metadata for import-map resolution.",
+      "tags": ["configuration", "pipeline", "file-inventory", "knowledge-graph", "understand-anything"],
+      "complexity": "complex",
+      "languageNotes": "Structured JSON manifest consumed by the import-map extraction script to enumerate scannable project files."
+    },
+    {
+      "id": "config:.understand-anything/tmp/ua-import-map-output.json",
+      "type": "config",
+      "name": "ua-import-map-output.json",
+      "filePath": ".understand-anything/tmp/ua-import-map-output.json",
+      "summary": "Resolved import map artifact produced by the Understand-Anything scanner, mapping each of 53 project files to internal import dependencies (currently empty across the DoAnWeb codebase).",
+      "tags": ["configuration", "import-map", "pipeline", "dependency-graph", "understand-anything"],
+      "complexity": "moderate",
+      "languageNotes": "Output JSON with scriptCompleted flag, scan stats, and a per-file importMap object keyed by project-relative paths."
+    },
+    {
+      "id": "config:.understand-anything/tmp/ua-scan-files.json",
+      "type": "config",
+      "name": "ua-scan-files.json",
+      "filePath": ".understand-anything/tmp/ua-scan-files.json",
+      "summary": "Project scanner output cataloging 53 files in the DoAnWeb repository with language and category breakdowns, plus aggregate complexity and filtering statistics for downstream analysis batches.",
+      "tags": ["configuration", "project-scanner", "file-inventory", "build-system", "understand-anything"],
+      "complexity": "complex",
+      "languageNotes": "Includes byCategory and byLanguage stats covering 17 C# files, 7 CSHTML views, 7 CSS stylesheets, and supporting config and documentation."
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:.understand-anything/tmp/ua-import-map-output.json",
+      "target": "config:.understand-anything/tmp/ua-import-map-input.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:.understand-anything/tmp/ua-import-map-input.json",
+      "target": "config:.understand-anything/tmp/ua-scan-files.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:.understand-anything/tmp/ua-scan-files.json",
+      "target": "config:.understand-anything/intermediate/scan-result.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:.understand-anything/tmp/ua-scan-files.json",
+      "target": "file:WebMoi/Program.cs",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:.understand-anything/tmp/ua-import-map-input.json",
+      "target": "file:WebMoi/Program.cs",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}
