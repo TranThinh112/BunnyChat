@@ -1,0 +1,374 @@
+@import url("./animation/AuthAnimation.css");
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    /* background: linear-gradient(135deg, #8b5cf6, #d8b4fe); */
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+body::before{
+    content:"";
+    position: fixed;
+    inset:0;
+
+    background: rgba(0,0,0,0.35);
+
+    z-index:-1;
+}
+.bg-video{
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: -2;
+}
+
+.auth-page {
+     height: calc(100vh - 50px);
+    /* min-height: 100vh; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.auth-card {
+position: relative;
+    width: min(1000px, 95vw);
+    min-height: 650px;
+    height: auto;
+    border-radius: 24px;
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
+
+/* FORM CHUNG */
+.form-container {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    padding: clamp(20px, 3vw, 60px);
+    box-sizing: border-box;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    transition:  opacity 0.2s ease;
+    
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+}
+
+/* LOGIN */
+.login-form {
+    left: 0;
+    opacity: 1;
+    z-index: 3;
+}
+
+/* SIGNUP */
+.signup-form {
+    left: 0;
+    opacity: 0;
+    z-index: 3;
+    pointer-events: none;
+
+}
+
+.login-form,
+.signup-form{
+    min-width: 500px;
+}
+
+
+/* UI */
+.logo {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.logo img {
+    width: 220px;
+    height: auto;
+
+}
+
+.auth-title {
+    text-align: center;
+    font-size: 35px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 30px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    position: relative;
+}
+
+/* tao hieu ung floating label */
+.input-box{
+    position: relative;
+    margin-top: 10px;
+}
+.input-box input{
+    width: 100%;
+}
+
+.input-box label{
+    position:absolute;
+    left:10px;
+    top:50%;
+
+    transform: translateY(-50%);
+    padding: 0 3px;
+
+    transition: .3s;
+
+    font-weight:600;
+    color: grey;
+}
+
+.input-box input:focus + label,
+.input-box input:not(:placeholder-shown) + label{
+    top: 0;
+    transform: translateY(-50%);
+      /* background: rgba(255,255,255,0.2); */
+    background: #ddd;
+    padding: 0 4px;
+    font-size: 13px;
+    color: #8b5cf6;
+}
+
+/* form nhập  */
+
+.auth-form  input {
+    height: 52px;
+    border-radius: 14px;
+    border: 1px solid #ddd;
+    padding: 0 18px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+/* xử lý khi bấm vào ô input */
+.auth-form input:focus {
+    outline: none;
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 4px rgba(139,92,246,0.15);
+    transform: scale(1.05);
+}
+
+/* ô firstname, lastname */
+.first-last{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+}
+
+.first-last input{
+    width: 100%;
+    min-width: 0;
+}
+
+/* nut bam */
+.auth-btn {
+    height: 54px;
+    border: none;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #7c3aed, #9333ea);
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    transition: transform 0.3s ease
+}
+
+.auth-btn:hover{
+    cursor: pointer;
+    transform: scale(0.9);
+}
+
+.auth-btn a {
+    color:  white;
+    text-decoration: none;
+}
+
+/* //style cho the a */
+.auth-link {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.auth-link a {
+    color: #7c3aed;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* style cho forgot */
+.auth-forgot{
+    margin-top: 10px;
+    text-align: start;
+    
+}
+.auth-forgot a {
+    color: black;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-link a,
+.auth-forgot a {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.auth-link a:hover,
+.auth-forgot a:hover {
+    transform: scale(1.05);
+}
+
+/* chân trang */
+footer {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(10px);
+
+     text-align: center;
+    font-size: 20px;
+    color: black;
+
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 20;
+}
+
+.footer a{
+    color: #420d9e;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+@media (max-width: 768px){
+
+    .auth-card{
+        width: 95vw;
+        max-width: 420px;
+        height: 650px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* form full card */
+    .form-container{
+        width: 100%;
+        padding: 28px 20px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        box-sizing: border-box;
+    }
+
+    /* login mặc định */
+    .login-form{
+        transform: translateX(0);
+        opacity: 1;
+        z-index: 3;
+        pointer-events: auto;
+    }
+
+    /* signup ẩn */
+    .signup-form{
+        transform: translateX(100%);
+        opacity: 0;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    /* animation khi signup */
+    .auth-card.signup-mode .login-form{
+        transform: translateX(-100%);
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .auth-card.signup-mode .signup-form{
+        transform: translateX(0);
+        opacity: 1;
+        z-index: 4;
+        pointer-events: auto;
+    }
+
+    /* overlay nhỏ lại */
+    .overlay{
+        height: 140px;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        opacity: 0.15;
+    }
+
+    .flip-card,
+    .flip-front,
+    .flip-back{
+        width: 100%;
+        height: 100%;
+    }
+
+    .overlay img{
+        object-fit: cover;
+        z-index: 2;
+    }
+
+    /* form xuống dưới để tránh đè overlay */
+    .logo{
+        margin-top: 100px;
+    }
+
+    .logo img{
+        width: 150px;
+    }
+
+    .auth-title{
+        font-size: 30px;
+    }
+
+    .auth-form input{
+        height: 48px;
+    }
+
+    .first-last{
+        grid-template-columns: 1fr 1fr;
+    }
+}

@@ -1,15 +1,15 @@
 {
   "ExpandedNodes": [
     "",
-    "\\WebMoi",
-    "\\WebMoi\\Backend",
-    "\\WebMoi\\Backend\\Controllers",
-    "\\WebMoi\\Backend\\Controllers\\auth",
-    "\\WebMoi\\Backend\\Data",
-    "\\WebMoi\\Backend\\DTOs",
-    "\\WebMoi\\Backend\\Models",
-    "\\WebMoi\\Backend\\Models\\Entities"
+    "\\BunnyChat",
+    "\\BunnyChat\\Backend",
+    "\\BunnyChat\\Backend\\Controllers",
+    "\\BunnyChat\\Backend\\Controllers\\auth",
+    "\\BunnyChat\\Backend\\Data",
+    "\\BunnyChat\\Backend\\DTOs",
+    "\\BunnyChat\\Backend\\Models",
+    "\\BunnyChat\\Backend\\Models\\Entities"
   ],
-  "SelectedNode": "\\WebMoi\\Backend\\DTOs\\Auth.cs",
+  "SelectedNode": "\\BunnyChat\\Backend\\DTOs\\Auth.cs",
   "PreviewInSolutionExplorer": false
 }

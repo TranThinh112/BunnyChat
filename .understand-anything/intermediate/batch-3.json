@@ -1,75 +1,75 @@
 {
   "nodes": [
     {
-      "id": "config:WebMoi/DoAn_web.sln",
+      "id": "config:BunnyChat/DoAn_web.sln",
       "type": "config",
       "name": "DoAn_web.sln",
-      "filePath": "WebMoi/DoAn_web.sln",
-      "summary": "Visual Studio solution file that groups the WebMoi ASP.NET Core project with Debug and Release build configurations across multiple CPU platforms.",
+      "filePath": "BunnyChat/DoAn_web.sln",
+      "summary": "Visual Studio solution file that groups the BunnyChat ASP.NET Core project with Debug and Release build configurations across multiple CPU platforms.",
       "tags": ["configuration", "build-system", "visual-studio", "solution"],
       "complexity": "simple"
     },
     {
-      "id": "config:WebMoi/WebMoi.csproj",
+      "id": "config:BunnyChat/BunnyChat.csproj",
       "type": "config",
-      "name": "WebMoi.csproj",
-      "filePath": "WebMoi/WebMoi.csproj",
+      "name": "BunnyChat.csproj",
+      "filePath": "BunnyChat/BunnyChat.csproj",
       "summary": "SDK-style .NET 8 web project manifest declaring nullable C# settings and NuGet dependencies for JWT authentication, MongoDB, BCrypt hashing, and Swagger.",
       "tags": ["configuration", "aspnet-core", "net8", "dependencies"],
       "complexity": "simple",
       "languageNotes": "Uses Microsoft.NET.Sdk.Web with JWT Bearer, MongoDB.Driver, and Swashbuckle package references."
     },
     {
-      "id": "config:WebMoi/appsettings.Development.json",
+      "id": "config:BunnyChat/appsettings.Development.json",
       "type": "config",
       "name": "appsettings.Development.json",
-      "filePath": "WebMoi/appsettings.Development.json",
+      "filePath": "BunnyChat/appsettings.Development.json",
       "summary": "Development-only ASP.NET Core configuration overlay tuning logging levels and Bearer authentication valid issuers and audiences for local hosts.",
       "tags": ["configuration", "development", "authentication", "logging"],
       "complexity": "simple"
     },
     {
-      "id": "config:WebMoi/appsettings.json",
+      "id": "config:BunnyChat/appsettings.json",
       "type": "config",
       "name": "appsettings.json",
-      "filePath": "WebMoi/appsettings.json",
-      "summary": "Primary application settings supplying MongoDB connection string, JWT issuer/audience and token lifetimes, default logging levels, and allowed hosts for the WebMoi API.",
+      "filePath": "BunnyChat/appsettings.json",
+      "summary": "Primary application settings supplying MongoDB connection string, JWT issuer/audience and token lifetimes, default logging levels, and allowed hosts for the BunnyChat API.",
       "tags": ["configuration", "aspnet-core", "mongodb", "jwt"],
       "complexity": "simple"
     }
   ],
   "edges": [
     {
-      "source": "config:WebMoi/DoAn_web.sln",
-      "target": "config:WebMoi/WebMoi.csproj",
+      "source": "config:BunnyChat/DoAn_web.sln",
+      "target": "config:BunnyChat/BunnyChat.csproj",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "config:WebMoi/WebMoi.csproj",
-      "target": "file:WebMoi/Program.cs",
+      "source": "config:BunnyChat/BunnyChat.csproj",
+      "target": "file:BunnyChat/Program.cs",
       "type": "configures",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "config:WebMoi/appsettings.json",
-      "target": "file:WebMoi/Program.cs",
+      "source": "config:BunnyChat/appsettings.json",
+      "target": "file:BunnyChat/Program.cs",
       "type": "configures",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "config:WebMoi/appsettings.Development.json",
-      "target": "config:WebMoi/appsettings.json",
+      "source": "config:BunnyChat/appsettings.Development.json",
+      "target": "config:BunnyChat/appsettings.json",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "config:WebMoi/appsettings.Development.json",
-      "target": "file:WebMoi/Program.cs",
+      "source": "config:BunnyChat/appsettings.Development.json",
+      "target": "file:BunnyChat/Program.cs",
       "type": "configures",
       "direction": "forward",
       "weight": 0.6

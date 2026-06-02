@@ -93,8 +93,8 @@
       "totalLines": 1063,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/appsettings.Development.json": {
-      "filePath": "WebMoi/appsettings.Development.json",
+    "BunnyChat/appsettings.Development.json": {
+      "filePath": "BunnyChat/appsettings.Development.json",
       "contentHash": "87c4b90f5d23d72f0960ae47ce47ee76ec15e656c4628630c141091b559ddefe",
       "functions": [],
       "classes": [],
@@ -103,8 +103,8 @@
       "totalLines": 22,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/appsettings.json": {
-      "filePath": "WebMoi/appsettings.json",
+    "BunnyChat/appsettings.json": {
+      "filePath": "BunnyChat/appsettings.json",
       "contentHash": "48d2a4858b56e8e072b7b834946abaf0132295e23dc9d6c0f5e127113f50a1a0",
       "functions": [],
       "classes": [],
@@ -113,8 +113,8 @@
       "totalLines": 23,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Backend/Controllers/auth/Authcontroller.cs": {
-      "filePath": "WebMoi/Backend/Controllers/auth/Authcontroller.cs",
+    "BunnyChat/Backend/Controllers/auth/Authcontroller.cs": {
+      "filePath": "BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
       "contentHash": "77ee24bfcb1483731f5966dbcfd522bc38fc65f8b54e073a30d025ddce999acf",
       "functions": [
         {
@@ -186,31 +186,31 @@
           ]
         },
         {
-          "source": "WebMoi.Data",
+          "source": "BunnyChat.Data",
           "specifiers": [
             "Data"
           ]
         },
         {
-          "source": "WebMoi.DTOs",
+          "source": "BunnyChat.DTOs",
           "specifiers": [
             "DTOs"
           ]
         },
         {
-          "source": "WebMoi.Models",
+          "source": "BunnyChat.Models",
           "specifiers": [
             "Models"
           ]
         },
         {
-          "source": "WebMoi.Models.Entities",
+          "source": "BunnyChat.Models.Entities",
           "specifiers": [
             "Entities"
           ]
         },
         {
-          "source": "WebMoi.Service",
+          "source": "BunnyChat.Service",
           "specifiers": [
             "Service"
           ]
@@ -244,8 +244,8 @@
       "totalLines": 237,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Backend/Controllers/friend/FriendController.cs": {
-      "filePath": "WebMoi/Backend/Controllers/friend/FriendController.cs",
+    "BunnyChat/Backend/Controllers/friend/FriendController.cs": {
+      "filePath": "BunnyChat/Backend/Controllers/friend/FriendController.cs",
       "contentHash": "9485fc6934e73a44a1b41e318d224d5d4457a5e337a524402fdca88948b8e06d",
       "functions": [
         {
@@ -322,19 +322,19 @@
           ]
         },
         {
-          "source": "WebMoi.Data",
+          "source": "BunnyChat.Data",
           "specifiers": [
             "Data"
           ]
         },
         {
-          "source": "WebMoi.DTOs",
+          "source": "BunnyChat.DTOs",
           "specifiers": [
             "DTOs"
           ]
         },
         {
-          "source": "WebMoi.Models.Entities",
+          "source": "BunnyChat.Models.Entities",
           "specifiers": [
             "Entities"
           ]
@@ -348,8 +348,8 @@
       "totalLines": 36,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Backend/Controllers/user/UserController.cs": {
-      "filePath": "WebMoi/Backend/Controllers/user/UserController.cs",
+    "BunnyChat/Backend/Controllers/user/UserController.cs": {
+      "filePath": "BunnyChat/Backend/Controllers/user/UserController.cs",
       "contentHash": "3a36b6150d313617ad09c6073116d69a15805080cf2c010b1edb4695722e2d5f",
       "functions": [
         {
@@ -474,19 +474,19 @@
           ]
         },
         {
-          "source": "WebMoi.Data",
+          "source": "BunnyChat.Data",
           "specifiers": [
             "Data"
           ]
         },
         {
-          "source": "WebMoi.DTOs",
+          "source": "BunnyChat.DTOs",
           "specifiers": [
             "DTOs"
           ]
         },
         {
-          "source": "WebMoi.Models.Entities",
+          "source": "BunnyChat.Models.Entities",
           "specifiers": [
             "Entities"
           ]
@@ -503,8 +503,8 @@
       "totalLines": 243,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Backend/Data/MongoDBService.cs": {
-      "filePath": "WebMoi/Backend/Data/MongoDBService.cs",
+    "BunnyChat/Backend/Data/MongoDBService.cs": {
+      "filePath": "BunnyChat/Backend/Data/MongoDBService.cs",
       "contentHash": "5d38c08dfcd5956d00a197bb387bc58c178f72991a4968e5ef1cec990b9f1a80",
       "functions": [
         {
@@ -547,13 +547,13 @@
           ]
         },
         {
-          "source": "WebMoi.Models",
+          "source": "BunnyChat.Models",
           "specifiers": [
             "Models"
           ]
         },
         {
-          "source": "WebMoi.Models.Entities",
+          "source": "BunnyChat.Models.Entities",
           "specifiers": [
             "Entities"
           ]
@@ -567,8 +567,8 @@
       "totalLines": 46,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Backend/DTOs/Auth.cs": {
-      "filePath": "WebMoi/Backend/DTOs/Auth.cs",
+    "BunnyChat/Backend/DTOs/Auth.cs": {
+      "filePath": "BunnyChat/Backend/DTOs/Auth.cs",
       "contentHash": "0f4bbcd2e12f619c69b3f6795713420f44020bae6a0cdf3985c42a3ebf27ea87",
       "functions": [],
       "classes": [
@@ -603,13 +603,13 @@
           ]
         },
         {
-          "source": "WebMoi.Data",
+          "source": "BunnyChat.Data",
           "specifiers": [
             "Data"
           ]
         },
         {
-          "source": "WebMoi.Models.Entities",
+          "source": "BunnyChat.Models.Entities",
           "specifiers": [
             "Entities"
           ]
@@ -623,8 +623,8 @@
       "totalLines": 38,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Backend/DTOs/FriendDTO.cs": {
-      "filePath": "WebMoi/Backend/DTOs/FriendDTO.cs",
+    "BunnyChat/Backend/DTOs/FriendDTO.cs": {
+      "filePath": "BunnyChat/Backend/DTOs/FriendDTO.cs",
       "contentHash": "fabbfadb19b42172b4dfa701ab794affad0b5f109521fa36822b11aba4dace2e",
       "functions": [],
       "classes": [
@@ -659,13 +659,13 @@
           ]
         },
         {
-          "source": "WebMoi.Data",
+          "source": "BunnyChat.Data",
           "specifiers": [
             "Data"
           ]
         },
         {
-          "source": "WebMoi.Models.Entities",
+          "source": "BunnyChat.Models.Entities",
           "specifiers": [
             "Entities"
           ]
@@ -679,8 +679,8 @@
       "totalLines": 20,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Backend/DTOs/UserDTO.cs": {
-      "filePath": "WebMoi/Backend/DTOs/UserDTO.cs",
+    "BunnyChat/Backend/DTOs/UserDTO.cs": {
+      "filePath": "BunnyChat/Backend/DTOs/UserDTO.cs",
       "contentHash": "36e5318119c1481ea6e7f65234c510a55759ff97e1d897569922db5bc5bca055",
       "functions": [],
       "classes": [
@@ -719,13 +719,13 @@
           ]
         },
         {
-          "source": "WebMoi.Data",
+          "source": "BunnyChat.Data",
           "specifiers": [
             "Data"
           ]
         },
         {
-          "source": "WebMoi.Models.Entities",
+          "source": "BunnyChat.Models.Entities",
           "specifiers": [
             "Entities"
           ]
@@ -743,8 +743,8 @@
       "totalLines": 26,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Backend/MiddleWares/authMiddleware.cs": {
-      "filePath": "WebMoi/Backend/MiddleWares/authMiddleware.cs",
+    "BunnyChat/Backend/MiddleWares/authMiddleware.cs": {
+      "filePath": "BunnyChat/Backend/MiddleWares/authMiddleware.cs",
       "contentHash": "d0be0746f3ef47e70af35a56264ab31d7f4d8578d84736685066f45b7559519a",
       "functions": [],
       "classes": [],
@@ -753,8 +753,8 @@
       "totalLines": 70,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Backend/Models/Entities/friends.cs": {
-      "filePath": "WebMoi/Backend/Models/Entities/friends.cs",
+    "BunnyChat/Backend/Models/Entities/friends.cs": {
+      "filePath": "BunnyChat/Backend/Models/Entities/friends.cs",
       "contentHash": "8a1fd39e5e092abf6ee540648079be34e52d321c59a1c53e1945367108a8a2f3",
       "functions": [],
       "classes": [
@@ -813,8 +813,8 @@
       "totalLines": 34,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Backend/Models/Entities/session.cs": {
-      "filePath": "WebMoi/Backend/Models/Entities/session.cs",
+    "BunnyChat/Backend/Models/Entities/session.cs": {
+      "filePath": "BunnyChat/Backend/Models/Entities/session.cs",
       "contentHash": "320c274115855a911196b71e2ce2ba7c31de151c9eeec95e3f53303e6324b6dd",
       "functions": [],
       "classes": [
@@ -861,8 +861,8 @@
       "totalLines": 17,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Backend/Models/Entities/users.cs": {
-      "filePath": "WebMoi/Backend/Models/Entities/users.cs",
+    "BunnyChat/Backend/Models/Entities/users.cs": {
+      "filePath": "BunnyChat/Backend/Models/Entities/users.cs",
       "contentHash": "17ed5f5eb9c98535e40f4d930cc03c691673de5edcc831ad8ca68537d97b50db",
       "functions": [],
       "classes": [
@@ -921,8 +921,8 @@
       "totalLines": 41,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Backend/Models/ErrorViewModel.cs": {
-      "filePath": "WebMoi/Backend/Models/ErrorViewModel.cs",
+    "BunnyChat/Backend/Models/ErrorViewModel.cs": {
+      "filePath": "BunnyChat/Backend/Models/ErrorViewModel.cs",
       "contentHash": "2aa903ae1019a01e1d9b76d0483b49034ae7ddcfb442bbfcbf09360eba711e45",
       "functions": [],
       "classes": [
@@ -946,8 +946,8 @@
       "totalLines": 9,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Backend/Service/ITokenService.cs": {
-      "filePath": "WebMoi/Backend/Service/ITokenService.cs",
+    "BunnyChat/Backend/Service/ITokenService.cs": {
+      "filePath": "BunnyChat/Backend/Service/ITokenService.cs",
       "contentHash": "8f6a9825cbdcbd166e030d32fbd48df70a3b9f6fbc5a3a4f9000d5acf9c5581d",
       "functions": [],
       "classes": [
@@ -964,7 +964,7 @@
       ],
       "imports": [
         {
-          "source": "WebMoi.Models.Entities",
+          "source": "BunnyChat.Models.Entities",
           "specifiers": [
             "Entities"
           ]
@@ -976,8 +976,8 @@
       "totalLines": 11,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Backend/Service/TokenService.cs": {
-      "filePath": "WebMoi/Backend/Service/TokenService.cs",
+    "BunnyChat/Backend/Service/TokenService.cs": {
+      "filePath": "BunnyChat/Backend/Service/TokenService.cs",
       "contentHash": "d951f0ab2bcc83fcc73a0301f857dd066d6c59099370a09da10f3ba137335398",
       "functions": [
         {
@@ -1046,7 +1046,7 @@
           ]
         },
         {
-          "source": "WebMoi.Models.Entities",
+          "source": "BunnyChat.Models.Entities",
           "specifiers": [
             "Entities"
           ]
@@ -1067,8 +1067,8 @@
       "totalLines": 74,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Backend/Utils/ApiResponse.cs": {
-      "filePath": "WebMoi/Backend/Utils/ApiResponse.cs",
+    "BunnyChat/Backend/Utils/ApiResponse.cs": {
+      "filePath": "BunnyChat/Backend/Utils/ApiResponse.cs",
       "contentHash": "bc70d001d46d4793361a36a31285afa0a9741e6935b6cc6f63e47d3e7f8e9cb0",
       "functions": [
         {
@@ -1112,8 +1112,8 @@
       "totalLines": 21,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Directory.Build.props": {
-      "filePath": "WebMoi/Directory.Build.props",
+    "BunnyChat/Directory.Build.props": {
+      "filePath": "BunnyChat/Directory.Build.props",
       "contentHash": "c6633ad1a349b6104e6cababed7a988a759401e5f257ac0f93820f674681753e",
       "functions": [],
       "classes": [],
@@ -1122,8 +1122,8 @@
       "totalLines": 5,
       "hasStructuralAnalysis": false
     },
-    "WebMoi/DoAn_web.sln": {
-      "filePath": "WebMoi/DoAn_web.sln",
+    "BunnyChat/DoAn_web.sln": {
+      "filePath": "BunnyChat/DoAn_web.sln",
       "contentHash": "6e3d1e6c1bb404c367fe3d0b006c5ee9d41677e9778451598516730aba876b40",
       "functions": [],
       "classes": [],
@@ -1132,8 +1132,8 @@
       "totalLines": 35,
       "hasStructuralAnalysis": false
     },
-    "WebMoi/Frontend/Controllers/PageController.cs": {
-      "filePath": "WebMoi/Frontend/Controllers/PageController.cs",
+    "BunnyChat/Frontend/Controllers/PageController.cs": {
+      "filePath": "BunnyChat/Frontend/Controllers/PageController.cs",
       "contentHash": "5b4188852a40c2868cbb4eda34e287d376cb21d8875ebedce0c067082e5a2571",
       "functions": [
         {
@@ -1194,8 +1194,8 @@
       "totalLines": 26,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Frontend/Views/_ViewImports.cshtml": {
-      "filePath": "WebMoi/Frontend/Views/_ViewImports.cshtml",
+    "BunnyChat/Frontend/Views/_ViewImports.cshtml": {
+      "filePath": "BunnyChat/Frontend/Views/_ViewImports.cshtml",
       "contentHash": "7061d727dfc07ba126573ce8b7204d5150025ebfbb433e77b8ec910204104f7d",
       "functions": [],
       "classes": [],
@@ -1204,8 +1204,8 @@
       "totalLines": 4,
       "hasStructuralAnalysis": false
     },
-    "WebMoi/Frontend/Views/Auth/Auth.cshtml": {
-      "filePath": "WebMoi/Frontend/Views/Auth/Auth.cshtml",
+    "BunnyChat/Frontend/Views/Auth/Auth.cshtml": {
+      "filePath": "BunnyChat/Frontend/Views/Auth/Auth.cshtml",
       "contentHash": "f4fae0f5f0835660e558755653caf5e3c5c4fb05e368523d98248284ea0ef3b9",
       "functions": [],
       "classes": [],
@@ -1214,8 +1214,8 @@
       "totalLines": 80,
       "hasStructuralAnalysis": false
     },
-    "WebMoi/Frontend/Views/Auth/Forgot.cshtml": {
-      "filePath": "WebMoi/Frontend/Views/Auth/Forgot.cshtml",
+    "BunnyChat/Frontend/Views/Auth/Forgot.cshtml": {
+      "filePath": "BunnyChat/Frontend/Views/Auth/Forgot.cshtml",
       "contentHash": "d76843fa5781a09ddc9c72e8a8e95ea7acb8fd00b180cdeda1e5eae45edab598",
       "functions": [],
       "classes": [],
@@ -1224,8 +1224,8 @@
       "totalLines": 43,
       "hasStructuralAnalysis": false
     },
-    "WebMoi/Frontend/Views/Chat/Index.cshtml": {
-      "filePath": "WebMoi/Frontend/Views/Chat/Index.cshtml",
+    "BunnyChat/Frontend/Views/Chat/Index.cshtml": {
+      "filePath": "BunnyChat/Frontend/Views/Chat/Index.cshtml",
       "contentHash": "edd83758c069bc3db0c914b67564d382ae98619fa868fe0e808b44173f945dea",
       "functions": [],
       "classes": [],
@@ -1234,8 +1234,8 @@
       "totalLines": 38,
       "hasStructuralAnalysis": false
     },
-    "WebMoi/Frontend/Views/Shared/_ChatLayout.cshtml": {
-      "filePath": "WebMoi/Frontend/Views/Shared/_ChatLayout.cshtml",
+    "BunnyChat/Frontend/Views/Shared/_ChatLayout.cshtml": {
+      "filePath": "BunnyChat/Frontend/Views/Shared/_ChatLayout.cshtml",
       "contentHash": "7b4e5c5e5edf94318d87bf4af0e2d436b93634879efe2b084d128499eca5724f",
       "functions": [],
       "classes": [],
@@ -1244,8 +1244,8 @@
       "totalLines": 27,
       "hasStructuralAnalysis": false
     },
-    "WebMoi/Frontend/Views/Shared/_ValidationScriptsPartial.cshtml": {
-      "filePath": "WebMoi/Frontend/Views/Shared/_ValidationScriptsPartial.cshtml",
+    "BunnyChat/Frontend/Views/Shared/_ValidationScriptsPartial.cshtml": {
+      "filePath": "BunnyChat/Frontend/Views/Shared/_ValidationScriptsPartial.cshtml",
       "contentHash": "d8069c8bee0d245efd7ef8127449263b6961c2aee41fd9424aff915d5d7d4fce",
       "functions": [],
       "classes": [],
@@ -1254,8 +1254,8 @@
       "totalLines": 5,
       "hasStructuralAnalysis": false
     },
-    "WebMoi/Frontend/Views/Shared/AuthLayout.cshtml": {
-      "filePath": "WebMoi/Frontend/Views/Shared/AuthLayout.cshtml",
+    "BunnyChat/Frontend/Views/Shared/AuthLayout.cshtml": {
+      "filePath": "BunnyChat/Frontend/Views/Shared/AuthLayout.cshtml",
       "contentHash": "4c657bb55547a21ecafd102b732bfc44f6a0698ad63db522ee0ceb71fe18a5c1",
       "functions": [],
       "classes": [],
@@ -1264,8 +1264,8 @@
       "totalLines": 65,
       "hasStructuralAnalysis": false
     },
-    "WebMoi/Frontend/wwwroot/css/animation/AuthAnimation.css": {
-      "filePath": "WebMoi/Frontend/wwwroot/css/animation/AuthAnimation.css",
+    "BunnyChat/Frontend/wwwroot/css/animation/AuthAnimation.css": {
+      "filePath": "BunnyChat/Frontend/wwwroot/css/animation/AuthAnimation.css",
       "contentHash": "7d004c859e49297e8fa5fd5951982fc3a6f2aeaffd218714ed3f204d7bd93578",
       "functions": [],
       "classes": [],
@@ -1274,8 +1274,8 @@
       "totalLines": 89,
       "hasStructuralAnalysis": false
     },
-    "WebMoi/Frontend/wwwroot/css/animation/RabbitAnimation.css": {
-      "filePath": "WebMoi/Frontend/wwwroot/css/animation/RabbitAnimation.css",
+    "BunnyChat/Frontend/wwwroot/css/animation/RabbitAnimation.css": {
+      "filePath": "BunnyChat/Frontend/wwwroot/css/animation/RabbitAnimation.css",
       "contentHash": "7dd0b4ec4721fcf956c369548f611594477cd116327688be0cfc26c83e599f23",
       "functions": [],
       "classes": [],
@@ -1284,8 +1284,8 @@
       "totalLines": 100,
       "hasStructuralAnalysis": false
     },
-    "WebMoi/Frontend/wwwroot/css/Auth.css": {
-      "filePath": "WebMoi/Frontend/wwwroot/css/Auth.css",
+    "BunnyChat/Frontend/wwwroot/css/Auth.css": {
+      "filePath": "BunnyChat/Frontend/wwwroot/css/Auth.css",
       "contentHash": "ee66c3432cecdbae357561ac63dcf60a47024ebae8d04074441a26a6b088f009",
       "functions": [],
       "classes": [],
@@ -1294,8 +1294,8 @@
       "totalLines": 343,
       "hasStructuralAnalysis": false
     },
-    "WebMoi/Frontend/wwwroot/css/Chat.css": {
-      "filePath": "WebMoi/Frontend/wwwroot/css/Chat.css",
+    "BunnyChat/Frontend/wwwroot/css/Chat.css": {
+      "filePath": "BunnyChat/Frontend/wwwroot/css/Chat.css",
       "contentHash": "b7af0992236ecba75eb730e12484a24a1c28582ec0f088794f20e37bff53c882",
       "functions": [],
       "classes": [],
@@ -1304,8 +1304,8 @@
       "totalLines": 50,
       "hasStructuralAnalysis": false
     },
-    "WebMoi/Frontend/wwwroot/css/Forgot.css": {
-      "filePath": "WebMoi/Frontend/wwwroot/css/Forgot.css",
+    "BunnyChat/Frontend/wwwroot/css/Forgot.css": {
+      "filePath": "BunnyChat/Frontend/wwwroot/css/Forgot.css",
       "contentHash": "4bc612976724cb8dad5b11d68671f91c5b844b5b847d9e84eb7b037f99542778",
       "functions": [],
       "classes": [],
@@ -1314,8 +1314,8 @@
       "totalLines": 97,
       "hasStructuralAnalysis": false
     },
-    "WebMoi/Frontend/wwwroot/css/main.css": {
-      "filePath": "WebMoi/Frontend/wwwroot/css/main.css",
+    "BunnyChat/Frontend/wwwroot/css/main.css": {
+      "filePath": "BunnyChat/Frontend/wwwroot/css/main.css",
       "contentHash": "d192363f225e901ff7980f190c05a78bfa45afb428f8660094208f9cadb65d2a",
       "functions": [],
       "classes": [],
@@ -1324,8 +1324,8 @@
       "totalLines": 31,
       "hasStructuralAnalysis": false
     },
-    "WebMoi/Frontend/wwwroot/css/theme.css": {
-      "filePath": "WebMoi/Frontend/wwwroot/css/theme.css",
+    "BunnyChat/Frontend/wwwroot/css/theme.css": {
+      "filePath": "BunnyChat/Frontend/wwwroot/css/theme.css",
       "contentHash": "d7119548a4e15158c448b9e43ad61c30a89622e704575c877498a41e6a32511d",
       "functions": [],
       "classes": [],
@@ -1334,8 +1334,8 @@
       "totalLines": 206,
       "hasStructuralAnalysis": false
     },
-    "WebMoi/Frontend/wwwroot/js/Auth.js": {
-      "filePath": "WebMoi/Frontend/wwwroot/js/Auth.js",
+    "BunnyChat/Frontend/wwwroot/js/Auth.js": {
+      "filePath": "BunnyChat/Frontend/wwwroot/js/Auth.js",
       "contentHash": "7d8be2267e2c2978fe9a037c9ae6c1d2c07683664148053377b266748c84efad",
       "functions": [
         {
@@ -1357,8 +1357,8 @@
       "totalLines": 19,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Frontend/wwwroot/js/rabbit.js": {
-      "filePath": "WebMoi/Frontend/wwwroot/js/rabbit.js",
+    "BunnyChat/Frontend/wwwroot/js/rabbit.js": {
+      "filePath": "BunnyChat/Frontend/wwwroot/js/rabbit.js",
       "contentHash": "c81f400e2c2ef5cabf570f6465210a6aaa55960486f1e0443b3216608b409af6",
       "functions": [],
       "classes": [],
@@ -1367,8 +1367,8 @@
       "totalLines": 27,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Frontend/wwwroot/js/site.js": {
-      "filePath": "WebMoi/Frontend/wwwroot/js/site.js",
+    "BunnyChat/Frontend/wwwroot/js/site.js": {
+      "filePath": "BunnyChat/Frontend/wwwroot/js/site.js",
       "contentHash": "8514327ed5e2bb594b5f63fd2f2f716b88072602de475b86379a9e814a1bb46a",
       "functions": [],
       "classes": [],
@@ -1377,8 +1377,8 @@
       "totalLines": 5,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Frontend/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js": {
-      "filePath": "WebMoi/Frontend/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+    "BunnyChat/Frontend/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js": {
+      "filePath": "BunnyChat/Frontend/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "contentHash": "c496c130b1a161b5e53ebaeb75dad256676ec85e8a12d6f112c631c3b858655e",
       "functions": [],
       "classes": [],
@@ -1387,8 +1387,8 @@
       "totalLines": 436,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Frontend/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt": {
-      "filePath": "WebMoi/Frontend/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
+    "BunnyChat/Frontend/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt": {
+      "filePath": "BunnyChat/Frontend/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
       "contentHash": "d7a68596ab69b06f51ca278a6545148e4269a9381c26d597c13df5d88e08cf5b",
       "functions": [],
       "classes": [],
@@ -1397,8 +1397,8 @@
       "totalLines": 24,
       "hasStructuralAnalysis": false
     },
-    "WebMoi/Frontend/wwwroot/lib/jquery-validation/LICENSE.md": {
-      "filePath": "WebMoi/Frontend/wwwroot/lib/jquery-validation/LICENSE.md",
+    "BunnyChat/Frontend/wwwroot/lib/jquery-validation/LICENSE.md": {
+      "filePath": "BunnyChat/Frontend/wwwroot/lib/jquery-validation/LICENSE.md",
       "contentHash": "81e1c4930fd618f75a1d0311ab91ee358f6c9e588dcd4ff2d8e5bcc9c9e1197c",
       "functions": [],
       "classes": [],
@@ -1407,8 +1407,8 @@
       "totalLines": 23,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Frontend/wwwroot/lib/jquery/LICENSE.txt": {
-      "filePath": "WebMoi/Frontend/wwwroot/lib/jquery/LICENSE.txt",
+    "BunnyChat/Frontend/wwwroot/lib/jquery/LICENSE.txt": {
+      "filePath": "BunnyChat/Frontend/wwwroot/lib/jquery/LICENSE.txt",
       "contentHash": "86320192f9a0c505db3572b707d610dedd3a4702ee4124330bf769bee07f94c9",
       "functions": [],
       "classes": [],
@@ -1417,8 +1417,8 @@
       "totalLines": 21,
       "hasStructuralAnalysis": false
     },
-    "WebMoi/Program.cs": {
-      "filePath": "WebMoi/Program.cs",
+    "BunnyChat/Program.cs": {
+      "filePath": "BunnyChat/Program.cs",
       "contentHash": "893d573674b606f0e1f179653ccc75aa4ae06877f73893605ff6070f34c2029d",
       "functions": [],
       "classes": [],
@@ -1430,13 +1430,13 @@
           ]
         },
         {
-          "source": "WebMoi.Data",
+          "source": "BunnyChat.Data",
           "specifiers": [
             "Data"
           ]
         },
         {
-          "source": "WebMoi.Service",
+          "source": "BunnyChat.Service",
           "specifiers": [
             "Service"
           ]
@@ -1476,8 +1476,8 @@
       "totalLines": 181,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/Properties/launchSettings.json": {
-      "filePath": "WebMoi/Properties/launchSettings.json",
+    "BunnyChat/Properties/launchSettings.json": {
+      "filePath": "BunnyChat/Properties/launchSettings.json",
       "contentHash": "d377739134f315b54f4d1f2ea9e20402956561b30797d8369767b88ffe6e0a8d",
       "functions": [],
       "classes": [],
@@ -1486,8 +1486,8 @@
       "totalLines": 39,
       "hasStructuralAnalysis": true
     },
-    "WebMoi/WebMoi.csproj": {
-      "filePath": "WebMoi/WebMoi.csproj",
+    "BunnyChat/BunnyChat.csproj": {
+      "filePath": "BunnyChat/BunnyChat.csproj",
       "contentHash": "05b8d1b3b1052281acdf834c662fa7bf97a8ee2e3de37da5120bbabca955adf0",
       "functions": [],
       "classes": [],

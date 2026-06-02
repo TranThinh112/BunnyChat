@@ -1,6 +1,6 @@
 {
-  "name": "DoAnWeb",
-  "description": "DoAnWeb is an ASP.NET Core 8 web application (WebMoi) with JWT authentication, MongoDB integration, and Swagger API documentation. The framework validates JWT tokens for issuer, expiration, audience, and signing authority.",
+  "name": "BunnyChat",
+  "description": "BunnyChat is an ASP.NET Core 8 web application (BunnyChat) with JWT authentication, MongoDB integration, and Swagger API documentation. The framework validates JWT tokens for issuer, expiration, audience, and signing authority.",
   "languages": [
     "csharp",
     "cshtml",
@@ -77,265 +77,265 @@
       "fileCategory": "docs"
     },
     {
-      "path": "WebMoi/appsettings.Development.json",
+      "path": "BunnyChat/appsettings.Development.json",
       "language": "json",
       "sizeLines": 21,
       "fileCategory": "config"
     },
     {
-      "path": "WebMoi/appsettings.json",
+      "path": "BunnyChat/appsettings.json",
       "language": "json",
       "sizeLines": 22,
       "fileCategory": "config"
     },
     {
-      "path": "WebMoi/Backend/Controllers/auth/Authcontroller.cs",
+      "path": "BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
       "language": "csharp",
       "sizeLines": 236,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Backend/Controllers/friend/FriendController.cs",
+      "path": "BunnyChat/Backend/Controllers/friend/FriendController.cs",
       "language": "csharp",
       "sizeLines": 35,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Backend/Controllers/user/UserController.cs",
+      "path": "BunnyChat/Backend/Controllers/user/UserController.cs",
       "language": "csharp",
       "sizeLines": 242,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Backend/Data/MongoDBService.cs",
+      "path": "BunnyChat/Backend/Data/MongoDBService.cs",
       "language": "csharp",
       "sizeLines": 45,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Backend/DTOs/Auth.cs",
+      "path": "BunnyChat/Backend/DTOs/Auth.cs",
       "language": "csharp",
       "sizeLines": 37,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Backend/DTOs/FriendDTO.cs",
+      "path": "BunnyChat/Backend/DTOs/FriendDTO.cs",
       "language": "csharp",
       "sizeLines": 19,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Backend/DTOs/UserDTO.cs",
+      "path": "BunnyChat/Backend/DTOs/UserDTO.cs",
       "language": "csharp",
       "sizeLines": 25,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Backend/MiddleWares/authMiddleware.cs",
+      "path": "BunnyChat/Backend/MiddleWares/authMiddleware.cs",
       "language": "csharp",
       "sizeLines": 69,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Backend/Models/Entities/friends.cs",
+      "path": "BunnyChat/Backend/Models/Entities/friends.cs",
       "language": "csharp",
       "sizeLines": 33,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Backend/Models/Entities/session.cs",
+      "path": "BunnyChat/Backend/Models/Entities/session.cs",
       "language": "csharp",
       "sizeLines": 16,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Backend/Models/Entities/users.cs",
+      "path": "BunnyChat/Backend/Models/Entities/users.cs",
       "language": "csharp",
       "sizeLines": 40,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Backend/Models/ErrorViewModel.cs",
+      "path": "BunnyChat/Backend/Models/ErrorViewModel.cs",
       "language": "csharp",
       "sizeLines": 8,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Backend/Service/ITokenService.cs",
+      "path": "BunnyChat/Backend/Service/ITokenService.cs",
       "language": "csharp",
       "sizeLines": 10,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Backend/Service/TokenService.cs",
+      "path": "BunnyChat/Backend/Service/TokenService.cs",
       "language": "csharp",
       "sizeLines": 73,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Backend/Utils/ApiResponse.cs",
+      "path": "BunnyChat/Backend/Utils/ApiResponse.cs",
       "language": "csharp",
       "sizeLines": 20,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Directory.Build.props",
+      "path": "BunnyChat/Directory.Build.props",
       "language": "props",
       "sizeLines": 4,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/DoAn_web.sln",
+      "path": "BunnyChat/DoAn_web.sln",
       "language": "sln",
       "sizeLines": 34,
       "fileCategory": "config"
     },
     {
-      "path": "WebMoi/Frontend/Controllers/PageController.cs",
+      "path": "BunnyChat/Frontend/Controllers/PageController.cs",
       "language": "csharp",
       "sizeLines": 25,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Frontend/Views/_ViewImports.cshtml",
+      "path": "BunnyChat/Frontend/Views/_ViewImports.cshtml",
       "language": "cshtml",
       "sizeLines": 3,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Frontend/Views/Auth/Auth.cshtml",
+      "path": "BunnyChat/Frontend/Views/Auth/Auth.cshtml",
       "language": "cshtml",
       "sizeLines": 79,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Frontend/Views/Auth/Forgot.cshtml",
+      "path": "BunnyChat/Frontend/Views/Auth/Forgot.cshtml",
       "language": "cshtml",
       "sizeLines": 42,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Frontend/Views/Chat/Index.cshtml",
+      "path": "BunnyChat/Frontend/Views/Chat/Index.cshtml",
       "language": "cshtml",
       "sizeLines": 37,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Frontend/Views/Shared/_ChatLayout.cshtml",
+      "path": "BunnyChat/Frontend/Views/Shared/_ChatLayout.cshtml",
       "language": "cshtml",
       "sizeLines": 26,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Frontend/Views/Shared/_ValidationScriptsPartial.cshtml",
+      "path": "BunnyChat/Frontend/Views/Shared/_ValidationScriptsPartial.cshtml",
       "language": "cshtml",
       "sizeLines": 4,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Frontend/Views/Shared/AuthLayout.cshtml",
+      "path": "BunnyChat/Frontend/Views/Shared/AuthLayout.cshtml",
       "language": "cshtml",
       "sizeLines": 64,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Frontend/wwwroot/css/animation/AuthAnimation.css",
+      "path": "BunnyChat/Frontend/wwwroot/css/animation/AuthAnimation.css",
       "language": "css",
       "sizeLines": 88,
       "fileCategory": "markup"
     },
     {
-      "path": "WebMoi/Frontend/wwwroot/css/animation/RabbitAnimation.css",
+      "path": "BunnyChat/Frontend/wwwroot/css/animation/RabbitAnimation.css",
       "language": "css",
       "sizeLines": 99,
       "fileCategory": "markup"
     },
     {
-      "path": "WebMoi/Frontend/wwwroot/css/Auth.css",
+      "path": "BunnyChat/Frontend/wwwroot/css/Auth.css",
       "language": "css",
       "sizeLines": 342,
       "fileCategory": "markup"
     },
     {
-      "path": "WebMoi/Frontend/wwwroot/css/Chat.css",
+      "path": "BunnyChat/Frontend/wwwroot/css/Chat.css",
       "language": "css",
       "sizeLines": 49,
       "fileCategory": "markup"
     },
     {
-      "path": "WebMoi/Frontend/wwwroot/css/Forgot.css",
+      "path": "BunnyChat/Frontend/wwwroot/css/Forgot.css",
       "language": "css",
       "sizeLines": 96,
       "fileCategory": "markup"
     },
     {
-      "path": "WebMoi/Frontend/wwwroot/css/main.css",
+      "path": "BunnyChat/Frontend/wwwroot/css/main.css",
       "language": "css",
       "sizeLines": 30,
       "fileCategory": "markup"
     },
     {
-      "path": "WebMoi/Frontend/wwwroot/css/theme.css",
+      "path": "BunnyChat/Frontend/wwwroot/css/theme.css",
       "language": "css",
       "sizeLines": 205,
       "fileCategory": "markup"
     },
     {
-      "path": "WebMoi/Frontend/wwwroot/js/Auth.js",
+      "path": "BunnyChat/Frontend/wwwroot/js/Auth.js",
       "language": "javascript",
       "sizeLines": 18,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Frontend/wwwroot/js/rabbit.js",
+      "path": "BunnyChat/Frontend/wwwroot/js/rabbit.js",
       "language": "javascript",
       "sizeLines": 26,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Frontend/wwwroot/js/site.js",
+      "path": "BunnyChat/Frontend/wwwroot/js/site.js",
       "language": "javascript",
       "sizeLines": 4,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Frontend/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "path": "BunnyChat/Frontend/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "language": "javascript",
       "sizeLines": 435,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Frontend/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "path": "BunnyChat/Frontend/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
       "language": "txt",
       "sizeLines": 23,
       "fileCategory": "docs"
     },
     {
-      "path": "WebMoi/Frontend/wwwroot/lib/jquery-validation/LICENSE.md",
+      "path": "BunnyChat/Frontend/wwwroot/lib/jquery-validation/LICENSE.md",
       "language": "markdown",
       "sizeLines": 22,
       "fileCategory": "docs"
     },
     {
-      "path": "WebMoi/Frontend/wwwroot/lib/jquery/LICENSE.txt",
+      "path": "BunnyChat/Frontend/wwwroot/lib/jquery/LICENSE.txt",
       "language": "txt",
       "sizeLines": 20,
       "fileCategory": "docs"
     },
     {
-      "path": "WebMoi/Program.cs",
+      "path": "BunnyChat/Program.cs",
       "language": "csharp",
       "sizeLines": 180,
       "fileCategory": "code"
     },
     {
-      "path": "WebMoi/Properties/launchSettings.json",
+      "path": "BunnyChat/Properties/launchSettings.json",
       "language": "json",
       "sizeLines": 38,
       "fileCategory": "config"
     },
     {
-      "path": "WebMoi/WebMoi.csproj",
+      "path": "BunnyChat/BunnyChat.csproj",
       "language": "csproj",
       "sizeLines": 20,
       "fileCategory": "config"
@@ -354,49 +354,49 @@
     "PROJECT_DOCUMENTATION.md": [],
     "README.md": [],
     "TECHNICAL_DOCUMENTATION.md": [],
-    "WebMoi/appsettings.Development.json": [],
-    "WebMoi/appsettings.json": [],
-    "WebMoi/Backend/Controllers/auth/Authcontroller.cs": [],
-    "WebMoi/Backend/Controllers/friend/FriendController.cs": [],
-    "WebMoi/Backend/Controllers/user/UserController.cs": [],
-    "WebMoi/Backend/Data/MongoDBService.cs": [],
-    "WebMoi/Backend/DTOs/Auth.cs": [],
-    "WebMoi/Backend/DTOs/FriendDTO.cs": [],
-    "WebMoi/Backend/DTOs/UserDTO.cs": [],
-    "WebMoi/Backend/MiddleWares/authMiddleware.cs": [],
-    "WebMoi/Backend/Models/Entities/friends.cs": [],
-    "WebMoi/Backend/Models/Entities/session.cs": [],
-    "WebMoi/Backend/Models/Entities/users.cs": [],
-    "WebMoi/Backend/Models/ErrorViewModel.cs": [],
-    "WebMoi/Backend/Service/ITokenService.cs": [],
-    "WebMoi/Backend/Service/TokenService.cs": [],
-    "WebMoi/Backend/Utils/ApiResponse.cs": [],
-    "WebMoi/Directory.Build.props": [],
-    "WebMoi/DoAn_web.sln": [],
-    "WebMoi/Frontend/Controllers/PageController.cs": [],
-    "WebMoi/Frontend/Views/_ViewImports.cshtml": [],
-    "WebMoi/Frontend/Views/Auth/Auth.cshtml": [],
-    "WebMoi/Frontend/Views/Auth/Forgot.cshtml": [],
-    "WebMoi/Frontend/Views/Chat/Index.cshtml": [],
-    "WebMoi/Frontend/Views/Shared/_ChatLayout.cshtml": [],
-    "WebMoi/Frontend/Views/Shared/_ValidationScriptsPartial.cshtml": [],
-    "WebMoi/Frontend/Views/Shared/AuthLayout.cshtml": [],
-    "WebMoi/Frontend/wwwroot/css/animation/AuthAnimation.css": [],
-    "WebMoi/Frontend/wwwroot/css/animation/RabbitAnimation.css": [],
-    "WebMoi/Frontend/wwwroot/css/Auth.css": [],
-    "WebMoi/Frontend/wwwroot/css/Chat.css": [],
-    "WebMoi/Frontend/wwwroot/css/Forgot.css": [],
-    "WebMoi/Frontend/wwwroot/css/main.css": [],
-    "WebMoi/Frontend/wwwroot/css/theme.css": [],
-    "WebMoi/Frontend/wwwroot/js/Auth.js": [],
-    "WebMoi/Frontend/wwwroot/js/rabbit.js": [],
-    "WebMoi/Frontend/wwwroot/js/site.js": [],
-    "WebMoi/Frontend/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js": [],
-    "WebMoi/Frontend/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt": [],
-    "WebMoi/Frontend/wwwroot/lib/jquery-validation/LICENSE.md": [],
-    "WebMoi/Frontend/wwwroot/lib/jquery/LICENSE.txt": [],
-    "WebMoi/Program.cs": [],
-    "WebMoi/Properties/launchSettings.json": [],
-    "WebMoi/WebMoi.csproj": []
+    "BunnyChat/appsettings.Development.json": [],
+    "BunnyChat/appsettings.json": [],
+    "BunnyChat/Backend/Controllers/auth/Authcontroller.cs": [],
+    "BunnyChat/Backend/Controllers/friend/FriendController.cs": [],
+    "BunnyChat/Backend/Controllers/user/UserController.cs": [],
+    "BunnyChat/Backend/Data/MongoDBService.cs": [],
+    "BunnyChat/Backend/DTOs/Auth.cs": [],
+    "BunnyChat/Backend/DTOs/FriendDTO.cs": [],
+    "BunnyChat/Backend/DTOs/UserDTO.cs": [],
+    "BunnyChat/Backend/MiddleWares/authMiddleware.cs": [],
+    "BunnyChat/Backend/Models/Entities/friends.cs": [],
+    "BunnyChat/Backend/Models/Entities/session.cs": [],
+    "BunnyChat/Backend/Models/Entities/users.cs": [],
+    "BunnyChat/Backend/Models/ErrorViewModel.cs": [],
+    "BunnyChat/Backend/Service/ITokenService.cs": [],
+    "BunnyChat/Backend/Service/TokenService.cs": [],
+    "BunnyChat/Backend/Utils/ApiResponse.cs": [],
+    "BunnyChat/Directory.Build.props": [],
+    "BunnyChat/DoAn_web.sln": [],
+    "BunnyChat/Frontend/Controllers/PageController.cs": [],
+    "BunnyChat/Frontend/Views/_ViewImports.cshtml": [],
+    "BunnyChat/Frontend/Views/Auth/Auth.cshtml": [],
+    "BunnyChat/Frontend/Views/Auth/Forgot.cshtml": [],
+    "BunnyChat/Frontend/Views/Chat/Index.cshtml": [],
+    "BunnyChat/Frontend/Views/Shared/_ChatLayout.cshtml": [],
+    "BunnyChat/Frontend/Views/Shared/_ValidationScriptsPartial.cshtml": [],
+    "BunnyChat/Frontend/Views/Shared/AuthLayout.cshtml": [],
+    "BunnyChat/Frontend/wwwroot/css/animation/AuthAnimation.css": [],
+    "BunnyChat/Frontend/wwwroot/css/animation/RabbitAnimation.css": [],
+    "BunnyChat/Frontend/wwwroot/css/Auth.css": [],
+    "BunnyChat/Frontend/wwwroot/css/Chat.css": [],
+    "BunnyChat/Frontend/wwwroot/css/Forgot.css": [],
+    "BunnyChat/Frontend/wwwroot/css/main.css": [],
+    "BunnyChat/Frontend/wwwroot/css/theme.css": [],
+    "BunnyChat/Frontend/wwwroot/js/Auth.js": [],
+    "BunnyChat/Frontend/wwwroot/js/rabbit.js": [],
+    "BunnyChat/Frontend/wwwroot/js/site.js": [],
+    "BunnyChat/Frontend/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js": [],
+    "BunnyChat/Frontend/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt": [],
+    "BunnyChat/Frontend/wwwroot/lib/jquery-validation/LICENSE.md": [],
+    "BunnyChat/Frontend/wwwroot/lib/jquery/LICENSE.txt": [],
+    "BunnyChat/Program.cs": [],
+    "BunnyChat/Properties/launchSettings.json": [],
+    "BunnyChat/BunnyChat.csproj": []
   }
 }

@@ -1,17 +1,17 @@
 {
-  "projectRoot": "C:\\Users\\Admin\\Documents\\doanWeb",
+  "projectRoot": "C:\\Users\\Admin\\Documents\\BunnyChat",
   "batchFiles": [
-    {"path": "WebMoi/Frontend/wwwroot/css/Auth.css", "language": "css", "sizeLines": 342, "fileCategory": "markup"},
-    {"path": "WebMoi/Frontend/wwwroot/css/Chat.css", "language": "css", "sizeLines": 49, "fileCategory": "markup"},
-    {"path": "WebMoi/Frontend/wwwroot/css/Forgot.css", "language": "css", "sizeLines": 96, "fileCategory": "markup"},
-    {"path": "WebMoi/Frontend/wwwroot/css/main.css", "language": "css", "sizeLines": 30, "fileCategory": "markup"},
-    {"path": "WebMoi/Frontend/wwwroot/css/theme.css", "language": "css", "sizeLines": 205, "fileCategory": "markup"}
+    {"path": "BunnyChat/Frontend/wwwroot/css/Auth.css", "language": "css", "sizeLines": 342, "fileCategory": "markup"},
+    {"path": "BunnyChat/Frontend/wwwroot/css/Chat.css", "language": "css", "sizeLines": 49, "fileCategory": "markup"},
+    {"path": "BunnyChat/Frontend/wwwroot/css/Forgot.css", "language": "css", "sizeLines": 96, "fileCategory": "markup"},
+    {"path": "BunnyChat/Frontend/wwwroot/css/main.css", "language": "css", "sizeLines": 30, "fileCategory": "markup"},
+    {"path": "BunnyChat/Frontend/wwwroot/css/theme.css", "language": "css", "sizeLines": 205, "fileCategory": "markup"}
   ],
   "batchImportData": {
-    "WebMoi/Frontend/wwwroot/css/Auth.css": [],
-    "WebMoi/Frontend/wwwroot/css/Chat.css": [],
-    "WebMoi/Frontend/wwwroot/css/Forgot.css": [],
-    "WebMoi/Frontend/wwwroot/css/main.css": [],
-    "WebMoi/Frontend/wwwroot/css/theme.css": []
+    "BunnyChat/Frontend/wwwroot/css/Auth.css": [],
+    "BunnyChat/Frontend/wwwroot/css/Chat.css": [],
+    "BunnyChat/Frontend/wwwroot/css/Forgot.css": [],
+    "BunnyChat/Frontend/wwwroot/css/main.css": [],
+    "BunnyChat/Frontend/wwwroot/css/theme.css": []
   }
 }

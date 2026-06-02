@@ -73,7 +73,7 @@
       }
     },
     {
-      "path": "WebMoi/Backend/Controllers/auth/Authcontroller.cs",
+      "path": "BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
       "language": "csharp",
       "fileCategory": "code",
       "totalLines": 236,
@@ -433,7 +433,7 @@
       }
     },
     {
-      "path": "WebMoi/Backend/Controllers/friend/FriendController.cs",
+      "path": "BunnyChat/Backend/Controllers/friend/FriendController.cs",
       "language": "csharp",
       "fileCategory": "code",
       "totalLines": 35,
@@ -510,7 +510,7 @@
       }
     },
     {
-      "path": "WebMoi/Backend/Controllers/user/UserController.cs",
+      "path": "BunnyChat/Backend/Controllers/user/UserController.cs",
       "language": "csharp",
       "fileCategory": "code",
       "totalLines": 242,
@@ -930,7 +930,7 @@
       }
     },
     {
-      "path": "WebMoi/Backend/Data/MongoDBService.cs",
+      "path": "BunnyChat/Backend/Data/MongoDBService.cs",
       "language": "csharp",
       "fileCategory": "code",
       "totalLines": 46,
@@ -1039,7 +1039,7 @@
       }
     },
     {
-      "path": "WebMoi/Backend/DTOs/Auth.cs",
+      "path": "BunnyChat/Backend/DTOs/Auth.cs",
       "language": "csharp",
       "fileCategory": "code",
       "totalLines": 38,
@@ -1081,7 +1081,7 @@
       }
     },
     {
-      "path": "WebMoi/Backend/DTOs/FriendDTO.cs",
+      "path": "BunnyChat/Backend/DTOs/FriendDTO.cs",
       "language": "csharp",
       "fileCategory": "code",
       "totalLines": 19,
@@ -1123,7 +1123,7 @@
       }
     },
     {
-      "path": "WebMoi/Backend/DTOs/UserDTO.cs",
+      "path": "BunnyChat/Backend/DTOs/UserDTO.cs",
       "language": "csharp",
       "fileCategory": "code",
       "totalLines": 26,
@@ -1189,7 +1189,7 @@
       }
     },
     {
-      "path": "WebMoi/Backend/MiddleWares/authMiddleware.cs",
+      "path": "BunnyChat/Backend/MiddleWares/authMiddleware.cs",
       "language": "csharp",
       "fileCategory": "code",
       "totalLines": 69,
@@ -1202,7 +1202,7 @@
       }
     },
     {
-      "path": "WebMoi/Backend/Models/Entities/friends.cs",
+      "path": "BunnyChat/Backend/Models/Entities/friends.cs",
       "language": "csharp",
       "fileCategory": "code",
       "totalLines": 33,
@@ -1274,7 +1274,7 @@
       }
     },
     {
-      "path": "WebMoi/Backend/Models/Entities/session.cs",
+      "path": "BunnyChat/Backend/Models/Entities/session.cs",
       "language": "csharp",
       "fileCategory": "code",
       "totalLines": 17,
@@ -1328,7 +1328,7 @@
       }
     },
     {
-      "path": "WebMoi/Backend/Models/Entities/users.cs",
+      "path": "BunnyChat/Backend/Models/Entities/users.cs",
       "language": "csharp",
       "fileCategory": "code",
       "totalLines": 41,
@@ -1436,7 +1436,7 @@
       }
     },
     {
-      "path": "WebMoi/Backend/Models/ErrorViewModel.cs",
+      "path": "BunnyChat/Backend/Models/ErrorViewModel.cs",
       "language": "csharp",
       "fileCategory": "code",
       "totalLines": 8,
@@ -1478,7 +1478,7 @@
       }
     },
     {
-      "path": "WebMoi/Backend/Service/ITokenService.cs",
+      "path": "BunnyChat/Backend/Service/ITokenService.cs",
       "language": "csharp",
       "fileCategory": "code",
       "totalLines": 11,
@@ -1510,7 +1510,7 @@
       }
     },
     {
-      "path": "WebMoi/Backend/Service/TokenService.cs",
+      "path": "BunnyChat/Backend/Service/TokenService.cs",
       "language": "csharp",
       "fileCategory": "code",
       "totalLines": 74,
@@ -1646,7 +1646,7 @@
       }
     },
     {
-      "path": "WebMoi/Backend/Utils/ApiResponse.cs",
+      "path": "BunnyChat/Backend/Utils/ApiResponse.cs",
       "language": "csharp",
       "fileCategory": "code",
       "totalLines": 21,
@@ -1707,7 +1707,7 @@
       }
     },
     {
-      "path": "WebMoi/Directory.Build.props",
+      "path": "BunnyChat/Directory.Build.props",
       "language": "props",
       "fileCategory": "code",
       "totalLines": 5,
@@ -1715,7 +1715,7 @@
       "metrics": {}
     },
     {
-      "path": "WebMoi/Frontend/Controllers/PageController.cs",
+      "path": "BunnyChat/Frontend/Controllers/PageController.cs",
       "language": "csharp",
       "fileCategory": "code",
       "totalLines": 26,
@@ -1800,7 +1800,7 @@
       }
     },
     {
-      "path": "WebMoi/Frontend/Views/_ViewImports.cshtml",
+      "path": "BunnyChat/Frontend/Views/_ViewImports.cshtml",
       "language": "cshtml",
       "fileCategory": "code",
       "totalLines": 3,
@@ -1808,7 +1808,7 @@
       "metrics": {}
     },
     {
-      "path": "WebMoi/Frontend/Views/Auth/Auth.cshtml",
+      "path": "BunnyChat/Frontend/Views/Auth/Auth.cshtml",
       "language": "cshtml",
       "fileCategory": "code",
       "totalLines": 80,
@@ -1816,7 +1816,7 @@
       "metrics": {}
     },
     {
-      "path": "WebMoi/Frontend/Views/Auth/Forgot.cshtml",
+      "path": "BunnyChat/Frontend/Views/Auth/Forgot.cshtml",
       "language": "cshtml",
       "fileCategory": "code",
       "totalLines": 43,
@@ -1824,7 +1824,7 @@
       "metrics": {}
     },
     {
-      "path": "WebMoi/Frontend/Views/Chat/Index.cshtml",
+      "path": "BunnyChat/Frontend/Views/Chat/Index.cshtml",
       "language": "cshtml",
       "fileCategory": "code",
       "totalLines": 38,
@@ -1832,7 +1832,7 @@
       "metrics": {}
     },
     {
-      "path": "WebMoi/Frontend/Views/Shared/_ChatLayout.cshtml",
+      "path": "BunnyChat/Frontend/Views/Shared/_ChatLayout.cshtml",
       "language": "cshtml",
       "fileCategory": "code",
       "totalLines": 26,
@@ -1840,7 +1840,7 @@
       "metrics": {}
     },
     {
-      "path": "WebMoi/Frontend/Views/Shared/_ValidationScriptsPartial.cshtml",
+      "path": "BunnyChat/Frontend/Views/Shared/_ValidationScriptsPartial.cshtml",
       "language": "cshtml",
       "fileCategory": "code",
       "totalLines": 4,

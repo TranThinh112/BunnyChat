@@ -4,7 +4,7 @@
   "filesSkipped": [],
   "results": [
     {
-      "path": "WebMoi/Frontend/wwwroot/css/Auth.css",
+      "path": "BunnyChat/Frontend/wwwroot/css/Auth.css",
       "language": "css",
       "fileCategory": "markup",
       "totalLines": 343,
@@ -12,7 +12,7 @@
       "metrics": {}
     },
     {
-      "path": "WebMoi/Frontend/wwwroot/css/Chat.css",
+      "path": "BunnyChat/Frontend/wwwroot/css/Chat.css",
       "language": "css",
       "fileCategory": "markup",
       "totalLines": 49,
@@ -20,7 +20,7 @@
       "metrics": {}
     },
     {
-      "path": "WebMoi/Frontend/wwwroot/css/Forgot.css",
+      "path": "BunnyChat/Frontend/wwwroot/css/Forgot.css",
       "language": "css",
       "fileCategory": "markup",
       "totalLines": 97,
@@ -28,7 +28,7 @@
       "metrics": {}
     },
     {
-      "path": "WebMoi/Frontend/wwwroot/css/main.css",
+      "path": "BunnyChat/Frontend/wwwroot/css/main.css",
       "language": "css",
       "fileCategory": "markup",
       "totalLines": 31,
@@ -36,7 +36,7 @@
       "metrics": {}
     },
     {
-      "path": "WebMoi/Frontend/wwwroot/css/theme.css",
+      "path": "BunnyChat/Frontend/wwwroot/css/theme.css",
       "language": "css",
       "fileCategory": "markup",
       "totalLines": 206,

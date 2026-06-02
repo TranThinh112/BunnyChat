@@ -4,7 +4,7 @@
   "filesSkipped": [],
   "results": [
     {
-      "path": "WebMoi/DoAn_web.sln",
+      "path": "BunnyChat/DoAn_web.sln",
       "language": "sln",
       "fileCategory": "config",
       "totalLines": 34,
@@ -12,7 +12,7 @@
       "metrics": {}
     },
     {
-      "path": "WebMoi/WebMoi.csproj",
+      "path": "BunnyChat/BunnyChat.csproj",
       "language": "csproj",
       "fileCategory": "config",
       "totalLines": 20,
@@ -20,7 +20,7 @@
       "metrics": {}
     },
     {
-      "path": "WebMoi/appsettings.Development.json",
+      "path": "BunnyChat/appsettings.Development.json",
       "language": "json",
       "fileCategory": "config",
       "totalLines": 22,
@@ -46,7 +46,7 @@
       }
     },
     {
-      "path": "WebMoi/appsettings.json",
+      "path": "BunnyChat/appsettings.json",
       "language": "json",
       "fileCategory": "config",
       "totalLines": 22,

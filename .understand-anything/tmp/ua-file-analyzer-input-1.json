@@ -1,5 +1,5 @@
 {
-  "projectRoot": "C:\\Users\\Admin\\Documents\\doanWeb",
+  "projectRoot": "C:\\Users\\Admin\\Documents\\BunnyChat",
   "batchFiles": [
     {"path": ".understand-anything/tmp/ua-import-map-input.json", "language": "json", "sizeLines": 0, "fileCategory": "config"},
     {"path": ".understand-anything/tmp/ua-import-map-output.json", "language": "json", "sizeLines": 111, "fileCategory": "config"},

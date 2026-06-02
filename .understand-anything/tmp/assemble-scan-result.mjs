@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const root = 'C:/Users/Admin/Documents/doanWeb';
+const root = 'C:/Users/Admin/Documents/BunnyChat';
 const scan = JSON.parse(fs.readFileSync(path.join(root, '.understand-anything/tmp/ua-scan-files.json'), 'utf8'));
 const importInput = {
   projectRoot: root,
@@ -17,9 +17,9 @@ if (fs.existsSync(importOutPath)) {
 
 const langs = [...new Set(scan.files.map((f) => f.language))].sort();
 const result = {
-  name: 'DoAnWeb',
+  name: 'BunnyChat',
   description:
-    'DoAnWeb is an ASP.NET Core 8 web application (WebMoi) with JWT authentication, MongoDB integration, and Swagger API documentation. The framework validates JWT tokens for issuer, expiration, audience, and signing authority.',
+    'BunnyChat is an ASP.NET Core 8 web application (BunnyChat) with JWT authentication, MongoDB integration, and Swagger API documentation. The framework validates JWT tokens for issuer, expiration, audience, and signing authority.',
   languages: langs,
   frameworks: ['ASP.NET Core', '.NET 8', 'MongoDB', 'JWT Bearer', 'Swashbuckle'],
   files: scan.files,

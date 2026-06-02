@@ -14,515 +14,515 @@
       "type": "config",
       "name": "scan-result.json",
       "filePath": ".understand-anything/intermediate/scan-result.json",
-      "summary": "Intermediate scanner output cataloging all project files, detected languages, frameworks, complexity estimates, and an empty import map for the DoAnWeb codebase.",
+      "summary": "Intermediate scanner output cataloging all project files, detected languages, frameworks, complexity estimates, and an empty import map for the BunnyChat codebase.",
       "tags": ["configuration", "scanner", "metadata", "project-inventory"],
       "complexity": "moderate"
     },
     {
-      "id": "file:WebMoi/Backend/Controllers/auth/Authcontroller.cs",
+      "id": "file:BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
       "type": "file",
       "name": "Authcontroller.cs",
-      "filePath": "WebMoi/Backend/Controllers/auth/Authcontroller.cs",
+      "filePath": "BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
       "summary": "REST API controller handling user registration, login with JWT and refresh-token cookies, and logout by clearing MongoDB sessions.",
       "tags": ["api-handler", "authentication", "jwt", "mongodb"],
       "complexity": "complex",
       "languageNotes": "Uses BCrypt password hashing, MongoDB upsert for sessions, and HttpOnly refresh-token cookies."
     },
     {
-      "id": "class:WebMoi/Backend/Controllers/auth/Authcontroller.cs:AuthController",
+      "id": "class:BunnyChat/Backend/Controllers/auth/Authcontroller.cs:AuthController",
       "type": "class",
       "name": "AuthController",
-      "filePath": "WebMoi/Backend/Controllers/auth/Authcontroller.cs",
+      "filePath": "BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
       "lineRange": [15, 235],
       "summary": "ASP.NET Core API controller exposing /auth signup, login, and logout endpoints backed by MongoDB user and session collections.",
       "tags": ["api-handler", "authentication", "controller"],
       "complexity": "complex"
     },
     {
-      "id": "function:WebMoi/Backend/Controllers/auth/Authcontroller.cs:SignUp",
+      "id": "function:BunnyChat/Backend/Controllers/auth/Authcontroller.cs:SignUp",
       "type": "function",
       "name": "SignUp",
-      "filePath": "WebMoi/Backend/Controllers/auth/Authcontroller.cs",
+      "filePath": "BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
       "lineRange": [34, 97],
       "summary": "Registers a new user after validating input, checking username/email uniqueness, hashing the password with BCrypt, and inserting into MongoDB.",
       "tags": ["api-handler", "registration", "validation"],
       "complexity": "moderate"
     },
     {
-      "id": "function:WebMoi/Backend/Controllers/auth/Authcontroller.cs:Login",
+      "id": "function:BunnyChat/Backend/Controllers/auth/Authcontroller.cs:Login",
       "type": "function",
       "name": "Login",
-      "filePath": "WebMoi/Backend/Controllers/auth/Authcontroller.cs",
+      "filePath": "BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
       "lineRange": [100, 193],
       "summary": "Authenticates a user by username and password, issues JWT access and refresh tokens, persists the session in MongoDB, and sets an HttpOnly cookie.",
       "tags": ["api-handler", "authentication", "jwt"],
       "complexity": "complex"
     },
     {
-      "id": "function:WebMoi/Backend/Controllers/auth/Authcontroller.cs:LogOut",
+      "id": "function:BunnyChat/Backend/Controllers/auth/Authcontroller.cs:LogOut",
       "type": "function",
       "name": "LogOut",
-      "filePath": "WebMoi/Backend/Controllers/auth/Authcontroller.cs",
+      "filePath": "BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
       "lineRange": [196, 225],
       "summary": "Logs out the current user by deleting their refresh-token session from MongoDB and clearing the refresh-token cookie.",
       "tags": ["api-handler", "authentication", "session"],
       "complexity": "moderate"
     },
     {
-      "id": "file:WebMoi/Backend/Controllers/friend/FriendController.cs",
+      "id": "file:BunnyChat/Backend/Controllers/friend/FriendController.cs",
       "type": "file",
       "name": "FriendController.cs",
-      "filePath": "WebMoi/Backend/Controllers/friend/FriendController.cs",
+      "filePath": "BunnyChat/Backend/Controllers/friend/FriendController.cs",
       "summary": "Minimal API controller stub for listing friend records from the MongoDB friends collection.",
       "tags": ["api-handler", "friends", "mongodb"],
       "complexity": "simple"
     },
     {
-      "id": "class:WebMoi/Backend/Controllers/friend/FriendController.cs:FriendController",
+      "id": "class:BunnyChat/Backend/Controllers/friend/FriendController.cs:FriendController",
       "type": "class",
       "name": "FriendController",
-      "filePath": "WebMoi/Backend/Controllers/friend/FriendController.cs",
+      "filePath": "BunnyChat/Backend/Controllers/friend/FriendController.cs",
       "lineRange": [14, 33],
       "summary": "Controller with a single GET endpoint that returns all documents from the friends MongoDB collection.",
       "tags": ["api-handler", "friends", "controller"],
       "complexity": "simple"
     },
     {
-      "id": "function:WebMoi/Backend/Controllers/friend/FriendController.cs:Get",
+      "id": "function:BunnyChat/Backend/Controllers/friend/FriendController.cs:Get",
       "type": "function",
       "name": "Get",
-      "filePath": "WebMoi/Backend/Controllers/friend/FriendController.cs",
+      "filePath": "BunnyChat/Backend/Controllers/friend/FriendController.cs",
       "lineRange": [27, 31],
       "summary": "Returns all friend records from MongoDB as a list response.",
       "tags": ["api-handler", "read-endpoint"],
       "complexity": "simple"
     },
     {
-      "id": "file:WebMoi/Backend/Controllers/user/UserController.cs",
+      "id": "file:BunnyChat/Backend/Controllers/user/UserController.cs",
       "type": "file",
       "name": "UserController.cs",
-      "filePath": "WebMoi/Backend/Controllers/user/UserController.cs",
+      "filePath": "BunnyChat/Backend/Controllers/user/UserController.cs",
       "summary": "User profile API controller supporting list, authenticated self-profile, profile updates, and username/email search against MongoDB.",
       "tags": ["api-handler", "user-management", "mongodb"],
       "complexity": "complex"
     },
     {
-      "id": "class:WebMoi/Backend/Controllers/user/UserController.cs:UserController",
+      "id": "class:BunnyChat/Backend/Controllers/user/UserController.cs:UserController",
       "type": "class",
       "name": "UserController",
-      "filePath": "WebMoi/Backend/Controllers/user/UserController.cs",
+      "filePath": "BunnyChat/Backend/Controllers/user/UserController.cs",
       "lineRange": [16, 241],
       "summary": "Controller managing user CRUD-style operations including profile retrieval, updates, and regex-based search with JWT claim extraction.",
       "tags": ["api-handler", "user-management", "controller"],
       "complexity": "complex"
     },
     {
-      "id": "function:WebMoi/Backend/Controllers/user/UserController.cs:GetMe",
+      "id": "function:BunnyChat/Backend/Controllers/user/UserController.cs:GetMe",
       "type": "function",
       "name": "GetMe",
-      "filePath": "WebMoi/Backend/Controllers/user/UserController.cs",
+      "filePath": "BunnyChat/Backend/Controllers/user/UserController.cs",
       "lineRange": [50, 89],
       "summary": "Returns the authenticated user's profile by reading the JWT name-identifier claim and loading the matching MongoDB user document.",
       "tags": ["api-handler", "profile", "authentication"],
       "complexity": "moderate"
     },
     {
-      "id": "function:WebMoi/Backend/Controllers/user/UserController.cs:UpdateInformation",
+      "id": "function:BunnyChat/Backend/Controllers/user/UserController.cs:UpdateInformation",
       "type": "function",
       "name": "UpdateInformation",
-      "filePath": "WebMoi/Backend/Controllers/user/UserController.cs",
+      "filePath": "BunnyChat/Backend/Controllers/user/UserController.cs",
       "lineRange": [92, 160],
       "summary": "Updates the current user's profile fields after validating phone uniqueness and applying a MongoDB partial update.",
       "tags": ["api-handler", "profile", "validation"],
       "complexity": "moderate"
     },
     {
-      "id": "function:WebMoi/Backend/Controllers/user/UserController.cs:Search",
+      "id": "function:BunnyChat/Backend/Controllers/user/UserController.cs:Search",
       "type": "function",
       "name": "Search",
-      "filePath": "WebMoi/Backend/Controllers/user/UserController.cs",
+      "filePath": "BunnyChat/Backend/Controllers/user/UserController.cs",
       "lineRange": [163, 240],
       "summary": "Searches users by username regex and/or exact email using MongoDB filter composition and returns sanitized public profile data.",
       "tags": ["api-handler", "search", "mongodb"],
       "complexity": "complex"
     },
     {
-      "id": "file:WebMoi/Backend/Data/MongoDBService.cs",
+      "id": "file:BunnyChat/Backend/Data/MongoDBService.cs",
       "type": "file",
       "name": "MongoDBService.cs",
-      "filePath": "WebMoi/Backend/Data/MongoDBService.cs",
+      "filePath": "BunnyChat/Backend/Data/MongoDBService.cs",
       "summary": "Singleton MongoDB connection service that initializes the database client and sets up a TTL index on session refresh tokens.",
       "tags": ["service", "mongodb", "data-access", "singleton"],
       "complexity": "simple"
     },
     {
-      "id": "class:WebMoi/Backend/Data/MongoDBService.cs:MongoDbService",
+      "id": "class:BunnyChat/Backend/Data/MongoDBService.cs:MongoDbService",
       "type": "class",
       "name": "MongoDbService",
-      "filePath": "WebMoi/Backend/Data/MongoDBService.cs",
+      "filePath": "BunnyChat/Backend/Data/MongoDBService.cs",
       "lineRange": [9, 44],
       "summary": "Wraps MongoClient initialization from configuration and exposes the IMongoDatabase instance used across controllers.",
       "tags": ["service", "mongodb", "data-access"],
       "complexity": "simple"
     },
     {
-      "id": "function:WebMoi/Backend/Data/MongoDBService.cs:DeleteDocumentForRefreshToken",
+      "id": "function:BunnyChat/Backend/Data/MongoDBService.cs:DeleteDocumentForRefreshToken",
       "type": "function",
       "name": "DeleteDocumentForRefreshToken",
-      "filePath": "WebMoi/Backend/Data/MongoDBService.cs",
+      "filePath": "BunnyChat/Backend/Data/MongoDBService.cs",
       "lineRange": [27, 43],
       "summary": "Creates a TTL index on session ExpiresAt so expired refresh-token documents are automatically removed by MongoDB.",
       "tags": ["mongodb", "session", "index"],
       "complexity": "moderate"
     },
     {
-      "id": "file:WebMoi/Backend/DTOs/Auth.cs",
+      "id": "file:BunnyChat/Backend/DTOs/Auth.cs",
       "type": "file",
       "name": "Auth.cs",
-      "filePath": "WebMoi/Backend/DTOs/Auth.cs",
+      "filePath": "BunnyChat/Backend/DTOs/Auth.cs",
       "summary": "Data transfer objects for authentication requests including SignUpDTORequest record and LoginDTORequest with validation attributes.",
       "tags": ["type-definition", "dto", "validation", "authentication"],
       "complexity": "simple"
     },
     {
-      "id": "class:WebMoi/Backend/DTOs/Auth.cs:LoginDTORequest",
+      "id": "class:BunnyChat/Backend/DTOs/Auth.cs:LoginDTORequest",
       "type": "class",
       "name": "LoginDTORequest",
-      "filePath": "WebMoi/Backend/DTOs/Auth.cs",
+      "filePath": "BunnyChat/Backend/DTOs/Auth.cs",
       "lineRange": [28, 36],
       "summary": "Login request payload carrying required username and password fields with data-annotation validation.",
       "tags": ["type-definition", "dto", "authentication"],
       "complexity": "simple"
     },
     {
-      "id": "file:WebMoi/Backend/DTOs/FriendDTO.cs",
+      "id": "file:BunnyChat/Backend/DTOs/FriendDTO.cs",
       "type": "file",
       "name": "FriendDTO.cs",
-      "filePath": "WebMoi/Backend/DTOs/FriendDTO.cs",
+      "filePath": "BunnyChat/Backend/DTOs/FriendDTO.cs",
       "summary": "DTO for friend-request payloads containing recipient ID and an optional message field.",
       "tags": ["type-definition", "dto", "friends"],
       "complexity": "simple"
     },
     {
-      "id": "class:WebMoi/Backend/DTOs/FriendDTO.cs:FriendDTORequest",
+      "id": "class:BunnyChat/Backend/DTOs/FriendDTO.cs:FriendDTORequest",
       "type": "class",
       "name": "FriendDTORequest",
-      "filePath": "WebMoi/Backend/DTOs/FriendDTO.cs",
+      "filePath": "BunnyChat/Backend/DTOs/FriendDTO.cs",
       "lineRange": [9, 18],
       "summary": "Request model for sending a friend invitation with ReceiveId and Message properties.",
       "tags": ["type-definition", "dto", "friends"],
       "complexity": "simple"
     },
     {
-      "id": "file:WebMoi/Backend/DTOs/UserDTO.cs",
+      "id": "file:BunnyChat/Backend/DTOs/UserDTO.cs",
       "type": "file",
       "name": "UserDTO.cs",
-      "filePath": "WebMoi/Backend/DTOs/UserDTO.cs",
+      "filePath": "BunnyChat/Backend/DTOs/UserDTO.cs",
       "summary": "DTO for user profile update requests covering bio, phone, nickname, name, and avatar URL fields.",
       "tags": ["type-definition", "dto", "user-management"],
       "complexity": "simple"
     },
     {
-      "id": "class:WebMoi/Backend/DTOs/UserDTO.cs:UserInformationDTORequest",
+      "id": "class:BunnyChat/Backend/DTOs/UserDTO.cs:UserInformationDTORequest",
       "type": "class",
       "name": "UserInformationDTORequest",
-      "filePath": "WebMoi/Backend/DTOs/UserDTO.cs",
+      "filePath": "BunnyChat/Backend/DTOs/UserDTO.cs",
       "lineRange": [9, 24],
       "summary": "Mutable profile update payload mapped to User entity fields during UpdateInformation.",
       "tags": ["type-definition", "dto", "profile"],
       "complexity": "simple"
     },
     {
-      "id": "file:WebMoi/Backend/MiddleWares/authMiddleware.cs",
+      "id": "file:BunnyChat/Backend/MiddleWares/authMiddleware.cs",
       "type": "file",
       "name": "authMiddleware.cs",
-      "filePath": "WebMoi/Backend/MiddleWares/authMiddleware.cs",
+      "filePath": "BunnyChat/Backend/MiddleWares/authMiddleware.cs",
       "summary": "Fully commented-out custom JWT authentication middleware that would validate users and attach them to HttpContext.Items.",
       "tags": ["middleware", "authentication", "disabled", "jwt"],
       "complexity": "simple",
       "languageNotes": "Entire AuthMiddleware implementation is commented out; JWT validation is handled elsewhere in Program.cs."
     },
     {
-      "id": "file:WebMoi/Backend/Models/Entities/friends.cs",
+      "id": "file:BunnyChat/Backend/Models/Entities/friends.cs",
       "type": "file",
       "name": "friends.cs",
-      "filePath": "WebMoi/Backend/Models/Entities/friends.cs",
+      "filePath": "BunnyChat/Backend/Models/Entities/friends.cs",
       "summary": "MongoDB entity model for friend requests and relationships with sender, recipient, message, status, and timestamps.",
       "tags": ["data-model", "mongodb", "friends", "entity"],
       "complexity": "simple"
     },
     {
-      "id": "class:WebMoi/Backend/Models/Entities/friends.cs:Friend",
+      "id": "class:BunnyChat/Backend/Models/Entities/friends.cs:Friend",
       "type": "class",
       "name": "Friend",
-      "filePath": "WebMoi/Backend/Models/Entities/friends.cs",
+      "filePath": "BunnyChat/Backend/Models/Entities/friends.cs",
       "lineRange": [18, 32],
       "summary": "BSON-mapped friend document with ObjectId primary key, sender/receiver IDs, message, status enum, and audit timestamps.",
       "tags": ["data-model", "entity", "friends"],
       "complexity": "simple"
     },
     {
-      "id": "file:WebMoi/Backend/Models/Entities/session.cs",
+      "id": "file:BunnyChat/Backend/Models/Entities/session.cs",
       "type": "file",
       "name": "session.cs",
-      "filePath": "WebMoi/Backend/Models/Entities/session.cs",
+      "filePath": "BunnyChat/Backend/Models/Entities/session.cs",
       "summary": "MongoDB session entity storing user ID, username, refresh token, and expiration for JWT refresh-token rotation.",
       "tags": ["data-model", "mongodb", "session", "entity"],
       "complexity": "simple"
     },
     {
-      "id": "class:WebMoi/Backend/Models/Entities/session.cs:Session",
+      "id": "class:BunnyChat/Backend/Models/Entities/session.cs:Session",
       "type": "class",
       "name": "Session",
-      "filePath": "WebMoi/Backend/Models/Entities/session.cs",
+      "filePath": "BunnyChat/Backend/Models/Entities/session.cs",
       "lineRange": [7, 16],
       "summary": "Refresh-token session document keyed by user ID with username, token value, and UTC expiration timestamp.",
       "tags": ["data-model", "entity", "session"],
       "complexity": "simple"
     },
     {
-      "id": "file:WebMoi/Backend/Models/Entities/users.cs",
+      "id": "file:BunnyChat/Backend/Models/Entities/users.cs",
       "type": "file",
       "name": "users.cs",
-      "filePath": "WebMoi/Backend/Models/Entities/users.cs",
+      "filePath": "BunnyChat/Backend/Models/Entities/users.cs",
       "summary": "Core User MongoDB entity with identity, credentials, profile fields, and computed DisplayName property.",
       "tags": ["data-model", "mongodb", "user", "entity"],
       "complexity": "simple"
     },
     {
-      "id": "class:WebMoi/Backend/Models/Entities/users.cs:User",
+      "id": "class:BunnyChat/Backend/Models/Entities/users.cs:User",
       "type": "class",
       "name": "User",
-      "filePath": "WebMoi/Backend/Models/Entities/users.cs",
+      "filePath": "BunnyChat/Backend/Models/Entities/users.cs",
       "lineRange": [6, 40],
       "summary": "Primary user document model with BSON Id mapping, hashed password, profile metadata, and a DisplayName computed property.",
       "tags": ["data-model", "entity", "user"],
       "complexity": "simple"
     },
     {
-      "id": "file:WebMoi/Backend/Models/ErrorViewModel.cs",
+      "id": "file:BunnyChat/Backend/Models/ErrorViewModel.cs",
       "type": "file",
       "name": "ErrorViewModel.cs",
-      "filePath": "WebMoi/Backend/Models/ErrorViewModel.cs",
+      "filePath": "BunnyChat/Backend/Models/ErrorViewModel.cs",
       "summary": "Simple view model exposing RequestId and a ShowRequestId flag for ASP.NET Core error pages.",
       "tags": ["data-model", "error-handling", "view-model"],
       "complexity": "simple"
     },
     {
-      "id": "class:WebMoi/Backend/Models/ErrorViewModel.cs:ErrorViewModel",
+      "id": "class:BunnyChat/Backend/Models/ErrorViewModel.cs:ErrorViewModel",
       "type": "class",
       "name": "ErrorViewModel",
-      "filePath": "WebMoi/Backend/Models/ErrorViewModel.cs",
+      "filePath": "BunnyChat/Backend/Models/ErrorViewModel.cs",
       "lineRange": [3, 8],
       "summary": "Carries the current request correlation ID for display on error views when available.",
       "tags": ["data-model", "error-handling", "view-model"],
       "complexity": "simple"
     },
     {
-      "id": "file:WebMoi/Backend/Service/ITokenService.cs",
+      "id": "file:BunnyChat/Backend/Service/ITokenService.cs",
       "type": "file",
       "name": "ITokenService.cs",
-      "filePath": "WebMoi/Backend/Service/ITokenService.cs",
+      "filePath": "BunnyChat/Backend/Service/ITokenService.cs",
       "summary": "Interface contract for JWT access-token and cryptographically secure refresh-token generation.",
       "tags": ["type-definition", "jwt", "service", "interface"],
       "complexity": "simple"
     },
     {
-      "id": "class:WebMoi/Backend/Service/ITokenService.cs:ITokenService",
+      "id": "class:BunnyChat/Backend/Service/ITokenService.cs:ITokenService",
       "type": "class",
       "name": "ITokenService",
-      "filePath": "WebMoi/Backend/Service/ITokenService.cs",
+      "filePath": "BunnyChat/Backend/Service/ITokenService.cs",
       "lineRange": [6, 10],
       "summary": "Defines CreateAccessToken and CreateRefreshToken methods implemented by TokenService for authentication flows.",
       "tags": ["type-definition", "jwt", "interface"],
       "complexity": "simple"
     },
     {
-      "id": "file:WebMoi/Backend/Service/TokenService.cs",
+      "id": "file:BunnyChat/Backend/Service/TokenService.cs",
       "type": "file",
       "name": "TokenService.cs",
-      "filePath": "WebMoi/Backend/Service/TokenService.cs",
+      "filePath": "BunnyChat/Backend/Service/TokenService.cs",
       "summary": "JWT token service that builds signed access tokens from user claims and generates random base64 refresh tokens.",
       "tags": ["service", "jwt", "authentication", "security"],
       "complexity": "moderate"
     },
     {
-      "id": "class:WebMoi/Backend/Service/TokenService.cs:TokenService",
+      "id": "class:BunnyChat/Backend/Service/TokenService.cs:TokenService",
       "type": "class",
       "name": "TokenService",
-      "filePath": "WebMoi/Backend/Service/TokenService.cs",
+      "filePath": "BunnyChat/Backend/Service/TokenService.cs",
       "lineRange": [11, 73],
       "summary": "Concrete ITokenService using HMAC-SHA256 signing credentials and RandomNumberGenerator for refresh tokens.",
       "tags": ["service", "jwt", "authentication"],
       "complexity": "moderate"
     },
     {
-      "id": "function:WebMoi/Backend/Service/TokenService.cs:CreateAccessToken",
+      "id": "function:BunnyChat/Backend/Service/TokenService.cs:CreateAccessToken",
       "type": "function",
       "name": "CreateAccessToken",
-      "filePath": "WebMoi/Backend/Service/TokenService.cs",
+      "filePath": "BunnyChat/Backend/Service/TokenService.cs",
       "lineRange": [21, 59],
       "summary": "Builds a signed JWT access token embedding user ID, username, and email claims with configurable expiry.",
       "tags": ["jwt", "authentication", "token-generation"],
       "complexity": "moderate"
     },
     {
-      "id": "function:WebMoi/Backend/Service/TokenService.cs:CreateRefreshToken",
+      "id": "function:BunnyChat/Backend/Service/TokenService.cs:CreateRefreshToken",
       "type": "function",
       "name": "CreateRefreshToken",
-      "filePath": "WebMoi/Backend/Service/TokenService.cs",
+      "filePath": "BunnyChat/Backend/Service/TokenService.cs",
       "lineRange": [62, 72],
       "summary": "Generates a cryptographically random 64-byte refresh token encoded as base64.",
       "tags": ["authentication", "token-generation", "security"],
       "complexity": "simple"
     },
     {
-      "id": "file:WebMoi/Backend/Utils/ApiResponse.cs",
+      "id": "file:BunnyChat/Backend/Utils/ApiResponse.cs",
       "type": "file",
       "name": "ApiResponse.cs",
-      "filePath": "WebMoi/Backend/Utils/ApiResponse.cs",
+      "filePath": "BunnyChat/Backend/Utils/ApiResponse.cs",
       "summary": "Static helper producing uniform JSON API response envelopes with success flag, message, and optional data payload.",
       "tags": ["utility", "serialization", "api-response"],
       "complexity": "simple"
     },
     {
-      "id": "class:WebMoi/Backend/Utils/ApiResponse.cs:ApiResponse",
+      "id": "class:BunnyChat/Backend/Utils/ApiResponse.cs:ApiResponse",
       "type": "class",
       "name": "ApiResponse",
-      "filePath": "WebMoi/Backend/Utils/ApiResponse.cs",
+      "filePath": "BunnyChat/Backend/Utils/ApiResponse.cs",
       "lineRange": [1, 21],
       "summary": "Factory class with Success and Fail static methods used by all API controllers for consistent response shaping.",
       "tags": ["utility", "serialization", "api-response"],
       "complexity": "simple"
     },
     {
-      "id": "function:WebMoi/Backend/Utils/ApiResponse.cs:Success",
+      "id": "function:BunnyChat/Backend/Utils/ApiResponse.cs:Success",
       "type": "function",
       "name": "Success",
-      "filePath": "WebMoi/Backend/Utils/ApiResponse.cs",
+      "filePath": "BunnyChat/Backend/Utils/ApiResponse.cs",
       "lineRange": [3, 11],
       "summary": "Returns an anonymous object with success=true, a message, and optional data for Ok responses.",
       "tags": ["utility", "serialization"],
       "complexity": "simple"
     },
     {
-      "id": "function:WebMoi/Backend/Utils/ApiResponse.cs:Fail",
+      "id": "function:BunnyChat/Backend/Utils/ApiResponse.cs:Fail",
       "type": "function",
       "name": "Fail",
-      "filePath": "WebMoi/Backend/Utils/ApiResponse.cs",
+      "filePath": "BunnyChat/Backend/Utils/ApiResponse.cs",
       "lineRange": [13, 20],
       "summary": "Returns an anonymous object with success=false and an error message for failed API responses.",
       "tags": ["utility", "serialization", "error-handling"],
       "complexity": "simple"
     },
     {
-      "id": "config:WebMoi/Directory.Build.props",
+      "id": "config:BunnyChat/Directory.Build.props",
       "type": "config",
       "name": "Directory.Build.props",
-      "filePath": "WebMoi/Directory.Build.props",
-      "summary": "MSBuild directory props file clearing RestoreFallbackFolders to control NuGet package restore behavior for the WebMoi project tree.",
+      "filePath": "BunnyChat/Directory.Build.props",
+      "summary": "MSBuild directory props file clearing RestoreFallbackFolders to control NuGet package restore behavior for the BunnyChat project tree.",
       "tags": ["configuration", "msbuild", "nuget", "build-system"],
       "complexity": "simple"
     },
     {
-      "id": "file:WebMoi/Frontend/Controllers/PageController.cs",
+      "id": "file:BunnyChat/Frontend/Controllers/PageController.cs",
       "type": "file",
       "name": "PageController.cs",
-      "filePath": "WebMoi/Frontend/Controllers/PageController.cs",
+      "filePath": "BunnyChat/Frontend/Controllers/PageController.cs",
       "summary": "MVC page controller routing the home, forgot-password, and chat views to their respective Razor templates.",
       "tags": ["api-handler", "mvc", "routing", "frontend"],
       "complexity": "simple"
     },
     {
-      "id": "class:WebMoi/Frontend/Controllers/PageController.cs:PageController",
+      "id": "class:BunnyChat/Frontend/Controllers/PageController.cs:PageController",
       "type": "class",
       "name": "PageController",
-      "filePath": "WebMoi/Frontend/Controllers/PageController.cs",
+      "filePath": "BunnyChat/Frontend/Controllers/PageController.cs",
       "lineRange": [6, 26],
       "summary": "Serves Auth, Forgot, and Chat Razor views via explicit view paths on GET /, /Forgot, and /Chat routes.",
       "tags": ["mvc", "routing", "controller"],
       "complexity": "simple"
     },
     {
-      "id": "function:WebMoi/Frontend/Controllers/PageController.cs:Index",
+      "id": "function:BunnyChat/Frontend/Controllers/PageController.cs:Index",
       "type": "function",
       "name": "Index",
-      "filePath": "WebMoi/Frontend/Controllers/PageController.cs",
+      "filePath": "BunnyChat/Frontend/Controllers/PageController.cs",
       "lineRange": [8, 12],
       "summary": "Default GET action rendering the combined login/signup Auth.cshtml page.",
       "tags": ["mvc", "routing", "authentication"],
       "complexity": "simple"
     },
     {
-      "id": "function:WebMoi/Frontend/Controllers/PageController.cs:Forgot",
+      "id": "function:BunnyChat/Frontend/Controllers/PageController.cs:Forgot",
       "type": "function",
       "name": "Forgot",
-      "filePath": "WebMoi/Frontend/Controllers/PageController.cs",
+      "filePath": "BunnyChat/Frontend/Controllers/PageController.cs",
       "lineRange": [15, 19],
       "summary": "GET /Forgot action rendering the password recovery Razor view.",
       "tags": ["mvc", "routing", "authentication"],
       "complexity": "simple"
     },
     {
-      "id": "function:WebMoi/Frontend/Controllers/PageController.cs:Chat",
+      "id": "function:BunnyChat/Frontend/Controllers/PageController.cs:Chat",
       "type": "function",
       "name": "Chat",
-      "filePath": "WebMoi/Frontend/Controllers/PageController.cs",
+      "filePath": "BunnyChat/Frontend/Controllers/PageController.cs",
       "lineRange": [21, 25],
       "summary": "GET /Chat action rendering the chat interface Index.cshtml view.",
       "tags": ["mvc", "routing", "chat"],
       "complexity": "simple"
     },
     {
-      "id": "file:WebMoi/Frontend/Views/_ViewImports.cshtml",
+      "id": "file:BunnyChat/Frontend/Views/_ViewImports.cshtml",
       "type": "file",
       "name": "_ViewImports.cshtml",
-      "filePath": "WebMoi/Frontend/Views/_ViewImports.cshtml",
-      "summary": "Global Razor view imports registering WebMoi namespaces and ASP.NET Core tag helpers for all views.",
+      "filePath": "BunnyChat/Frontend/Views/_ViewImports.cshtml",
+      "summary": "Global Razor view imports registering BunnyChat namespaces and ASP.NET Core tag helpers for all views.",
       "tags": ["component", "razor", "tag-helpers", "barrel"],
       "complexity": "simple"
     },
     {
-      "id": "file:WebMoi/Frontend/Views/Auth/Auth.cshtml",
+      "id": "file:BunnyChat/Frontend/Views/Auth/Auth.cshtml",
       "type": "file",
       "name": "Auth.cshtml",
-      "filePath": "WebMoi/Frontend/Views/Auth/Auth.cshtml",
+      "filePath": "BunnyChat/Frontend/Views/Auth/Auth.cshtml",
       "summary": "Combined login and signup Razor page with animated card UI, forms posting to Auth controller, and links to forgot-password flow.",
       "tags": ["component", "razor", "authentication", "ui"],
       "complexity": "moderate"
     },
     {
-      "id": "file:WebMoi/Frontend/Views/Auth/Forgot.cshtml",
+      "id": "file:BunnyChat/Frontend/Views/Auth/Forgot.cshtml",
       "type": "file",
       "name": "Forgot.cshtml",
-      "filePath": "WebMoi/Frontend/Views/Auth/Forgot.cshtml",
+      "filePath": "BunnyChat/Frontend/Views/Auth/Forgot.cshtml",
       "summary": "Password recovery Razor page with username/email input form posting to Auth/Forgot and Bootstrap styling.",
       "tags": ["component", "razor", "authentication", "ui"],
       "complexity": "simple"
     },
     {
-      "id": "file:WebMoi/Frontend/Views/Chat/Index.cshtml",
+      "id": "file:BunnyChat/Frontend/Views/Chat/Index.cshtml",
       "type": "file",
       "name": "Index.cshtml",
-      "filePath": "WebMoi/Frontend/Views/Chat/Index.cshtml",
+      "filePath": "BunnyChat/Frontend/Views/Chat/Index.cshtml",
       "summary": "Chat application shell view with sidebar navigation and main content area using the shared chat layout.",
       "tags": ["component", "razor", "chat", "ui"],
       "complexity": "simple"
     },
     {
-      "id": "file:WebMoi/Frontend/Views/Shared/_ChatLayout.cshtml",
+      "id": "file:BunnyChat/Frontend/Views/Shared/_ChatLayout.cshtml",
       "type": "file",
       "name": "_ChatLayout.cshtml",
-      "filePath": "WebMoi/Frontend/Views/Shared/_ChatLayout.cshtml",
+      "filePath": "BunnyChat/Frontend/Views/Shared/_ChatLayout.cshtml",
       "summary": "Shared Razor layout for chat pages loading main.css, Chat.css, Bootstrap, and a RenderBody content area.",
       "tags": ["component", "razor", "layout", "chat"],
       "complexity": "simple"
     },
     {
-      "id": "file:WebMoi/Frontend/Views/Shared/_ValidationScriptsPartial.cshtml",
+      "id": "file:BunnyChat/Frontend/Views/Shared/_ValidationScriptsPartial.cshtml",
       "type": "file",
       "name": "_ValidationScriptsPartial.cshtml",
-      "filePath": "WebMoi/Frontend/Views/Shared/_ValidationScriptsPartial.cshtml",
+      "filePath": "BunnyChat/Frontend/Views/Shared/_ValidationScriptsPartial.cshtml",
       "summary": "Partial view including jQuery Validation and unobtrusive validation scripts for client-side form validation.",
       "tags": ["component", "razor", "validation", "partial"],
       "complexity": "simple"
@@ -530,729 +530,729 @@
   ],
   "edges": [
     {
-      "source": "file:WebMoi/Backend/Controllers/auth/Authcontroller.cs",
-      "target": "class:WebMoi/Backend/Controllers/auth/Authcontroller.cs:AuthController",
+      "source": "file:BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
+      "target": "class:BunnyChat/Backend/Controllers/auth/Authcontroller.cs:AuthController",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/auth/Authcontroller.cs",
-      "target": "function:WebMoi/Backend/Controllers/auth/Authcontroller.cs:SignUp",
+      "source": "file:BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
+      "target": "function:BunnyChat/Backend/Controllers/auth/Authcontroller.cs:SignUp",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/auth/Authcontroller.cs",
-      "target": "function:WebMoi/Backend/Controllers/auth/Authcontroller.cs:Login",
+      "source": "file:BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
+      "target": "function:BunnyChat/Backend/Controllers/auth/Authcontroller.cs:Login",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/auth/Authcontroller.cs",
-      "target": "function:WebMoi/Backend/Controllers/auth/Authcontroller.cs:LogOut",
+      "source": "file:BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
+      "target": "function:BunnyChat/Backend/Controllers/auth/Authcontroller.cs:LogOut",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/auth/Authcontroller.cs",
-      "target": "class:WebMoi/Backend/Controllers/auth/Authcontroller.cs:AuthController",
+      "source": "file:BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
+      "target": "class:BunnyChat/Backend/Controllers/auth/Authcontroller.cs:AuthController",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/auth/Authcontroller.cs",
-      "target": "function:WebMoi/Backend/Controllers/auth/Authcontroller.cs:SignUp",
+      "source": "file:BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
+      "target": "function:BunnyChat/Backend/Controllers/auth/Authcontroller.cs:SignUp",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/auth/Authcontroller.cs",
-      "target": "function:WebMoi/Backend/Controllers/auth/Authcontroller.cs:Login",
+      "source": "file:BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
+      "target": "function:BunnyChat/Backend/Controllers/auth/Authcontroller.cs:Login",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/auth/Authcontroller.cs",
-      "target": "function:WebMoi/Backend/Controllers/auth/Authcontroller.cs:LogOut",
+      "source": "file:BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
+      "target": "function:BunnyChat/Backend/Controllers/auth/Authcontroller.cs:LogOut",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/auth/Authcontroller.cs",
-      "target": "file:WebMoi/Backend/Data/MongoDBService.cs",
+      "source": "file:BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
+      "target": "file:BunnyChat/Backend/Data/MongoDBService.cs",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/auth/Authcontroller.cs",
-      "target": "file:WebMoi/Backend/Service/TokenService.cs",
+      "source": "file:BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
+      "target": "file:BunnyChat/Backend/Service/TokenService.cs",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/auth/Authcontroller.cs",
-      "target": "file:WebMoi/Backend/DTOs/Auth.cs",
+      "source": "file:BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
+      "target": "file:BunnyChat/Backend/DTOs/Auth.cs",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/auth/Authcontroller.cs",
-      "target": "file:WebMoi/Backend/Models/Entities/users.cs",
+      "source": "file:BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
+      "target": "file:BunnyChat/Backend/Models/Entities/users.cs",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/auth/Authcontroller.cs",
-      "target": "file:WebMoi/Backend/Models/Entities/session.cs",
+      "source": "file:BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
+      "target": "file:BunnyChat/Backend/Models/Entities/session.cs",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/auth/Authcontroller.cs",
-      "target": "file:WebMoi/Backend/Utils/ApiResponse.cs",
+      "source": "file:BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
+      "target": "file:BunnyChat/Backend/Utils/ApiResponse.cs",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "function:WebMoi/Backend/Controllers/auth/Authcontroller.cs:SignUp",
-      "target": "function:WebMoi/Backend/Utils/ApiResponse.cs:Fail",
+      "source": "function:BunnyChat/Backend/Controllers/auth/Authcontroller.cs:SignUp",
+      "target": "function:BunnyChat/Backend/Utils/ApiResponse.cs:Fail",
       "type": "calls",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "function:WebMoi/Backend/Controllers/auth/Authcontroller.cs:SignUp",
-      "target": "function:WebMoi/Backend/Utils/ApiResponse.cs:Success",
+      "source": "function:BunnyChat/Backend/Controllers/auth/Authcontroller.cs:SignUp",
+      "target": "function:BunnyChat/Backend/Utils/ApiResponse.cs:Success",
       "type": "calls",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "function:WebMoi/Backend/Controllers/auth/Authcontroller.cs:Login",
-      "target": "function:WebMoi/Backend/Service/TokenService.cs:CreateAccessToken",
+      "source": "function:BunnyChat/Backend/Controllers/auth/Authcontroller.cs:Login",
+      "target": "function:BunnyChat/Backend/Service/TokenService.cs:CreateAccessToken",
       "type": "calls",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "function:WebMoi/Backend/Controllers/auth/Authcontroller.cs:Login",
-      "target": "function:WebMoi/Backend/Service/TokenService.cs:CreateRefreshToken",
+      "source": "function:BunnyChat/Backend/Controllers/auth/Authcontroller.cs:Login",
+      "target": "function:BunnyChat/Backend/Service/TokenService.cs:CreateRefreshToken",
       "type": "calls",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "function:WebMoi/Backend/Controllers/auth/Authcontroller.cs:Login",
-      "target": "function:WebMoi/Backend/Utils/ApiResponse.cs:Success",
+      "source": "function:BunnyChat/Backend/Controllers/auth/Authcontroller.cs:Login",
+      "target": "function:BunnyChat/Backend/Utils/ApiResponse.cs:Success",
       "type": "calls",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "function:WebMoi/Backend/Controllers/auth/Authcontroller.cs:Login",
-      "target": "function:WebMoi/Backend/Utils/ApiResponse.cs:Fail",
+      "source": "function:BunnyChat/Backend/Controllers/auth/Authcontroller.cs:Login",
+      "target": "function:BunnyChat/Backend/Utils/ApiResponse.cs:Fail",
       "type": "calls",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "function:WebMoi/Backend/Controllers/auth/Authcontroller.cs:LogOut",
-      "target": "function:WebMoi/Backend/Utils/ApiResponse.cs:Fail",
+      "source": "function:BunnyChat/Backend/Controllers/auth/Authcontroller.cs:LogOut",
+      "target": "function:BunnyChat/Backend/Utils/ApiResponse.cs:Fail",
       "type": "calls",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/friend/FriendController.cs",
-      "target": "class:WebMoi/Backend/Controllers/friend/FriendController.cs:FriendController",
+      "source": "file:BunnyChat/Backend/Controllers/friend/FriendController.cs",
+      "target": "class:BunnyChat/Backend/Controllers/friend/FriendController.cs:FriendController",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/friend/FriendController.cs",
-      "target": "function:WebMoi/Backend/Controllers/friend/FriendController.cs:Get",
+      "source": "file:BunnyChat/Backend/Controllers/friend/FriendController.cs",
+      "target": "function:BunnyChat/Backend/Controllers/friend/FriendController.cs:Get",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/friend/FriendController.cs",
-      "target": "class:WebMoi/Backend/Controllers/friend/FriendController.cs:FriendController",
+      "source": "file:BunnyChat/Backend/Controllers/friend/FriendController.cs",
+      "target": "class:BunnyChat/Backend/Controllers/friend/FriendController.cs:FriendController",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/friend/FriendController.cs",
-      "target": "function:WebMoi/Backend/Controllers/friend/FriendController.cs:Get",
+      "source": "file:BunnyChat/Backend/Controllers/friend/FriendController.cs",
+      "target": "function:BunnyChat/Backend/Controllers/friend/FriendController.cs:Get",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/friend/FriendController.cs",
-      "target": "file:WebMoi/Backend/Data/MongoDBService.cs",
+      "source": "file:BunnyChat/Backend/Controllers/friend/FriendController.cs",
+      "target": "file:BunnyChat/Backend/Data/MongoDBService.cs",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/friend/FriendController.cs",
-      "target": "file:WebMoi/Backend/Models/Entities/friends.cs",
+      "source": "file:BunnyChat/Backend/Controllers/friend/FriendController.cs",
+      "target": "file:BunnyChat/Backend/Models/Entities/friends.cs",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/user/UserController.cs",
-      "target": "class:WebMoi/Backend/Controllers/user/UserController.cs:UserController",
+      "source": "file:BunnyChat/Backend/Controllers/user/UserController.cs",
+      "target": "class:BunnyChat/Backend/Controllers/user/UserController.cs:UserController",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/user/UserController.cs",
-      "target": "function:WebMoi/Backend/Controllers/user/UserController.cs:GetMe",
+      "source": "file:BunnyChat/Backend/Controllers/user/UserController.cs",
+      "target": "function:BunnyChat/Backend/Controllers/user/UserController.cs:GetMe",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/user/UserController.cs",
-      "target": "function:WebMoi/Backend/Controllers/user/UserController.cs:UpdateInformation",
+      "source": "file:BunnyChat/Backend/Controllers/user/UserController.cs",
+      "target": "function:BunnyChat/Backend/Controllers/user/UserController.cs:UpdateInformation",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/user/UserController.cs",
-      "target": "function:WebMoi/Backend/Controllers/user/UserController.cs:Search",
+      "source": "file:BunnyChat/Backend/Controllers/user/UserController.cs",
+      "target": "function:BunnyChat/Backend/Controllers/user/UserController.cs:Search",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/user/UserController.cs",
-      "target": "class:WebMoi/Backend/Controllers/user/UserController.cs:UserController",
+      "source": "file:BunnyChat/Backend/Controllers/user/UserController.cs",
+      "target": "class:BunnyChat/Backend/Controllers/user/UserController.cs:UserController",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/user/UserController.cs",
-      "target": "function:WebMoi/Backend/Controllers/user/UserController.cs:GetMe",
+      "source": "file:BunnyChat/Backend/Controllers/user/UserController.cs",
+      "target": "function:BunnyChat/Backend/Controllers/user/UserController.cs:GetMe",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/user/UserController.cs",
-      "target": "function:WebMoi/Backend/Controllers/user/UserController.cs:UpdateInformation",
+      "source": "file:BunnyChat/Backend/Controllers/user/UserController.cs",
+      "target": "function:BunnyChat/Backend/Controllers/user/UserController.cs:UpdateInformation",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/user/UserController.cs",
-      "target": "function:WebMoi/Backend/Controllers/user/UserController.cs:Search",
+      "source": "file:BunnyChat/Backend/Controllers/user/UserController.cs",
+      "target": "function:BunnyChat/Backend/Controllers/user/UserController.cs:Search",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/user/UserController.cs",
-      "target": "file:WebMoi/Backend/Data/MongoDBService.cs",
+      "source": "file:BunnyChat/Backend/Controllers/user/UserController.cs",
+      "target": "file:BunnyChat/Backend/Data/MongoDBService.cs",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/user/UserController.cs",
-      "target": "file:WebMoi/Backend/DTOs/UserDTO.cs",
+      "source": "file:BunnyChat/Backend/Controllers/user/UserController.cs",
+      "target": "file:BunnyChat/Backend/DTOs/UserDTO.cs",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/user/UserController.cs",
-      "target": "file:WebMoi/Backend/Models/Entities/users.cs",
+      "source": "file:BunnyChat/Backend/Controllers/user/UserController.cs",
+      "target": "file:BunnyChat/Backend/Models/Entities/users.cs",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Backend/Controllers/user/UserController.cs",
-      "target": "file:WebMoi/Backend/Utils/ApiResponse.cs",
+      "source": "file:BunnyChat/Backend/Controllers/user/UserController.cs",
+      "target": "file:BunnyChat/Backend/Utils/ApiResponse.cs",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "function:WebMoi/Backend/Controllers/user/UserController.cs:GetMe",
-      "target": "function:WebMoi/Backend/Utils/ApiResponse.cs:Success",
+      "source": "function:BunnyChat/Backend/Controllers/user/UserController.cs:GetMe",
+      "target": "function:BunnyChat/Backend/Utils/ApiResponse.cs:Success",
       "type": "calls",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "function:WebMoi/Backend/Controllers/user/UserController.cs:GetMe",
-      "target": "function:WebMoi/Backend/Utils/ApiResponse.cs:Fail",
+      "source": "function:BunnyChat/Backend/Controllers/user/UserController.cs:GetMe",
+      "target": "function:BunnyChat/Backend/Utils/ApiResponse.cs:Fail",
       "type": "calls",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "function:WebMoi/Backend/Controllers/user/UserController.cs:UpdateInformation",
-      "target": "function:WebMoi/Backend/Utils/ApiResponse.cs:Success",
+      "source": "function:BunnyChat/Backend/Controllers/user/UserController.cs:UpdateInformation",
+      "target": "function:BunnyChat/Backend/Utils/ApiResponse.cs:Success",
       "type": "calls",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "function:WebMoi/Backend/Controllers/user/UserController.cs:UpdateInformation",
-      "target": "function:WebMoi/Backend/Utils/ApiResponse.cs:Fail",
+      "source": "function:BunnyChat/Backend/Controllers/user/UserController.cs:UpdateInformation",
+      "target": "function:BunnyChat/Backend/Utils/ApiResponse.cs:Fail",
       "type": "calls",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "function:WebMoi/Backend/Controllers/user/UserController.cs:Search",
-      "target": "function:WebMoi/Backend/Utils/ApiResponse.cs:Success",
+      "source": "function:BunnyChat/Backend/Controllers/user/UserController.cs:Search",
+      "target": "function:BunnyChat/Backend/Utils/ApiResponse.cs:Success",
       "type": "calls",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "function:WebMoi/Backend/Controllers/user/UserController.cs:Search",
-      "target": "function:WebMoi/Backend/Utils/ApiResponse.cs:Fail",
+      "source": "function:BunnyChat/Backend/Controllers/user/UserController.cs:Search",
+      "target": "function:BunnyChat/Backend/Utils/ApiResponse.cs:Fail",
       "type": "calls",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Data/MongoDBService.cs",
-      "target": "class:WebMoi/Backend/Data/MongoDBService.cs:MongoDbService",
+      "source": "file:BunnyChat/Backend/Data/MongoDBService.cs",
+      "target": "class:BunnyChat/Backend/Data/MongoDBService.cs:MongoDbService",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Data/MongoDBService.cs",
-      "target": "function:WebMoi/Backend/Data/MongoDBService.cs:DeleteDocumentForRefreshToken",
+      "source": "file:BunnyChat/Backend/Data/MongoDBService.cs",
+      "target": "function:BunnyChat/Backend/Data/MongoDBService.cs:DeleteDocumentForRefreshToken",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Data/MongoDBService.cs",
-      "target": "class:WebMoi/Backend/Data/MongoDBService.cs:MongoDbService",
+      "source": "file:BunnyChat/Backend/Data/MongoDBService.cs",
+      "target": "class:BunnyChat/Backend/Data/MongoDBService.cs:MongoDbService",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Data/MongoDBService.cs",
-      "target": "file:WebMoi/Backend/Models/Entities/session.cs",
+      "source": "file:BunnyChat/Backend/Data/MongoDBService.cs",
+      "target": "file:BunnyChat/Backend/Models/Entities/session.cs",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Backend/DTOs/Auth.cs",
-      "target": "class:WebMoi/Backend/DTOs/Auth.cs:LoginDTORequest",
+      "source": "file:BunnyChat/Backend/DTOs/Auth.cs",
+      "target": "class:BunnyChat/Backend/DTOs/Auth.cs:LoginDTORequest",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/DTOs/Auth.cs",
-      "target": "class:WebMoi/Backend/DTOs/Auth.cs:LoginDTORequest",
+      "source": "file:BunnyChat/Backend/DTOs/Auth.cs",
+      "target": "class:BunnyChat/Backend/DTOs/Auth.cs:LoginDTORequest",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/DTOs/FriendDTO.cs",
-      "target": "class:WebMoi/Backend/DTOs/FriendDTO.cs:FriendDTORequest",
+      "source": "file:BunnyChat/Backend/DTOs/FriendDTO.cs",
+      "target": "class:BunnyChat/Backend/DTOs/FriendDTO.cs:FriendDTORequest",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/DTOs/FriendDTO.cs",
-      "target": "class:WebMoi/Backend/DTOs/FriendDTO.cs:FriendDTORequest",
+      "source": "file:BunnyChat/Backend/DTOs/FriendDTO.cs",
+      "target": "class:BunnyChat/Backend/DTOs/FriendDTO.cs:FriendDTORequest",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/DTOs/UserDTO.cs",
-      "target": "class:WebMoi/Backend/DTOs/UserDTO.cs:UserInformationDTORequest",
+      "source": "file:BunnyChat/Backend/DTOs/UserDTO.cs",
+      "target": "class:BunnyChat/Backend/DTOs/UserDTO.cs:UserInformationDTORequest",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/DTOs/UserDTO.cs",
-      "target": "class:WebMoi/Backend/DTOs/UserDTO.cs:UserInformationDTORequest",
+      "source": "file:BunnyChat/Backend/DTOs/UserDTO.cs",
+      "target": "class:BunnyChat/Backend/DTOs/UserDTO.cs:UserInformationDTORequest",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/MiddleWares/authMiddleware.cs",
-      "target": "file:WebMoi/Backend/Data/MongoDBService.cs",
+      "source": "file:BunnyChat/Backend/MiddleWares/authMiddleware.cs",
+      "target": "file:BunnyChat/Backend/Data/MongoDBService.cs",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Backend/MiddleWares/authMiddleware.cs",
-      "target": "file:WebMoi/Backend/Models/Entities/users.cs",
+      "source": "file:BunnyChat/Backend/MiddleWares/authMiddleware.cs",
+      "target": "file:BunnyChat/Backend/Models/Entities/users.cs",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Backend/MiddleWares/authMiddleware.cs",
-      "target": "file:WebMoi/Backend/Utils/ApiResponse.cs",
+      "source": "file:BunnyChat/Backend/MiddleWares/authMiddleware.cs",
+      "target": "file:BunnyChat/Backend/Utils/ApiResponse.cs",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Backend/Models/Entities/friends.cs",
-      "target": "class:WebMoi/Backend/Models/Entities/friends.cs:Friend",
+      "source": "file:BunnyChat/Backend/Models/Entities/friends.cs",
+      "target": "class:BunnyChat/Backend/Models/Entities/friends.cs:Friend",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Models/Entities/friends.cs",
-      "target": "class:WebMoi/Backend/Models/Entities/friends.cs:Friend",
+      "source": "file:BunnyChat/Backend/Models/Entities/friends.cs",
+      "target": "class:BunnyChat/Backend/Models/Entities/friends.cs:Friend",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Models/Entities/session.cs",
-      "target": "class:WebMoi/Backend/Models/Entities/session.cs:Session",
+      "source": "file:BunnyChat/Backend/Models/Entities/session.cs",
+      "target": "class:BunnyChat/Backend/Models/Entities/session.cs:Session",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Models/Entities/session.cs",
-      "target": "class:WebMoi/Backend/Models/Entities/session.cs:Session",
+      "source": "file:BunnyChat/Backend/Models/Entities/session.cs",
+      "target": "class:BunnyChat/Backend/Models/Entities/session.cs:Session",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Models/Entities/users.cs",
-      "target": "class:WebMoi/Backend/Models/Entities/users.cs:User",
+      "source": "file:BunnyChat/Backend/Models/Entities/users.cs",
+      "target": "class:BunnyChat/Backend/Models/Entities/users.cs:User",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Models/Entities/users.cs",
-      "target": "class:WebMoi/Backend/Models/Entities/users.cs:User",
+      "source": "file:BunnyChat/Backend/Models/Entities/users.cs",
+      "target": "class:BunnyChat/Backend/Models/Entities/users.cs:User",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Models/ErrorViewModel.cs",
-      "target": "class:WebMoi/Backend/Models/ErrorViewModel.cs:ErrorViewModel",
+      "source": "file:BunnyChat/Backend/Models/ErrorViewModel.cs",
+      "target": "class:BunnyChat/Backend/Models/ErrorViewModel.cs:ErrorViewModel",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Models/ErrorViewModel.cs",
-      "target": "class:WebMoi/Backend/Models/ErrorViewModel.cs:ErrorViewModel",
+      "source": "file:BunnyChat/Backend/Models/ErrorViewModel.cs",
+      "target": "class:BunnyChat/Backend/Models/ErrorViewModel.cs:ErrorViewModel",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Service/ITokenService.cs",
-      "target": "class:WebMoi/Backend/Service/ITokenService.cs:ITokenService",
+      "source": "file:BunnyChat/Backend/Service/ITokenService.cs",
+      "target": "class:BunnyChat/Backend/Service/ITokenService.cs:ITokenService",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Service/ITokenService.cs",
-      "target": "class:WebMoi/Backend/Service/ITokenService.cs:ITokenService",
+      "source": "file:BunnyChat/Backend/Service/ITokenService.cs",
+      "target": "class:BunnyChat/Backend/Service/ITokenService.cs:ITokenService",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Service/TokenService.cs",
-      "target": "class:WebMoi/Backend/Service/TokenService.cs:TokenService",
+      "source": "file:BunnyChat/Backend/Service/TokenService.cs",
+      "target": "class:BunnyChat/Backend/Service/TokenService.cs:TokenService",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Service/TokenService.cs",
-      "target": "function:WebMoi/Backend/Service/TokenService.cs:CreateAccessToken",
+      "source": "file:BunnyChat/Backend/Service/TokenService.cs",
+      "target": "function:BunnyChat/Backend/Service/TokenService.cs:CreateAccessToken",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Service/TokenService.cs",
-      "target": "function:WebMoi/Backend/Service/TokenService.cs:CreateRefreshToken",
+      "source": "file:BunnyChat/Backend/Service/TokenService.cs",
+      "target": "function:BunnyChat/Backend/Service/TokenService.cs:CreateRefreshToken",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Service/TokenService.cs",
-      "target": "class:WebMoi/Backend/Service/TokenService.cs:TokenService",
+      "source": "file:BunnyChat/Backend/Service/TokenService.cs",
+      "target": "class:BunnyChat/Backend/Service/TokenService.cs:TokenService",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Service/TokenService.cs",
-      "target": "function:WebMoi/Backend/Service/TokenService.cs:CreateAccessToken",
+      "source": "file:BunnyChat/Backend/Service/TokenService.cs",
+      "target": "function:BunnyChat/Backend/Service/TokenService.cs:CreateAccessToken",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Service/TokenService.cs",
-      "target": "function:WebMoi/Backend/Service/TokenService.cs:CreateRefreshToken",
+      "source": "file:BunnyChat/Backend/Service/TokenService.cs",
+      "target": "function:BunnyChat/Backend/Service/TokenService.cs:CreateRefreshToken",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "class:WebMoi/Backend/Service/TokenService.cs:TokenService",
-      "target": "class:WebMoi/Backend/Service/ITokenService.cs:ITokenService",
+      "source": "class:BunnyChat/Backend/Service/TokenService.cs:TokenService",
+      "target": "class:BunnyChat/Backend/Service/ITokenService.cs:ITokenService",
       "type": "implements",
       "direction": "forward",
       "weight": 0.9
     },
     {
-      "source": "file:WebMoi/Backend/Service/TokenService.cs",
-      "target": "file:WebMoi/Backend/Models/Entities/users.cs",
+      "source": "file:BunnyChat/Backend/Service/TokenService.cs",
+      "target": "file:BunnyChat/Backend/Models/Entities/users.cs",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Backend/Utils/ApiResponse.cs",
-      "target": "class:WebMoi/Backend/Utils/ApiResponse.cs:ApiResponse",
+      "source": "file:BunnyChat/Backend/Utils/ApiResponse.cs",
+      "target": "class:BunnyChat/Backend/Utils/ApiResponse.cs:ApiResponse",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Utils/ApiResponse.cs",
-      "target": "function:WebMoi/Backend/Utils/ApiResponse.cs:Success",
+      "source": "file:BunnyChat/Backend/Utils/ApiResponse.cs",
+      "target": "function:BunnyChat/Backend/Utils/ApiResponse.cs:Success",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Utils/ApiResponse.cs",
-      "target": "function:WebMoi/Backend/Utils/ApiResponse.cs:Fail",
+      "source": "file:BunnyChat/Backend/Utils/ApiResponse.cs",
+      "target": "function:BunnyChat/Backend/Utils/ApiResponse.cs:Fail",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Backend/Utils/ApiResponse.cs",
-      "target": "class:WebMoi/Backend/Utils/ApiResponse.cs:ApiResponse",
+      "source": "file:BunnyChat/Backend/Utils/ApiResponse.cs",
+      "target": "class:BunnyChat/Backend/Utils/ApiResponse.cs:ApiResponse",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Utils/ApiResponse.cs",
-      "target": "function:WebMoi/Backend/Utils/ApiResponse.cs:Success",
+      "source": "file:BunnyChat/Backend/Utils/ApiResponse.cs",
+      "target": "function:BunnyChat/Backend/Utils/ApiResponse.cs:Success",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Backend/Utils/ApiResponse.cs",
-      "target": "function:WebMoi/Backend/Utils/ApiResponse.cs:Fail",
+      "source": "file:BunnyChat/Backend/Utils/ApiResponse.cs",
+      "target": "function:BunnyChat/Backend/Utils/ApiResponse.cs:Fail",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "config:WebMoi/Directory.Build.props",
-      "target": "config:WebMoi/WebMoi.csproj",
+      "source": "config:BunnyChat/Directory.Build.props",
+      "target": "config:BunnyChat/BunnyChat.csproj",
       "type": "configures",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Frontend/Controllers/PageController.cs",
-      "target": "class:WebMoi/Frontend/Controllers/PageController.cs:PageController",
+      "source": "file:BunnyChat/Frontend/Controllers/PageController.cs",
+      "target": "class:BunnyChat/Frontend/Controllers/PageController.cs:PageController",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Frontend/Controllers/PageController.cs",
-      "target": "function:WebMoi/Frontend/Controllers/PageController.cs:Index",
+      "source": "file:BunnyChat/Frontend/Controllers/PageController.cs",
+      "target": "function:BunnyChat/Frontend/Controllers/PageController.cs:Index",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Frontend/Controllers/PageController.cs",
-      "target": "function:WebMoi/Frontend/Controllers/PageController.cs:Forgot",
+      "source": "file:BunnyChat/Frontend/Controllers/PageController.cs",
+      "target": "function:BunnyChat/Frontend/Controllers/PageController.cs:Forgot",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Frontend/Controllers/PageController.cs",
-      "target": "function:WebMoi/Frontend/Controllers/PageController.cs:Chat",
+      "source": "file:BunnyChat/Frontend/Controllers/PageController.cs",
+      "target": "function:BunnyChat/Frontend/Controllers/PageController.cs:Chat",
       "type": "contains",
       "direction": "forward",
       "weight": 1.0
     },
     {
-      "source": "file:WebMoi/Frontend/Controllers/PageController.cs",
-      "target": "class:WebMoi/Frontend/Controllers/PageController.cs:PageController",
+      "source": "file:BunnyChat/Frontend/Controllers/PageController.cs",
+      "target": "class:BunnyChat/Frontend/Controllers/PageController.cs:PageController",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Frontend/Controllers/PageController.cs",
-      "target": "function:WebMoi/Frontend/Controllers/PageController.cs:Index",
+      "source": "file:BunnyChat/Frontend/Controllers/PageController.cs",
+      "target": "function:BunnyChat/Frontend/Controllers/PageController.cs:Index",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Frontend/Controllers/PageController.cs",
-      "target": "function:WebMoi/Frontend/Controllers/PageController.cs:Forgot",
+      "source": "file:BunnyChat/Frontend/Controllers/PageController.cs",
+      "target": "function:BunnyChat/Frontend/Controllers/PageController.cs:Forgot",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "file:WebMoi/Frontend/Controllers/PageController.cs",
-      "target": "function:WebMoi/Frontend/Controllers/PageController.cs:Chat",
+      "source": "file:BunnyChat/Frontend/Controllers/PageController.cs",
+      "target": "function:BunnyChat/Frontend/Controllers/PageController.cs:Chat",
       "type": "exports",
       "direction": "forward",
       "weight": 0.8
     },
     {
-      "source": "function:WebMoi/Frontend/Controllers/PageController.cs:Index",
-      "target": "file:WebMoi/Frontend/Views/Auth/Auth.cshtml",
+      "source": "function:BunnyChat/Frontend/Controllers/PageController.cs:Index",
+      "target": "file:BunnyChat/Frontend/Views/Auth/Auth.cshtml",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "function:WebMoi/Frontend/Controllers/PageController.cs:Forgot",
-      "target": "file:WebMoi/Frontend/Views/Auth/Forgot.cshtml",
+      "source": "function:BunnyChat/Frontend/Controllers/PageController.cs:Forgot",
+      "target": "file:BunnyChat/Frontend/Views/Auth/Forgot.cshtml",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "function:WebMoi/Frontend/Controllers/PageController.cs:Chat",
-      "target": "file:WebMoi/Frontend/Views/Chat/Index.cshtml",
+      "source": "function:BunnyChat/Frontend/Controllers/PageController.cs:Chat",
+      "target": "file:BunnyChat/Frontend/Views/Chat/Index.cshtml",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Frontend/Views/_ViewImports.cshtml",
-      "target": "file:WebMoi/Frontend/Views/Auth/Auth.cshtml",
+      "source": "file:BunnyChat/Frontend/Views/_ViewImports.cshtml",
+      "target": "file:BunnyChat/Frontend/Views/Auth/Auth.cshtml",
       "type": "configures",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Frontend/Views/_ViewImports.cshtml",
-      "target": "file:WebMoi/Frontend/Views/Auth/Forgot.cshtml",
+      "source": "file:BunnyChat/Frontend/Views/_ViewImports.cshtml",
+      "target": "file:BunnyChat/Frontend/Views/Auth/Forgot.cshtml",
       "type": "configures",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Frontend/Views/_ViewImports.cshtml",
-      "target": "file:WebMoi/Frontend/Views/Chat/Index.cshtml",
+      "source": "file:BunnyChat/Frontend/Views/_ViewImports.cshtml",
+      "target": "file:BunnyChat/Frontend/Views/Chat/Index.cshtml",
       "type": "configures",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Frontend/Views/Auth/Auth.cshtml",
-      "target": "file:WebMoi/Frontend/Views/Shared/AuthLayout.cshtml",
+      "source": "file:BunnyChat/Frontend/Views/Auth/Auth.cshtml",
+      "target": "file:BunnyChat/Frontend/Views/Shared/AuthLayout.cshtml",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Frontend/Views/Auth/Forgot.cshtml",
-      "target": "file:WebMoi/Frontend/Views/Shared/AuthLayout.cshtml",
+      "source": "file:BunnyChat/Frontend/Views/Auth/Forgot.cshtml",
+      "target": "file:BunnyChat/Frontend/Views/Shared/AuthLayout.cshtml",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Frontend/Views/Auth/Forgot.cshtml",
-      "target": "file:WebMoi/Frontend/wwwroot/css/Forgot.css",
+      "source": "file:BunnyChat/Frontend/Views/Auth/Forgot.cshtml",
+      "target": "file:BunnyChat/Frontend/wwwroot/css/Forgot.css",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Frontend/Views/Chat/Index.cshtml",
-      "target": "file:WebMoi/Frontend/Views/Shared/_ChatLayout.cshtml",
+      "source": "file:BunnyChat/Frontend/Views/Chat/Index.cshtml",
+      "target": "file:BunnyChat/Frontend/Views/Shared/_ChatLayout.cshtml",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Frontend/Views/Shared/_ChatLayout.cshtml",
-      "target": "file:WebMoi/Frontend/wwwroot/css/Chat.css",
+      "source": "file:BunnyChat/Frontend/Views/Shared/_ChatLayout.cshtml",
+      "target": "file:BunnyChat/Frontend/wwwroot/css/Chat.css",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Frontend/Views/Shared/_ChatLayout.cshtml",
-      "target": "file:WebMoi/Frontend/wwwroot/css/main.css",
+      "source": "file:BunnyChat/Frontend/Views/Shared/_ChatLayout.cshtml",
+      "target": "file:BunnyChat/Frontend/wwwroot/css/main.css",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
     },
     {
-      "source": "file:WebMoi/Frontend/Views/Shared/_ValidationScriptsPartial.cshtml",
-      "target": "file:WebMoi/Frontend/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "source": "file:BunnyChat/Frontend/Views/Shared/_ValidationScriptsPartial.cshtml",
+      "target": "file:BunnyChat/Frontend/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "type": "depends_on",
       "direction": "forward",
       "weight": 0.6
@@ -1266,14 +1266,14 @@
     },
     {
       "source": "config:.understand-anything/intermediate/scan-result.json",
-      "target": "file:WebMoi/Backend/Controllers/auth/Authcontroller.cs",
+      "target": "file:BunnyChat/Backend/Controllers/auth/Authcontroller.cs",
       "type": "related",
       "direction": "forward",
       "weight": 0.5
     },
     {
       "source": "config:.understand-anything/intermediate/scan-result.json",
-      "target": "file:WebMoi/Program.cs",
+      "target": "file:BunnyChat/Program.cs",
       "type": "related",
       "direction": "forward",
       "weight": 0.5

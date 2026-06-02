@@ -1,47 +1,47 @@
 {
   "nodes": [
     {
-      "id": "file:WebMoi/Frontend/wwwroot/css/Auth.css",
+      "id": "file:BunnyChat/Frontend/wwwroot/css/Auth.css",
       "type": "file",
       "name": "Auth.css",
-      "filePath": "WebMoi/Frontend/wwwroot/css/Auth.css",
+      "filePath": "BunnyChat/Frontend/wwwroot/css/Auth.css",
       "summary": "Styles the login and registration experience with a full-viewport video background, glassmorphism auth card, sliding login/signup panels, and form controls including floating labels and gradient buttons.",
       "tags": ["authentication", "glassmorphism", "component", "layout", "styling"],
       "complexity": "complex",
       "languageNotes": "Imports AuthAnimation.css for motion; pairs with main.css in AuthLayout."
     },
     {
-      "id": "file:WebMoi/Frontend/wwwroot/css/Chat.css",
+      "id": "file:BunnyChat/Frontend/wwwroot/css/Chat.css",
       "type": "file",
       "name": "Chat.css",
-      "filePath": "WebMoi/Frontend/wwwroot/css/Chat.css",
+      "filePath": "BunnyChat/Frontend/wwwroot/css/Chat.css",
       "summary": "ASP.NET-style site chrome for the chat area: navbar brand, primary buttons, nav pills, borders, box shadow, policy button, and fixed footer positioning.",
       "tags": ["chat", "bootstrap", "component", "layout", "styling"],
       "complexity": "simple"
     },
     {
-      "id": "file:WebMoi/Frontend/wwwroot/css/Forgot.css",
+      "id": "file:BunnyChat/Frontend/wwwroot/css/Forgot.css",
       "type": "file",
       "name": "Forgot.css",
-      "filePath": "WebMoi/Frontend/wwwroot/css/Forgot.css",
+      "filePath": "BunnyChat/Frontend/wwwroot/css/Forgot.css",
       "summary": "Styles the password-recovery flow with a glassmorphism card, centered forgot form, inputs, and actions aligned with the Auth page visual language.",
       "tags": ["authentication", "password-recovery", "glassmorphism", "component", "styling"],
       "complexity": "moderate"
     },
     {
-      "id": "file:WebMoi/Frontend/wwwroot/css/main.css",
+      "id": "file:BunnyChat/Frontend/wwwroot/css/main.css",
       "type": "file",
       "name": "main.css",
-      "filePath": "WebMoi/Frontend/wwwroot/css/main.css",
+      "filePath": "BunnyChat/Frontend/wwwroot/css/main.css",
       "summary": "Global baseline styles shared across layouts: border-box reset, responsive root font size, Bootstrap focus ring overrides, and body margin for a fixed footer.",
       "tags": ["global-styles", "utility", "bootstrap", "layout", "styling"],
       "complexity": "simple"
     },
     {
-      "id": "file:WebMoi/Frontend/wwwroot/css/theme.css",
+      "id": "file:BunnyChat/Frontend/wwwroot/css/theme.css",
       "type": "file",
       "name": "theme.css",
-      "filePath": "WebMoi/Frontend/wwwroot/css/theme.css",
+      "filePath": "BunnyChat/Frontend/wwwroot/css/theme.css",
       "summary": "Eric Meyer CSS reset followed by design-token definitions in :root for primary and neutral palettes, gradients, and a modular type scale used across the frontend.",
       "tags": ["design-tokens", "css-variables", "configuration", "typography", "styling"],
       "complexity": "moderate",
@@ -50,43 +50,43 @@
   ],
   "edges": [
     {
-      "source": "file:WebMoi/Frontend/wwwroot/css/main.css",
-      "target": "file:WebMoi/Frontend/wwwroot/css/Auth.css",
+      "source": "file:BunnyChat/Frontend/wwwroot/css/main.css",
+      "target": "file:BunnyChat/Frontend/wwwroot/css/Auth.css",
       "type": "related",
       "direction": "forward",
       "weight": 0.5
     },
     {
-      "source": "file:WebMoi/Frontend/wwwroot/css/main.css",
-      "target": "file:WebMoi/Frontend/wwwroot/css/Chat.css",
+      "source": "file:BunnyChat/Frontend/wwwroot/css/main.css",
+      "target": "file:BunnyChat/Frontend/wwwroot/css/Chat.css",
       "type": "related",
       "direction": "forward",
       "weight": 0.5
     },
     {
-      "source": "file:WebMoi/Frontend/wwwroot/css/main.css",
-      "target": "file:WebMoi/Frontend/wwwroot/css/Forgot.css",
+      "source": "file:BunnyChat/Frontend/wwwroot/css/main.css",
+      "target": "file:BunnyChat/Frontend/wwwroot/css/Forgot.css",
       "type": "related",
       "direction": "forward",
       "weight": 0.5
     },
     {
-      "source": "file:WebMoi/Frontend/wwwroot/css/Auth.css",
-      "target": "file:WebMoi/Frontend/wwwroot/css/Forgot.css",
+      "source": "file:BunnyChat/Frontend/wwwroot/css/Auth.css",
+      "target": "file:BunnyChat/Frontend/wwwroot/css/Forgot.css",
       "type": "related",
       "direction": "forward",
       "weight": 0.5
     },
     {
-      "source": "file:WebMoi/Frontend/wwwroot/css/theme.css",
-      "target": "file:WebMoi/Frontend/wwwroot/css/main.css",
+      "source": "file:BunnyChat/Frontend/wwwroot/css/theme.css",
+      "target": "file:BunnyChat/Frontend/wwwroot/css/main.css",
       "type": "related",
       "direction": "forward",
       "weight": 0.5
     },
     {
-      "source": "file:WebMoi/Frontend/wwwroot/css/theme.css",
-      "target": "file:WebMoi/Frontend/wwwroot/css/Chat.css",
+      "source": "file:BunnyChat/Frontend/wwwroot/css/theme.css",
+      "target": "file:BunnyChat/Frontend/wwwroot/css/Chat.css",
       "type": "related",
       "direction": "forward",
       "weight": 0.5

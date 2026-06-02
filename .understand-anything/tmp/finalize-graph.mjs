@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const ROOT = 'C:/Users/Admin/Documents/doanWeb';
+const ROOT = 'C:/Users/Admin/Documents/BunnyChat';
 const INTER = path.join(ROOT, '.understand-anything/intermediate');
 const assembled = JSON.parse(fs.readFileSync(path.join(INTER, 'assembled-graph.json'), 'utf8'));
 const scan = JSON.parse(fs.readFileSync(path.join(INTER, 'scan-result.json'), 'utf8'));
@@ -15,10 +15,10 @@ function layerFor(id) {
   const fp = id.replace(/^(file|config|document):/, '');
   if (fp.startsWith('.understand-anything/')) return 'layer:tooling';
   if (fp.endsWith('.md') || fp.endsWith('.txt') && fp.includes('LICENSE')) return 'layer:documentation';
-  if (fp.startsWith('WebMoi/Backend/')) return 'layer:backend-api';
-  if (fp.startsWith('WebMoi/Frontend/')) return 'layer:frontend-presentation';
-  if (fp === 'WebMoi/Program.cs' || fp === 'WebMoi/Directory.Build.props') return 'layer:application-core';
-  if (fp.startsWith('WebMoi/Properties/') || fp.startsWith('WebMoi/appsettings') || fp.endsWith('.csproj') || fp.endsWith('.sln')) return 'layer:configuration';
+  if (fp.startsWith('BunnyChat/Backend/')) return 'layer:backend-api';
+  if (fp.startsWith('BunnyChat/Frontend/')) return 'layer:frontend-presentation';
+  if (fp === 'BunnyChat/Program.cs' || fp === 'BunnyChat/Directory.Build.props') return 'layer:application-core';
+  if (fp.startsWith('BunnyChat/Properties/') || fp.startsWith('BunnyChat/appsettings') || fp.endsWith('.csproj') || fp.endsWith('.sln')) return 'layer:configuration';
   if (fp === 'README.md' || fp.endsWith('_DOCUMENTATION.md') || fp === 'C4_DIAGRAMS.md') return 'layer:documentation';
   return 'layer:configuration';
 }
@@ -79,44 +79,44 @@ const tour = [
   {
     order: 1,
     title: 'Project Overview',
-    description: 'Start with the README and technical documentation to understand DoAnWeb as an ASP.NET Core 8 chat application with JWT and MongoDB.',
+    description: 'Start with the README and technical documentation to understand BunnyChat as an ASP.NET Core 8 chat application with JWT and MongoDB.',
     nodeIds: ['document:README.md', 'document:TECHNICAL_DOCUMENTATION.md'],
   },
   {
     order: 2,
     title: 'Application Entry Point',
     description: 'Program.cs wires up MVC, Swagger, MongoDB, JWT authentication, static files, and default Page routing.',
-    nodeIds: ['file:WebMoi/Program.cs', 'config:WebMoi/appsettings.json'],
+    nodeIds: ['file:BunnyChat/Program.cs', 'config:BunnyChat/appsettings.json'],
   },
   {
     order: 3,
     title: 'Authentication API',
     description: 'AuthController handles signup, login, and logout using BCrypt, MongoDB sessions, and JWT access/refresh tokens.',
-    nodeIds: ['file:WebMoi/Backend/Controllers/auth/Authcontroller.cs', 'file:WebMoi/Backend/Service/TokenService.cs'],
+    nodeIds: ['file:BunnyChat/Backend/Controllers/auth/Authcontroller.cs', 'file:BunnyChat/Backend/Service/TokenService.cs'],
   },
   {
     order: 4,
     title: 'User & Friend APIs',
     description: 'UserController manages profiles and search; FriendController handles friend request workflows.',
-    nodeIds: ['file:WebMoi/Backend/Controllers/user/UserController.cs', 'file:WebMoi/Backend/Controllers/friend/FriendController.cs'],
+    nodeIds: ['file:BunnyChat/Backend/Controllers/user/UserController.cs', 'file:BunnyChat/Backend/Controllers/friend/FriendController.cs'],
   },
   {
     order: 5,
     title: 'Data Layer',
     description: 'MongoDbService connects to the chatapp database; entity models define users, sessions, and friends collections.',
-    nodeIds: ['file:WebMoi/Backend/Data/MongoDBService.cs', 'file:WebMoi/Backend/Models/Entities/users.cs'],
+    nodeIds: ['file:BunnyChat/Backend/Data/MongoDBService.cs', 'file:BunnyChat/Backend/Models/Entities/users.cs'],
   },
   {
     order: 6,
     title: 'Frontend Pages',
     description: 'PageController serves Auth, Forgot, and Chat views; AuthLayout provides the BunnyChat branded UI shell.',
-    nodeIds: ['file:WebMoi/Frontend/Controllers/PageController.cs', 'file:WebMoi/Frontend/Views/Shared/AuthLayout.cshtml', 'file:WebMoi/Frontend/Views/Auth/Auth.cshtml'],
+    nodeIds: ['file:BunnyChat/Frontend/Controllers/PageController.cs', 'file:BunnyChat/Frontend/Views/Shared/AuthLayout.cshtml', 'file:BunnyChat/Frontend/Views/Auth/Auth.cshtml'],
   },
   {
     order: 7,
     title: 'Client-Side Auth UX',
     description: 'Auth.js toggles login/signup cards; rabbit.js adds playful password-field interactions.',
-    nodeIds: ['file:WebMoi/Frontend/wwwroot/js/Auth.js', 'file:WebMoi/Frontend/wwwroot/js/rabbit.js', 'file:WebMoi/Frontend/wwwroot/css/Auth.css'],
+    nodeIds: ['file:BunnyChat/Frontend/wwwroot/js/Auth.js', 'file:BunnyChat/Frontend/wwwroot/js/rabbit.js', 'file:BunnyChat/Frontend/wwwroot/css/Auth.css'],
   },
 ];
 

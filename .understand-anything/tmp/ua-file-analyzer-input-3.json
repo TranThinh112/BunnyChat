@@ -1,15 +1,15 @@
 {
-  "projectRoot": "C:\\Users\\Admin\\Documents\\doanWeb",
+  "projectRoot": "C:\\Users\\Admin\\Documents\\BunnyChat",
   "batchFiles": [
-    {"path": "WebMoi/DoAn_web.sln", "language": "sln", "sizeLines": 34, "fileCategory": "config"},
-    {"path": "WebMoi/WebMoi.csproj", "language": "csproj", "sizeLines": 20, "fileCategory": "config"},
-    {"path": "WebMoi/appsettings.Development.json", "language": "json", "sizeLines": 21, "fileCategory": "config"},
-    {"path": "WebMoi/appsettings.json", "language": "json", "sizeLines": 22, "fileCategory": "config"}
+    {"path": "BunnyChat/DoAn_web.sln", "language": "sln", "sizeLines": 34, "fileCategory": "config"},
+    {"path": "BunnyChat/BunnyChat.csproj", "language": "csproj", "sizeLines": 20, "fileCategory": "config"},
+    {"path": "BunnyChat/appsettings.Development.json", "language": "json", "sizeLines": 21, "fileCategory": "config"},
+    {"path": "BunnyChat/appsettings.json", "language": "json", "sizeLines": 22, "fileCategory": "config"}
   ],
   "batchImportData": {
-    "WebMoi/DoAn_web.sln": [],
-    "WebMoi/WebMoi.csproj": [],
-    "WebMoi/appsettings.Development.json": [],
-    "WebMoi/appsettings.json": []
+    "BunnyChat/DoAn_web.sln": [],
+    "BunnyChat/BunnyChat.csproj": [],
+    "BunnyChat/appsettings.Development.json": [],
+    "BunnyChat/appsettings.json": []
   }
 }
