@@ -26,13 +26,14 @@
                         <span class="error-message"></span>
 
                     </div>
+                    
+                    <div id="loginError" class="error-box"></div>
 
                     <button type="submit" class="auth-btn"> Đăng nhập</button>
                 </form>
 
                 <div class="auth-forgot">
-                    @* <a href="Page/Forgot" onclick="showForgot(); return false">Bạn quên mật khẩu ?</a> *@
-                    <a asp-area="" asp-controller="Page" asp-action="Forgot">Bạn quên mật khẩu ?</a>
+                    <a asp-area="" asp-controller="Page" asp-action="Forgot" target="_blank">Bạn quên mật khẩu ?</a>
                 </div>
                 
                 <div class="auth-link">
@@ -84,6 +85,8 @@
                         <span class="error-message"></span>
 
                     </div>
+                     <div id="signupError" class="error-box"></div>
+                     
                     <button type="submit" class="auth-btn">Tạo tài khoản</button>
                 </form>
 

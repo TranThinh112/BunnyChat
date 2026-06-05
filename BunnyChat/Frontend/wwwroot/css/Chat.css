@@ -1,7 +1,4 @@
-﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-/* @import url("theme.css"); */
-
+﻿
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -38,6 +35,27 @@ a {
 button.accept-policy {
   font-size: 1rem;
   line-height: inherit;
+}
+
+.chat-btn {
+    height: 54px;
+    border: none;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #7c3aed, #9333ea);
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    transition: transform 0.3s ease
+}
+
+.chat-btn:hover{
+    cursor: pointer;
+    transform: scale(0.9);
+}
+
+.chat-btn a {
+    color:  white;
+    text-decoration: none;
 }
 
 .footer {

@@ -202,6 +202,7 @@ position: relative;
     color: white;
     font-size: 17px;
     font-weight: 600;
+    margin-top: 35px;
     transition: transform 0.3s ease
 }
 
@@ -248,6 +249,26 @@ position: relative;
 .auth-link a:hover,
 .auth-forgot a:hover {
     transform: scale(1.05);
+}
+
+/* style lỗi */
+.error-box {
+    display: none;
+    position: absolute;
+    text-align: center;
+
+    left: 0;
+    right: 0;
+    top: 140px; /* chỉnh lên/xuống tại đây */
+
+    padding: 10px 12px;
+    border: 1px solid red;
+    border-radius: 8px;
+
+    color: red;
+    background: rgba(255, 0, 0, 0.08);
+    font-size: 13px;
+    z-index: 10;
 }
 
 /* style cho error validate */
