@@ -14,14 +14,17 @@
                 <h1 class="auth-title">Đăng nhập</h1>
                 <p class="auth-subtitle">Chào mừng quay lại BunnyChat</p>
 
-                <form class="auth-form" method ="post" asp-controller="Auth" asp-action="Login">
+                <form class="auth-form" id="loginForm">
                     <div class="input-box">
-                        <input name="UserName" type="text" placeholder=" ">
-                        <label>Username</label>
+                        <input id="username" name="UserName" type="text" placeholder=" ">
+                        <label for="username">Username</label>
+                        <span class="error-message"></span>
                     </div>
                    <div class="input-box password-box">
-                        <input name="Password" type="password" placeholder=" ">
-                        <label>Password</label>
+                        <input id="password" name="Password" type="password" placeholder=" ">
+                        <label for="password">Password</label>
+                        <span class="error-message"></span>
+
                     </div>
 
                     <button type="submit" class="auth-btn"> Đăng nhập</button>
@@ -47,30 +50,39 @@
                 <h1 class="auth-title">Đăng ký</h1>
                 <p class="auth-subtitle">Tạo tài khoản BunnyChat</p>
 
-                <form class="auth-form" method ="post" asp-controller="Auth" asp-action="Signup">
+                <form class="auth-form" id="signupForm">
 
                     <div class="first-last">
                         <div class="input-box">
-                            <input  name="FirstName" type="text" placeholder=" ">
+                            <input id="firstnameSignUp" name="FirstName" type="text" placeholder=" ">
                             <label>Họ</label>
+                            <span class="error-message"></span>
+
                         </div>
                         <div class="input-box">
-                            <input  name="LastName" type="text" placeholder=" ">
+                            <input id="lastnameSignUp" name="LastName" type="text" placeholder=" ">
                             <label>Tên</label>
+                            <span class="error-message"></span>
                         </div>
                     </div>
 
                     <div class="input-box">
-                        <input name="UserName" type="text" placeholder=" ">
+                        <input id="usernameSignUp" name="UserName" type="text" placeholder=" ">
                         <label>Username</label>
+                        <span class="error-message"></span>
+
                     </div>
                     <div class="input-box">
-                        <input  name="Email" type="email" placeholder=" ">
+                        <input id="emailSignUp" name="Email" type="email" placeholder=" ">
                         <label>Email</label>
+                        <span class="error-message"></span>
+
                     </div>
                     <div class="input-box">
-                        <input  name="Password" type="password" class="rabbit-password" placeholder=" ">
+                        <input id="passwordSignUp" name="Password" type="password" class="rabbit-password" placeholder=" ">
                         <label>Password</label>
+                        <span class="error-message"></span>
+
                     </div>
                     <button type="submit" class="auth-btn">Tạo tài khoản</button>
                 </form>

@@ -12,7 +12,7 @@ using System.ComponentModel;
 namespace BunnyChat.Controllers
 
 {
-    [Route("auth")]
+    [Route("/api/auth")]
     [ApiController]
     public class AuthController : ControllerBase
     {

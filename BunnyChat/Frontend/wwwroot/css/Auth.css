@@ -133,7 +133,7 @@ position: relative;
 /* tao hieu ung floating label */
 .input-box{
     position: relative;
-    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .input-box input{
     width: 100%;
@@ -141,7 +141,7 @@ position: relative;
 
 .input-box label{
     position:absolute;
-    left:10px;
+    left:15px;
     top:50%;
 
     transform: translateY(-50%);
@@ -157,15 +157,13 @@ position: relative;
 .input-box input:not(:placeholder-shown) + label{
     top: 0;
     transform: translateY(-50%);
-      /* background: rgba(255,255,255,0.2); */
     background: #ddd;
     padding: 0 4px;
-    font-size: 13px;
+    font-size: 14px;
     color: #8b5cf6;
 }
 
 /* form nhập  */
-
 .auth-form  input {
     height: 52px;
     border-radius: 14px;
@@ -250,6 +248,19 @@ position: relative;
 .auth-link a:hover,
 .auth-forgot a:hover {
     transform: scale(1.05);
+}
+
+/* style cho error validate */
+.error-message {
+    position: absolute;
+    left: 0;
+    bottom: -22px;
+    color: red;
+    font-size: 13px;
+}
+
+.input-box.error input {
+    border-color: red;
 }
 
 /* chân trang */

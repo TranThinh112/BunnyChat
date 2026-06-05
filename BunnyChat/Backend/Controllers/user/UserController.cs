@@ -14,7 +14,7 @@ namespace BunnyChat.Controllers
 {
     // [Authorize]
     [ApiController]
-    [Route("users/")]
+    [Route("/api/users/")]
     public class UserController : ControllerBase
     {
         private readonly IMongoCollection<User> _usersCollection;

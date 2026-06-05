@@ -13,7 +13,7 @@ namespace BunnyChat.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("friend/")]
+    [Route("/apifriend/")]
     public class FriendController : ControllerBase
     {
         private readonly IMongoCollection<Friend> _friendCollection;

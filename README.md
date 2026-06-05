@@ -5,9 +5,11 @@
 Graph:
     http://127.0.0.1:5173/?token=a6c2d903b709031918ffd112f767dfe1
     
-Pass Mông: mongodb+srv://ttthinh2005_db_user:RlZT2gdW4kz0srHa%40@cluster0.58iwirh.mongodb.net/chatapp?appName=Cluster0
+Pass Mông: mongodb+srv://ttthinh2005_db_user:abc123456789@cluster0.58iwirh.mongodb.net/chatapp?appName=Cluster0
 
 framework tự kiểm tra token do ai phát hành, kiểm tra token hết hạn hay chưa, Token dành cho đúng app nhận, Token do đúng ai phát hành
+
+dotnet restore BunnyChat.csproj 
 
 dotnet clean BunnyChat.csproj
 dotnet build BunnyChat.csproj

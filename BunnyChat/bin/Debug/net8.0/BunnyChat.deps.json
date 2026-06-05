@@ -12,7 +12,7 @@
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.8",
           "Microsoft.IdentityModel.JsonWebTokens": "8.18.0",
           "Microsoft.IdentityModel.Tokens": "8.18.0",
-          "MongoDB.Driver": "3.8.0",
+          "MongoDB.Driver": "3.5.1",
           "Swashbuckle.AspNetCore": "10.1.7",
           "System.IdentityModel.Tokens.Jwt": "8.18.0"
         },
@@ -120,26 +120,26 @@
           }
         }
       },
-      "MongoDB.Bson/3.8.0": {
+      "MongoDB.Bson/3.5.1": {
         "runtime": {
           "lib/net6.0/MongoDB.Bson.dll": {
-            "assemblyVersion": "3.8.0.0",
-            "fileVersion": "3.8.0.0"
+            "assemblyVersion": "3.5.1.0",
+            "fileVersion": "3.5.1.0"
           }
         }
       },
-      "MongoDB.Driver/3.8.0": {
+      "MongoDB.Driver/3.5.1": {
         "dependencies": {
           "DnsClient": "1.6.1",
-          "MongoDB.Bson": "3.8.0",
+          "MongoDB.Bson": "3.5.1",
           "SharpCompress": "0.30.1",
           "Snappier": "1.0.0",
           "ZstdSharp.Port": "0.7.3"
         },
         "runtime": {
           "lib/net6.0/MongoDB.Driver.dll": {
-            "assemblyVersion": "3.8.0.0",
-            "fileVersion": "3.8.0.0"
+            "assemblyVersion": "3.5.1.0",
+            "fileVersion": "3.5.1.0"
           }
         }
       },
@@ -294,19 +294,19 @@
       "path": "microsoft.openapi/2.4.1",
       "hashPath": "microsoft.openapi.2.4.1.nupkg.sha512"
     },
-    "MongoDB.Bson/3.8.0": {
+    "MongoDB.Bson/3.5.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-HeiOJUylam5nIB7b1EfzlnJbf6A9te79WO6CtsKfp8M/2EeL4SoSQFjmUpJ6/vvuaNKGENXMaX9oUJp9KpHlqw==",
-      "path": "mongodb.bson/3.8.0",
-      "hashPath": "mongodb.bson.3.8.0.nupkg.sha512"
+      "sha512": "sha512-7+ZYBqOqzkzx/BK+vT47aFRpLxrTNw6pTV9uv2lOAQbAIpXjUpkJ/4pSs9dhJxnnryuSu4GskYW0xzy071U6og==",
+      "path": "mongodb.bson/3.5.1",
+      "hashPath": "mongodb.bson.3.5.1.nupkg.sha512"
     },
-    "MongoDB.Driver/3.8.0": {
+    "MongoDB.Driver/3.5.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-BQ6bTaZCuSThmxS4vXu71a1jFGNMht2/+rjx2Uaw3AweIqRKFbPuyFoVsDnoLN935tvdC5OxwwAqrMY9eWBUng==",
-      "path": "mongodb.driver/3.8.0",
-      "hashPath": "mongodb.driver.3.8.0.nupkg.sha512"
+      "sha512": "sha512-p++X0PJOAeSJKavNnoc+P8mnLt4YOD7Sv5wIruKGVPDf3MyNAOKh0gcwrOBLJklByV+fKfKVsMIZkeVXGvtE9w==",
+      "path": "mongodb.driver/3.5.1",
+      "hashPath": "mongodb.driver.3.5.1.nupkg.sha512"
     },
     "SharpCompress/0.30.1": {
       "type": "package",

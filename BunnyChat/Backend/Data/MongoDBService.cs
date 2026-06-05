@@ -16,6 +16,7 @@ namespace BunnyChat.Data
             _configuration = configuration;
 
             var connectionString = _configuration.GetConnectionString("DbConnection");
+            Console.WriteLine($"Connection String = {connectionString}");
             var mongoClient = new MongoClient(connectionString);
             _database = mongoClient.GetDatabase("chatapp");
 
