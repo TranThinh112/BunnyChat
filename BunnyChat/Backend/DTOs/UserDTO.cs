@@ -7,11 +7,12 @@ using BunnyChat.Models.Entities;
 namespace BunnyChat.DTOs
 {
     public class UserInformationDTORequest
-    {   
-         public string? Bio { get; set; }
+    {
+        public string? Bio { get; set; }
 
-        [RegularExpression(@"^$|^\d{10,15}$",
-            ErrorMessage = "Phone must be 10-15 digits")]
+        //regex chấp nhận sđt có + mã vùng
+        [RegularExpression(@"^0\d{9}$",
+       ErrorMessage = "Số điện thoại phải gồm 10 chữ số")]
         public string? Phone { get; set; }
 
         public string? Nickname { get; set; }

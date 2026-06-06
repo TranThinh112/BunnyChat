@@ -3,9 +3,10 @@ using MongoDB.Driver;
 using BunnyChat.Data;
 using BunnyChat.DTOs;
 using BunnyChat.Models;
+using BunnyChat.Helper;
 using BunnyChat.Models.Entities;
 using BunnyChat.Service;
-using  BCrypt.Net;
+using BCrypt.Net;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
@@ -16,7 +17,7 @@ namespace BunnyChat.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        
+
         private readonly IMongoCollection<User> _usersCollection;
         private readonly IMongoCollection<Session> _sessionCollection;
         private readonly ITokenService _tokenService;
@@ -30,33 +31,35 @@ namespace BunnyChat.Controllers
             _tokenService = tokenService;
             _configuration = configuration;
         }
-       
+
         [HttpPost("signup")]
-        public async Task<ActionResult> SignUp(SignUpDTORequest request) 
+        public async Task<ActionResult> SignUp(SignUpDTORequest request)
         {
             try
             {
                 //kiểm tra có thiếu dữ liệu ko
-                if(string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.PassWord) || string.IsNullOrWhiteSpace(request.FirstName) || string.IsNullOrWhiteSpace(request.LastName) || string.IsNullOrWhiteSpace(request.UserName))
+                if (string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.PassWord) || string.IsNullOrWhiteSpace(request.FirstName) || string.IsNullOrWhiteSpace(request.LastName) || string.IsNullOrWhiteSpace(request.UserName))
                 {
                     return BadRequest(ApiResponse.Fail(
                         message: "Không thể thiếu Eamil, Password, Firstname, Lastname và Username"
                     ));
                 }
-                
-                //kiểm tra username
-                var  duplicateUser = await _usersCollection.Find(u => u.Username == request.UserName || u.Email == request.Email).FirstOrDefaultAsync();
 
-                if (duplicateUser != null) { 
-                    
-                    return StatusCode(409,ApiResponse.Fail(
-                      message: "Username hoặc Email đã tồn tại" 
+                //kiểm tra username
+                var duplicateUser = await _usersCollection.Find(u => u.Username == request.UserName || u.Email == request.Email).FirstOrDefaultAsync();
+
+                if (duplicateUser != null)
+                {
+
+                    return StatusCode(409, ApiResponse.Fail(
+                      message: "Username hoặc Email đã tồn tại"
                     ));
                 }
 
                 //mã hóa pâssword
                 var HashedPassword = BCrypt.Net.BCrypt.HashPassword(request.PassWord, 10);
 
+                var displayName = $"{request.FirstName} {request.LastName}";
                 //data gửi lên server
                 var user = new User
                 {
@@ -64,8 +67,10 @@ namespace BunnyChat.Controllers
                     LastName = request.LastName,
                     Username = request.UserName,
                     Email = request.Email,
-                    // DisplayName = $"{request.FirstName} {request.LastName}"
-                    Nickname = request.NickName, //Nickname có thể có or ko 
+                    SearchName = StringHelper
+                        .RemoveVietnameseDiacritics(displayName) //Bỏ dấu tiếng Việt
+                        .ToLower() //chuyển thành chữ thường
+                        .Trim(), //xóa khoảng trắng đầu và cuối
                     HashPassword = HashedPassword,
                     CreatedAt = DateTime.UtcNow,
                 };
@@ -86,8 +91,8 @@ namespace BunnyChat.Controllers
             }
 
             //trả về lỗi
-            catch(Exception ex)
-            { 
+            catch (Exception ex)
+            {
                 Console.WriteLine("Lỗi khi Signup");
 
                 return StatusCode(500, ApiResponse.Fail(
@@ -98,21 +103,21 @@ namespace BunnyChat.Controllers
 
         //Api Login
         [HttpPost("login")]
-        public async Task<ActionResult> Login (LoginDTORequest request)
+        public async Task<ActionResult> Login(LoginDTORequest request)
         {
             try
             {
-               //Lấy input & kiểm tra có bị thiếu field ko 
-                if( string.IsNullOrWhiteSpace(request.UserName) || string.IsNullOrWhiteSpace(request.PassWord))
+                //Lấy input & kiểm tra có bị thiếu field ko 
+                if (string.IsNullOrWhiteSpace(request.UserName) || string.IsNullOrWhiteSpace(request.PassWord))
                 {
                     return BadRequest(ApiResponse.Fail(
                         message: "Thiếu Usernanme hoặc Password"
                     ));
                 }
-                
+
                 //Kiểm tra username có tồn tại hay ko 
                 var user = await _usersCollection.Find(u => u.Username == request.UserName).FirstOrDefaultAsync();
-                if(user == null)
+                if (user == null)
                 {
                     return Unauthorized(ApiResponse.Fail(
                         message: "Username hoặc Password không chính xác"
@@ -121,7 +126,7 @@ namespace BunnyChat.Controllers
 
                 //kiểm tra password có đúng hjay ko 
                 var passwordCorrect = BCrypt.Net.BCrypt.Verify(request.PassWord, user.HashPassword);
-                if(!passwordCorrect)
+                if (!passwordCorrect)
                 {
                     return Unauthorized(ApiResponse.Fail(
                         message: "Username hoặc Password không chính xác"
@@ -137,7 +142,7 @@ namespace BunnyChat.Controllers
                 //thời gian hết hạn của Refresh Token
                 var refreshExpiry = DateTime.UtcNow.AddDays(
                              Convert.ToDouble(_configuration["JwtSettings:RefreshTokenExpirationDays"])
-                            );         
+                            );
 
                 //import vao collectiuon sessiuon, nếu đã có trong collection, update RefreshToken
                 await _sessionCollection.ReplaceOneAsync(
@@ -151,7 +156,7 @@ namespace BunnyChat.Controllers
                     },
                     new ReplaceOptions { IsUpsert = true }
                 );
-            
+
                 // menthod Gắn refreshToken vào cookie
                 Response.Cookies.Append(
                     "refreshToken",
@@ -168,7 +173,7 @@ namespace BunnyChat.Controllers
                         SameSite = SameSiteMode.Strict,
 
                         //  hết hạn sau 7 ngày.
-                        Expires = refreshExpiry 
+                        Expires = refreshExpiry
                     }
                 );
 
@@ -176,13 +181,13 @@ namespace BunnyChat.Controllers
                 return Ok(ApiResponse.Success(
                     message: $"{request.UserName} đăng nhập thành công",
                     new
-                    {   
+                    {
                         accessToken,
                     }
                 ));
             }
             // trả về lỗi
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("Lỗi khi gọi Login");
 
@@ -191,7 +196,7 @@ namespace BunnyChat.Controllers
                 ));
             }
         }
-    
+
         //Api SignOut
         [HttpPost("signout")]
         public async Task<ActionResult> LogOut()
@@ -199,23 +204,23 @@ namespace BunnyChat.Controllers
             try
             {
                 // lấy refresh token từ cookie
-                var token =  Request.Cookies["refreshToken"];
+                var token = Request.Cookies["refreshToken"];
 
                 //Check token tồn tại trong session
                 if (!string.IsNullOrEmpty(token))
                 {
-                //xóa refresh token trong sesion
-                     await _sessionCollection.DeleteManyAsync(
-                        s => s.RefreshToken == token
-                     );
+                    //xóa refresh token trong sesion
+                    await _sessionCollection.DeleteManyAsync(
+                       s => s.RefreshToken == token
+                    );
                 }
                 // xóa cookie
                 Response.Cookies.Delete("refreshToken");
-                
+
                 //Trả kết quả
                 return NoContent();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("Lỗi khi gọi Signout");
                 return StatusCode(500, ApiResponse.Fail(
@@ -230,7 +235,7 @@ namespace BunnyChat.Controllers
         //     var result = _tokenService.RefreshToken(request.RefreshToken);
         //     return result is null ? Unauthorized() : Ok(result);
         // }
-    
-    
+
+
     }
 }

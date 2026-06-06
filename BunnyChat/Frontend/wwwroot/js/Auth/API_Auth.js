@@ -21,7 +21,7 @@ export async function signup(firstnameInput, lastNameInput, emailInput, username
     const data = {
         firstName: firstnameInput.value.trim(),
         lastName: lastNameInput.value.trim(),
-        email: emailInput.value.trim(),
+        email:  emailInput.value.trim(),
         username: usernameInput.value.trim(),
         password: passwordInput.value.trim()
     };

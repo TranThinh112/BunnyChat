@@ -27,6 +27,9 @@ namespace BunnyChat.Models.Entities
 
         public string? Nickname {get; set;} 
 
+// dùng để search 
+        public string SearchName { get; set; } = string.Empty;
+
         // [BsonIgnore]
         public string DisplayName =>
             !string.IsNullOrWhiteSpace(Nickname)
