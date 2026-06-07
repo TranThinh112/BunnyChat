@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace BunnyChat.Models.Entities
+namespace BunnyChat.Models
 {
     public class User
     {

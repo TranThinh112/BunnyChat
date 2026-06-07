@@ -113,6 +113,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const result = await response.json();
 
             if (response.ok) {
+                
+                //lưu token trong localStorage
                 localStorage.setItem("accessToken", result.data.accessToken);
                 window.location.href = "/Chat";
             } else {

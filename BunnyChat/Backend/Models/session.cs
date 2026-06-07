@@ -1,16 +1,18 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using System.ComponentModel.DataAnnotations;
 
-namespace BunnyChat.Models.Entities
+namespace BunnyChat.Models
 {
-   public class Session
+    [BsonIgnoreExtraElements]
+    public class Session
     {
-        public string UserId { get; set; } = null!;
-        public string Username { get; set; } = null!;
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string? Id { get; set; }
 
-        public string RefreshToken { get; set; } = null!;
-
+        public string UserId { get; set; } = string.Empty;
+        public string Username { get; set; } = string.Empty;
+        public string RefreshToken { get; set; } = string.Empty;
         public DateTime ExpiresAt { get; set; }
     }
 }

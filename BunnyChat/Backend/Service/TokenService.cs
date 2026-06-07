@@ -2,7 +2,7 @@
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using BunnyChat.Models.Entities;
+using BunnyChat.Models;
 using System.Security.Cryptography;
 
 

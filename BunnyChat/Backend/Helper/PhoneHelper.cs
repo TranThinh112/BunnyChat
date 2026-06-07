@@ -1,5 +1,6 @@
 namespace BunnyChat.Helper
 {
+    //hỗ trợ lưu sđt khi nhập 0 tự lưu thành +84
     public static class PhoneHelper
     {
         public static string? NormalizeToInternational(string? phone)

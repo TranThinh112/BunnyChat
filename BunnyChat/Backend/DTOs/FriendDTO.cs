@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
-using BunnyChat.Data;
-using BunnyChat.Models.Entities;
+using BunnyChat.Service;
+using BunnyChat.Models;
 
 namespace BunnyChat.DTOs
 {

@@ -2,12 +2,30 @@
     Layout = "~/Frontend/Views/Shared/_ChatLayout.cshtml";
     ViewData["Title"] = "Chat";
 }
+
+
 <div class="d-flex vh-100">
 
     <!-- Sidebar -->
     <div class="bg-light border-end p-3" style="width:280px;">
 
-        <h5>Acme Inc</h5>
+       <div class="chat-header">
+            Xin chào, <span id="currentUsername"></span> <br />
+            DisplayName: <span id="currentDisplayname"></span>
+        </div>
+               //test
+    <input type="text"
+           id="keyword"
+           class="form-control mb-2"
+           placeholder="Nhập từ khóa">
+
+    <button id="searchBtn"
+            class="btn btn-primary">
+        Tìm kiếm
+    </button>
+
+    <div id="searchResult" class="mt-3"></div>
+</div>
 
         <ul class="nav flex-column mt-4">
 
@@ -27,6 +45,9 @@
                 <a class="nav-link text-dark" href="#">Settings</a>
             </li>
         </ul>
+        <div class="p-3">
+
+     
         <button id="logoutBtn" type="button" class="chat-btn"> Đăng xuất</button>
     </div>
 

@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using BunnyChat.Data;
+using BunnyChat.Service;
 using BunnyChat.DTOs;
-using BunnyChat.Models.Entities;
+using BunnyChat.Models;
 using BunnyChat.Helper;
 
 namespace BunnyChat.Controllers
@@ -20,9 +20,14 @@ namespace BunnyChat.Controllers
     {
         private readonly IMongoCollection<User> _usersCollection;
 
+        private readonly IMongoCollection<Session> _sessionCollection;
+
+
         public UserController(MongoDbService mongoDbService)
         {
             _usersCollection = mongoDbService.Database.GetCollection<User>("users");
+            _sessionCollection = mongoDbService.Database.GetCollection<Session>("sessions");
+
         }
 
         // hàm tìm user theo id
@@ -56,11 +61,31 @@ namespace BunnyChat.Controllers
             {
                 var userId = User.FindFirst("userId")?.Value;
 
-                //đọc claim
+                if (string.IsNullOrEmpty(userId))
+                {
+                    return Unauthorized(ApiResponse.Fail("Token không hợp lệ"));
+                }
+
+                // đọc claim
                 // foreach (var claim in User.Claims)
                 // {
                 //     Console.WriteLine($"{claim.Type}: {claim.Value}");
                 // }
+
+                // Console.WriteLine($"JWT UserId = {userId}");
+
+                var session = await _sessionCollection
+                    .Find(x => x.UserId == userId)
+                    .FirstOrDefaultAsync();
+
+                if (session == null)
+                {
+                    return Unauthorized(ApiResponse.Fail("Phiên đăng nhập đã hết hạn"));
+                }
+
+
+                Console.WriteLine($"userID: {session.UserId}");
+
 
                 var user = await FindUserById(userId);
 
@@ -82,6 +107,7 @@ namespace BunnyChat.Controllers
             //trả về lỗi
             catch (Exception ex)
             {
+                Console.WriteLine(ex.ToString());
                 Console.WriteLine("Lỗi khi lấy dữ liệu người dùng");
                 return StatusCode(500, ApiResponse.Fail(
                     message: $"{ex.Message}"
@@ -146,7 +172,7 @@ namespace BunnyChat.Controllers
                 var searchName = StringHelper
                     .RemoveVietnameseDiacritics(displayName) //Bỏ dấu tiếng Việt
                     .ToLower() //chuyển thành chữ thường
-                    .Trim();
+                    .Trim(); //xóa khoảng trắng đầu và cuối
 
                 // updatedUser dữ liệu
                 var update = Builders<User>.Update
@@ -191,103 +217,62 @@ namespace BunnyChat.Controllers
         //API serach username, email người khác
         [Authorize]
         [HttpGet("search")]
-        public async Task<IActionResult> Search(string? username, string? email, string? name)
+        public async Task<IActionResult> Search(string? q)
         {
             try
             {
-                // thiếu query
-                if (
-                    string.IsNullOrWhiteSpace(username) &&
-                    string.IsNullOrWhiteSpace(email) &&
-                    string.IsNullOrWhiteSpace(name))
+                //kiểm tra querry
+                if (string.IsNullOrWhiteSpace(q))
                 {
-                    return BadRequest(ApiResponse.Fail(
-                        message: "thiếu username, Name hoặc email"
-                    ));
+                    return BadRequest(ApiResponse.Fail("Thiếu từ khóa tìm kiếm"));
                 }
 
-                var filters = new List<FilterDefinition<User>>();
+                var keyword = q.Trim();
 
-                // search username, 
-                if (!string.IsNullOrWhiteSpace(username))
+                var keywordNoAccent = StringHelper
+                    .RemoveVietnameseDiacritics(keyword) //Bỏ dấu tiếng Việt
+                        .ToLower() //chuyển thành chữ thường
+                        .Trim(); //xóa khoảng trắng đầu và cuối
+
+                //tách từng chữ  // "tran thinh"
+                    // => ["tran", "thinh"]
+                var words = keywordNoAccent.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+
+                // Tạo filter cho từng từ
+                    // SearchName LIKE '%tran%'
+                    // SearchName LIKE '%thinh%'
+                var wordFilters = words.Select(word =>
+                    Builders<User>.Filter.Regex(
+                        x => x.SearchName,
+                        new BsonRegularExpression(word, "i")
+                    )
+                );
+
+                var finalFilter = Builders<User>.Filter.Or(
+                    // tìm tương dối 
+                    Builders<User>.Filter.Regex(x => x.Username, new BsonRegularExpression(keyword, "i")),
+
+                    //tìm chắc chắn
+                    Builders<User>.Filter.Eq(x => x.Email, keyword),
+                    Builders<User>.Filter.Regex(x => x.FirstName, new BsonRegularExpression(keyword, "i")),
+                    Builders<User>.Filter.Regex(x => x.LastName, new BsonRegularExpression(keyword, "i")),
+
+                    // tìm theo searchName
+                    Builders<User>.Filter.And(wordFilters)
+                );
+
+                //querry database
+                var users = await _usersCollection.Find(finalFilter).ToListAsync();
+
+                if (!users.Any())
                 {
-                    filters.Add(
-                        Builders<User>.Filter.Regex(
-                            x => x.Username,
-                            new BsonRegularExpression(username, "i")
-                        )
-                    );
-                }
-                // search displayname, vì ko lưu vào data nên ko searrch trực tiếp đc 
-                    // => search qua searchName đc kết hợp từ displayName
-                if (!string.IsNullOrWhiteSpace(name))
-                {
-                    // bỏ dấu chuyển về chữ thường 
-                    var keywordNoAccent = StringHelper
-                        .RemoveVietnameseDiacritics(name)
-                        .ToLower()
-                        .Trim();
-
-                    // tách từng chữ theo dấu cách, VD: search "tran thinh" 
-                        // => keywordNoAccent = "tran thinh" =>Sau khi Split(" "): words = ["tran", "thinh"]
-
-                    //StringSplitOptions.RemoveEmptyEntries dùng để bỏ khoảng trắng thừa.
-                    var words = keywordNoAccent.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-
-                    // Tạo filter cho từng từ. VD: ["tran", "thinh"] => SearchName LIKE '%tran%', SearchName LIKE '%thinh%'
-                    var wordFilters = words.Select(word =>
-                        Builders<User>.Filter.Regex(
-                            x => x.SearchName,
-                            new BsonRegularExpression(word, "i")
-                        )
-                    );
-
-                    filters.Add(
-                        Builders<User>.Filter.Or(
-                            // Search có dấu
-                            Builders<User>.Filter.Regex(
-                                x => x.FirstName,
-                                new BsonRegularExpression(name, "i")
-                            ),
-                            Builders<User>.Filter.Regex(
-                                x => x.LastName,
-                                new BsonRegularExpression(name, "i")
-                            ),
-
-                            // Search không dấu, không cần đúng thứ tự, Ghép bằng AND
-                            Builders<User>.Filter.And(wordFilters)
-                        )
-                    );
+                    return NotFound(ApiResponse.Fail("Không tìm thấy user"));
                 }
 
-                // search email, phải đúng hoàn toàn chuỗi
-                if (!string.IsNullOrWhiteSpace(email))
-                {
-                    // thêm điều kiện query. VD search Email => Email == Hoa@gmail.com
-                    filters.Add(
-                        Builders<User>.Filter.Eq(x => x.Email, email)
-                    );
-                }
-
-                // Gộp filter, chỉ cần match 1 điều kiện là lấy <=> OR trong SQL
-                var finalFilter = Builders<User>.Filter.Or(filters);
-
-                //querry data ? list = [] return false đi thẳng vào NotFound
-                var user = await _usersCollection
-                   .Find(finalFilter)
-                   .ToListAsync(); // lay tat ca match
-
-                // checked có user hay không
-                if (!user.Any())
-                {
-                    return NotFound(ApiResponse.Fail(
-                        message: "Không tìm thấy user"
-                    ));
-                }
-
+                //trả dữ liệu nếu querry thành công
                 return Ok(ApiResponse.Success(
-                    message: "Tìm Thấy user",
-                    data: user.Select(user => new
+                    message: "Tìm thấy user",
+                    data: users.Select(user => new
                     {
                         id = user.Id,
                         username = user.Username,

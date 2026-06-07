@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
-using BunnyChat.Data;
+using MongoDB.Bson;
+using BunnyChat.Service;
 using BunnyChat.DTOs;
 using BunnyChat.Models;
 using BunnyChat.Helper;
-using BunnyChat.Models.Entities;
+using BunnyChat.Models;
 using BunnyChat.Service;
 using BCrypt.Net;
 using System.ComponentModel.DataAnnotations;
@@ -145,17 +146,15 @@ namespace BunnyChat.Controllers
                             );
 
                 //import vao collectiuon sessiuon, nếu đã có trong collection, update RefreshToken
-                await _sessionCollection.ReplaceOneAsync(
-                    s => s.UserId == user.Id,
-                    new Session
-                    {
-                        UserId = user.Id!,
-                        Username = user.Username!,
-                        RefreshToken = refreshToken,
-                        ExpiresAt = refreshExpiry
-                    },
-                    new ReplaceOptions { IsUpsert = true }
-                );
+                await _sessionCollection.DeleteOneAsync(s => s.UserId == user.Id);
+
+                await _sessionCollection.InsertOneAsync(new Session
+                {
+                    UserId = user.Id!,
+                    Username = user.Username!,
+                    RefreshToken = refreshToken,
+                    ExpiresAt = refreshExpiry
+                });
 
                 // menthod Gắn refreshToken vào cookie
                 Response.Cookies.Append(
@@ -214,7 +213,7 @@ namespace BunnyChat.Controllers
                        s => s.RefreshToken == token
                     );
                 }
-                // xóa cookie
+                // xóa refreshtoken trong cookie
                 Response.Cookies.Delete("refreshToken");
 
                 //Trả kết quả

@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Identity;
-using BunnyChat.Data;
+using BunnyChat.Service;
 using BunnyChat.Service;
 
 

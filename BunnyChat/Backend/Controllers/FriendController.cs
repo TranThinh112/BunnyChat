@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using BunnyChat.Data;
+using BunnyChat.Service;
 using BunnyChat.DTOs;
-using BunnyChat.Models.Entities;
+using BunnyChat.Models;
 
 namespace BunnyChat.Controllers
 {

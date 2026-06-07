@@ -1,4 +1,4 @@
-using BunnyChat.Models.Entities;
+using BunnyChat.Models;
 
 
 namespace BunnyChat.Service

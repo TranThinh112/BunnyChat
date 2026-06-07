@@ -1,10 +1,10 @@
 //quan ly ket noi mongo //
 using MongoDB.Driver;
 using BunnyChat.Models;
-using BunnyChat.Models.Entities;
+using BunnyChat.Models;
 
 
-namespace BunnyChat.Data
+namespace BunnyChat.Service
 {
     public class MongoDbService
     {

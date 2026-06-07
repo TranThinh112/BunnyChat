@@ -11,7 +11,6 @@ public class PageController : Controller
         return View("~/Frontend/Views/Auth/Auth.cshtml");
     }
 
-    
     [HttpGet("/Forgot")]
     public IActionResult Forgot()
     {

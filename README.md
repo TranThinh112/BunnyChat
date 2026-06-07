@@ -9,6 +9,17 @@ Pass Mông: mongodb+srv://ttthinh2005_db_user:abc123456789@cluster0.58iwirh.mong
 
 framework tự kiểm tra token do ai phát hành, kiểm tra token hết hạn hay chưa, Token dành cho đúng app nhận, Token do đúng ai phát hành
 
+
+    Vì middleware [Authorize] chỉ kiểm tra JWT, không kiểm tra session trong MongoDB của bạn.  AccessToken có đúng chữ ký không?
+    AccessToken còn hạn không?
+    Issuer/Audience đúng không?
+
+    Nhưng nó không biết:
+
+    Session trong MongoDB còn hay đã bị xóa?
+    User đã logout chưa?
+    RefreshToken còn hợp lệ không?
+
 dotnet restore BunnyChat.csproj 
 
 dotnet clean BunnyChat.csproj
