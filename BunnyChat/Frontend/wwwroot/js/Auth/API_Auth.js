@@ -1,3 +1,6 @@
+//hàm gọi các API của Auth
+
+//vì đang dùng "module" nên phải export
 export async function login(usernameInput, passwordInput) {
 
     const data = {
@@ -15,7 +18,7 @@ export async function login(usernameInput, passwordInput) {
 
     return response;
 }
-
+//gọi API /signup
 export async function signup(firstnameInput, lastNameInput, emailInput, usernameInput, passwordInput) {
 
     const data = {

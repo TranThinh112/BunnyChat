@@ -115,6 +115,39 @@ namespace BunnyChat.Controllers
             }
         }
 
+        [Authorize]
+        [HttpGet("{id}/profile")]
+        public async Task<IActionResult> GetProfile(string id)
+        {
+            try
+            {
+                var user = await FindUserById(id);
+
+                if (user == null)
+                {
+                    return NotFound(ApiResponse.Fail("Người dùng không tồn tại"));
+                }
+
+                return Ok(ApiResponse.Success(
+                    message: "Lấy thông tin người dùng thành công",
+                    data: new
+                    {
+                        id = user.Id,
+                        username = user.Username,
+                        displayname = user.DisplayName,
+                        phone = user.Phone,
+                        bio = user.Bio,
+                        nickname = user.Nickname,
+                        avatarUrl = user.AvatarUrl
+                    }
+                ));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ApiResponse.Fail(ex.Message));
+            }
+        }
+
         //API update Thong tin user đang login
         [Authorize]
         [HttpPatch("me")]
@@ -277,9 +310,9 @@ namespace BunnyChat.Controllers
                         id = user.Id,
                         username = user.Username,
                         displayname = user.DisplayName,
-                        email = user.Email,
-                        createdAt = user.CreatedAt,
-                        updatedAt = user.UpdatedAt
+                        // email = user.Email,
+                        // createdAt = user.CreatedAt,
+                        // updatedAt = user.UpdatedAt
                     })
                 ));
             }
@@ -293,5 +326,17 @@ namespace BunnyChat.Controllers
                 ));
             }
         }
+        [Authorize]
+[HttpGet("test-token")]
+public IActionResult TestToken()
+{
+    return Ok(ApiResponse.Success(
+        message: "AccessToken còn hợp lệ",
+        data: new
+        {
+            time = DateTime.UtcNow
+        }
+    ));
+}
     }
 }

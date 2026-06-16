@@ -16,7 +16,7 @@ namespace BunnyChat.Helper
             // Chuyển Unicode sang FormD
             text = text.Normalize(NormalizationForm.FormD);
 
-            Console.WriteLine(text);
+            // Console.WriteLine(text);
 
             // Tạo StringBuilder => Dùng để ghép lại chuỗi sau khi bỏ dấu.
             var sb = new StringBuilder();

@@ -146,7 +146,10 @@ namespace BunnyChat.Controllers
                             );
 
                 //import vao collectiuon sessiuon, nếu đã có trong collection, update RefreshToken
+
+                    //tìm userID trong bảng session, nếu có thì delete
                 await _sessionCollection.DeleteOneAsync(s => s.UserId == user.Id);
+
 
                 await _sessionCollection.InsertOneAsync(new Session
                 {
@@ -228,12 +231,67 @@ namespace BunnyChat.Controllers
             }
         }
 
-        // [HttpPost("refresh")]
-        // public IActionResult Refresh([FromBody] RefreshRequest request)
-        // {
-        //     var result = _tokenService.RefreshToken(request.RefreshToken);
-        //     return result is null ? Unauthorized() : Ok(result);
-        // }
+//tạo AccesToken mới từ RefreshToken
+        [HttpPost("refresh")]
+        public async Task<IActionResult> RefreshToken()
+        {
+            try
+            {
+                //lấy refreshToken từ cookie
+                var refreshToken = Request.Cookies["refreshToken"];
+                    //kiểm tra refreshToken có tồn tại ko
+                if (string.IsNullOrWhiteSpace(refreshToken))
+                {
+                    return NotFound(ApiResponse.Fail(
+                        message: "Không tìm thấy refreshToken"
+                    ));
+                }
+
+                //so sánh với refreshToken trong dtb
+                var session = await _sessionCollection
+                .Find(x => x.RefreshToken == refreshToken)
+                .FirstOrDefaultAsync();
+                if (session == null)
+                {
+                    return Unauthorized(ApiResponse.Fail(
+                        message: "Token không hợp lệ hoặc hết hạn"
+                    ));
+                }
+
+                //kiểm tra hết hạn chưa 
+                if(session.ExpiresAt < DateTime.UtcNow)
+                {
+                    return Unauthorized(ApiResponse.Fail(
+                        message: "Token đã hết hạn"
+                    ));
+                }
+                
+                //tạo accesToken mới
+                    //tìm userId ứng với RefreshToken trong session
+                var user = await _usersCollection
+                    .Find(x => x.Id == session.UserId)
+                    .FirstOrDefaultAsync();
+
+
+                var newAccesToken = _tokenService.CreateAccessToken(user);
+
+                //trả về accessToken mới
+                return Ok(ApiResponse.Success(
+                    message: "Gia hạn token thành công",
+                    new
+                    {
+                        accessToken = newAccesToken
+                    }
+                ));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi gọi RefreshToken");
+                return StatusCode(500, ApiResponse.Fail(
+                    message: $"{ex.Message}; Lỗi hệ thống."
+                ));
+            }
+        }
 
 
     }

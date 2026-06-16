@@ -1,0 +1,1 @@
+vì Module, mỗi file .js là một phạm vi (scope) riêng. Nếu dùng module thì phải export, tức cho file khác dùng hàm này với điều kiện phải import, tương tự public và private

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BunnyChat")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c1eb581c5ffece5d8a8ae3d98255538254f6dc01")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f0d58903b71e6be52bd0fe4bc46d9d3a765316ee")]
 [assembly: System.Reflection.AssemblyProductAttribute("BunnyChat")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BunnyChat")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
