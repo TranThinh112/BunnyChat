@@ -30,7 +30,7 @@ namespace BunnyChat.Helper
             conversation.LastMessageAt = message.CreatedAt;
 
             //Cache tin nhắn cuối. Lưu nhanh: 
-                // Tin nhắn cuối:   để không cần query collection Message mỗi lần load danh sách chat.
+                // Tin nhắn cuối để không cần query collection Message mỗi lần load danh sách chat.
             conversation.LastMessage = new LastMessage
             {
                 Id = message.Id,
@@ -39,8 +39,10 @@ namespace BunnyChat.Helper
                 CreatedAt = message.CreatedAt
             };
 
+            //Người gửi chắc chắn đã xem tin nhắn.
             conversation.SeenBy = new List<string> { senderId };
 
+            // cập nhật số lượng người chưa đọc tin nhắn
             foreach (var participantId in GetParticipantIds(conversation))
             {
                 var oldCount = conversation.UnreadCounts.ContainsKey(participantId)

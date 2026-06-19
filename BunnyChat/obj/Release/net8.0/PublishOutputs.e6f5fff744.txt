@@ -2,11 +2,14 @@ C:\Users\Admin\Documents\BunnyChat\out\BunnyChat.exe
 C:\Users\Admin\Documents\BunnyChat\out\out\web.config
 C:\Users\Admin\Documents\BunnyChat\out\appsettings.Development.json
 C:\Users\Admin\Documents\BunnyChat\out\appsettings.json
+C:\Users\Admin\Documents\BunnyChat\out\global.json
 C:\Users\Admin\Documents\BunnyChat\out\out\appsettings.Development.json
 C:\Users\Admin\Documents\BunnyChat\out\out\appsettings.json
 C:\Users\Admin\Documents\BunnyChat\out\out\BunnyChat.deps.json
 C:\Users\Admin\Documents\BunnyChat\out\out\BunnyChat.runtimeconfig.json
 C:\Users\Admin\Documents\BunnyChat\out\out\BunnyChat.staticwebassets.endpoints.json
+C:\Users\Admin\Documents\BunnyChat\out\out\railway.json
+C:\Users\Admin\Documents\BunnyChat\out\railway.json
 C:\Users\Admin\Documents\BunnyChat\out\BunnyChat.dll
 C:\Users\Admin\Documents\BunnyChat\out\BunnyChat.deps.json
 C:\Users\Admin\Documents\BunnyChat\out\BunnyChat.runtimeconfig.json

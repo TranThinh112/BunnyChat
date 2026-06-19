@@ -1,5 +1,11 @@
+[phases.setup]
+nixPkgs = ["dotnet-sdk_8"]
+
+[phases.install]
+cmds = ["dotnet restore BunnyChat.csproj"]
+
 [phases.build]
-cmds = ["dotnet publish BunnyChat.csproj -c Release -o out"]
+cmds = ["dotnet publish BunnyChat.csproj -c Release -o out --no-restore"]
 
 [start]
 cmd = "dotnet out/BunnyChat.dll"
