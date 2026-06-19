@@ -28,8 +28,9 @@ namespace BunnyChat.Helper
         {
             //Cập nhật thời gian tin nhắn cuối để danh sách conversation đc sort lại
             conversation.LastMessageAt = message.CreatedAt;
-            
-            //Cache tin nhắn cuối
+
+            //Cache tin nhắn cuối. Lưu nhanh: 
+                // Tin nhắn cuối:   để không cần query collection Message mỗi lần load danh sách chat.
             conversation.LastMessage = new LastMessage
             {
                 Id = message.Id,

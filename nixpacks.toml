@@ -1,0 +1,5 @@
+[phases.build]
+cmds = ["dotnet publish BunnyChat/BunnyChat.csproj -c Release -o out"]
+
+[start]
+cmd = "dotnet out/BunnyChat.dll"
