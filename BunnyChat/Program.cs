@@ -125,19 +125,32 @@ builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
 var app = builder.Build();
 
-try
+app.MapGet("/health", () => Results.Ok(new
 {
-    using var scope = app.Services.CreateScope();
+    status = "ok",
+    time = DateTime.UtcNow
+}));
 
-    var mongoService = scope.ServiceProvider
-        .GetRequiredService<MongoDbService>();
-
-    await mongoService.CreateIndexesAsync();
-}
-catch (Exception ex)
+app.Lifetime.ApplicationStarted.Register(() =>
 {
-    Console.WriteLine($"Khong the tao index MongoDB khi khoi dong: {ex.Message}");
-}
+    _ = Task.Run(async () =>
+    {
+        try
+        {
+            using var scope = app.Services.CreateScope();
+
+            var mongoService = scope.ServiceProvider
+                .GetRequiredService<MongoDbService>();
+
+            await mongoService.CreateIndexesAsync();
+            Console.WriteLine("Tao index MongoDB thanh cong");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Khong the tao index MongoDB sau khi khoi dong: {ex.Message}");
+        }
+    });
+});
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -150,7 +163,10 @@ if (!app.Environment.IsDevelopment())
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseHttpsRedirection();
+if (!string.Equals(Environment.GetEnvironmentVariable("RAILWAY_ENVIRONMENT"), "production", StringComparison.OrdinalIgnoreCase))
+{
+    app.UseHttpsRedirection();
+}
 
 //static files
 app.UseStaticFiles(new StaticFileOptions

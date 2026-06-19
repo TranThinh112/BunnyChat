@@ -25,8 +25,6 @@ namespace BunnyChat.Service
             _messages = _database.GetCollection<Message>("messages");
             _conversations = _database.GetCollection<Conversation>("conversations");
             _friends = _database.GetCollection<Friend>("friends");
-
-            DeleteDocumentForRefreshToken();
         }
         public IMongoDatabase Database => _database;
 
@@ -36,6 +34,8 @@ namespace BunnyChat.Service
             // Giúp tải lịch sử chat nhanh hơn khi số lượng tin nhắn lớn.
         public async Task CreateIndexesAsync()
         {
+            await DeleteDocumentForRefreshToken();
+
             // ConversationId ↑     CreatedAt ↓     { ConversationId: 1, CreatedAt: -1 }
                 //MongoDB lọc tin nhắn theo ConversationId.
                 // Sau đó sắp xếp theo CreatedAt mới nhất trước.
@@ -73,7 +73,7 @@ namespace BunnyChat.Service
         }
 
         //xoa session khi refreshToken het han
-        private void DeleteDocumentForRefreshToken()
+        private async Task DeleteDocumentForRefreshToken()
         {
             //Lấy collection Sesion
             var sessionCollection = Database.GetCollection<Session>("sessions");
@@ -88,7 +88,7 @@ namespace BunnyChat.Service
                 }
             );
 
-            sessionCollection.Indexes.CreateOne(ttlIndex);
+            await sessionCollection.Indexes.CreateOneAsync(ttlIndex);
         }
     }
 
