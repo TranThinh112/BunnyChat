@@ -6,7 +6,7 @@ using BunnyChat.Models;
 
 namespace BunnyChat.DTOs
 {
-	public class FriendDTORequest()
+	public class FriendDTORequest
     {
 		// [Required]
 		// public string FromId {get; set;} = null!;
