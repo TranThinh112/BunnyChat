@@ -117,7 +117,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     
 
 builder.Services.AddAuthorization();
-    
+
+// Railway sẽ truyền port qua biến môi trường PORT.
+// Nếu chạy local không có PORT thì dùng 5281 để giữ thói quen chạy hiện tại.
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5281";
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
 var app = builder.Build();
 
