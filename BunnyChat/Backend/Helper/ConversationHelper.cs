@@ -15,8 +15,8 @@ namespace BunnyChat.Helper
         {
             return conversation.Participants
                 .Select(x => x.UserId) //lấy riêng userId
-                .Where(x => !string.IsNullOrWhiteSpace(x))
-                .Distinct()
+                .Where(x => !string.IsNullOrWhiteSpace(x)) //bỏ khoảng trắng
+                .Distinct() //bỏ trùng
                 .ToList();
         }
 
@@ -26,7 +26,10 @@ namespace BunnyChat.Helper
             Message message,
             string senderId)
         {
+            //Cập nhật thời gian tin nhắn cuối để danh sách conversation đc sort lại
             conversation.LastMessageAt = message.CreatedAt;
+            
+            //Cache tin nhắn cuối
             conversation.LastMessage = new LastMessage
             {
                 Id = message.Id,

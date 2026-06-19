@@ -12,7 +12,7 @@ using System.Reflection;
 
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("c2c42e5d-1123-4086-8aac-2bd8143bfd62")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("BunnyChat")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+102b717c4d9efb5257e70edce43040d7742264d3")]
 [assembly: System.Reflection.AssemblyProductAttribute("BunnyChat")]
