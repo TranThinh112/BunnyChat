@@ -17,4 +17,11 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.18.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="Frontend\Views\**\*.cshtml" />
+    <Content Remove="Frontend\wwwroot\**\*" />
+    <Content Include="Frontend\Views\**\*.cshtml" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="Frontend\wwwroot\**\*" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>

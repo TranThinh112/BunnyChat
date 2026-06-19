@@ -125,13 +125,18 @@ builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
+try
 {
-    var mongoService =
-        scope.ServiceProvider
-            .GetRequiredService<MongoDbService>();
+    using var scope = app.Services.CreateScope();
+
+    var mongoService = scope.ServiceProvider
+        .GetRequiredService<MongoDbService>();
 
     await mongoService.CreateIndexesAsync();
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Khong the tao index MongoDB khi khoi dong: {ex.Message}");
 }
 
 // Configure the HTTP request pipeline.
