@@ -29,7 +29,7 @@ namespace BunnyChat.Helper
                     CharUnicodeInfo.GetUnicodeCategory(c);
 
                 // Bỏ các dấu. NonSpacingMark Là các dấu tronmg tiếng Việt.
-                //  Nếu gặp dấu: KHÔNG thêm vào Nếu là chữ: THÊM vào
+                //  Nếu gặp dấu: KHÔNG thêm vào. Nếu là chữ: THÊM vào
                 if (unicodeCategory != UnicodeCategory.NonSpacingMark)
                     sb.Append(c);
             }

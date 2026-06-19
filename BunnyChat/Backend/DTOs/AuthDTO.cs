@@ -8,15 +8,15 @@ namespace BunnyChat.DTOs
 {
     public record SignUpDTORequest
     {
-         [Required]
+        [Required]
         [EmailAddress]
         public string Email {get; set; } = ""; 
         
-         [Required]
+        [Required]
         [StringLength(100, MinimumLength = 6)]
         public string PassWord {get; set; } = "";  
 
-         public string FirstName { get; set; }  = "";  
+        public string FirstName { get; set; }  = "";  
 
         public string LastName { get; set; }  = "";  
 

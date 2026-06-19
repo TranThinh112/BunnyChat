@@ -326,17 +326,6 @@ namespace BunnyChat.Controllers
                 ));
             }
         }
-        [Authorize]
-[HttpGet("test-token")]
-public IActionResult TestToken()
-{
-    return Ok(ApiResponse.Success(
-        message: "AccessToken còn hợp lệ",
-        data: new
-        {
-            time = DateTime.UtcNow
-        }
-    ));
-}
+
     }
 }

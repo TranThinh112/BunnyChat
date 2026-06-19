@@ -121,6 +121,15 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var mongoService =
+        scope.ServiceProvider
+            .GetRequiredService<MongoDbService>();
+
+    await mongoService.CreateIndexesAsync();
+}
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
