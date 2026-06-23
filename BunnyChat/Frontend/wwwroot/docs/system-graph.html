@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BunnyChat - System Graph Chi Tiet</title>
+    <style>
+        :root {
+            --bg: #120f1a;
+            --panel: rgba(255,255,255,.07);
+            --panel-2: rgba(255,255,255,.11);
+            --border: rgba(255,255,255,.15);
+            --text: #fff9ff;
+            --muted: #cdbfda;
+            --accent: #a855f7;
+            --accent-2: #ec4899;
+            --green: #63e6be;
+            --blue: #7dd3fc;
+            --yellow: #ffd166;
+            --danger: #fb7185;
+            --shadow: 0 24px 80px rgba(0,0,0,.28);
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 8% 0%, rgba(236,72,153,.22), transparent 28%),
+                radial-gradient(circle at 85% 5%, rgba(168,85,247,.22), transparent 26%),
+                linear-gradient(135deg, #0f0c16, var(--bg));
+        }
+
+        main { width: min(1280px, calc(100% - 32px)); margin: 0 auto; padding: 34px 0 72px; }
+        h1, h2, h3, p { margin-top: 0; }
+        h1 { margin-bottom: 8px; font-size: clamp(30px, 5vw, 56px); letter-spacing: -.04em; }
+        h2 { margin: 34px 0 16px; font-size: 25px; }
+        h3 { margin-bottom: 8px; font-size: 17px; }
+        p, li { color: var(--muted); line-height: 1.65; }
+        code { color: var(--yellow); }
+
+        .hero, .card, .table-wrap, .lane, .legend, .map-panel {
+            border: 1px solid var(--border);
+            background: var(--panel);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .hero { padding: 28px; border-radius: 28px; }
+        .hero p { max-width: 980px; margin-bottom: 0; }
+
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 18px 0 0;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background: rgba(20,16,28,.84);
+            backdrop-filter: blur(16px);
+        }
+
+        .nav a {
+            padding: 8px 11px;
+            border-radius: 999px;
+            color: var(--text);
+            text-decoration: none;
+            background: rgba(255,255,255,.08);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 14px; }
+        .card { padding: 18px; border-radius: 20px; }
+        .card ul { padding-left: 18px; margin-bottom: 0; }
+
+        .flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 16px;
+        }
+
+        .node {
+            position: relative;
+            min-height: 168px;
+            padding: 18px;
+            border: 1px solid rgba(255,255,255,.16);
+            border-radius: 20px;
+            background: linear-gradient(145deg, rgba(255,255,255,.11), rgba(255,255,255,.05));
+        }
+
+        .node:not(:last-child)::after {
+            content: ">";
+            position: absolute;
+            top: 50%;
+            right: -13px;
+            display: grid;
+            width: 26px;
+            height: 26px;
+            place-items: center;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: white;
+            font-weight: 900;
+            transform: translateY(-50%);
+            z-index: 2;
+        }
+
+        .node small { display: block; color: var(--blue); font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+        .node strong { display: block; margin: 7px 0; font-size: 18px; }
+        .node p { margin-bottom: 0; font-size: 14px; }
+
+        .lanes { display: grid; gap: 16px; }
+        .lane { padding: 18px; border-radius: 22px; }
+        .lane-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+        .lane-title h3 { margin: 0; }
+        .sequence { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+
+        .step {
+            min-height: 150px;
+            padding: 14px;
+            border: 1px solid rgba(255,255,255,.12);
+            border-radius: 16px;
+            background: rgba(0,0,0,.16);
+        }
+
+        .step b {
+            display: inline-grid;
+            width: 28px;
+            height: 28px;
+            margin-bottom: 10px;
+            place-items: center;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        }
+
+        .step strong { display: block; margin-bottom: 5px; }
+        .step p { margin-bottom: 0; font-size: 14px; }
+
+        .table-wrap { overflow-x: auto; border-radius: 20px; }
+        table { width: 100%; min-width: 880px; border-collapse: collapse; }
+        th, td { padding: 13px 14px; border-bottom: 1px solid rgba(255,255,255,.1); text-align: left; vertical-align: top; }
+        th { color: white; background: rgba(255,255,255,.08); font-size: 13px; text-transform: uppercase; letter-spacing: .05em; }
+        td { color: var(--muted); }
+        tr:last-child td { border-bottom: 0; }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            margin: 2px 4px 2px 0;
+            padding: 5px 8px;
+            border-radius: 999px;
+            background: rgba(168,85,247,.18);
+            color: #ead8ff;
+            font-size: 12px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .tag.api { background: rgba(125,211,252,.2); color: var(--blue); }
+        .tag.event { background: rgba(99,230,190,.18); color: var(--green); }
+        .tag.warn { background: rgba(251,113,133,.18); color: var(--danger); }
+        .badge { padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,.11); color: var(--yellow); font-weight: 800; font-size: 12px; }
+
+        .map-panel { padding: 18px; border-radius: 22px; }
+        .mini-map {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+        }
+        .mini-map div {
+            padding: 14px;
+            border: 1px solid rgba(255,255,255,.12);
+            border-radius: 16px;
+            background: rgba(0,0,0,.14);
+        }
+        .mini-map h3 { margin-bottom: 6px; }
+        .mini-map p { margin-bottom: 0; font-size: 14px; }
+
+        .legend { padding: 16px; border-radius: 18px; }
+        .legend-list { display: flex; flex-wrap: wrap; gap: 9px; margin: 0; padding: 0; list-style: none; }
+        .legend-list li { padding: 8px 10px; border-radius: 12px; background: rgba(255,255,255,.07); }
+
+        @media (max-width: 920px) {
+            .flow { grid-template-columns: 1fr; }
+            .node:not(:last-child)::after {
+                top: auto;
+                right: 50%;
+                bottom: -18px;
+                transform: translateX(50%) rotate(90deg);
+            }
+            .nav { position: static; }
+        }
+    </style>
+</head>
+<body>
+<main>
+    <section class="hero">
+        <h1>BunnyChat System Graph</h1>
+        <p>
+            Tai lieu nay mo ta chi tiet toan bo he thong hien tai: frontend ASP.NET MVC,
+            API backend, MongoDB, SignalR realtime chat, SignalR realtime ket ban, chuong thong bao
+            va cac ham JS chinh. Muc tieu la nhin vao day biet file nao lam gi, ham nao goi API nao,
+            event nao chay qua SignalR, response nao duoc UI render.
+        </p>
+    </section>
+
+    <nav class="nav">
+        <a href="#overview">Tong quan</a>
+        <a href="#flows">Luong nghiep vu</a>
+        <a href="#function-graph">Function graph</a>
+        <a href="#realtime">SignalR</a>
+        <a href="#frontend">Frontend</a>
+        <a href="#backend">Backend</a>
+        <a href="#api">API</a>
+        <a href="#responses">Response</a>
+        <a href="#files">File map</a>
+        <a href="#notes">Ghi chu</a>
+    </nav>
+
+    <h2 id="overview">1. Tong Quan Kien Truc</h2>
+    <section class="flow">
+        <article class="node">
+            <small>View</small>
+            <strong>/Chat</strong>
+            <p>Razor view render layout chat, chuong thong bao, search user, danh sach nhom va ban be.</p>
+        </article>
+        <article class="node">
+            <small>JS</small>
+            <strong>ChatAction.js</strong>
+            <p>Dieu phoi UI, goi API, ket noi SignalR, render tin nhan va loi moi ket ban.</p>
+        </article>
+        <article class="node">
+            <small>Auth</small>
+            <strong>Api_Fetch.js</strong>
+            <p>Gan Bearer token, tu refresh access token khi server tra 403.</p>
+        </article>
+        <article class="node">
+            <small>API</small>
+            <strong>Controllers</strong>
+            <p>User, Friend, Chat controller xu ly request tu frontend.</p>
+        </article>
+        <article class="node">
+            <small>Realtime</small>
+            <strong>ChatHub</strong>
+            <p>SignalR group theo user va conversation de gui event tuc thoi.</p>
+        </article>
+        <article class="node">
+            <small>Data</small>
+            <strong>MongoDB</strong>
+            <p>Luu users, sessions, friends, conversations, messages.</p>
+        </article>
+    </section>
+
+    <h2 id="flows">2. Luong Nghiep Vu Chinh</h2>
+    <section class="lanes">
+        <article class="lane">
+            <div class="lane-title">
+                <h3>Luong mo trang chat</h3>
+                <span class="badge">/Chat</span>
+            </div>
+            <div class="sequence">
+                <div class="step"><b>1</b><strong>Load view</strong><p><code>PageController.Chat()</code> tra <code>Index.cshtml</code>.</p></div>
+                <div class="step"><b>2</b><strong>Protect route</strong><p><code>Protect_Chat.js</code> kiem tra token, goi refresh neu het han.</p></div>
+                <div class="step"><b>3</b><strong>Load data</strong><p><code>loadChatData()</code> goi <code>/api/users/me</code>, <code>/api/chat</code>, <code>/api/friends</code>, <code>/api/friends/requests</code>.</p></div>
+                <div class="step"><b>4</b><strong>Render UI</strong><p><code>renderGroups()</code>, <code>renderFriends()</code>, <code>renderFriendRequestBadge()</code>.</p></div>
+                <div class="step"><b>5</b><strong>Realtime</strong><p><code>connectRealtime()</code> mo websocket toi <code>/chatHub</code>.</p></div>
+            </div>
+        </article>
+
+        <article class="lane">
+            <div class="lane-title">
+                <h3>Luong gui tin nhan realtime</h3>
+                <span class="badge">Chat</span>
+            </div>
+            <div class="sequence">
+                <div class="step"><b>1</b><strong>Chon conversation</strong><p><code>selectConversation()</code> goi <code>GET /api/chat/{id}/messages</code>.</p></div>
+                <div class="step"><b>2</b><strong>Join room</strong><p><code>joinConversation()</code> goi Hub method <code>JoinConversation</code>.</p></div>
+                <div class="step"><b>3</b><strong>Gui message</strong><p>Submit form goi <code>POST /api/chat/{id}/messages</code>.</p></div>
+                <div class="step"><b>4</b><strong>Backend luu DB</strong><p><code>ChatController.SendMessage()</code> insert <code>messages</code>, update <code>conversations</code>.</p></div>
+                <div class="step"><b>5</b><strong>SignalR event</strong><p>Server phat <code>new-message</code> toi group conversation.</p></div>
+                <div class="step"><b>6</b><strong>UI nhan event</strong><p><code>appendRealtimeMessage()</code> them bubble tin nhan vao khung chat.</p></div>
+            </div>
+        </article>
+
+        <article class="lane">
+            <div class="lane-title">
+                <h3>Luong ket ban tu search card</h3>
+                <span class="badge">Friend</span>
+            </div>
+            <div class="sequence">
+                <div class="step"><b>1</b><strong>Tim user</strong><p><code>searchUsers()</code> goi <code>GET /api/users/search?q=...</code>.</p></div>
+                <div class="step"><b>2</b><strong>Render card</strong><p><code>createConversationCard(type="search")</code> tao card user va nut <code>Ket ban</code>.</p></div>
+                <div class="step"><b>3</b><strong>Gui loi moi</strong><p><code>sendFriendRequestFromCard()</code> goi <code>POST /api/friends/requests</code>.</p></div>
+                <div class="step"><b>4</b><strong>Backend luu pending</strong><p><code>FriendController.SendFriendRequest()</code> tao friend document status <code>Pending</code>.</p></div>
+                <div class="step"><b>5</b><strong>Chuong realtime</strong><p>Server phat <code>friend-request-created</code> toi group user nguoi nhan.</p></div>
+                <div class="step"><b>6</b><strong>Badge cap nhat</strong><p><code>renderFriendRequestBadge()</code> tang so tren chuong goc trai.</p></div>
+            </div>
+        </article>
+
+        <article class="lane">
+            <div class="lane-title">
+                <h3>Luong chap nhan / tu choi loi moi</h3>
+                <span class="badge">Notification bell</span>
+            </div>
+            <div class="sequence">
+                <div class="step"><b>1</b><strong>Mo chuong</strong><p><code>openFriendModal()</code> mo modal loi moi ket ban.</p></div>
+                <div class="step"><b>2</b><strong>Render list</strong><p><code>renderFriendRequests()</code> hien tab <code>Da nhan</code> va <code>Da gui</code>.</p></div>
+                <div class="step"><b>3</b><strong>Accept</strong><p><code>acceptFriendRequest()</code> goi <code>POST /api/friends/requests/{id}/accept</code>.</p></div>
+                <div class="step"><b>4</b><strong>Decline</strong><p><code>declineFriendRequest()</code> goi <code>POST /api/friends/requests/{id}/decline</code>.</p></div>
+                <div class="step"><b>5</b><strong>Realtime sender</strong><p>Server phat <code>friend-request-accepted</code> hoac <code>friend-request-declined</code> cho nguoi gui.</p></div>
+                <div class="step"><b>6</b><strong>Cap nhat ban be</strong><p>Neu accept, <code>state.friends</code> them ban moi va <code>renderFriends()</code> chay lai.</p></div>
+            </div>
+        </article>
+    </section>
+
+    <h2 id="function-graph">3. Function Graph: Ham Goi Ham Nao</h2>
+    <section class="map-panel">
+        <div class="mini-map">
+            <div>
+                <h3>Khoi tao trang</h3>
+                <p><code>loadChatData()</code> -> <code>fetchData()</code> -> <code>apiFetch()</code> -> render groups/friends/badge -> <code>connectRealtime()</code>.</p>
+            </div>
+            <div>
+                <h3>Search user</h3>
+                <p><code>searchUsers()</code> -> <code>API.search()</code> -> <code>createConversationCard(type="search")</code> -> click card mo profile, click nut gui loi moi.</p>
+            </div>
+            <div>
+                <h3>Gui loi moi ket ban</h3>
+                <p><code>sendFriendRequestFromCard()</code> -> <code>FriendController.SendFriendRequest()</code> -> Mongo friends -> SignalR <code>friend-request-created</code>.</p>
+            </div>
+            <div>
+                <h3>Mo chuong thong bao</h3>
+                <p>Click bell -> <code>openFriendModal()</code> -> <code>setFriendRequestTab()</code> -> <code>renderFriendRequests()</code> -> <code>createFriendRequestCard()</code>.</p>
+            </div>
+            <div>
+                <h3>Accept friend</h3>
+                <p><code>acceptFriendRequest()</code> -> API accept -> update <code>state.friendRequests</code> va <code>state.friends</code> -> <code>renderFriends()</code>.</p>
+            </div>
+            <div>
+                <h3>Decline friend</h3>
+                <p><code>declineFriendRequest()</code> -> API decline -> remove request khoi state -> cap nhat modal va badge.</p>
+            </div>
+            <div>
+                <h3>Chon conversation</h3>
+                <p><code>selectConversation()</code> -> <code>API.messages()</code> -> <code>renderMessages()</code> -> <code>joinConversation()</code> -> <code>markActiveConversationAsSeen()</code>.</p>
+            </div>
+            <div>
+                <h3>Gui message</h3>
+                <p>Submit form -> <code>API.sendMessage()</code> -> <code>ChatController.SendMessage()</code> -> SignalR <code>new-message</code> -> <code>appendRealtimeMessage()</code>.</p>
+            </div>
+        </div>
+    </section>
+
+    <h2 id="realtime">4. SignalR Realtime</h2>
+    <section class="grid">
+        <article class="card">
+            <h3>SignalR endpoint</h3>
+            <p><code>Program.cs</code> map: <code>app.MapHub&lt;ChatHub&gt;("/chatHub")</code>.</p>
+            <p>JWT lay tu query string <code>access_token</code> khi frontend mo websocket.</p>
+        </article>
+        <article class="card">
+            <h3>User group</h3>
+            <p><code>ChatHub.UserGroup(userId)</code> tra group dang <code>user:{id}</code>.</p>
+            <p>Dung cho event ca nhan: loi moi ket ban moi, accept, decline.</p>
+        </article>
+        <article class="card">
+            <h3>Conversation group</h3>
+            <p><code>ChatHub.ConversationGroup(conversationId)</code> tra group dang <code>conversation:{id}</code>.</p>
+            <p>Dung cho tin nhan realtime va trang thai da xem trong mot cuoc tro chuyen.</p>
+        </article>
+    </section>
+
+    <section class="table-wrap" style="margin-top:16px">
+        <table>
+            <thead>
+            <tr>
+                <th>Event</th>
+                <th>Server phat tu file/ham</th>
+                <th>Client nghe o dau</th>
+                <th>Payload chinh</th>
+                <th>UI thay doi</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><span class="tag event">new-conversation</span></td>
+                <td><code>ChatController.CreateConversation()</code></td>
+                <td><code>connectRealtime()</code></td>
+                <td>conversation da format, co <code>userName</code>, <code>members</code>, <code>directUserId</code></td>
+                <td>Them hoac cap nhat group/direct chat trong sidebar.</td>
+            </tr>
+            <tr>
+                <td><span class="tag event">new-message</span></td>
+                <td><code>ChatController.SendMessage()</code></td>
+                <td><code>connectRealtime()</code></td>
+                <td><code>{ message, conversation, unreadCounts }</code></td>
+                <td>Cap nhat last message va append bubble neu dang mo dung conversation.</td>
+            </tr>
+            <tr>
+                <td><span class="tag event">read-message</span></td>
+                <td><code>ChatController.MarkAsSeen()</code></td>
+                <td><code>connectRealtime()</code></td>
+                <td><code>{ conversation, lastMessage }</code></td>
+                <td>Cap nhat unread/seen cho conversation.</td>
+            </tr>
+            <tr>
+                <td><span class="tag event">friend-request-created</span></td>
+                <td><code>FriendController.SendFriendRequest()</code></td>
+                <td><code>connectRealtime()</code></td>
+                <td>request gom <code>id</code>, <code>message</code>, <code>createdAt</code>, <code>user</code></td>
+                <td>Chuong thong bao tang badge, modal loi moi them card moi.</td>
+            </tr>
+            <tr>
+                <td><span class="tag event">friend-request-accepted</span></td>
+                <td><code>FriendController.AcceptFriendRequest()</code></td>
+                <td><code>connectRealtime()</code></td>
+                <td><code>{ requestId, user }</code></td>
+                <td>Nguoi gui duoc cap nhat danh sach ban be realtime.</td>
+            </tr>
+            <tr>
+                <td><span class="tag event">friend-request-declined</span></td>
+                <td><code>FriendController.DeclineFriendRequest()</code></td>
+                <td><code>connectRealtime()</code></td>
+                <td><code>{ requestId }</code></td>
+                <td>Xoa request khoi tab da gui.</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <h2 id="frontend">5. Frontend: File, Ham, Chuc Nang</h2>
+    <section class="table-wrap">
+        <table>
+            <thead>
+            <tr>
+                <th>File</th>
+                <th>Ham / Element</th>
+                <th>Duoc goi boi</th>
+                <th>Chuc nang</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr><td><code>Index.cshtml</code></td><td><span class="tag">notification-bell</span><span class="tag">friendModal</span><span class="tag">friendListCard</span></td><td>Browser render truc tiep</td><td>Chuong goc trai, modal loi moi ket ban, card tom tat danh sach ban be.</td></tr>
+            <tr><td><code>Chat.css</code></td><td><span class="tag">notification-bell</span><span class="tag">mini-action</span><span class="tag">friend-request-card</span></td><td><code>Index.cshtml</code>, <code>ChatAction.js</code></td><td>Style chuong, badge, nut ket ban trong search card, modal loi moi.</td></tr>
+            <tr><td><code>ChatAction.js</code></td><td><span class="tag">API</span><span class="tag">state</span></td><td>Toan bo file JS</td><td>Khai bao endpoint va state frontend: current user, conversations, friends, friendRequests, activeConversation.</td></tr>
+            <tr><td><code>ChatAction.js</code></td><td><span class="tag">valueOr()</span><span class="tag">initialOf()</span><span class="tag">itemId()</span><span class="tag">conversationName()</span></td><td>Cac ham render card/message/profile</td><td>Helper nho de lay text fallback, chu cai avatar, id va ten hien thi.</td></tr>
+            <tr><td><code>ChatAction.js</code></td><td><span class="tag">isFriend()</span><span class="tag">hasPendingRequest()</span></td><td><code>createConversationCard()</code></td><td>Quyet dinh search card hien nut <code>Ket ban</code>, <code>Da gui</code>, hay <code>Ban be</code>.</td></tr>
+            <tr><td><code>ChatAction.js</code></td><td><span class="tag">fetchData()</span></td><td>Moi ham goi API</td><td>Boc <code>apiFetch()</code>, parse <code>ApiResponse</code>, tra <code>result.data</code>.</td></tr>
+            <tr><td><code>ChatAction.js</code></td><td><span class="tag">loadChatData()</span></td><td>Chay cuoi file khi trang load</td><td>Goi me, conversations, friends, friend requests roi render UI va ket noi SignalR.</td></tr>
+            <tr><td><code>ChatAction.js</code></td><td><span class="tag">createConversationCard()</span></td><td><code>renderList()</code>, <code>renderGroupInfo()</code>, <code>searchUsers()</code></td><td>Tao card group/friend/search/member. Voi search card se co nut <code>Ket ban</code>.</td></tr>
+            <tr><td><code>ChatAction.js</code></td><td><span class="tag">renderList()</span><span class="tag">renderGroups()</span><span class="tag">renderFriends()</span></td><td><code>loadChatData()</code>, SignalR events</td><td>Render sidebar group chat va ban be dua tren data server, khong con data mau co dinh.</td></tr>
+            <tr><td><code>ChatAction.js</code></td><td><span class="tag">renderFriendListSummary()</span></td><td><code>renderFriends()</code></td><td>Render card danh sach ban be nho, hien tong so va preview ten ban.</td></tr>
+            <tr><td><code>ChatAction.js</code></td><td><span class="tag">sendFriendRequestFromCard()</span></td><td>Nut <code>Ket ban</code> trong search card</td><td>Goi <code>POST /api/friends/requests</code>, cap nhat tab da gui va badge.</td></tr>
+            <tr><td><code>ChatAction.js</code></td><td><span class="tag">openFriendModal()</span><span class="tag">renderFriendRequests()</span><span class="tag">createFriendRequestCard()</span></td><td>Click chuong thong bao</td><td>Mo modal va render tab loi moi da nhan / da gui.</td></tr>
+            <tr><td><code>ChatAction.js</code></td><td><span class="tag">acceptFriendRequest()</span><span class="tag">declineFriendRequest()</span></td><td>Nut trong card loi moi</td><td>Chap nhan/tu choi loi moi, cap nhat state va danh sach ban be.</td></tr>
+            <tr><td><code>ChatAction.js</code></td><td><span class="tag">selectConversation()</span><span class="tag">renderMessages()</span><span class="tag">createMessage()</span></td><td>Click conversation/friend card</td><td>Lay tin nhan server, render bubble trai/phai, join SignalR room.</td></tr>
+            <tr><td><code>ChatAction.js</code></td><td><span class="tag">upsertConversation()</span><span class="tag">appendRealtimeMessage()</span></td><td>SignalR <code>new-conversation</code>, <code>new-message</code></td><td>Cap nhat conversation trong state va them message realtime vao khung chat.</td></tr>
+            <tr><td><code>ChatAction.js</code></td><td><span class="tag">connectRealtime()</span><span class="tag">joinConversation()</span></td><td><code>loadChatData()</code>, <code>selectConversation()</code></td><td>Ket noi SignalR, dang ky event chat va event ket ban.</td></tr>
+            <tr><td><code>ChatAction.js</code></td><td><span class="tag">openUserProfile()</span><span class="tag">closeUserProfile()</span></td><td>Click user search card</td><td>Lay profile user: ten, SDT, bio, nickname.</td></tr>
+            <tr><td><code>ChatAction.js</code></td><td><span class="tag">setTheme()</span></td><td>Click toggle theme</td><td>Doi theme sang/toi va luu vao localStorage.</td></tr>
+            <tr><td><code>Api_Fetch.js</code></td><td><span class="tag">apiFetch()</span></td><td><code>ChatAction.js</code>, <code>Protect_Chat.js</code></td><td>Gan Authorization header va refresh access token neu het han.</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <h2 id="backend">6. Backend: Controller, Hub, Helper</h2>
+    <section class="table-wrap">
+        <table>
+            <thead>
+            <tr>
+                <th>File</th>
+                <th>Ham / Method</th>
+                <th>Duoc dung boi</th>
+                <th>Chuc nang</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr><td><code>ChatController.cs</code></td><td><span class="tag">FindConversationById()</span><span class="tag">FindUserById()</span></td><td>Cac API chat</td><td>Helper truy van conversation/user theo id, giam lap code trong controller.</td></tr>
+            <tr><td><code>ChatController.cs</code></td><td><span class="tag">FormatConversation()</span></td><td>Moi API conversation va SignalR payload</td><td>Chuan hoa response conversation, co <code>userName</code>, <code>directUserId</code>, <code>members</code>, unread count.</td></tr>
+            <tr><td><code>ChatController.cs</code></td><td><span class="tag api">POST /api/chat</span></td><td><code>getOrCreateDirectConversation()</code></td><td>Tao direct/group conversation, phat <code>new-conversation</code>.</td></tr>
+            <tr><td><code>ChatController.cs</code></td><td><span class="tag api">GET /api/chat</span></td><td><code>loadChatData()</code></td><td>Lay tat ca conversation cua user hien tai.</td></tr>
+            <tr><td><code>ChatController.cs</code></td><td><span class="tag api">GET /api/chat/groups</span></td><td>Co the dung cho man group rieng sau nay</td><td>Lay rieng conversation type group.</td></tr>
+            <tr><td><code>ChatController.cs</code></td><td><span class="tag api">GET /api/chat/{id}/messages</span></td><td><code>selectConversation()</code></td><td>Lay lich su tin nhan co phan trang cursor.</td></tr>
+            <tr><td><code>ChatController.cs</code></td><td><span class="tag api">POST /api/chat/{id}/messages</span></td><td>Submit form tin nhan</td><td>Luu message, update last message, phat <code>new-message</code>.</td></tr>
+            <tr><td><code>ChatController.cs</code></td><td><span class="tag api">PATCH /api/chat/{id}/seen</span></td><td><code>markActiveConversationAsSeen()</code></td><td>Danh dau tin cuoi da xem, phat <code>read-message</code>.</td></tr>
+            <tr><td><code>FriendController.cs</code></td><td><span class="tag">FormatUser()</span></td><td>API friends, requests, SignalR friend payload</td><td>Chuan hoa user ngan gon, co ca <code>username</code> va <code>userName</code>.</td></tr>
+            <tr><td><code>FriendController.cs</code></td><td><span class="tag api">GET /api/friends</span></td><td><code>loadChatData()</code></td><td>Lay danh sach ban be da accepted.</td></tr>
+            <tr><td><code>FriendController.cs</code></td><td><span class="tag api">GET /api/friends/requests</span></td><td><code>loadChatData()</code>, <code>loadFriendRequests()</code></td><td>Lay loi moi da nhan va da gui.</td></tr>
+            <tr><td><code>FriendController.cs</code></td><td><span class="tag api">POST /api/friends/requests</span></td><td><code>sendFriendRequestFromCard()</code></td><td>Tao loi moi pending, phat <code>friend-request-created</code>.</td></tr>
+            <tr><td><code>FriendController.cs</code></td><td><span class="tag api">POST /api/friends/requests/{id}/accept</span></td><td><code>acceptFriendRequest()</code></td><td>Chuyen pending sang accepted, phat <code>friend-request-accepted</code>.</td></tr>
+            <tr><td><code>FriendController.cs</code></td><td><span class="tag api">POST /api/friends/requests/{id}/decline</span></td><td><code>declineFriendRequest()</code></td><td>Xoa loi moi, phat <code>friend-request-declined</code>.</td></tr>
+            <tr><td><code>UserController.cs</code></td><td><span class="tag api">GET /api/users/me</span></td><td><code>loadChatData()</code>, <code>Protect_Chat.js</code></td><td>Tra user hien tai theo JWT.</td></tr>
+            <tr><td><code>UserController.cs</code></td><td><span class="tag api">GET /api/users/search</span></td><td><code>searchUsers()</code></td><td>Tim user theo keyword, tra <code>userName</code> de render search card.</td></tr>
+            <tr><td><code>UserController.cs</code></td><td><span class="tag api">GET /api/users/{id}/profile</span></td><td><code>openUserProfile()</code></td><td>Tra ten, SDT, bio, nickname cho modal profile.</td></tr>
+            <tr><td><code>ChatHub.cs</code></td><td><span class="tag">OnConnectedAsync()</span></td><td><code>connectRealtime()</code></td><td>Khi websocket connect, add client vao group <code>user:{id}</code>.</td></tr>
+            <tr><td><code>ChatHub.cs</code></td><td><span class="tag">JoinConversation()</span><span class="tag">LeaveConversation()</span></td><td><code>joinConversation()</code></td><td>Quan ly group <code>conversation:{id}</code>.</td></tr>
+            <tr><td><code>ConversationHelper.cs</code></td><td><span class="tag">IsParticipant()</span><span class="tag">GetParticipantIds()</span><span class="tag">UpdateAfterCreateMessage()</span></td><td><code>ChatController.cs</code>, <code>ChatHub.cs</code></td><td>Helper dung chung cho quyen tham gia conversation va update last message/unread.</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <h2 id="api">7. API Map</h2>
+    <section class="table-wrap">
+        <table>
+            <thead>
+            <tr>
+                <th>Method</th>
+                <th>Endpoint</th>
+                <th>Controller</th>
+                <th>Frontend goi tu ham</th>
+                <th>Muc dich</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr><td>GET</td><td><code>/api/users/me</code></td><td>UserController</td><td><code>loadChatData()</code>, <code>Protect_Chat.js</code></td><td>Lay user dang dang nhap.</td></tr>
+            <tr><td>GET</td><td><code>/api/users/search?q=...</code></td><td>UserController</td><td><code>searchUsers()</code></td><td>Tim user de xem profile/gui loi moi.</td></tr>
+            <tr><td>GET</td><td><code>/api/users/{id}/profile</code></td><td>UserController</td><td><code>openUserProfile()</code></td><td>Xem ten, SDT, bio, nickname.</td></tr>
+            <tr><td>GET</td><td><code>/api/chat</code></td><td>ChatController</td><td><code>loadChatData()</code></td><td>Lay conversation.</td></tr>
+            <tr><td>POST</td><td><code>/api/chat</code></td><td>ChatController</td><td><code>getOrCreateDirectConversation()</code></td><td>Tao direct chat khi bam ban be.</td></tr>
+            <tr><td>GET</td><td><code>/api/chat/groups</code></td><td>ChatController</td><td>Chua dung truc tiep tren UI hien tai</td><td>Lay group chat rieng.</td></tr>
+            <tr><td>GET</td><td><code>/api/chat/{id}/messages</code></td><td>ChatController</td><td><code>selectConversation()</code></td><td>Lay tin nhan.</td></tr>
+            <tr><td>POST</td><td><code>/api/chat/{id}/messages</code></td><td>ChatController</td><td>Submit form message</td><td>Gui tin nhan.</td></tr>
+            <tr><td>PATCH</td><td><code>/api/chat/{id}/seen</code></td><td>ChatController</td><td><code>markActiveConversationAsSeen()</code></td><td>Danh dau da xem.</td></tr>
+            <tr><td>GET</td><td><code>/api/friends</code></td><td>FriendController</td><td><code>loadChatData()</code></td><td>Lay danh sach ban be.</td></tr>
+            <tr><td>GET</td><td><code>/api/friends/requests</code></td><td>FriendController</td><td><code>loadChatData()</code>, <code>loadFriendRequests()</code></td><td>Lay loi moi ket ban.</td></tr>
+            <tr><td>POST</td><td><code>/api/friends/requests</code></td><td>FriendController</td><td><code>sendFriendRequestFromCard()</code></td><td>Gui loi moi.</td></tr>
+            <tr><td>POST</td><td><code>/api/friends/requests/{id}/accept</code></td><td>FriendController</td><td><code>acceptFriendRequest()</code></td><td>Chap nhan loi moi.</td></tr>
+            <tr><td>POST</td><td><code>/api/friends/requests/{id}/decline</code></td><td>FriendController</td><td><code>declineFriendRequest()</code></td><td>Tu choi loi moi.</td></tr>
+            <tr><td>WS</td><td><code>/chatHub</code></td><td>ChatHub</td><td><code>connectRealtime()</code></td><td>Kenh realtime chat/ket ban.</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <h2 id="responses">8. Response Quan Trong</h2>
+    <section class="grid">
+        <article class="card">
+            <h3>User mini object</h3>
+            <p>Dung trong friends, requests, members, search/profile.</p>
+            <p><code>{ id, username, userName, displayname, avatarUrl }</code></p>
+            <p><code>userName</code> duoc them de frontend dung thong nhat, van giu <code>username</code> de khong pha code cu.</p>
+        </article>
+        <article class="card">
+            <h3>Conversation object</h3>
+            <p><code>{ id, type, name, directUserId, username, userName, memberCount, members, lastMessage, lastMessageAt, unreadCount }</code></p>
+            <p>Direct chat dung <code>directUserId</code> de ghep conversation voi card ban be.</p>
+        </article>
+        <article class="card">
+            <h3>Friend request object</h3>
+            <p><code>{ id, message, createdAt, status, user }</code></p>
+            <p><code>user</code> la nguoi con lai trong request: tab da nhan la nguoi gui, tab da gui la nguoi nhan.</p>
+        </article>
+        <article class="card">
+            <h3>Message object</h3>
+            <p><code>{ id, conversationId, senderId, content, imgUrl, isMine, createdAt, updatedAt }</code></p>
+            <p><code>isMine</code> giup render bubble ben phai/trai.</p>
+        </article>
+    </section>
+
+    <h2 id="files">9. File Map Nhanh</h2>
+    <section class="grid">
+        <article class="card">
+            <h3>Frontend View</h3>
+            <ul>
+                <li><code>Frontend/Views/Chat/Index.cshtml</code>: layout chat, chuong, modal loi moi, modal profile.</li>
+                <li><code>Frontend/Views/Shared/_ChatLayout.cshtml</code>: load CSS, SignalR client, ChatAction.js, Protect_Chat.js.</li>
+            </ul>
+        </article>
+        <article class="card">
+            <h3>Frontend Static</h3>
+            <ul>
+                <li><code>Frontend/wwwroot/css/Chat.css</code>: theme, sidebar, card, chuong, modal, bubble message, animation tai tho.</li>
+                <li><code>Frontend/wwwroot/js/ChatAPI/ChatAction.js</code>: logic chat/ket ban/realtime.</li>
+                <li><code>Frontend/wwwroot/js/ChatAPI/Api_Fetch.js</code>: wrapper fetch kem token.</li>
+                <li><code>Frontend/wwwroot/js/ChatAPI/Protect_Chat.js</code>: bao ve route /Chat.</li>
+            </ul>
+        </article>
+        <article class="card">
+            <h3>Backend</h3>
+            <ul>
+                <li><code>Backend/Controllers/ChatController.cs</code>: API conversation/message.</li>
+                <li><code>Backend/Controllers/FriendController.cs</code>: API ket ban va SignalR friend events.</li>
+                <li><code>Backend/Controllers/UserController.cs</code>: me/search/profile.</li>
+                <li><code>Backend/Hubs/ChatHub.cs</code>: SignalR realtime.</li>
+            </ul>
+        </article>
+        <article class="card">
+            <h3>Models / Helpers</h3>
+            <ul>
+                <li><code>Backend/Models/Conversation.cs</code>: conversation, participant, group info, last message.</li>
+                <li><code>Backend/Models/Message.cs</code>: message document.</li>
+                <li><code>Backend/Models/friends.cs</code>: friend request/status.</li>
+                <li><code>Backend/Helper/ConversationHelper.cs</code>: helper conversation.</li>
+                <li><code>Backend/Service/MongoDBService.cs</code>: Mongo connection/index.</li>
+            </ul>
+        </article>
+    </section>
+
+    <h2 id="notes">10. Ghi Chu De Nho</h2>
+    <section class="legend">
+        <ul class="legend-list">
+            <li><span class="tag api">API</span> la request HTTP tu frontend toi controller.</li>
+            <li><span class="tag event">Event</span> la du lieu server day realtime qua SignalR.</li>
+            <li><span class="tag">state</span> nam trong <code>ChatAction.js</code>, dung de render UI.</li>
+            <li><span class="tag warn">Badge chuong</span> chi dem loi moi da nhan, khong dem loi moi da gui.</li>
+            <li><span class="tag">userName</span> duoc tra them, nhung <code>username</code> van giu de tuong thich.</li>
+            <li><span class="tag">Data server</span> UI hien render tu API, khong con dung danh sach message/user mau co dinh.</li>
+        </ul>
+    </section>
+</main>
+</body>
+</html>

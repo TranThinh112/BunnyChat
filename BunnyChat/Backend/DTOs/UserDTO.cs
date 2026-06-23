@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using BunnyChat.Service;
@@ -10,9 +10,9 @@ namespace BunnyChat.DTOs
     {
         public string? Bio { get; set; }
 
-        //regex chấp nhận sđt có + mã vùng
-        [RegularExpression(@"^0\d{9}$",
-       ErrorMessage = "Số điện thoại phải gồm 10 chữ số")]
+        //regex cháº¥p nháº­n sÄ‘t cÃ³ + mÃ£ vÃ¹ng
+        [RegularExpression(@"^(0\d{9}|84\d{9}|\+84\d{9})$",
+       ErrorMessage = "Số điện thoại phải có dạng 0xxxxxxxxx hoặc +84xxxxxxxxx")]
         public string? Phone { get; set; }
 
         public string? Nickname { get; set; }

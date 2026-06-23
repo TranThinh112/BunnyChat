@@ -26,4 +26,11 @@ namespace BunnyChat.DTOs
         // nội dung tin nhắn
         public string? Content { get; set; }
     }
+
+    // DTO gửi lên server khi thêm thành viên mới vào nhóm chat.
+    public class AddGroupMembersDTORequest
+    {
+        [Required]
+        public List<string> MemberIds { get; set; } = new();
+    }
 }

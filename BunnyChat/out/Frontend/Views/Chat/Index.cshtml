@@ -1,0 +1,106 @@
+@{
+    Layout = "~/Frontend/Views/Shared/_ChatLayout.cshtml";
+    ViewData["Title"] = "Chat";
+}
+
+<div class="chat-app">
+    @* phan sidebar ben trai  *@
+ 
+    <aside class="chat-sidebar" id="chatSidebar">
+        <header class="brand-card">
+            <span class="brand-name"><span class="brand-bunny" aria-hidden="true"></span>BunnyChat</span>
+            <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Chuyển giao diện">
+                <i class="toggle-bunny"></i>
+            </button>
+        </header>
+
+        <div class="sidebar-search">
+            <button class="compose-button" type="button" id="openSearchBtn">
+                <svg><use href="#icon-message"></use></svg>
+                <span>Gửi tin nhắn mới</span>
+            </button>
+
+
+            <div class="search-box" id="searchBox">
+                <input type="search" id="keyword" placeholder="Tìm người dùng..." autocomplete="off" />
+                <button id="searchBtn" type="button" aria-label="Tìm kiếm"><svg><use href="#icon-search"></use></svg></button>
+            </div>
+            <div id="searchResult"></div>
+        </div>
+        <button class="search-dismiss" id="searchDismiss" type="button" aria-label="Đóng tìm kiếm"></button>
+
+        <div class="chat-lists">
+            <section class="list-section">
+                <div class="section-title"><span>Nhóm chat</span><span id="groupCount">0</span></div>
+                <div class="list-content" id="groupList"></div>
+            </section>
+
+            <section class="list-section">
+                <div class="section-title"><span>Bạn bè</span><span id="friendCount">0</span></div>
+                <div class="list-content" id="friendList"></div>
+            </section>
+        </div>
+
+@* thong tin cua /me *@
+        <footer class="profile-card">
+            <span class="avatar avatar-purple" id="currentAvatar">U</span>
+            <span class="profile-info">
+                <strong id="currentDisplayname"></strong>
+                <small id="currentUsername"></small>
+            </span>
+            <button id="logoutBtn" type="button" aria-label="Đăng xuất"><svg><use href="#icon-logout"></use></svg></button>
+        </footer>
+    </aside>
+
+    <main class="chat-main">
+        <header class="chat-topbar">
+            <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Mở danh sách chat"><svg><use href="#icon-sidebar"></use></svg></button>
+            <span class="avatar avatar-purple chat-avatar" id="chatAvatar">?</span>
+            <div class="chat-heading">
+                <strong id="chatTitle">Chọn một cuộc trò chuyện</strong>
+                <small id="chatStatus">Tin nhắn sẽ được tải từ máy chủ</small>
+            </div>
+            <button class="info-button" id="groupInfoButton" type="button" aria-label="Thông tin nhóm" disabled>
+                <svg><use href="#icon-info"></use></svg>
+            </button>
+        </header>
+
+        <section class="message-area" id="messageArea"></section>
+
+        <form class="message-composer" id="messageForm">
+            <input id="messageInput" type="text" placeholder="Chọn cuộc trò chuyện để nhắn tin..." autocomplete="off" disabled />
+            <button class="send-button" type="submit" aria-label="Gửi tin nhắn" disabled><svg><use href="#icon-send"></use></svg></button>
+        </form>
+    </main>
+</div>
+
+@* phan thong tin cua nhom *@
+<aside class="group-info" id="groupInfo" aria-hidden="true">
+    <button class="group-info-backdrop" type="button" data-close-group-info aria-label="Đóng"></button>
+    <section class="group-info-panel">
+        <header>
+            <strong>Thông tin nhóm</strong>
+            <button type="button" data-close-group-info aria-label="Đóng">×</button>
+        </header>
+        <div id="groupInfoContent"></div>
+    </section>
+</aside>
+
+<div class="profile-modal" id="profileModal" aria-hidden="true">
+    <button class="profile-modal-backdrop" type="button" data-close-profile aria-label="Đóng"></button>
+    <section class="profile-modal-card" role="dialog" aria-modal="true" aria-labelledby="profileModalName">
+        <button class="profile-modal-close" type="button" data-close-profile aria-label="Đóng">×</button>
+        <div class="profile-modal-content" id="profileModalContent"></div>
+    </section>
+</div>
+
+
+
+<svg class="svg-sprite" aria-hidden="true">
+    <symbol id="icon-message" viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3v-7a4 4 0 0 1-1-2.7V7a4 4 0 0 1 4-4h11a4 4 0 0 1 4 4Z"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+    <symbol id="icon-logout" viewBox="0 0 24 24"><path d="M10 17l5-5-5-5m5 5H3m12-9h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></symbol>
+    <symbol id="icon-sidebar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></symbol>
+    <symbol id="icon-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+    <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10h.01"/></symbol>
+</svg>

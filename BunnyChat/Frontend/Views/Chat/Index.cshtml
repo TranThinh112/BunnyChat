@@ -3,6 +3,11 @@
     ViewData["Title"] = "Chat";
 }
 
+<button class="notification-bell" type="button" id="openFriendRequestsBtn" aria-label="Thông báo lời mời kết bạn">
+    <svg><use href="#icon-bell"></use></svg>
+    <b id="friendRequestBadge" hidden>0</b>
+</button>
+
 <div class="chat-app">
     @* phan sidebar ben trai  *@
  
@@ -20,7 +25,6 @@
                 <span>Gửi tin nhắn mới</span>
             </button>
 
-
             <div class="search-box" id="searchBox">
                 <input type="search" id="keyword" placeholder="Tìm người dùng..." autocomplete="off" />
                 <button id="searchBtn" type="button" aria-label="Tìm kiếm"><svg><use href="#icon-search"></use></svg></button>
@@ -33,21 +37,27 @@
             <section class="list-section">
                 <div class="section-title"><span>Nhóm chat</span><span id="groupCount">0</span></div>
                 <div class="list-content" id="groupList"></div>
+                <button class="create-group-button" id="openGroupCreateBtn" type="button">+ Tạo nhóm chat</button>
             </section>
 
             <section class="list-section">
                 <div class="section-title"><span>Bạn bè</span><span id="friendCount">0</span></div>
+                <div class="friend-list-card" id="friendListCard">
+                    <strong>Danh sách bạn bè</strong>
+                    <small id="friendListSummary">Đang tải...</small>
+                </div>
                 <div class="list-content" id="friendList"></div>
             </section>
         </div>
 
-@* thong tin cua /me *@
+@* thông tin của /me *@
         <footer class="profile-card">
             <span class="avatar avatar-purple" id="currentAvatar">U</span>
             <span class="profile-info">
                 <strong id="currentDisplayname"></strong>
                 <small id="currentUsername"></small>
             </span>
+            <button id="openSettingsBtn" type="button" aria-label="Cài đặt"><svg><use href="#icon-settings"></use></svg></button>
             <button id="logoutBtn" type="button" aria-label="Đăng xuất"><svg><use href="#icon-logout"></use></svg></button>
         </footer>
     </aside>
@@ -74,7 +84,7 @@
     </main>
 </div>
 
-@* phan thong tin cua nhom *@
+@* phần thông tin của nhóm *@
 <aside class="group-info" id="groupInfo" aria-hidden="true">
     <button class="group-info-backdrop" type="button" data-close-group-info aria-label="Đóng"></button>
     <section class="group-info-panel">
@@ -94,7 +104,135 @@
     </section>
 </div>
 
+<div class="friend-modal" id="settingsModal" aria-hidden="true">
+    <button class="friend-modal-backdrop" type="button" data-close-settings aria-label="Đóng"></button>
+    <section class="friend-modal-card settings-modal-card" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+        <header>
+            <span>
+                <strong id="settingsTitle">Cài đặt tài khoản</strong>
+                <small>Cập nhật thông tin /me và đổi màu logo</small>
+            </span>
+            <button type="button" data-close-settings aria-label="Đóng">×</button>
+        </header>
 
+        <form class="modal-form settings-form" id="settingsForm">
+            <div class="settings-grid">
+                <label>
+                    <span>Họ</span>
+                    <input id="settingsFirstName" type="text" autocomplete="given-name" />
+                </label>
+                <label>
+                    <span>Tên</span>
+                    <input id="settingsLastName" type="text" autocomplete="family-name" />
+                </label>
+            </div>
+
+            <label>
+                <span>Nickname</span>
+                <input id="settingsNickname" type="text" autocomplete="nickname" />
+            </label>
+
+            <label>
+                <span>Số điện thoại</span>
+                <input id="settingsPhone" type="tel" placeholder="VD: 0912345678" autocomplete="tel" />
+            </label>
+
+            <label>
+                <span>Avatar URL</span>
+                <input id="settingsAvatarUrl" type="url" placeholder="https://..." />
+            </label>
+
+            <label>
+                <span>Bio</span>
+                <textarea id="settingsBio" maxlength="240" placeholder="Giới thiệu ngắn về bạn"></textarea>
+            </label>
+
+            <div class="logo-color-panel">
+                <span>
+                    <strong>Màu logo</strong>
+                    <small>Random màu giao diện BunnyChat</small>
+                </span>
+                <button class="friend-action secondary" id="randomLogoColorBtn" type="button">Random màu</button>
+            </div>
+
+            <div class="modal-actions">
+                <button class="friend-action secondary" type="button" data-close-settings>Hủy</button>
+                <button class="friend-action" type="submit">Lưu thay đổi</button>
+            </div>
+        </form>
+    </section>
+</div>
+
+<div class="friend-modal" id="friendModal" aria-hidden="true">
+    <button class="friend-modal-backdrop" type="button" data-close-friend-modal aria-label="Đóng"></button>
+    <section class="friend-modal-card" role="dialog" aria-modal="true" aria-labelledby="friendModalTitle">
+        <header>
+            <span>
+                <strong id="friendModalTitle">Lời mời kết bạn</strong>
+                <small>Quản lý lời mời đã nhận và đã gửi</small>
+            </span>
+            <button type="button" data-close-friend-modal aria-label="Đóng">×</button>
+        </header>
+
+        <div class="friend-tabs">
+            <button class="friend-tab active" type="button" data-friend-tab="received">Đã nhận</button>
+            <button class="friend-tab" type="button" data-friend-tab="sent">Đã gửi</button>
+        </div>
+
+        <div class="friend-request-list" id="friendRequestList"></div>
+    </section>
+</div>
+
+
+
+<div class="friend-modal" id="friendRequestMessageModal" aria-hidden="true">
+    <button class="friend-modal-backdrop" type="button" data-close-friend-message aria-label="Đóng"></button>
+    <section class="friend-modal-card compact-modal" role="dialog" aria-modal="true" aria-labelledby="friendMessageTitle">
+        <header>
+            <span>
+                <strong id="friendMessageTitle">Gửi lời mời kết bạn</strong>
+                <small id="friendMessageSubtitle">Nhập lời nhắn ngắn gửi kèm lời mời</small>
+            </span>
+            <button type="button" data-close-friend-message aria-label="Đóng">×</button>
+        </header>
+
+        <form class="modal-form" id="friendRequestMessageForm">
+            <textarea id="friendRequestMessageInput" maxlength="180" placeholder="VD: Mình muốn kết bạn với bạn."></textarea>
+            <div class="modal-actions">
+                <button class="friend-action secondary" type="button" data-close-friend-message>Hủy</button>
+                <button class="friend-action" type="submit">Gửi lời mời</button>
+            </div>
+        </form>
+    </section>
+</div>
+
+<div class="friend-modal" id="groupCreateModal" aria-hidden="true">
+    <button class="friend-modal-backdrop" type="button" data-close-group-create aria-label="Đóng"></button>
+    <section class="friend-modal-card" role="dialog" aria-modal="true" aria-labelledby="groupCreateTitle">
+        <header>
+            <span>
+                <strong id="groupCreateTitle">Tạo nhóm chat</strong>
+                <small>Chọn bạn bè và đặt tên nhóm</small>
+            </span>
+            <button type="button" data-close-group-create aria-label="Đóng">×</button>
+        </header>
+
+        <form class="modal-form" id="groupCreateForm">
+            <label class="field-label" for="groupNameInput">Tên nhóm</label>
+            <input id="groupNameInput" type="text" maxlength="60" placeholder="VD: Nhóm Backend Dev" autocomplete="off" />
+            <small class="field-error" id="groupNameError" aria-live="polite"></small>
+
+            <div class="field-label">Thành viên</div>
+            <div class="member-picker" id="groupMemberPicker"></div>
+            <small class="field-error" id="groupMembersError" aria-live="polite"></small>
+
+            <div class="modal-actions">
+                <button class="friend-action secondary" type="button" data-close-group-create>Hủy</button>
+                <button class="friend-action" type="submit">Tạo nhóm</button>
+            </div>
+        </form>
+    </section>
+</div>
 
 <svg class="svg-sprite" aria-hidden="true">
     <symbol id="icon-message" viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3v-7a4 4 0 0 1-1-2.7V7a4 4 0 0 1 4-4h11a4 4 0 0 1 4 4Z"/></symbol>
@@ -103,4 +241,7 @@
     <symbol id="icon-sidebar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></symbol>
     <symbol id="icon-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
     <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10h.01"/></symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.05.05a2 2 0 1 1-2.83 2.83l-.05-.05A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 .6V20a2 2 0 1 1-4 0v-.08a1.7 1.7 0 0 0-1-.52 1.7 1.7 0 0 0-1.88.34l-.05.05a2 2 0 1 1-2.83-2.83l.05-.05A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-.6-1H4a2 2 0 1 1 0-4h.08a1.7 1.7 0 0 0 .52-1 1.7 1.7 0 0 0-.34-1.88l-.05-.05a2 2 0 1 1 2.83-2.83l.05.05A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-.6V4a2 2 0 1 1 4 0v.08a1.7 1.7 0 0 0 1 .52 1.7 1.7 0 0 0 1.88-.34l.05-.05a2 2 0 1 1 2.83 2.83l-.05.05A1.7 1.7 0 0 0 19.4 9c.2.36.4.7.6 1H20a2 2 0 1 1 0 4h-.08a1.7 1.7 0 0 0-.52 1Z"/></symbol>
+    <symbol id="icon-user-plus" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6m3-3h-6"/></symbol>
+    <symbol id="icon-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></symbol>
 </svg>

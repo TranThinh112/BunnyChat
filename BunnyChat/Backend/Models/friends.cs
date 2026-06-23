@@ -10,10 +10,10 @@ namespace BunnyChat.Models
 //cac trang thai cua loi moi ket ban
 	public enum FriendStatus
 	{
-		Pending,
-		Accepted,
-		Rejected,
-		Blocked
+		Pending, //0
+		Accepted, //1
+		Rejected, //2
+		Blocked //3
 	}
 	public class Friend
 	{

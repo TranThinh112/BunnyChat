@@ -97,10 +97,25 @@ namespace BunnyChat.Controllers
                 }
 
                 Console.WriteLine(user == null ? "NULL" : user.Username);
+                var currentUser = user!;
 
                 return Ok(ApiResponse.Success(
                     message: "Lấy thông tin thành công",
-                    user
+                    data: new
+                    {
+                        id = currentUser.Id,
+                        firstName = currentUser.FirstName,
+                        lastName = currentUser.LastName,
+                        userName = currentUser.Username,
+                        displayname = currentUser.DisplayName,
+                        email = currentUser.Email,
+                        phone = currentUser.Phone,
+                        bio = currentUser.Bio,
+                        nickname = currentUser.Nickname,
+                        avatarUrl = currentUser.AvatarUrl,
+                        createdAt = currentUser.CreatedAt,
+                        updatedAt = currentUser.UpdatedAt
+                    }
                 ));
             }
 
@@ -115,6 +130,7 @@ namespace BunnyChat.Controllers
             }
         }
 
+//lấy profile user khi tìm kiếm
         [Authorize]
         [HttpGet("{id}/profile")]
         public async Task<IActionResult> GetProfile(string id)
@@ -133,7 +149,7 @@ namespace BunnyChat.Controllers
                     data: new
                     {
                         id = user.Id,
-                        username = user.Username,
+                        userName = user.Username,
                         displayname = user.DisplayName,
                         phone = user.Phone,
                         bio = user.Bio,
@@ -157,6 +173,11 @@ namespace BunnyChat.Controllers
             {
                 // lấy userId từ JWT token
                 var userId = GetUserId();
+
+                if (string.IsNullOrWhiteSpace(userId))
+                {
+                    return Unauthorized(ApiResponse.Fail("Token khong hop le"));
+                }
 
                 // gọi hàm tìm user bằng id
                 var user = await FindUserById(userId);
@@ -192,7 +213,7 @@ namespace BunnyChat.Controllers
                 var lastName = request.LastName ?? user.LastName;
                 var nickname = request.Nickname ?? user.Nickname;
                 var bio = request.Bio ?? user.Bio;
-                var phone = request.Phone ?? user.Phone;
+                var phone = normalizedPhone ?? user.Phone;
                 var avatar = request.AvatarUrl ?? user.AvatarUrl;
 
                 // tính toán displayname
@@ -214,7 +235,7 @@ namespace BunnyChat.Controllers
                     .Set(x => x.Nickname, nickname)
                     .Set(x => x.Bio, bio)
                     .Set(x => x.SearchName, searchName)
-                    .Set(x => x.Phone, normalizedPhone)
+                    .Set(x => x.Phone, phone)
                     .Set(x => x.AvatarUrl, avatar)
                     .Set(x => x.UpdatedAt, DateTime.UtcNow);
 
@@ -225,16 +246,25 @@ namespace BunnyChat.Controllers
 
                 // update xong thì querry lại data để trả về data mới nhất
                 var updatedUser = await FindUserById(userId);
+                if (updatedUser == null)
+                {
+                    return NotFound(ApiResponse.Fail("Nguoi dung khong ton tai"));
+                }
 
                 return Ok(ApiResponse.Success(
                     message: "Update thông tin thành công",
                     new
                     {
                         id = updatedUser.Id,
-                        username = updatedUser.Username,
+                        userName = updatedUser.Username,
+                        firstName = updatedUser.FirstName,
+                        lastName = updatedUser.LastName,
                         displayname = updatedUser.DisplayName,
                         email = updatedUser.Email,
                         phone = updatedUser.Phone,
+                        nickname = updatedUser.Nickname,
+                        bio = updatedUser.Bio,
+                        avatarUrl = updatedUser.AvatarUrl,
                         updateAt = updatedUser.UpdatedAt
                     }
                 ));
@@ -308,7 +338,7 @@ namespace BunnyChat.Controllers
                     data: users.Select(user => new
                     {
                         id = user.Id,
-                        username = user.Username,
+                        userName = user.Username,
                         displayname = user.DisplayName,
                         // email = user.Email,
                         // createdAt = user.CreatedAt,

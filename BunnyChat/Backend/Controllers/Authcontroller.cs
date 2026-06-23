@@ -5,8 +5,6 @@ using BunnyChat.Service;
 using BunnyChat.DTOs;
 using BunnyChat.Models;
 using BunnyChat.Helper;
-using BunnyChat.Models;
-using BunnyChat.Service;
 using BCrypt.Net;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;

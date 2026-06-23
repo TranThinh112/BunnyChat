@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Identity;
 using BunnyChat.Service;
-using BunnyChat.Service;
 
 
 //đăng ký authen
@@ -8,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Text.Json;
+using BunnyChat.Backend.Hubs;
 
 //config cho FrontEnd
 using Microsoft.Extensions.FileProviders;
@@ -18,6 +18,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 //Swwagger
 builder.Services.AddControllers();
+builder.Services.AddSignalR();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -76,6 +77,21 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         //các trạng thái lỗi của middleware và respon
         options.Events = new JwtBearerEvents
         {
+            // SignalR gửi access token qua query string khi mở websocket.
+            OnMessageReceived = context =>
+            {
+                var accessToken = context.Request.Query["access_token"];
+                var path = context.HttpContext.Request.Path;
+
+                if (!string.IsNullOrWhiteSpace(accessToken) &&
+                    path.StartsWithSegments("/chatHub"))
+                {
+                    context.Token = accessToken;
+                }
+
+                return Task.CompletedTask;
+            },
+
              //token sai or hết hạn
             OnAuthenticationFailed = async context =>
             {
@@ -120,8 +136,11 @@ builder.Services.AddAuthorization();
 
 // Railway sẽ truyền port qua biến môi trường PORT.
 // Nếu chạy local không có PORT thì dùng 5281 để giữ thói quen chạy hiện tại.
-var port = Environment.GetEnvironmentVariable("PORT") ?? "5281";
-builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+var port = Environment.GetEnvironmentVariable("PORT");
+if (!string.IsNullOrWhiteSpace(port))
+{
+    builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+}
 
 var app = builder.Build();
 
@@ -163,10 +182,8 @@ if (!app.Environment.IsDevelopment())
 app.UseSwagger();
 app.UseSwaggerUI();
 
-if (!string.Equals(Environment.GetEnvironmentVariable("RAILWAY_ENVIRONMENT"), "production", StringComparison.OrdinalIgnoreCase))
-{
-    app.UseHttpsRedirection();
-}
+// Không ép redirect HTTPS để local chạy ổn trên http://localhost:5281
+// và Railway tự xử lý HTTPS ở tầng proxy bên ngoài.
 
 //static files
 app.UseStaticFiles(new StaticFileOptions
@@ -200,6 +217,7 @@ app.MapControllerRoute(
     );
 
 app.MapControllers();
+app.MapHub<ChatHub>("/chatHub");
 
 app.Lifetime.ApplicationStarted.Register(() =>
 {

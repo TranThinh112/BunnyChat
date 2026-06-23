@@ -1,11 +1,1 @@
-{
-  "Version": 1,
-  "Hash": "gG27xLKadgSTp7CeEqW4dhQRid5qHsNx41nOvnceJHM=",
-  "Source": "BunnyChat",
-  "BasePath": "_content/BunnyChat",
-  "Mode": "Default",
-  "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
-}
+{"Version":1,"Hash":"0lmwkxOD6C9NymGqqu6tra1Aj78BI3yoOUcj12CDpuI=","Source":"BunnyChat","BasePath":"/","Mode":"Root","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}
