@@ -1,0 +1,74 @@
+[
+  {
+    "_id": { "$oid": "6a382c7cc352bf93edbcdd32" },
+    "SenderId": "6a245c312c749c27f745faca",
+    "ReceiveId": "6a245fb0d02e74c35c33a46d",
+    "Message": "Xin chào",
+    "Status": 1,
+    "CreatedAt": { "$date": "2026-06-21T18:25:00.797Z" },
+    "UpdatedAt": { "$date": "2026-06-21T23:22:59.553Z" }
+  },
+  {
+    "_id": { "$oid": "6a3873ea443d2a1f32a170de" },
+    "SenderId": "6a245c312c749c27f745faca",
+    "ReceiveId": "6a245fb7d02e74c35c33a46e",
+    "Message": "Xin chào 4",
+    "Status": 1,
+    "CreatedAt": { "$date": "2026-06-21T23:29:46.765Z" },
+    "UpdatedAt": { "$date": "2026-06-23T14:54:41.831Z" }
+  },
+  {
+    "_id": { "$oid": "6a38751b443d2a1f32a170df" },
+    "SenderId": "6a245fbcd02e74c35c33a46f",
+    "ReceiveId": "6a245fb7d02e74c35c33a46e",
+    "Message": "Xin chào 4",
+    "Status": 1,
+    "CreatedAt": { "$date": "2026-06-21T23:34:51.444Z" },
+    "UpdatedAt": { "$date": "2026-06-23T14:54:42.803Z" }
+  },
+  {
+    "_id": { "$oid": "6a387681443d2a1f32a170e0" },
+    "SenderId": "6a245fb0d02e74c35c33a46d",
+    "ReceiveId": "6a245fbcd02e74c35c33a46f",
+    "Message": "Xin chào 5",
+    "Status": 1,
+    "CreatedAt": { "$date": "2026-06-21T23:40:49.217Z" },
+    "UpdatedAt": { "$date": "2026-06-21T23:43:03.415Z" }
+  },
+  {
+    "_id": { "$oid": "6a3a9cdad028af70a438aaaf" },
+    "SenderId": "6a245c312c749c27f745faca",
+    "ReceiveId": "6a245fbcd02e74c35c33a46f",
+    "Message": "Mình muốn kết bạn với bạn.",
+    "Status": 0,
+    "CreatedAt": { "$date": "2026-06-23T14:48:58.497Z" },
+    "UpdatedAt": { "$date": "2026-06-23T14:48:58.497Z" }
+  },
+  {
+    "_id": { "$oid": "6a3a9e150711e990914a4fdc" },
+    "SenderId": "6a245fb0d02e74c35c33a46d",
+    "ReceiveId": "6a245fb7d02e74c35c33a46e",
+    "Message": "Mình muốn kết bạn với bạn.",
+    "Status": 1,
+    "CreatedAt": { "$date": "2026-06-23T14:54:13.417Z" },
+    "UpdatedAt": { "$date": "2026-06-23T14:54:43.683Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ab4706009c5053170e350" },
+    "SenderId": "6a245fb0d02e74c35c33a46d",
+    "ReceiveId": "6a245fe0d02e74c35c33a470",
+    "Message": "Mình muốn kết bạn với bạn.",
+    "Status": 0,
+    "CreatedAt": { "$date": "2026-06-23T16:29:36.473Z" },
+    "UpdatedAt": { "$date": "2026-06-23T16:29:36.473Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ace2638378479c7146fda" },
+    "SenderId": "6a245c312c749c27f745faca",
+    "ReceiveId": "6a245fe0d02e74c35c33a470",
+    "Message": "Kết bạn nhé",
+    "Status": 0,
+    "CreatedAt": { "$date": "2026-06-23T18:19:18.057Z" },
+    "UpdatedAt": { "$date": "2026-06-23T18:19:18.057Z" }
+  }
+]

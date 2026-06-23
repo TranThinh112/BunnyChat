@@ -1,0 +1,398 @@
+[
+  {
+    "_id": { "$oid": "6a3a9ce9d028af70a438aab1" },
+    "ConversationId": { "$oid": "6a3a9ce1d028af70a438aab0" },
+    "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+    "Content": "alo",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T14:49:13.915Z" },
+    "UpdatedAt": { "$date": "2026-06-23T14:49:13.915Z" }
+  },
+  {
+    "_id": { "$oid": "6a3a9cf2d028af70a438aab2" },
+    "ConversationId": { "$oid": "6a3a9ce1d028af70a438aab0" },
+    "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+    "Content": "đi nhậu ko",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T14:49:22.938Z" },
+    "UpdatedAt": { "$date": "2026-06-23T14:49:22.938Z" }
+  },
+  {
+    "_id": { "$oid": "6a3a9cf6d028af70a438aab3" },
+    "ConversationId": { "$oid": "6a3a9ce1d028af70a438aab0" },
+    "SenderId": { "$oid": "6a245c312c749c27f745faca" },
+    "Content": "thôi",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T14:49:26.592Z" },
+    "UpdatedAt": { "$date": "2026-06-23T14:49:26.592Z" }
+  },
+  {
+    "_id": { "$oid": "6a3a9df60711e990914a4fda" },
+    "ConversationId": { "$oid": "6a3a9ce1d028af70a438aab0" },
+    "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+    "Content": "sao",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T14:53:42.199Z" },
+    "UpdatedAt": { "$date": "2026-06-23T14:53:42.199Z" }
+  },
+  {
+    "_id": { "$oid": "6a3a9df90711e990914a4fdb" },
+    "ConversationId": { "$oid": "6a3a9ce1d028af70a438aab0" },
+    "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+    "Content": "tao bao",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T14:53:45.102Z" },
+    "UpdatedAt": { "$date": "2026-06-23T14:53:45.102Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ab4ff6009c5053170e351" },
+    "ConversationId": { "$oid": "6a3a9e650711e990914a4fdf" },
+    "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+    "Content": "ALO",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T16:31:59.25Z" },
+    "UpdatedAt": { "$date": "2026-06-23T16:31:59.25Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ab50a6009c5053170e353" },
+    "ConversationId": { "$oid": "6a3a9e650711e990914a4fdf" },
+    "SenderId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+    "Content": "SAO",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T16:32:10.415Z" },
+    "UpdatedAt": { "$date": "2026-06-23T16:32:10.415Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ab5266009c5053170e354" },
+    "ConversationId": { "$oid": "6a3a9e650711e990914a4fdf" },
+    "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+    "Content": "đi nhậu ko ?",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T16:32:38.747Z" },
+    "UpdatedAt": { "$date": "2026-06-23T16:32:38.747Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ab52b6009c5053170e355" },
+    "ConversationId": { "$oid": "6a3a9e650711e990914a4fdf" },
+    "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+    "Content": "buồn quá",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T16:32:43.501Z" },
+    "UpdatedAt": { "$date": "2026-06-23T16:32:43.501Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ab53b6009c5053170e356" },
+    "ConversationId": { "$oid": "6a3a9e650711e990914a4fdf" },
+    "SenderId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+    "Content": "hả",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T16:32:59.882Z" },
+    "UpdatedAt": { "$date": "2026-06-23T16:32:59.882Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ab5406009c5053170e357" },
+    "ConversationId": { "$oid": "6a3a9e650711e990914a4fdf" },
+    "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+    "Content": "alo",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T16:33:04.822Z" },
+    "UpdatedAt": { "$date": "2026-06-23T16:33:04.822Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ab5516009c5053170e358" },
+    "ConversationId": { "$oid": "6a3a9e650711e990914a4fdf" },
+    "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+    "Content": "sao",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T16:33:21.921Z" },
+    "UpdatedAt": { "$date": "2026-06-23T16:33:21.921Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ab5566009c5053170e359" },
+    "ConversationId": { "$oid": "6a3a9e650711e990914a4fdf" },
+    "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+    "Content": "đi ko",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T16:33:26.157Z" },
+    "UpdatedAt": { "$date": "2026-06-23T16:33:26.157Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ab55e6009c5053170e35a" },
+    "ConversationId": { "$oid": "6a3a9e650711e990914a4fdf" },
+    "SenderId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+    "Content": "đang hết tền",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T16:33:34.286Z" },
+    "UpdatedAt": { "$date": "2026-06-23T16:33:34.286Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ab5636009c5053170e35b" },
+    "ConversationId": { "$oid": "6a3a9e650711e990914a4fdf" },
+    "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+    "Content": "đi đi tao bao",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T16:33:39.879Z" },
+    "UpdatedAt": { "$date": "2026-06-23T16:33:39.879Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ab5666009c5053170e35c" },
+    "ConversationId": { "$oid": "6a3a9e650711e990914a4fdf" },
+    "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+    "Content": "quán cũ nha",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T16:33:42.358Z" },
+    "UpdatedAt": { "$date": "2026-06-23T16:33:42.358Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ab56c6009c5053170e35d" },
+    "ConversationId": { "$oid": "6a3a9e650711e990914a4fdf" },
+    "SenderId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+    "Content": "vi ci eo",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T16:33:48.842Z" },
+    "UpdatedAt": { "$date": "2026-06-23T16:33:48.842Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ab5b26009c5053170e35e" },
+    "ConversationId": { "$oid": "6a3a9e650711e990914a4fdf" },
+    "SenderId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+    "Content": "chootss nhanh z",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T16:34:58.805Z" },
+    "UpdatedAt": { "$date": "2026-06-23T16:34:58.805Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ab5c16009c5053170e35f" },
+    "ConversationId": { "$oid": "6a3a9e650711e990914a4fdf" },
+    "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+    "Content": "thế đi ko",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T16:35:13.241Z" },
+    "UpdatedAt": { "$date": "2026-06-23T16:35:13.241Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ab5d06009c5053170e361" },
+    "ConversationId": { "$oid": "6a3ab5ca6009c5053170e360" },
+    "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+    "Content": "alo",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T16:35:28.434Z" },
+    "UpdatedAt": { "$date": "2026-06-23T16:35:28.434Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ab7302d4558a62a62a6d6" },
+    "ConversationId": { "$oid": "6a3a9ce1d028af70a438aab0" },
+    "SenderId": { "$oid": "6a245c312c749c27f745faca" },
+    "Content": "sao",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T16:41:20.325Z" },
+    "UpdatedAt": { "$date": "2026-06-23T16:41:20.325Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ab9ebe43ee096f07880cc" },
+    "ConversationId": { "$oid": "6a3ab5056009c5053170e352" },
+    "SenderId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+    "Content": "LO",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T16:52:59.708Z" },
+    "UpdatedAt": { "$date": "2026-06-23T16:52:59.708Z" }
+  },
+  {
+    "_id": { "$oid": "6a3abd0638378479c7146fcd" },
+    "ConversationId": { "$oid": "6a3abc7d38378479c7146fcc" },
+    "SenderId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+    "Content": "alo",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T17:06:14.87Z" },
+    "UpdatedAt": { "$date": "2026-06-23T17:06:14.87Z" }
+  },
+  {
+    "_id": { "$oid": "6a3abd1038378479c7146fce" },
+    "ConversationId": { "$oid": "6a3abc7d38378479c7146fcc" },
+    "SenderId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+    "Content": "đi ăn không ?",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T17:06:24.719Z" },
+    "UpdatedAt": { "$date": "2026-06-23T17:06:24.719Z" }
+  },
+  {
+    "_id": { "$oid": "6a3abd1438378479c7146fcf" },
+    "ConversationId": { "$oid": "6a3abc7d38378479c7146fcc" },
+    "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+    "Content": "ăn gì",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T17:06:28.756Z" },
+    "UpdatedAt": { "$date": "2026-06-23T17:06:28.756Z" }
+  },
+  {
+    "_id": { "$oid": "6a3abd1a38378479c7146fd0" },
+    "ConversationId": { "$oid": "6a3abc7d38378479c7146fcc" },
+    "SenderId": { "$oid": "6a245c312c749c27f745faca" },
+    "Content": "ăn cớt",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T17:06:34.571Z" },
+    "UpdatedAt": { "$date": "2026-06-23T17:06:34.571Z" }
+  },
+  {
+    "_id": { "$oid": "6a3abd6d38378479c7146fd1" },
+    "ConversationId": { "$oid": "6a3a9e650711e990914a4fdf" },
+    "SenderId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+    "Content": "sao",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T17:07:57.493Z" },
+    "UpdatedAt": { "$date": "2026-06-23T17:07:57.493Z" }
+  },
+  {
+    "_id": { "$oid": "6a3abd7538378479c7146fd2" },
+    "ConversationId": { "$oid": "6a3ab5056009c5053170e352" },
+    "SenderId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+    "Content": "alo",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T17:08:05.003Z" },
+    "UpdatedAt": { "$date": "2026-06-23T17:08:05.003Z" }
+  },
+  {
+    "_id": { "$oid": "6a3abd7a38378479c7146fd3" },
+    "ConversationId": { "$oid": "6a3a9e650711e990914a4fdf" },
+    "SenderId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+    "Content": "đi không ?",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T17:08:10.44Z" },
+    "UpdatedAt": { "$date": "2026-06-23T17:08:10.44Z" }
+  },
+  {
+    "_id": { "$oid": "6a3acad438378479c7146fd4" },
+    "ConversationId": { "$oid": "6a3abc7d38378479c7146fcc" },
+    "SenderId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+    "Content": "nói gì kì vậy",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T18:05:08.159Z" },
+    "UpdatedAt": { "$date": "2026-06-23T18:05:08.159Z" }
+  },
+  {
+    "_id": { "$oid": "6a3acad938378479c7146fd5" },
+    "ConversationId": { "$oid": "6a3abc7d38378479c7146fcc" },
+    "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+    "Content": "đúng",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T18:05:13.247Z" },
+    "UpdatedAt": { "$date": "2026-06-23T18:05:13.247Z" }
+  },
+  {
+    "_id": { "$oid": "6a3acafe38378479c7146fd6" },
+    "ConversationId": { "$oid": "6a3abc7d38378479c7146fcc" },
+    "SenderId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+    "Content": "bậy bạ",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T18:05:50.806Z" },
+    "UpdatedAt": { "$date": "2026-06-23T18:05:50.806Z" }
+  },
+  {
+    "_id": { "$oid": "6a3acb0638378479c7146fd7" },
+    "ConversationId": { "$oid": "6a3abc7d38378479c7146fcc" },
+    "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+    "Content": "haizz",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T18:05:58.288Z" },
+    "UpdatedAt": { "$date": "2026-06-23T18:05:58.288Z" }
+  },
+  {
+    "_id": { "$oid": "6a3acb1238378479c7146fd8" },
+    "ConversationId": { "$oid": "6a3abc7d38378479c7146fcc" },
+    "SenderId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+    "Content": "hí hí",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T18:06:10.807Z" },
+    "UpdatedAt": { "$date": "2026-06-23T18:06:10.807Z" }
+  },
+  {
+    "_id": { "$oid": "6a3acd8138378479c7146fd9" },
+    "ConversationId": { "$oid": "6a3ab5056009c5053170e352" },
+    "SenderId": { "$oid": "6a245c312c749c27f745faca" },
+    "Content": "sao",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T18:16:33.588Z" },
+    "UpdatedAt": { "$date": "2026-06-23T18:16:33.588Z" }
+  },
+  {
+    "_id": { "$oid": "6a3acee038378479c7146fdb" },
+    "ConversationId": { "$oid": "6a3a9e650711e990914a4fdf" },
+    "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+    "Content": "đi thì đi",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T18:22:24.462Z" },
+    "UpdatedAt": { "$date": "2026-06-23T18:22:24.462Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ad02538378479c7146fdc" },
+    "ConversationId": { "$oid": "6a3a9e650711e990914a4fdf" },
+    "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+    "Content": "thế có ai đi ko",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T18:27:49.291Z" },
+    "UpdatedAt": { "$date": "2026-06-23T18:27:49.291Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ad04f38378479c7146fdd" },
+    "ConversationId": { "$oid": "6a3abc7d38378479c7146fcc" },
+    "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+    "Content": "thế giờ sao",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T18:28:31.385Z" },
+    "UpdatedAt": { "$date": "2026-06-23T18:28:31.385Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ad09338378479c7146fde" },
+    "ConversationId": { "$oid": "6a3abc7d38378479c7146fcc" },
+    "SenderId": { "$oid": "6a245c312c749c27f745faca" },
+    "Content": "có ai đi khônbg",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T18:29:39.414Z" },
+    "UpdatedAt": { "$date": "2026-06-23T18:29:39.414Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ad09a38378479c7146fdf" },
+    "ConversationId": { "$oid": "6a3abc7d38378479c7146fcc" },
+    "SenderId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+    "Content": "nhưng mà ăn gì",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T18:29:46.61Z" },
+    "UpdatedAt": { "$date": "2026-06-23T18:29:46.61Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ad0a638378479c7146fe0" },
+    "ConversationId": { "$oid": "6a3abc7d38378479c7146fcc" },
+    "SenderId": { "$oid": "6a245c312c749c27f745faca" },
+    "Content": "ăn cớt",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T18:29:58.835Z" },
+    "UpdatedAt": { "$date": "2026-06-23T18:29:58.835Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ad0ae38378479c7146fe1" },
+    "ConversationId": { "$oid": "6a3abc7d38378479c7146fcc" },
+    "SenderId": { "$oid": "6a245c312c749c27f745faca" },
+    "Content": "=))",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T18:30:06.749Z" },
+    "UpdatedAt": { "$date": "2026-06-23T18:30:06.749Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ad0b338378479c7146fe2" },
+    "ConversationId": { "$oid": "6a3abc7d38378479c7146fcc" },
+    "SenderId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+    "Content": ":)",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T18:30:11.293Z" },
+    "UpdatedAt": { "$date": "2026-06-23T18:30:11.293Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ad0b638378479c7146fe3" },
+    "ConversationId": { "$oid": "6a3abc7d38378479c7146fcc" },
+    "SenderId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+    "Content": "m giỡn mặt hả",
+    "ImgUrl": null,
+    "CreatedAt": { "$date": "2026-06-23T18:30:14.647Z" },
+    "UpdatedAt": { "$date": "2026-06-23T18:30:14.647Z" }
+  }
+]

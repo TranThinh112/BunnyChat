@@ -1,0 +1,30 @@
+[
+  {
+    "_id": { "$oid": "6a382a8fc352bf93edbcdd30" },
+    "UserId": "6a245c312c749c27f745faca",
+    "Username": "trthinh1112",
+    "RefreshToken": "FedWRP7HzPvUnTHDLo3ZFIYQdYS77qPTlfDsWXkx/TKkZOfu619L3gM5+5zE6cuRc2jNPXJzb3lTtTqJZJl1Kg==",
+    "ExpiresAt": { "$date": "2026-06-28T18:16:47.229Z" }
+  },
+  {
+    "_id": { "$oid": "6a38717b443d2a1f32a170dd" },
+    "UserId": "6a245fbcd02e74c35c33a46f",
+    "Username": "trthinh1115",
+    "RefreshToken": "ybzhnA/7fOjjSpaenyevQuBg4/3HbAY0CgzIPJfY+6zvxIrITKK6I5yd2pZGjwkMgVFvGw+eWFNzi0X0vjVkUQ==",
+    "ExpiresAt": { "$date": "2026-06-28T23:19:23.124Z" }
+  },
+  {
+    "_id": { "$oid": "6a3a9e280711e990914a4fdd" },
+    "UserId": "6a245fb7d02e74c35c33a46e",
+    "Username": "trthinh1114",
+    "RefreshToken": "ItL7N0NB5xrhDYhQX/9BSNBN6W5ph6rTSxkWh9RsbpSW4MoCC1/ZiENWfCjuJu+mrrFAJPqaIWQepAsMMhpL8Q==",
+    "ExpiresAt": { "$date": "2026-06-30T14:54:32.571Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ab3f66009c5053170e34f" },
+    "UserId": "6a245fb0d02e74c35c33a46d",
+    "Username": "trthinh1113",
+    "RefreshToken": "BHsbeSnzjOS00A7RQC459NlFIYa8vWiGWlv/8pPWfA3Swpq68CMy96ZzTs2rlj+QLEPQ0VRTRKHL+Rqz74Ld2g==",
+    "ExpiresAt": { "$date": "2026-06-30T16:27:34.621Z" }
+  }
+]

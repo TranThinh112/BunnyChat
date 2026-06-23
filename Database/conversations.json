@@ -1,0 +1,223 @@
+[
+  {
+    "_id": { "$oid": "6a3a9ce1d028af70a438aab0" },
+    "Type": "direct",
+    "Participants": [
+      {
+        "UserId": { "$oid": "6a245c312c749c27f745faca" },
+        "JoinedAt": { "$date": "2026-06-23T14:49:05.32Z" }
+      },
+      {
+        "UserId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+        "JoinedAt": { "$date": "2026-06-23T14:49:05.32Z" }
+      }
+    ],
+    "Group": null,
+    "LastMessageAt": { "$date": "2026-06-23T16:41:20.325Z" },
+    "SeenBy": [
+      { "$oid": "6a245c312c749c27f745faca" },
+      { "$oid": "6a245fb0d02e74c35c33a46d" }
+    ],
+    "LastMessage": {
+      "_id": "6a3ab7302d4558a62a62a6d6",
+      "Content": "sao",
+      "SenderId": { "$oid": "6a245c312c749c27f745faca" },
+      "CreatedAt": { "$date": "2026-06-23T16:41:20.325Z" }
+    },
+    "UnreadCounts": {
+      "6a245c312c749c27f745faca": 0,
+      "6a245fb0d02e74c35c33a46d": 0
+    },
+    "CreatedAt": { "$date": "2026-06-23T14:49:05.32Z" },
+    "UpdatedAt": { "$date": "2026-06-23T18:28:16.745Z" }
+  },
+  {
+    "_id": { "$oid": "6a3a9e5e0711e990914a4fde" },
+    "Type": "direct",
+    "Participants": [
+      {
+        "UserId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+        "JoinedAt": { "$date": "2026-06-23T14:55:26.279Z" }
+      },
+      {
+        "UserId": { "$oid": "6a245fbcd02e74c35c33a46f" },
+        "JoinedAt": { "$date": "2026-06-23T14:55:26.279Z" }
+      }
+    ],
+    "Group": null,
+    "LastMessageAt": { "$date": "2026-06-23T14:55:26.279Z" },
+    "SeenBy": [],
+    "LastMessage": null,
+    "UnreadCounts": {
+      "6a245fb7d02e74c35c33a46e": 0,
+      "6a245fbcd02e74c35c33a46f": 0
+    },
+    "CreatedAt": { "$date": "2026-06-23T14:55:26.279Z" },
+    "UpdatedAt": { "$date": "2026-06-23T14:55:26.279Z" }
+  },
+  {
+    "_id": { "$oid": "6a3a9e650711e990914a4fdf" },
+    "Type": "direct",
+    "Participants": [
+      {
+        "UserId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+        "JoinedAt": { "$date": "2026-06-23T14:55:33.737Z" }
+      },
+      {
+        "UserId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+        "JoinedAt": { "$date": "2026-06-23T14:55:33.737Z" }
+      }
+    ],
+    "Group": null,
+    "LastMessageAt": { "$date": "2026-06-23T18:27:49.291Z" },
+    "SeenBy": [
+      { "$oid": "6a245fb0d02e74c35c33a46d" },
+      { "$oid": "6a245fb7d02e74c35c33a46e" }
+    ],
+    "LastMessage": {
+      "_id": "6a3ad02538378479c7146fdc",
+      "Content": "thế có ai đi ko",
+      "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+      "CreatedAt": { "$date": "2026-06-23T18:27:49.291Z" }
+    },
+    "UnreadCounts": {
+      "6a245fb7d02e74c35c33a46e": 0,
+      "6a245fb0d02e74c35c33a46d": 0
+    },
+    "CreatedAt": { "$date": "2026-06-23T14:55:33.737Z" },
+    "UpdatedAt": { "$date": "2026-06-23T18:29:13.874Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ab5056009c5053170e352" },
+    "Type": "direct",
+    "Participants": [
+      {
+        "UserId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+        "JoinedAt": { "$date": "2026-06-23T16:32:05.101Z" }
+      },
+      {
+        "UserId": { "$oid": "6a245c312c749c27f745faca" },
+        "JoinedAt": { "$date": "2026-06-23T16:32:05.101Z" }
+      }
+    ],
+    "Group": null,
+    "LastMessageAt": { "$date": "2026-06-23T18:16:33.588Z" },
+    "SeenBy": [
+      { "$oid": "6a245c312c749c27f745faca" },
+      { "$oid": "6a245fb7d02e74c35c33a46e" }
+    ],
+    "LastMessage": {
+      "_id": "6a3acd8138378479c7146fd9",
+      "Content": "sao",
+      "SenderId": { "$oid": "6a245c312c749c27f745faca" },
+      "CreatedAt": { "$date": "2026-06-23T18:16:33.588Z" }
+    },
+    "UnreadCounts": {
+      "6a245fb7d02e74c35c33a46e": 0,
+      "6a245c312c749c27f745faca": 0
+    },
+    "CreatedAt": { "$date": "2026-06-23T16:32:05.101Z" },
+    "UpdatedAt": { "$date": "2026-06-23T18:29:13.27Z" }
+  },
+  {
+    "_id": { "$oid": "6a3ab5ca6009c5053170e360" },
+    "Type": "direct",
+    "Participants": [
+      {
+        "UserId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+        "JoinedAt": { "$date": "2026-06-23T16:35:22.521Z" }
+      },
+      {
+        "UserId": { "$oid": "6a245fbcd02e74c35c33a46f" },
+        "JoinedAt": { "$date": "2026-06-23T16:35:22.521Z" }
+      }
+    ],
+    "Group": null,
+    "LastMessageAt": { "$date": "2026-06-23T16:35:28.434Z" },
+    "SeenBy": [{ "$oid": "6a245fb0d02e74c35c33a46d" }],
+    "LastMessage": {
+      "_id": "6a3ab5d06009c5053170e361",
+      "Content": "alo",
+      "SenderId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+      "CreatedAt": { "$date": "2026-06-23T16:35:28.434Z" }
+    },
+    "UnreadCounts": {
+      "6a245fb0d02e74c35c33a46d": 0,
+      "6a245fbcd02e74c35c33a46f": 1
+    },
+    "CreatedAt": { "$date": "2026-06-23T16:35:22.521Z" },
+    "UpdatedAt": { "$date": "2026-06-23T16:35:28.5Z" }
+  },
+  {
+    "_id": { "$oid": "6a3abc0138378479c7146fcb" },
+    "Type": "group",
+    "Participants": [
+      {
+        "UserId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+        "JoinedAt": { "$date": "2026-06-23T17:01:53.578Z" }
+      },
+      {
+        "UserId": { "$oid": "6a245fbcd02e74c35c33a46f" },
+        "JoinedAt": { "$date": "2026-06-23T17:01:53.578Z" }
+      }
+    ],
+    "Group": {
+      "Name": "Đi nhậu nghen",
+      "CreatedBy": { "$oid": "6a245fb7d02e74c35c33a46e" }
+    },
+    "LastMessageAt": { "$date": "2026-06-23T17:01:53.578Z" },
+    "SeenBy": [],
+    "LastMessage": null,
+    "UnreadCounts": {
+      "6a245fb7d02e74c35c33a46e": 0,
+      "6a245fbcd02e74c35c33a46f": 0
+    },
+    "CreatedAt": { "$date": "2026-06-23T17:01:53.578Z" },
+    "UpdatedAt": { "$date": "2026-06-23T17:01:53.578Z" }
+  },
+  {
+    "_id": { "$oid": "6a3abc7d38378479c7146fcc" },
+    "Type": "group",
+    "Participants": [
+      {
+        "UserId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+        "JoinedAt": { "$date": "2026-06-23T17:03:57.228Z" }
+      },
+      {
+        "UserId": { "$oid": "6a245c312c749c27f745faca" },
+        "JoinedAt": { "$date": "2026-06-23T17:03:57.228Z" }
+      },
+      {
+        "UserId": { "$oid": "6a245fb0d02e74c35c33a46d" },
+        "JoinedAt": { "$date": "2026-06-23T17:03:57.228Z" }
+      },
+      {
+        "UserId": { "$oid": "6a245fbcd02e74c35c33a46f" },
+        "JoinedAt": { "$date": "2026-06-23T17:03:57.228Z" }
+      }
+    ],
+    "Group": {
+      "Name": "đi ăn",
+      "CreatedBy": { "$oid": "6a245fb7d02e74c35c33a46e" }
+    },
+    "LastMessageAt": { "$date": "2026-06-23T18:30:14.647Z" },
+    "SeenBy": [
+      { "$oid": "6a245fb7d02e74c35c33a46e" },
+      { "$oid": "6a245c312c749c27f745faca" }
+    ],
+    "LastMessage": {
+      "_id": "6a3ad0b638378479c7146fe3",
+      "Content": "m giỡn mặt hả",
+      "SenderId": { "$oid": "6a245fb7d02e74c35c33a46e" },
+      "CreatedAt": { "$date": "2026-06-23T18:30:14.647Z" }
+    },
+    "UnreadCounts": {
+      "6a245fb7d02e74c35c33a46e": 0,
+      "6a245c312c749c27f745faca": 0,
+      "6a245fb0d02e74c35c33a46d": 2,
+      "6a245fbcd02e74c35c33a46f": 16
+    },
+    "CreatedAt": { "$date": "2026-06-23T17:03:57.228Z" },
+    "UpdatedAt": { "$date": "2026-06-23T18:30:14.958Z" }
+  }
+]
