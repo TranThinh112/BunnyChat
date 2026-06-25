@@ -5,7 +5,7 @@ nixPkgs = ["dotnet-sdk_8"]
 cmds = ["dotnet restore BunnyChat.csproj"]
 
 [phases.build]
-cmds = ["dotnet publish BunnyChat.csproj -c Release -o out --no-restore"]
+cmds = ["dotnet publish BunnyChat.csproj -c Release -r linux-x64 --self-contained true -o out --no-restore"]
 
 [start]
-cmd = "dotnet out/BunnyChat.dll"
+cmd = "./out/BunnyChat"
