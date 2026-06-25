@@ -1,5 +1,5 @@
 
-import { refreshAccessToken } from "./Api_Chat.js"
+import { refreshAccessToken } from "./Api_Chat_Refresh.js"
 //protect route /chat bằng việc kiểm tra accestoken
 
 //là hàm async vì bên trong có dùng await
