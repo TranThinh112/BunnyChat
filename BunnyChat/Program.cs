@@ -15,6 +15,20 @@ using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Khi Railway chạy "dotnet out/BunnyChat.dll" từ repo root,
+// ContentRoot có thể là /app nên cần nạp thêm appsettings từ thư mục chứa file dll đã publish.
+var publishedAppSettings = Path.Combine(AppContext.BaseDirectory, "appsettings.json");
+if (File.Exists(publishedAppSettings))
+{
+    builder.Configuration.AddJsonFile(publishedAppSettings, optional: false, reloadOnChange: false);
+}
+
+var publishedEnvironmentSettings = Path.Combine(AppContext.BaseDirectory, $"appsettings.{builder.Environment.EnvironmentName}.json");
+if (File.Exists(publishedEnvironmentSettings))
+{
+    builder.Configuration.AddJsonFile(publishedEnvironmentSettings, optional: true, reloadOnChange: false);
+}
+
 
 //Swwagger
 builder.Services.AddControllers();
@@ -185,12 +199,23 @@ app.UseSwaggerUI();
 // Không ép redirect HTTPS để local chạy ổn trên http://localhost:5281
 // và Railway tự xử lý HTTPS ở tầng proxy bên ngoài.
 
+// Tìm thư mục wwwroot của frontend theo cả khi chạy local và khi publish/deploy từ repo root.
+var frontendWwwrootPath = new[]
+{
+    Path.Combine(builder.Environment.ContentRootPath, "Frontend", "wwwroot"),
+    Path.Combine(AppContext.BaseDirectory, "Frontend", "wwwroot"),
+    Path.Combine(builder.Environment.ContentRootPath, "BunnyChat", "Frontend", "wwwroot")
+}.FirstOrDefault(Directory.Exists);
+
+if (string.IsNullOrWhiteSpace(frontendWwwrootPath))
+{
+    throw new DirectoryNotFoundException("Không tìm thấy thư mục Frontend/wwwroot để serve static files.");
+}
+
 //static files
 app.UseStaticFiles(new StaticFileOptions
 {
-    FileProvider = new PhysicalFileProvider(
-        Path.Combine(builder.Environment.ContentRootPath, "Frontend", "wwwroot")
-    ),
+    FileProvider = new PhysicalFileProvider(frontendWwwrootPath),
     RequestPath = ""
 });;
 
