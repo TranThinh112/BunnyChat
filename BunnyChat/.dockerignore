@@ -1,0 +1,14 @@
+.git/
+.vs/
+.vscode/
+.agents/
+.codex/
+
+bin/
+obj/
+out/
+artifacts/
+
+*.user
+*.suo
+*.pdb

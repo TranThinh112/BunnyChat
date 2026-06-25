@@ -5,7 +5,7 @@ COPY BunnyChat.csproj .
 RUN dotnet restore BunnyChat.csproj
 
 COPY . .
-RUN dotnet publish BunnyChat.csproj -c Release -o /app/publish --no-restore
+RUN dotnet publish BunnyChat.csproj -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
