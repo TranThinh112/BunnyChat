@@ -12,6 +12,7 @@
     @* phan sidebar ben trai  *@
  
     <aside class="chat-sidebar" id="chatSidebar">
+        <button class="mobile-sidebar-close" id="closeSidebarBtn" type="button" aria-label="Đóng danh sách chat">×</button>
         <header class="brand-card">
             <span class="brand-name"><span class="brand-bunny" aria-hidden="true"></span>BunnyChat</span>
             <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Chuyển giao diện">
@@ -19,6 +20,7 @@
             </button>
         </header>
 
+@* vùng search bạn bè *@
         <div class="sidebar-search">
             <button class="compose-button" type="button" id="openSearchBtn">
                 <svg><use href="#icon-message"></use></svg>
@@ -33,6 +35,7 @@
         </div>
         <button class="search-dismiss" id="searchDismiss" type="button" aria-label="Đóng tìm kiếm"></button>
 
+@* danh sách các conversation *@
         <div class="chat-lists">
             <section class="list-section">
                 <div class="section-title"><span>Nhóm chat</span><span id="groupCount">0</span></div>
@@ -77,6 +80,7 @@
 
         <section class="message-area" id="messageArea"></section>
 
+@* ô nhập tin nhắn *@
         <form class="message-composer" id="messageForm">
             <input id="messageInput" type="text" placeholder="Chọn cuộc trò chuyện để nhắn tin..." autocomplete="off" disabled />
             <button class="send-button" type="submit" aria-label="Gửi tin nhắn" disabled><svg><use href="#icon-send"></use></svg></button>
@@ -96,6 +100,7 @@
     </section>
 </aside>
 
+@* thông tin cá nhân khi chat 1:1 *@
 <div class="profile-modal" id="profileModal" aria-hidden="true">
     <button class="profile-modal-backdrop" type="button" data-close-profile aria-label="Đóng"></button>
     <section class="profile-modal-card" role="dialog" aria-modal="true" aria-labelledby="profileModalName">
@@ -104,6 +109,7 @@
     </section>
 </div>
 
+@* phần setting thông tin của /me *@
 <div class="friend-modal" id="settingsModal" aria-hidden="true">
     <button class="friend-modal-backdrop" type="button" data-close-settings aria-label="Đóng"></button>
     <section class="friend-modal-card settings-modal-card" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
@@ -163,6 +169,7 @@
     </section>
 </div>
 
+@* //quản lý lời mời kết bạn *@
 <div class="friend-modal" id="friendModal" aria-hidden="true">
     <button class="friend-modal-backdrop" type="button" data-close-friend-modal aria-label="Đóng"></button>
     <section class="friend-modal-card" role="dialog" aria-modal="true" aria-labelledby="friendModalTitle">
@@ -184,7 +191,7 @@
 </div>
 
 
-
+@* //phần nhân content gửi kết bạn *@
 <div class="friend-modal" id="friendRequestMessageModal" aria-hidden="true">
     <button class="friend-modal-backdrop" type="button" data-close-friend-message aria-label="Đóng"></button>
     <section class="friend-modal-card compact-modal" role="dialog" aria-modal="true" aria-labelledby="friendMessageTitle">
@@ -197,7 +204,7 @@
         </header>
 
         <form class="modal-form" id="friendRequestMessageForm">
-            <textarea id="friendRequestMessageInput" maxlength="180" placeholder="VD: Mình muốn kết bạn với bạn."></textarea>
+            <textarea id="friendRequestMessageInput" maxlength="180" placeholder="VD: Kết bạn nhé ?"></textarea>
             <div class="modal-actions">
                 <button class="friend-action secondary" type="button" data-close-friend-message>Hủy</button>
                 <button class="friend-action" type="submit">Gửi lời mời</button>
@@ -206,6 +213,7 @@
     </section>
 </div>
 
+@* //phần tạo nhóm chat *@
 <div class="friend-modal" id="groupCreateModal" aria-hidden="true">
     <button class="friend-modal-backdrop" type="button" data-close-group-create aria-label="Đóng"></button>
     <section class="friend-modal-card" role="dialog" aria-modal="true" aria-labelledby="groupCreateTitle">
@@ -234,6 +242,7 @@
     </section>
 </div>
 
+@* kho icon  *@
 <svg class="svg-sprite" aria-hidden="true">
     <symbol id="icon-message" viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3v-7a4 4 0 0 1-1-2.7V7a4 4 0 0 1 4-4h11a4 4 0 0 1 4 4Z"/></symbol>
     <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>

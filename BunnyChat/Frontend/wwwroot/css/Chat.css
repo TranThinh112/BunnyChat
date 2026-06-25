@@ -1,3 +1,4 @@
+/* Biến màu mặc định cho dark theme của toàn bộ trang chat. */
 :root {
     --bg: #14121a;
     --surface: rgba(255,255,255,.08);
@@ -11,6 +12,7 @@
     color-scheme: dark;
 }
 
+/* Bộ biến màu cho light theme, được bật khi html có data-theme="light". */
 :root[data-theme="light"] {
     --bg: #d9cfda;
     --surface: rgba(255,255,255,.32);
@@ -22,15 +24,31 @@
     color-scheme: light;
 }
 
+/* Reset cơ bản để kích thước phần tử dễ kiểm soát hơn. */
 * { box-sizing: border-box; }
+
+/* Khóa trang bằng đúng chiều cao màn hình, tránh body tự scroll ngoài layout chat. */
 html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+
+/* Nền tổng thể của trang chat, dùng biến màu để đổi theme. */
 body { font-family: "Segoe UI", sans-serif; color: var(--text); background: linear-gradient(135deg, var(--bg), color-mix(in srgb, var(--bg) 75%, var(--accent))); }
+
+/* Cho input/button kế thừa font và màu chữ của giao diện. */
 button, input { font: inherit; color: inherit; }
+
+/* Tất cả button có con trỏ dạng bấm được. */
 button { cursor: pointer; }
+
+/* Style chung cho icon SVG trong giao diện. */
 svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Ẩn sprite SVG, chỉ dùng làm kho chứa symbol icon. */
 .svg-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 
+/* Layout chính: sidebar bên trái và khung chat bên phải. */
 .chat-app { display: grid; grid-template-columns: 330px minmax(0, 1fr); height: 100dvh; min-height: 0; overflow: hidden; }
+
+/* Nhóm nền kính mờ dùng chung cho sidebar, topbar, ô nhập và modal. */
 .chat-sidebar, .chat-topbar, .message-composer, .profile-modal-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -38,26 +56,45 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
     -webkit-backdrop-filter: blur(18px);
 }
 
+/* Sidebar chứa brand, search, nhóm chat, bạn bè và footer user hiện tại. */
 .chat-sidebar { position: relative; display: flex; flex-direction: column; gap: 14px; min-width: 0; min-height: 0; padding: 14px; border-width: 0 1px 0 0; overflow: hidden; }
+
+/* Nút đóng sidebar chỉ hiện trên màn hình nhỏ. */
+.mobile-sidebar-close { display: none; }
+
+/* Card logo BunnyChat ở đầu sidebar. */
 .brand-card { min-height: 50px; display: flex; align-items: center; justify-content: space-between; padding: 0 14px 0 56px; border-radius: 16px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: var(--shadow); }
+
+/* Tên app và icon thỏ trong brand. */
 .brand-name { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; color: white; }
+
+/* Mặt thỏ dùng chung cho logo và nút đổi theme. */
 .brand-bunny, .toggle-bunny { position: relative; display: inline-block; border-radius: 50%; background:
     radial-gradient(circle at 32% 44%, #67406d 0 1.3px, transparent 1.6px),
     radial-gradient(circle at 68% 44%, #67406d 0 1.3px, transparent 1.6px),
     radial-gradient(ellipse at 50% 68%, #df82b0 0 2px, transparent 2.3px),
     white; }
+
+/* Kích thước mặt thỏ trong logo BunnyChat. */
 .brand-bunny { width: 24px; height: 22px; }
+
+/* Tai thỏ được vẽ bằng pseudo element before/after. */
 .brand-bunny::before, .brand-bunny::after, .toggle-bunny::before, .toggle-bunny::after { content: ""; position: absolute; z-index: 0; border-radius: 8px; background: inherit; }
 .brand-bunny::before, .brand-bunny::after { top: -7px; width: 7px; height: 13px; }
 .brand-bunny::before { left: 4px; transform: rotate(-12deg); }
 .brand-bunny::after { right: 4px; transform: rotate(12deg); }
 .brand-bunny { margin-top: 5px; }
 
+/* Nút gạt theme sáng/tối, bên trong có icon thỏ trượt trái/phải. */
 .theme-toggle { position: relative; width: 58px; height: 30px; border: 1px solid rgba(255,255,255,.55); border-radius: 20px; background: rgba(69,31,86,.28); box-shadow: inset 0 1px 4px rgba(60,24,70,.22); }
+
+/* Icon thỏ nằm trong nút gạt theme. */
 .toggle-bunny { position: absolute; z-index: 2; left: 4px; top: 6px; width: 20px; height: 20px; transition: transform .35s ease, background .35s; }
 .toggle-bunny::before, .toggle-bunny::after { top: -7px; width: 6px; height: 11px; }
 .toggle-bunny::before { left: 3px; transform: rotate(-10deg); }
 .toggle-bunny::after { right: 3px; transform: rotate(10deg); }
+
+/* Trạng thái dark mode: thỏ trượt sang phải và đổi sang màu đen. */
 .theme-toggle.on .toggle-bunny { transform: translateX(29px); background:
     radial-gradient(circle at 32% 44%, #f5e8f4 0 1.3px, transparent 1.6px),
     radial-gradient(circle at 68% 44%, #f5e8f4 0 1.3px, transparent 1.6px),
@@ -65,32 +102,66 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
     #24202a; }
 .theme-toggle.on .toggle-bunny::before, .theme-toggle.on .toggle-bunny::after { background: #24202a; }
 
+/* Vùng search cần z-index cao để kết quả nổi lên trên danh sách chat. */
 .sidebar-search { position: relative; z-index: 6; }
+
+/* Icon chuông thông báo lời mời kết bạn. */
 .notification-bell { position: fixed; z-index: 30; top: 23px; left: 22px; width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.45); border-radius: 50%; background: rgba(255,255,255,.22); color: white; box-shadow: 0 12px 30px rgba(35,16,45,.28); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+
+/* Hiệu ứng hover nhẹ cho chuông thông báo. */
 .notification-bell:hover { transform: translateY(-1px); border-color: white; }
+
+/* Badge số lượng lời mời mới trên chuông. */
 .notification-bell b { position: absolute; top: -5px; right: -5px; min-width: 18px; height: 18px; display: grid; place-items: center; border-radius: 999px; background: linear-gradient(135deg, #f43f5e, #d946ef); color: white; font-size: 10px; box-shadow: 0 8px 18px rgba(217,70,239,.35); }
+
+/* Style nền chung cho nút gửi tin nhắn mới và card conversation. */
 .compose-button, .conversation-card { width: 100%; border: 1px solid var(--border); background: var(--surface); text-align: left; transition: transform .2s, border-color .2s, background .2s; }
+
+/* Nút mở ô tìm kiếm/gửi tin nhắn mới. */
 .compose-button { height: 52px; display: flex; align-items: center; gap: 12px; padding: 0 14px; border-radius: 14px; font-weight: 600; }
+
+/* Hover card/nút làm nổi viền tím và nhấc nhẹ lên. */
 .compose-button:hover, .conversation-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+
+/* Ô search mặc định được thu gọn. */
 .search-box { height: 0; opacity: 0; overflow: hidden; display: flex; gap: 8px; transition: .2s; }
+
+/* Khi mở search thì ô nhập bung ra. */
 .search-box.open { height: 44px; opacity: 1; margin-top: 8px; }
+
+/* Input nhập keyword tìm user. */
 .search-box input { min-width: 0; flex: 1; border: 1px solid var(--border); border-radius: 12px; outline: 0; padding: 0 14px; background: var(--surface-strong); }
+
+/* Focus search input, tạo vòng sáng để biết đang nhập. */
 .search-box input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(139,92,246,.15); }
+
+/* Nút search và nút gửi tin nhắn dùng chung gradient tím. */
 .search-box button, .send-button { border: 0; border-radius: 12px; background: linear-gradient(135deg, #7c3aed, #9333ea); color: white; }
 .search-box button { width: 44px; }
 
+/* Dropdown kết quả search user, nằm nổi để không đẩy layout sidebar xuống. */
 #searchResult { position: absolute; z-index: 8; top: calc(100% + 8px); inset-inline: 0; display: grid; gap: 6px; max-height: calc(100dvh - 210px); overflow-y: auto; padding: 8px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface-strong); box-shadow: var(--shadow); }
+
+/* Không có kết quả thì ẩn hẳn dropdown search. */
 #searchResult:empty { display: none; }
+
+/* Lớp phủ để bấm ra ngoài và đóng kết quả search. */
 .search-dismiss { position: absolute; z-index: 5; inset: 130px 0 0; display: none; width: 100%; border: 0; background: rgba(0,0,0,.18); }
 .chat-sidebar.search-active .search-dismiss { display: block; }
 
-/* css cho phan card chat va title */
+/* Nhóm danh sách chat: chia sidebar thành khu nhóm chat và khu bạn bè. */
 .chat-lists { min-height: 0; flex: 1; display: grid; grid-template-rows: 1fr 1fr; gap: 12px; overflow: hidden; }
+
+/* Mỗi section là một khối có title và list có thể scroll. */
 .list-section { min-height: 0; display: flex; flex-direction: column; }
+
+/* Title của section, ví dụ NHÓM CHAT hoặc BẠN BÈ. */
 .section-title { min-height: 32px; display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+
+/* Nội dung list có scrollbar riêng để nhiều card không đẩy layout. */
 .list-content { min-height: 0; overflow-y: auto; padding-right: 3px; scrollbar-width: thin; scrollbar-color: var(--accent) transparent; }
 
-/* card chat  */
+/* Card conversation dùng cho cả nhóm chat và bạn bè/direct chat. */
 .conversation-card {
     margin-top: 5px;
     min-height: 62px;
@@ -101,92 +172,170 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
     padding: 9px 11px;
     border-radius: 14px;
 }
+
+/* Conversation đang được chọn. */
 .conversation-card.active { border-color: var(--accent); background: rgba(147,51,234,.16); }
+
+/* Khối text bên trong card gồm tên và preview tin nhắn. */
 .conversation-info { min-width: 0; flex: 1; display: grid; gap: 4px; }
+
+/* Cắt bớt text dài trong card bằng dấu ba chấm. */
 .conversation-info strong, .conversation-info small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .conversation-info strong { font-size: 13px; }
 .conversation-info small { color: var(--muted); font-size: 11px; }
+
+/* Dòng trạng thái khi chưa có dữ liệu hoặc đang tải. */
 .empty-state { margin: auto; padding: 18px; color: var(--muted); text-align: center; font-size: 12px; line-height: 1.5; }
+
+/* Card tóm tắt số lượng bạn bè ở đầu section bạn bè. */
 .friend-list-card { display: grid; gap: 5px; margin-bottom: 8px; padding: 12px; border: 1px solid var(--border); border-radius: 14px; background: linear-gradient(135deg, rgba(124,58,237,.18), rgba(217,70,239,.12)); }
 .friend-list-card strong { font-size: 13px; }
 .friend-list-card small { color: var(--muted); font-size: 11px; line-height: 1.45; }
+
+/* Nút mở modal tạo nhóm chat. */
 .create-group-button { width: 100%; margin-top: 8px; border: 1px dashed var(--accent); border-radius: 14px; padding: 10px 12px; background: rgba(147,51,234,.12); color: var(--text); font-weight: 800; }
 .create-group-button:hover { background: rgba(147,51,234,.2); }
+
+/* Card user trong kết quả search, gồm avatar, thông tin và nút hành động. */
 .search-user-card { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; }
 .search-card-actions { flex: 0 0 auto; }
+
+/* Nút nhỏ trong card search, ví dụ thêm bạn hoặc đã gửi. */
 .mini-action { border: 0; border-radius: 999px; padding: 8px 10px; background: linear-gradient(135deg, #7c3aed, #d946ef); color: white; font-size: 11px; font-weight: 700; white-space: nowrap; }
 .mini-action:disabled { opacity: .62; cursor: not-allowed; background: var(--surface); color: var(--muted); border: 1px solid var(--border); }
 
-
+/* Avatar chung dùng trong card, profile và danh sách thành viên. */
 .avatar { position: relative; z-index: 1; flex: 0 0 auto; width: 38px; height: 38px; display: grid; place-items: center; border: 2px solid rgba(255,255,255,.18); border-radius: 50%; background: linear-gradient(135deg, #7c3aed, #d946ef); color: white; font-size: 13px; font-weight: 700; box-shadow: 0 4px 10px rgba(43,25,52,.22); }
+
+/* Ảnh avatar thật, nếu user có avatarUrl. */
 .avatar img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+
+/* Tai thỏ ẩn mặc định, chỉ hiện khi hover vào card. */
 .avatar::before, .avatar::after { content: ""; position: absolute; z-index: -1; top: -7px; width: 8px; height: 14px; border-radius: 8px; background: inherit; opacity: 0; transform: translateY(7px) scaleY(.3); transition: .25s ease; }
 .avatar::before { left: 6px; }
 .avatar::after { right: 6px; }
 .conversation-card:hover .avatar::before, .conversation-card:hover .avatar::after { opacity: 1; transform: translateY(0) scaleY(1); }
+
+/* Footer sidebar hiển thị tài khoản đang đăng nhập. */
 .profile-card { min-height: 54px; display: flex; align-items: center; gap: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
 .profile-info { min-width: 0; flex: 1; display: grid; gap: 3px; }
 .profile-info strong, .profile-info small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .profile-info small { color: var(--muted); font-size: 11px; }
+
+/* Nút trong footer profile và nút mở sidebar không có nền mặc định. */
 .profile-card button, .sidebar-toggle { border: 0; background: transparent; }
 
-/* khung chat  */
+/* Khung chat chính: topbar, vùng tin nhắn, ô nhập tin nhắn. */
 .chat-main { min-width: 0; min-height: 0; height: 100dvh; overflow: hidden; display: grid; grid-template-rows: 70px minmax(0, 1fr) 58px; }
+
+/* Header của cuộc trò chuyện đang mở. */
 .chat-topbar { display: flex; align-items: center; gap: 12px; padding: 0 18px; border-width: 0 0 1px; }
+
+/* Avatar trên header chat. */
 .chat-avatar { width: 42px; height: 42px; }
+
+/* Tên conversation và mô tả nhỏ bên dưới. */
 .chat-heading { min-width: 0; flex: 1; display: grid; gap: 3px; }
 .chat-heading strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .chat-heading small { color: var(--muted); font-size: 11px; }
+
+/* Vùng tin nhắn có scrollbar riêng, tin cũ nằm trên và có thể scroll lên đọc. */
 .message-area { min-height: 0; height: 100%; overflow-y: auto; overscroll-behavior: contain; display: flex; flex-direction: column; gap: 10px; padding: 20px; scrollbar-width: thin; scrollbar-color: var(--accent) transparent; }
+
+/* Một dòng tin nhắn gồm avatar, tên người gửi, bubble và thời gian. */
 .message { width: fit-content; max-width: min(76%, 620px); display: flex; align-items: flex-end; gap: 8px; }
+
+/* Phần nội dung bên cạnh avatar của một tin nhắn. */
 .message-body { min-width: 0; display: grid; gap: 4px; }
+
+/* Tên người gửi hiển thị phía trên bubble. */
 .message-sender { padding: 0 4px; color: var(--muted); font-size: 11px; font-weight: 800; }
+
+/* Avatar nhỏ đi kèm từng tin nhắn. */
 .message-avatar { position: relative; flex: 0 0 auto; width: 28px; height: 28px; display: grid; place-items: center; overflow: visible; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: white; font-size: 11px; font-weight: 800; box-shadow: 0 6px 14px rgba(20,10,30,.2); }
 .message-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+
+/* Bubble tin nhắn mặc định, dùng cho tin đến. */
 .message p { width: fit-content; max-width: 100%; margin: 0; padding: 10px 13px; border: 1px solid var(--border); border-radius: 5px 14px 14px; background: var(--surface-strong); box-shadow: 0 4px 14px rgba(45,27,50,.08); font-size: 13px; line-height: 1.45; }
+
+/* Thời gian gửi tin nhắn. */
 .message time { padding: 0 4px; color: var(--muted); font-size: 10px; }
+
+/* Tin nhắn người khác gửi nằm bên trái. */
 .message.incoming { align-self: flex-start; justify-items: start; }
+
+/* Tin nhắn user hiện tại gửi nằm bên phải. */
 .message.outgoing { align-self: flex-end; flex-direction: row-reverse; justify-items: end; }
 .message.outgoing .message-body { justify-items: end; }
+
+/* Bubble tin nhắn của user hiện tại dùng gradient tím. */
 .message.outgoing p { border: 0; border-radius: 14px 5px 14px 14px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: white; }
+
+/* Thanh nhập tin nhắn ở cuối màn hình. */
 .message-composer { min-height: 58px; display: flex; gap: 8px; padding: 8px 14px; border-width: 1px 0 0; }
 .message-composer input { min-width: 0; flex: 1; border: 0; outline: 0; background: transparent; }
 .send-button { width: 42px; }
 .message-composer :disabled { opacity: .45; cursor: not-allowed; }
+
+/* Nút mở thông tin nhóm/user trên header chat. */
 .info-button { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
 .info-button:hover:not(:disabled) { border-color: var(--accent); background: rgba(147,51,234,.15); }
 .info-button:disabled { opacity: .35; cursor: not-allowed; }
 
+/* Overlay chứa panel thông tin nhóm hoặc profile user đang chat. */
 .group-info { position: fixed; z-index: 18; inset: 0; visibility: hidden; pointer-events: none; }
 .group-info.open { visibility: visible; pointer-events: auto; }
+
+/* Backdrop tối phía sau panel thông tin. */
 .group-info-backdrop { position: absolute; inset: 0; border: 0; background: rgba(0,0,0,.35); opacity: 0; transition: opacity .25s; }
 .group-info.open .group-info-backdrop { opacity: 1; }
+
+/* Panel trượt từ phải sang, chứa thông tin conversation. */
 .group-info-panel { position: absolute; top: 0; right: 0; width: min(360px, 92vw); height: 100%; padding: 18px; overflow-y: auto; background: var(--surface-strong); border-left: 1px solid var(--border); box-shadow: var(--shadow); transform: translateX(100%); transition: transform .28s ease; }
 .group-info.open .group-info-panel { transform: translateX(0); }
+
+/* Header trong panel thông tin, gồm tiêu đề và nút đóng. */
 .group-info-panel > header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 15px; border-bottom: 1px solid var(--border); }
 .group-info-panel > header button { width: 32px; height: 32px; border: 0; border-radius: 50%; background: var(--surface); font-size: 20px; }
+
+/* Khu hero hiển thị avatar và tên nhóm/user. */
 .group-info-hero { display: flex; align-items: center; gap: 14px; padding: 24px 0; }
 .group-info-hero .avatar { width: 56px; height: 56px; font-size: 18px; }
 .group-info-hero h2, .group-info-hero p { margin: 0; }
 .group-info-hero h2 { margin-bottom: 5px; font-size: 18px; }
 .group-info-hero p { color: var(--muted); font-size: 12px; }
+
+/* Bảng thông tin dạng key/value như tên nhóm, số thành viên, ngày tạo. */
 .group-info dl { display: grid; gap: 8px; margin: 0 0 24px; }
 .group-info dl div { display: flex; justify-content: space-between; gap: 10px; padding: 11px; border-radius: 12px; background: var(--surface); }
 .group-info dt { color: var(--muted); font-size: 11px; }
 .group-info dd { margin: 0; text-align: right; font-size: 12px; font-weight: 600; }
+
+/* Danh sách thành viên nhóm trong panel thông tin. */
 .group-members { display: grid; gap: 8px; }
 .group-members > strong { margin-bottom: 4px; font-size: 12px; text-transform: uppercase; color: var(--muted); }
 .group-members .conversation-card { cursor: default; }
+
+/* Form thêm thành viên mới vào nhóm. */
 .group-add-members { display: grid; gap: 10px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border); }
 .group-add-members > strong { font-size: 12px; text-transform: uppercase; color: var(--muted); }
 .compact-picker { max-height: 230px; }
 .compact-empty { margin: 0; }
 
+/* Modal chung cho profile user và lời mời kết bạn. */
 .profile-modal, .friend-modal { position: fixed; z-index: 20; inset: 0; display: grid; place-items: center; visibility: hidden; opacity: 0; transition: .2s; }
 .profile-modal.open, .friend-modal.open { visibility: visible; opacity: 1; }
+
+/* Backdrop tối của modal. */
 .profile-modal-backdrop, .friend-modal-backdrop { position: absolute; inset: 0; border: 0; background: rgba(0,0,0,.55); }
+
+/* Card nội dung bên trong modal. */
 .profile-modal-card, .friend-modal-card { position: relative; width: min(390px, calc(100% - 30px)); padding: 26px; border-radius: 24px; box-shadow: var(--shadow); }
+
+/* Nút đóng modal profile. */
 .profile-modal-close { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border: 0; border-radius: 50%; background: var(--surface); font-size: 20px; }
+
+/* Khu đầu profile gồm avatar, tên và username. */
 .profile-hero { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
 .profile-hero .avatar { width: 58px; height: 58px; font-size: 18px; }
 .profile-hero span { min-width: 0; display: grid; gap: 4px; }
@@ -194,24 +343,37 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 .profile-hero small { color: var(--muted); font-size: 12px; }
 .profile-modal-content h2 { margin: 0 0 18px; }
 .profile-hero h2 { margin: 0; }
+
+/* Danh sách thông tin profile dạng key/value. */
 .profile-modal-content dl { display: grid; gap: 8px; margin: 0; }
 .profile-modal-content dl div { display: grid; grid-template-columns: 110px 1fr; gap: 10px; padding: 11px; border-radius: 12px; background: var(--surface); }
 .profile-modal-content dt { color: var(--muted); font-size: 11px; }
 .profile-modal-content dd { margin: 0; overflow-wrap: anywhere; text-align: right; font-size: 12px; font-weight: 600; }
+
+/* Khu hành động trong profile, ví dụ nhập lời nhắn kết bạn. */
 .profile-actions { display: grid; gap: 8px; margin-top: 16px; }
 .profile-actions textarea { width: 100%; min-height: 78px; resize: vertical; border: 1px solid var(--border); border-radius: 14px; outline: 0; padding: 10px 12px; background: var(--surface-strong); color: var(--text); }
 .profile-actions button, .friend-action { border: 0; border-radius: 12px; padding: 10px 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: white; font-weight: 700; }
 .profile-actions small { color: var(--muted); font-size: 11px; }
 
+/* Modal lời mời kết bạn nằm cao hơn profile modal. */
 .friend-modal { z-index: 21; }
+
+/* Card modal thông báo kết bạn, có giới hạn chiều cao và list scroll. */
 .friend-modal-card { width: min(520px, calc(100% - 30px)); max-height: min(680px, calc(100dvh - 40px)); display: flex; flex-direction: column; gap: 14px; background: var(--surface-strong); border: 1px solid var(--border); }
+
+/* Header modal lời mời kết bạn. */
 .friend-modal-card > header { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
 .friend-modal-card > header span { display: grid; gap: 4px; }
 .friend-modal-card > header small { color: var(--muted); font-size: 12px; }
 .friend-modal-card > header button { width: 32px; height: 32px; border: 0; border-radius: 50%; background: var(--surface); font-size: 20px; }
+
+/* Tab chuyển giữa lời mời nhận được và lời mời đã gửi. */
 .friend-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 4px; border-radius: 14px; background: var(--surface); }
 .friend-tab { border: 0; border-radius: 11px; padding: 10px; background: transparent; color: var(--muted); font-weight: 700; }
 .friend-tab.active { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: white; }
+
+/* Danh sách card lời mời kết bạn. */
 .friend-request-list { min-height: 160px; max-height: 430px; overflow-y: auto; display: grid; align-content: start; gap: 10px; padding-right: 3px; scrollbar-width: thin; scrollbar-color: var(--accent) transparent; }
 .friend-request-card { display: grid; gap: 10px; padding: 12px; border: 1px solid var(--border); border-radius: 16px; background: var(--surface); }
 .friend-request-main { display: flex; align-items: center; gap: 11px; }
@@ -221,14 +383,24 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 .friend-request-message { margin: 0; padding: 10px 12px; border-radius: 12px; background: rgba(147,51,234,.12); color: var(--muted); font-size: 12px; }
 .friend-request-actions { display: flex; justify-content: flex-end; gap: 8px; }
 .friend-action.secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+
+/* Modal nhỏ dùng cho form nhập lời nhắn kết bạn. */
 .compact-modal { width: min(430px, calc(100% - 30px)); }
+
+/* Form trong modal: tạo nhóm, gửi lời mời, cài đặt. */
 .modal-form { display: grid; gap: 12px; }
 .modal-form > input, .modal-form > textarea { width: 100%; border: 1px solid var(--border); border-radius: 14px; outline: 0; padding: 11px 12px; background: var(--surface); color: var(--text); font: inherit; }
 .modal-form textarea { min-height: 92px; resize: vertical; }
+
+/* Label và lỗi validate hiển thị dưới input, thay cho alert trình duyệt. */
 .field-label { color: var(--muted); font-size: 12px; font-weight: 800; }
 .field-error { min-height: 16px; margin-top: -6px; color: #fb7185; font-size: 11px; font-weight: 700; }
 .modal-form > input.input-error { border-color: #fb7185; box-shadow: 0 0 0 4px rgba(251,113,133,.14); }
+
+/* Hàng nút cuối modal, căn về bên phải. */
 .modal-actions { display: flex; justify-content: flex-end; gap: 8px; }
+
+/* Danh sách checkbox chọn thành viên khi tạo/thêm nhóm. */
 .member-picker { max-height: 270px; overflow-y: auto; display: grid; gap: 8px; padding-right: 3px; scrollbar-width: thin; scrollbar-color: var(--accent) transparent; }
 .member-option { display: flex; align-items: center; gap: 10px; padding: 10px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); cursor: pointer; }
 .member-option > span { min-width: 0; display: flex; align-items: center; gap: 10px; flex: 1; }
@@ -237,19 +409,37 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 .member-option-info { min-width: 0; display: grid; gap: 3px; }
 .member-option-info strong, .member-option-info small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .member-option-info small { color: var(--muted); font-size: 11px; }
+
+/* Modal cài đặt tài khoản rộng hơn modal profile. */
 .settings-modal-card { width: min(560px, calc(100% - 30px)); }
 .settings-form label { display: grid; gap: 6px; }
 .settings-form label span { color: var(--muted); font-size: 12px; font-weight: 800; }
+
+/* Grid chia họ/tên thành hai cột trên màn lớn. */
 .settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+/* Khu random màu logo trong modal cài đặt. */
 .logo-color-panel { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); }
 .logo-color-panel span { display: grid; gap: 3px; }
 .logo-color-panel small { color: var(--muted); font-size: 11px; }
 
+/* Responsive tablet/mobile: sidebar thành màn danh sách trượt phủ toàn màn. */
 @media (max-width: 720px) {
+    /* Trên mobile không dùng grid 2 cột nữa. */
     .chat-app { display: block; }
-    .chat-sidebar { position: fixed; z-index: 10; inset: 0 auto 0 0; width: min(88vw, 330px); transform: translateX(-105%); transition: transform .25s; }
+
+    /* Sidebar ẩn sang trái, khi có class open thì trượt vào. */
+    .chat-sidebar { position: fixed; z-index: 40; inset: 0; width: 100vw; max-width: none; padding: 14px; border-width: 0; transform: translateX(-105%); transition: transform .25s; }
     .chat-sidebar.open { transform: translateX(0); }
+
+    /* Nút đóng sidebar trên mobile. */
+    .mobile-sidebar-close { position: absolute; z-index: 4; top: 21px; right: 22px; width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.36); border-radius: 50%; background: rgba(35,30,45,.45); color: white; font-size: 24px; line-height: 1; }
+    .brand-card { padding-right: 58px; }
+
+    /* Chuông thông báo chuyển xuống gần thanh nhập để không đè header. */
     .notification-bell { z-index: 9; top: auto; left: 14px; bottom: calc(74px + env(safe-area-inset-bottom)); width: 34px; height: 34px; }
+
+    /* Khung chat mobile tăng chiều cao topbar/composer cho dễ bấm. */
     .chat-main { height: 100dvh; grid-template-rows: 76px minmax(0, 1fr) 62px; }
     .chat-topbar { min-width: 0; gap: 8px; padding: 0 12px; }
     .sidebar-toggle, .info-button { flex: 0 0 36px; width: 36px; height: 36px; display: grid; place-items: center; border-radius: 12px; }
@@ -264,6 +454,7 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
     .settings-grid { grid-template-columns: 1fr; }
 }
 
+/* Responsive màn rất nhỏ: thu nhỏ avatar, nút và khoảng cách để không đè nhau. */
 @media (max-width: 420px) {
     .chat-main { grid-template-rows: 70px minmax(0, 1fr) 60px; }
     .chat-topbar { gap: 7px; padding: 0 9px; }

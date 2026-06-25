@@ -1,201 +1,286 @@
 import { apiFetch } from "./Api_Fetch.js";
+import {
+    avatarUrlOf,
+    conversationName,
+    createAvatar,
+    createMessageAvatar,
+    directChatUserId,
+    groupMemberIds,
+    hasPendingRequest,
+    isFriend,
+    itemId,
+    messageConversationId,
+    messageSender,
+    readMessagePage,
+    renderAvatarInto,
+    setEmpty,
+    sortByLatestConversation,
+    sortMessagesByTime,
+    userDisplayName,
+    userField,
+    userName,
+    valueOr
+} from "./ChatHelper.js";
 
-const el = id => document.getElementById(id);
+// Hàm lấy nhanh element theo id để code bên dưới ngắn gọn hơn.
+const el = id => document.getElementById(id); 
+// <=>function el(id) {
+    // return document.getElementById(id); }
 
-const sidebar = el("chatSidebar");
+// Sidebar chứa danh sách nhóm chat, bạn bè, tìm kiếm và thông tin user hiện tại.
+const sidebar = el("chatSidebar"); //const sidebar = document.getElementById("chatSidebar");
+
+// Nút đóng sidebar trên màn hình nhỏ.
+const closeSidebarButton = el("closeSidebarBtn");
+
+// Khu vực render danh sách nhóm chat.
 const groupList = el("groupList");
+
+// Khu vực render danh sách bạn bè/direct chat.
 const friendList = el("friendList");
+
+// Khu vực chính hiển thị danh sách tin nhắn của cuộc trò chuyện đang chọn.
 const messageArea = el("messageArea");
+
+// Form nhập và gửi tin nhắn.
 const messageForm = el("messageForm");
+
+// Ô nhập nội dung tin nhắn.
 const messageInput = el("messageInput");
+
+// Nút gửi tin nhắn trong form chat.
 const sendButton = messageForm.querySelector(".send-button");
+
+// Khung search user ở sidebar.
 const searchBox = el("searchBox");
+
+// Khu vực hiển thị kết quả tìm kiếm user.
 const searchResult = el("searchResult");
+
+// Ô nhập từ khóa tìm kiếm user.
 const keywordInput = el("keyword");
+
+// Nút thực hiện tìm kiếm user.
 const searchButton = el("searchBtn");
+
+// Nút chuyển theme sáng/tối của giao diện.
 const themeToggle = document.querySelector(".theme-toggle");
+
+// Modal hiển thị profile chi tiết của user.
 const profileModal = el("profileModal");
+
+// Vùng nội dung bên trong modal profile.
 const profileModalContent = el("profileModalContent");
+
+// Panel bên phải hiển thị thông tin nhóm hoặc thông tin user đang chat.
 const groupInfo = el("groupInfo");
+
+// Vùng nội dung của panel thông tin conversation.
 const groupInfoContent = el("groupInfoContent");
+
+// Nút mở panel thông tin conversation trên header chat.
 const groupInfoButton = el("groupInfoButton");
+
+// Modal hiển thị danh sách lời mời kết bạn.
 const friendModal = el("friendModal");
+
+// Danh sách lời mời kết bạn trong modal thông báo.
 const friendRequestList = el("friendRequestList");
+
+// Badge số lượng lời mời kết bạn mới trên icon chuông.
 const friendRequestBadge = el("friendRequestBadge");
+
+// Card tóm tắt danh sách bạn bè ở sidebar.
 const friendListSummary = el("friendListSummary");
+
+// Modal nhập lời nhắn trước khi gửi lời mời kết bạn.
 const friendRequestMessageModal = el("friendRequestMessageModal");
+
+// Form gửi lời nhắn kèm lời mời kết bạn.
 const friendRequestMessageForm = el("friendRequestMessageForm");
+
+// Ô nhập lời nhắn khi gửi kết bạn.
 const friendRequestMessageInput = el("friendRequestMessageInput");
+
+// Dòng mô tả người nhận trong modal gửi kết bạn.
 const friendMessageSubtitle = el("friendMessageSubtitle");
+
+// Modal tạo nhóm chat mới.
 const groupCreateModal = el("groupCreateModal");
+
+// Form tạo nhóm chat.
 const groupCreateForm = el("groupCreateForm");
+
+// Ô nhập tên nhóm chat.
 const groupNameInput = el("groupNameInput");
+
+// Khu vực render checkbox chọn thành viên khi tạo nhóm.
 const groupMemberPicker = el("groupMemberPicker");
+
+// Dòng lỗi validate tên nhóm, hiển thị dưới ô nhập tên nhóm.
 const groupNameError = el("groupNameError");
+
+// Dòng lỗi validate thành viên nhóm, hiển thị dưới danh sách chọn thành viên.
 const groupMembersError = el("groupMembersError");
+
+// Modal cài đặt tài khoản hiện tại.
 const settingsModal = el("settingsModal");
+
+// Form cập nhật thông tin /me.
 const settingsForm = el("settingsForm");
+
+// Ô nhập họ của user hiện tại.
 const settingsFirstName = el("settingsFirstName");
+
+// Ô nhập tên của user hiện tại.
 const settingsLastName = el("settingsLastName");
+
+// Ô nhập nickname của user hiện tại.
 const settingsNickname = el("settingsNickname");
+
+// Ô nhập số điện thoại của user hiện tại.
 const settingsPhone = el("settingsPhone");
+
+// Ô nhập URL avatar của user hiện tại.
 const settingsAvatarUrl = el("settingsAvatarUrl");
+
+// Ô nhập bio/giới thiệu ngắn của user hiện tại.
 const settingsBio = el("settingsBio");
+
+// Nút random màu logo/giao diện trong modal cài đặt.
 const randomLogoColorBtn = el("randomLogoColorBtn");
 
+// Danh sách endpoint frontend cần gọi tới backend.
+// Các field dạng function dùng để gắn id/keyword an toàn bằng encodeURIComponent.
 const API = {
+    // Lấy danh sách conversation của user hiện tại.
     conversations: "/api/chat",
+
+    // Lấy danh sách bạn bè.
     friends: "/api/friends",
+
+    // Lấy danh sách lời mời kết bạn đã nhận/đã gửi.
     friendRequests: "/api/friends/requests",
+
+    // Gửi lời mời kết bạn mới.
     sendFriendRequest: "/api/friends/requests",
+
+    // Chấp nhận một lời mời kết bạn theo request id.
     acceptFriendRequest: id => `/api/friends/requests/${encodeURIComponent(id)}/accept`,
+
+    // Từ chối một lời mời kết bạn theo request id.
     declineFriendRequest: id => `/api/friends/requests/${encodeURIComponent(id)}/decline`,
+
+    // Tạo conversation mới, gồm direct chat hoặc group chat.
     createConversation: "/api/chat",
+
+    // Thêm thành viên vào nhóm chat theo conversation id.
     addGroupMembers: id => `/api/chat/${encodeURIComponent(id)}/members`,
+
+    // Lấy tin nhắn theo conversation id; cursor dùng để phân trang tin nhắn cũ.
     messages: (id, cursor = "") => {
         const url = `/api/chat/${encodeURIComponent(id)}/messages`;
         return cursor ? `${url}?cursor=${encodeURIComponent(cursor)}` : url;
     },
+
+    // Gửi tin nhắn vào một conversation.
     sendMessage: id => `/api/chat/${encodeURIComponent(id)}/messages`,
+
+    // Đánh dấu conversation đã xem/đã đọc.
     seen: id => `/api/chat/${encodeURIComponent(id)}/seen`,
+
+    // Tìm kiếm user theo keyword.
     search: keyword => `/api/users/search?q=${encodeURIComponent(keyword)}`,
+
+    // Lấy profile chi tiết của một user.
     profile: userId => `/api/users/${encodeURIComponent(userId)}/profile`,
+
+    // Lấy thông tin tài khoản hiện tại.
     me: "/api/users/me",
+
+    // Cập nhật thông tin tài khoản hiện tại.
     updateMe: "/api/users/me",
+
+    // Cho phép backend/layout override endpoint nếu sau này cần đổi base path.
     ...(window.BunnyChatAPI || {})
 };
 
+// State tạm của màn Chat.
+// Frontend dùng object này để lưu dữ liệu đã load từ server và trạng thái UI hiện tại.
 const state = {
+    // Thông tin user đang đăng nhập.
     currentUser: null,
+
+    // Danh sách conversation lấy từ backend.
     conversations: [],
+
+    // Danh sách bạn bè lấy từ backend.
     friends: [],
+
+    // Danh sách lời mời kết bạn, tách thành lời mời nhận được và đã gửi đi.
     friendRequests: {
         received: [],
         sent: []
     },
+
+    // Tab lời mời kết bạn đang mở trong modal: received hoặc sent.
     friendRequestTab: "received",
+
+    // Conversation đang được chọn để xem/gửi tin nhắn.
     activeConversation: null,
+
+    // User đang chờ gửi lời mời kết bạn kèm lời nhắn.
     pendingFriendRequest: null,
+
+    // Kết nối SignalR hiện tại.
     connection: null,
+
+    // Danh sách conversation id đã join vào SignalR group để tránh join lặp.
     joinedConversationIds: new Set(),
+
+    // Danh sách message id đã render để tránh hiện trùng tin nhắn realtime.
     renderedMessageIds: new Set(),
+
+    // Cursor trang tin nhắn cũ tiếp theo, dùng khi scroll lên để load thêm.
     messageNextCursor: null,
+
+    // Cờ chống gọi load tin nhắn cũ nhiều lần cùng lúc.
     loadingOlderMessages: false
 };
 
-// Trả về giá trị hợp lệ hoặc nội dung mặc định khi dữ liệu bị trống.
-function valueOr(value, fallback = "Chưa cập nhật") {
-    return typeof value === "string" && value.trim() ? value.trim() : fallback;
+// Kiểm tra layout mobile để mở/đóng sidebar như một màn danh sách chat.
+function isMobileChatLayout() {
+    return window.matchMedia("(max-width: 720px)").matches;
 }
 
-// Lấy chữ cái đầu để hiển thị avatar.
-function initialOf(value) {
-    return valueOr(value, "?").charAt(0).toUpperCase();
+// Mở sidebar danh sách chat trên giao diện mobile.
+function openSidebar() {
+    sidebar.classList.add("open");
 }
 
-// Lấy avatarUrl với nhiều kiểu tên field để tương thích response cũ/mới.
-function avatarUrlOf(source) {
-    return source?.avatarUrl || source?.AvatarUrl || source?.avatarURL || source?.AvatarURL || source?.photoUrl || source?.imageUrl || "";
+// Đóng sidebar danh sách chat trên giao diện mobile.
+function closeSidebar() {
+    sidebar.classList.remove("open");
 }
 
-// Hiển thị trạng thái trống hoặc trạng thái đang tải trong container.
-function setEmpty(container, text) {
-    const empty = document.createElement("p");
-    empty.className = "empty-state";
-    empty.textContent = text;
-    container.replaceChildren(empty);
-}
-
-// Tạo phần tử avatar có animation tai thỏ theo CSS hiện tại.
-function createAvatar(source) {
-    const name = typeof source === "string" ? source : conversationName(source);
-    const avatarUrl = typeof source === "string" ? "" : avatarUrlOf(source);
-    const avatar = document.createElement("span");
-    avatar.className = "avatar";
-
-    if (avatarUrl) {
-        const image = document.createElement("img");
-        image.src = avatarUrl;
-        image.alt = name;
-        avatar.appendChild(image);
-    } else {
-        avatar.textContent = initialOf(name);
+// Đồng bộ trạng thái sidebar khi đổi kích thước màn hình.
+function syncMobileSidebar() {
+    if (isMobileChatLayout() && !state.activeConversation) {
+        openSidebar();
+        return;
     }
 
-    return avatar;
+    if (!isMobileChatLayout()) {
+        closeSidebar();
+    }
 }
 
-// Đổ nội dung avatar vào element đã có sẵn trong layout.
-function renderAvatarInto(element, source) {
-    const avatar = createAvatar(source);
-    element.replaceChildren(...avatar.childNodes);
-}
-
-function userField(user, camelName, pascalName = "") {
-    return user?.[camelName] ?? user?.[pascalName || camelName.charAt(0).toUpperCase() + camelName.slice(1)] ?? "";
-}
-
-function userDisplayName(user) {
-    return valueOr(
-        user?.displayname || user?.displayName || user?.DisplayName ||
-        `${userField(user, "firstName")} ${userField(user, "lastName")}`.trim() ||
-        user?.userName || user?.username || user?.Username,
-        "User"
-    );
-}
-
-function userName(user) {
-    return valueOr(user?.userName || user?.username || user?.Username, "user");
-}
-
+// Render thông tin tài khoản hiện tại ở footer sidebar.
 function renderCurrentUser() {
     const user = state.currentUser;
     el("currentDisplayname").textContent = userDisplayName(user);
     el("currentUsername").textContent = `@${userName(user)}`;
     renderAvatarInto(el("currentAvatar"), user);
-}
-
-// Chuẩn hóa id vì Mongo/.NET có thể trả id hoặc _id.
-function itemId(item) {
-    return item?.id || item?._id || item?._Id || "";
-}
-
-// Chuẩn hóa tên hiển thị của nhóm chat, bạn bè hoặc người dùng.
-function conversationName(item) {
-    return valueOr(item?.name || item?.displayname || item?.displayName || item?.userName || item?.username, "Cuộc trò chuyện");
-}
-
-// Lấy userId của người đang chat riêng để mở profile từ nút thông tin.
-function directChatUserId(conversation) {
-    if (!conversation || conversation.type !== "direct") return "";
-
-    const directId = conversation.directUserId || conversation.userId || conversation.friendId;
-    if (directId) return directId;
-
-    const conversationUserName = conversation.userName || conversation.username;
-    const friend = state.friends.find(item => {
-        const friendConversationId = itemId(item.conversation);
-        return friendConversationId === itemId(conversation)
-            || (conversationUserName && (item.userName || item.username) === conversationUserName);
-    });
-
-    return itemId(friend);
-}
-
-// Kiểm tra user đã là bạn bè chưa để quyết định hiển thị nút kết bạn.
-function isFriend(userId) {
-    return state.friends.some(friend => itemId(friend) === userId);
-}
-
-// Kiểm tra đã có lời mời kết bạn pending với user chưa.
-function hasPendingRequest(userId) {
-    return [...state.friendRequests.received, ...state.friendRequests.sent]
-        .some(request => itemId(request.user) === userId);
-}
-
-// Lấy danh sách id thành viên của nhóm để tránh thêm trùng ở UI.
-function groupMemberIds(group) {
-    return new Set((group?.members || []).map(member => itemId(member)).filter(Boolean));
 }
 
 // Lấy dữ liệu chính từ ApiResponse của ASP.NET.
@@ -246,6 +331,7 @@ async function sendFriendRequestFromCard(user, button, messageText = "") {
     }
 }
 
+// Mở modal nhập lời nhắn trước khi gửi lời mời kết bạn.
 function openFriendRequestMessageModal(user, button) {
     state.pendingFriendRequest = { user, button };
     friendMessageSubtitle.textContent = `Gửi lời mời đến ${conversationName(user)}`;
@@ -256,12 +342,14 @@ function openFriendRequestMessageModal(user, button) {
     friendRequestMessageInput.select();
 }
 
+// Đóng modal nhập lời nhắn kết bạn và xóa trạng thái tạm.
 function closeFriendRequestMessageModal() {
     friendRequestMessageModal.classList.remove("open");
     friendRequestMessageModal.setAttribute("aria-hidden", "true");
     state.pendingFriendRequest = null;
 }
 
+// Gửi lời mời kết bạn kèm lời nhắn người dùng đã nhập.
 async function submitFriendRequestMessage(event) {
     event.preventDefault();
     const pending = state.pendingFriendRequest;
@@ -350,10 +438,10 @@ function createConversationCard(item, type) {
         if (isMe) {
             addButton.textContent = "Bạn";
             addButton.disabled = true;
-        } else if (isFriend(userId)) {
+        } else if (isFriend(state.friends, userId)) {
             addButton.textContent = "Đã là bạn";
             addButton.disabled = true;
-        } else if (hasPendingRequest(userId)) {
+        } else if (hasPendingRequest(state.friendRequests, userId)) {
             addButton.textContent = "Đã gửi/nhận";
             addButton.disabled = true;
         } else {
@@ -397,24 +485,6 @@ function renderList(container, count, items, type) {
     }
 
     items.forEach(item => container.appendChild(createConversationCard(item, type)));
-}
-
-// Lấy mốc thời gian dùng để sắp xếp card chat mới nhất lên đầu.
-function conversationSortTime(item) {
-    const conversation = item?.conversation || item || {};
-    return new Date(
-        conversation.lastMessageAt ||
-        conversation.updatedAt ||
-        conversation.createdAt ||
-        item?.lastMessageAt ||
-        item?.updatedAt ||
-        0
-    ).getTime();
-}
-
-// Sắp xếp danh sách conversation/bạn bè theo tin nhắn mới nhất.
-function sortByLatestConversation(items = []) {
-    return [...items].sort((a, b) => conversationSortTime(b) - conversationSortTime(a));
 }
 
 // Render danh sách nhóm chat từ dữ liệu server.
@@ -497,6 +567,7 @@ function renderGroupMemberPicker() {
     });
 }
 
+// Mở modal tạo nhóm và render danh sách bạn bè để chọn.
 function openGroupCreateModal() {
     groupNameInput.value = "";
     clearGroupCreateErrors();
@@ -506,6 +577,7 @@ function openGroupCreateModal() {
     groupNameInput.focus();
 }
 
+// Đóng modal tạo nhóm chat.
 function closeGroupCreateModal() {
     groupCreateModal.classList.remove("open");
     groupCreateModal.setAttribute("aria-hidden", "true");
@@ -530,6 +602,7 @@ function showGroupCreateError(field, message) {
     groupMembersError.textContent = message;
 }
 
+// Gửi request tạo nhóm chat mới từ form tạo nhóm.
 async function submitGroupCreate(event) {
     event.preventDefault();
     clearGroupCreateErrors();
@@ -578,13 +651,14 @@ async function submitGroupCreate(event) {
     }
 }
 
+// Tạo phần tử UI cho một tin nhắn gồm avatar, tên, nội dung và thời gian.
 function createMessage(message) {
     const currentUserId = itemId(state.currentUser);
     const senderId = message.senderId || message.SenderId || "";
     const isMine = senderId
         ? senderId === currentUserId
         : Boolean(message.isMine || message.isOwn);
-    const sender = messageSender(message);
+    const sender = messageSender(message, state.currentUser, state.activeConversation);
     const row = document.createElement("article");
     row.className = `message ${isMine ? "outgoing" : "incoming"}`;
     row.title = sender.displayName;
@@ -609,63 +683,9 @@ function createMessage(message) {
     return row;
 }
 
-// Sắp xếp tin nhắn cũ ở trên, tin nhắn mới ở dưới để khung chat đọc đúng thứ tự.
-function sortMessagesByTime(messages = []) {
-    return [...messages].sort((a, b) => new Date(a.createdAt || 0) - new Date(b.createdAt || 0));
-}
-
-// Lay danh sach message tu response cua API, ho tro ca response moi va response cu.
-function readMessagePage(data) {
-    return {
-        messages: Array.isArray(data) ? data : data.messages || [],
-        nextCursor: Array.isArray(data) ? null : data.nextCursor || null
-    };
-}
-
 // Kiểm tra người dùng có đang ở gần cuối khung chat không để quyết định auto scroll.
 function isNearMessageBottom() {
     return messageArea.scrollHeight - messageArea.scrollTop - messageArea.clientHeight < 140;
-}
-
-// Lấy conversationId của message, hỗ trợ cả camelCase và PascalCase.
-function messageConversationId(message) {
-    return message?.conversationId || message?.ConversationId || "";
-}
-
-// Lấy thông tin người gửi để hiển thị avatar cạnh tin nhắn.
-function messageSender(message) {
-    const senderId = message?.senderId || message?.SenderId || "";
-    if (senderId && senderId === itemId(state.currentUser)) {
-        return {
-            displayName: userDisplayName(state.currentUser),
-            avatarUrl: avatarUrlOf(state.currentUser)
-        };
-    }
-
-    const member = (state.activeConversation?.members || [])
-        .find(item => itemId(item) === senderId);
-
-    return {
-        displayName: message?.senderName || message?.senderDisplayName || member?.displayname || member?.displayName || member?.userName || member?.username || "User",
-        avatarUrl: message?.senderAvatarUrl || message?.SenderAvatarUrl || avatarUrlOf(member)
-    };
-}
-
-// Tạo avatar nhỏ cho từng dòng tin nhắn.
-function createMessageAvatar(sender) {
-    const avatar = document.createElement("span");
-    avatar.className = "message-avatar";
-
-    if (sender.avatarUrl) {
-        const image = document.createElement("img");
-        image.src = sender.avatarUrl;
-        image.alt = sender.displayName;
-        avatar.appendChild(image);
-    } else {
-        avatar.textContent = initialOf(sender.displayName);
-    }
-
-    return avatar;
 }
 
 // Render toàn bộ tin nhắn của cuộc trò chuyện đang được chọn.
@@ -765,6 +785,7 @@ function updateConversationPreviewFromMessage(message) {
     renderFriends();
 }
 
+// Cập nhật conversation có sẵn hoặc thêm conversation mới vào state.
 function upsertConversation(conversation) {
     if (!conversation) return;
 
@@ -790,6 +811,9 @@ function upsertConversation(conversation) {
 async function selectConversation(item, card) {
     state.activeConversation = item;
     setActiveCard(card);
+    if (isMobileChatLayout()) {
+        closeSidebar();
+    }
 
     const name = conversationName(item);
     el("chatTitle").textContent = name;
@@ -798,7 +822,7 @@ async function selectConversation(item, card) {
         : "Tin nhắn riêng";
     renderAvatarInto(el("chatAvatar"), item);
 
-    groupInfoButton.disabled = item.type !== "group" && !directChatUserId(item);
+    groupInfoButton.disabled = item.type !== "group" && !directChatUserId(item, state.friends);
     groupInfoButton.setAttribute("aria-label", item.type === "group" ? "Thông tin nhóm" : "Xem profile");
     groupInfoButton.title = item.type === "group" ? "Thông tin nhóm" : "Xem profile";
     renderGroupInfo(item.type === "group" ? item : null);
@@ -984,7 +1008,7 @@ function openConversationInfo() {
         return;
     }
 
-    openUserProfile(directChatUserId(state.activeConversation));
+    openUserProfile(directChatUserId(state.activeConversation, state.friends));
 }
 
 // Đóng drawer thông tin nhóm.
@@ -1122,7 +1146,7 @@ async function acceptFriendRequest(requestId) {
 
     state.friendRequests.received = state.friendRequests.received.filter(request => itemId(request) !== requestId);
 
-    if (data.newFriend && !isFriend(itemId(data.newFriend))) {
+    if (data.newFriend && !isFriend(state.friends, itemId(data.newFriend))) {
         state.friends.unshift(data.newFriend);
     }
 
@@ -1191,7 +1215,7 @@ async function connectRealtime() {
     state.connection.on("friend-request-accepted", payload => {
         state.friendRequests.sent = state.friendRequests.sent.filter(request => itemId(request) !== payload?.requestId);
 
-        if (payload?.user && !isFriend(itemId(payload.user))) {
+        if (payload?.user && !isFriend(state.friends, itemId(payload.user))) {
             state.friends.unshift(payload.user);
         }
 
@@ -1342,11 +1366,13 @@ function openSettingsModal() {
     settingsFirstName.focus();
 }
 
+// Đóng modal cài đặt tài khoản.
 function closeSettingsModal() {
     settingsModal.classList.remove("open");
     settingsModal.setAttribute("aria-hidden", "true");
 }
 
+// Gửi request cập nhật thông tin /me từ form cài đặt.
 async function submitSettings(event) {
     event.preventDefault();
 
@@ -1379,6 +1405,7 @@ async function submitSettings(event) {
     }
 }
 
+// Mở modal hồ sơ và tải thông tin chi tiết của user.
 async function openUserProfile(userId) {
     if (!userId) return;
 
@@ -1429,17 +1456,20 @@ const logoPalettes = [
     ["#f59e0b", "#ef4444"]
 ];
 
+// Áp dụng màu logo/giao diện và lưu lựa chọn vào localStorage.
 function applyLogoColor(accent, accent2) {
     document.documentElement.style.setProperty("--accent", accent);
     document.documentElement.style.setProperty("--accent-2", accent2);
     localStorage.setItem("bunny-logo-colors", JSON.stringify([accent, accent2]));
 }
 
+// Chọn ngẫu nhiên một bộ màu logo từ danh sách có sẵn.
 function randomLogoColor() {
     const [accent, accent2] = logoPalettes[Math.floor(Math.random() * logoPalettes.length)];
     applyLogoColor(accent, accent2);
 }
 
+// Chuyển theme sáng/tối và lưu lựa chọn vào localStorage.
 function setTheme(theme) {
     document.documentElement.dataset.theme = theme;
     localStorage.setItem("bunny-theme", theme);
@@ -1463,6 +1493,8 @@ keywordInput.addEventListener("keydown", event => {
 });
 themeToggle.addEventListener("click", () => setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"));
 el("sidebarToggle").addEventListener("click", () => sidebar.classList.toggle("open"));
+closeSidebarButton.addEventListener("click", closeSidebar);
+window.addEventListener("resize", syncMobileSidebar);
 groupInfoButton.addEventListener("click", openConversationInfo);
 el("openFriendRequestsBtn").addEventListener("click", openFriendModal);
 el("openGroupCreateBtn").addEventListener("click", openGroupCreateModal);
@@ -1516,4 +1548,5 @@ try {
 }
 
 setTheme(document.documentElement.dataset.theme || "dark");
+syncMobileSidebar();
 loadChatData();

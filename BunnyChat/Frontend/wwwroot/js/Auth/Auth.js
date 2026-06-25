@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const signupPassword = document.getElementById("passwordSignUp");
     const signupError = document.getElementById("signupError");
 
+    //hiện lỗi
     function showError(input, message) {
         const inputBox = input.closest(".input-box");
         const error = inputBox.querySelector(".error-message");
@@ -48,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
         error.textContent = message;
     }
 
+    //clear lỗi
     function clearError(input) {
         const inputBox = input.closest(".input-box");
         const error = inputBox.querySelector(".error-message");
@@ -56,22 +58,26 @@ document.addEventListener("DOMContentLoaded", function () {
         error.textContent = "";
     }
 
+    //hiện lỗi do be trả về
     function showFormError(errorElement, message) {
         errorElement.style.display = "block";
         errorElement.textContent = message;
     }
 
+    //ẩn lỗi do be trả về
     function clearFormError(errorElement) {
         errorElement.style.display = "none";
         errorElement.textContent = "";
     }
 
+    //dọn lỗi ở login
     function clearLoginErrors() {
         clearError(loginUsername);
         clearError(loginPassword);
         clearFormError(loginError);
     }
 
+    //dọn lỗi singup
     function clearSignupErrors() {
         clearError(firstName);
         clearError(lastName);

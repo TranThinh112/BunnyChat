@@ -217,6 +217,7 @@ app.MapControllerRoute(
     );
 
 app.MapControllers();
+//map với signalR
 app.MapHub<ChatHub>("/chatHub");
 
 app.Lifetime.ApplicationStarted.Register(() =>

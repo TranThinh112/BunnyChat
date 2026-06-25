@@ -3,6 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace BunnyChat.Models
 {
+    //thông tin thành viên
     public class Participant
     {
         [BsonRepresentation(BsonType.ObjectId)]
@@ -11,7 +12,7 @@ namespace BunnyChat.Models
         public DateTime JoinedAt { get; set; } = DateTime.UtcNow;
     }
 
-
+//thông tin nhóm
     public class GroupInfo
     {
         public string? Name { get; set; }
@@ -20,6 +21,7 @@ namespace BunnyChat.Models
         public string? CreatedBy { get; set; }
     }
 
+//thông ton tin nhắn cuối
     public class LastMessage
     {
         public string? Id { get; set; }
@@ -32,6 +34,7 @@ namespace BunnyChat.Models
         public DateTime? CreatedAt { get; set; }
     }
 
+//thông tin cuộc trò chuyện
     public class Conversation
     {
         [BsonId]

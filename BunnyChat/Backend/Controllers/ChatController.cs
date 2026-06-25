@@ -21,6 +21,7 @@ namespace BunnyChat.Controllers
         private readonly IMongoCollection<User> _userCollection;
         private readonly IHubContext<ChatHub> _chatHub;
 
+        //các collection 
         public ChatController(MongoDbService mongoDbService, IHubContext<ChatHub> chatHub)
         {
             _conversationCollection = mongoDbService.Database.GetCollection<Conversation>("conversations");
@@ -29,13 +30,13 @@ namespace BunnyChat.Controllers
             _chatHub = chatHub;
         }
 
-        // Láº¥y userId tá»« claim trong access token.
+        // Lấy userId từ claim trong access token.
         private string? GetUserId()
         {
             return User.FindFirst("userId")?.Value;
         }
 
-        // TÃ¬m conversation theo id.
+        // Tìm conversation theo id.
         private async Task<Conversation?> FindConversationById(string conversationId)
         {
             return await _conversationCollection
@@ -43,7 +44,7 @@ namespace BunnyChat.Controllers
                 .FirstOrDefaultAsync();
         }
 
-        // TÃ¬m user theo id Ä‘á»ƒ kiá»ƒm tra thÃ nh viÃªn cÃ³ tá»“n táº¡i khÃ´ng.
+        // Tìm user theo id để kiểm tra thành viên có tồn tại không.
         private async Task<User?> FindUserById(string userId)
         {
             return await _userCollection
@@ -51,9 +52,10 @@ namespace BunnyChat.Controllers
                 .FirstOrDefaultAsync();
         }
 
-        // Format conversation Ä‘á»ƒ frontend render card nhÃ³m, báº¡n bÃ¨ vÃ  thÃ´ng tin nhÃ³m.
+        // Format response của conversation để frontend render card dễ hơn
         private async Task<object> FormatConversation(Conversation conversation, string currentUserId)
         {
+            //lấy id của các tv trong nhóm
             var participantIds = ConversationHelper.GetParticipantIds(conversation);
             var users = await _userCollection
                 .Find(x => participantIds.Contains(x.Id!))
@@ -67,6 +69,7 @@ namespace BunnyChat.Controllers
                 avatarUrl = user.AvatarUrl
             }).ToList();
 
+            // lấy người còn lại trong cuộc trò chuyện 1-1.
             var directUser = users.FirstOrDefault(x => x.Id != currentUserId);
             var isGroup = conversation.Type == "group";
             var displayName = isGroup
@@ -85,8 +88,10 @@ namespace BunnyChat.Controllers
                 members,
                 createdAt = conversation.CreatedAt,
                 updatedAt = conversation.UpdatedAt,
-                lastMessage = conversation.LastMessage?.Content,
-                lastMessageAt = conversation.LastMessageAt,
+                lastMessage = conversation.LastMessage?.Content, // nộ dung tn cuối
+                lastMessageAt = conversation.LastMessageAt, // thời gian tin nhắn cuối
+
+                // Nếu Dictionary có currentUserId thì lấy số tin chưa đọc của user đó, ngược lại trả về 0.
                 unreadCount = conversation.UnreadCounts.ContainsKey(currentUserId)
                     ? conversation.UnreadCounts[currentUserId]
                     : 0
@@ -114,7 +119,7 @@ namespace BunnyChat.Controllers
             };
         }
 
-        // Táº¡o direct chat hoáº·c group chat má»›i.
+        // Tạo direct chat hoặc group chat mới.
         [HttpPost]
         public async Task<IActionResult> CreateConversation(CreateConversationDTORequest request)
         {
@@ -122,30 +127,36 @@ namespace BunnyChat.Controllers
             {
                 var currentUserId = GetUserId();
 
-                if (string.IsNullOrWhiteSpace(currentUserId))
-                    return Unauthorized(ApiResponse.Fail("Token khÃ´ng há»£p lá»‡"));
-
                 if (request.MemberIds == null || !request.MemberIds.Any())
-                    return BadRequest(ApiResponse.Fail("Danh sÃ¡ch thÃ nh viÃªn khÃ´ng Ä‘Æ°á»£c trá»‘ng"));
+                    return BadRequest(ApiResponse.Fail("Danh sách thành viên không được trống"));
 
+                // chuẩn hóa type
                 var type = request.Type.Trim().ToLower();
+                // lọc member id, bỏ id trống, trùng, chuyển về list
                 var memberIds = request.MemberIds
                     .Where(x => !string.IsNullOrWhiteSpace(x))
                     .Distinct()
                     .ToList();
 
+                // kiểm tra loại conversation
                 if (type != "direct" && type != "group")
-                    return BadRequest(ApiResponse.Fail("Loáº¡i conversation khÃ´ng há»£p lá»‡"));
+                    return BadRequest(ApiResponse.Fail("Loại conversation không hợp lệ"));
 
+                // ko đc thiếu tên nhóm
                 if (type == "group" && string.IsNullOrWhiteSpace(request.Name))
-                    return BadRequest(ApiResponse.Fail("TÃªn nhÃ³m lÃ  báº¯t buá»™c"));
+                    return BadRequest(ApiResponse.Fail("Tên nhóm là bắt buộc"));
+
 
                 if (type == "direct")
                 {
+                    // Không được gửi 0 người   Không được gửi nhiều hơn 1 người    Không được tự chat với chính mình
                     if (memberIds.Count != 1 || memberIds.First() == currentUserId)
-                        return BadRequest(ApiResponse.Fail("Direct chat cáº§n Ä‘Ãºng má»™t ngÆ°á»i nháº­n khÃ¡c user hiá»‡n táº¡i"));
+                        return BadRequest(ApiResponse.Fail("Direct chat cần đúng một người nhận khác user hiện tại"));
 
+                    // kiểm tra direct chat tồn tại chưa
                     var participantId = memberIds.First();
+
+                    // tìm coversation chứa cả 2 user 
                     var oldConversation = await _conversationCollection
                         .Find(x =>
                             x.Type == "direct" &&
@@ -156,27 +167,30 @@ namespace BunnyChat.Controllers
                     if (oldConversation != null)
                     {
                         return Ok(ApiResponse.Success(
-                            "Conversation Ä‘Ã£ tá»“n táº¡i",
+                            "Conversation đã tồn tại",
                             await FormatConversation(oldConversation, currentUserId)
                         ));
                     }
                 }
 
                 if (type == "group" && memberIds.Count < 1)
-                    return BadRequest(ApiResponse.Fail("NhÃ³m cáº§n Ã­t nháº¥t má»™t thÃ nh viÃªn ngoÃ i user hiá»‡n táº¡i"));
+                    return BadRequest(ApiResponse.Fail("Nhóm cần ít nhất một thành viên ngoài user hiện tại"));
 
+                // Gộp current user vào danh sách member
                 var allMemberIds = new List<string> { currentUserId }
                     .Concat(memberIds)
                     .Distinct()
                     .ToList();
 
+                //kiểm tra user có tồn tại ko
                 foreach (var memberId in allMemberIds)
                 {
                     var user = await FindUserById(memberId);
                     if (user == null)
-                        return NotFound(ApiResponse.Fail($"KhÃ´ng tÃ¬m tháº¥y user {memberId}"));
+                        return NotFound(ApiResponse.Fail($"Không tìm thấy user {memberId}"));
                 }
 
+                //tạo obeject để lưu vào môngo
                 var conversation = new Conversation
                 {
                     Type = type,
@@ -195,10 +209,12 @@ namespace BunnyChat.Controllers
                     UpdatedAt = DateTime.UtcNow
                 };
 
+                //tạo số tin chưa đọc
                 conversation.UnreadCounts = allMemberIds.ToDictionary(x => x, _ => 0);
 
                 await _conversationCollection.InsertOneAsync(conversation);
 
+                // Gửi realtime cho từng thành viên(SingalR )
                 foreach (var memberId in allMemberIds)
                 {
                     var memberConversation = await FormatConversation(conversation, memberId);
@@ -209,34 +225,33 @@ namespace BunnyChat.Controllers
                 }
 
                 return StatusCode(201, ApiResponse.Success(
-                    "Táº¡o conversation thÃ nh cÃ´ng",
+                    "Tạo conversation thành công",
                     await FormatConversation(conversation, currentUserId)
                 ));
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Lá»—i khi táº¡o conversation");
+                Console.WriteLine("Lỗi khi tạo conversation");
                 return StatusCode(500, ApiResponse.Fail(ex.Message));
             }
         }
 
-        // Láº¥y toÃ n bá»™ conversation cá»§a user hiá»‡n táº¡i.
+        // Láº¥y toàn bộ conversation của user hiện tại
         [HttpGet]
+        // Lấy toàn bộ conversation của user hiện tại để render sidebar.
         public async Task<IActionResult> GetConversations()
         {
             try
             {
                 var currentUserId = GetUserId();
-
-                if (string.IsNullOrWhiteSpace(currentUserId))
-                    return Unauthorized(ApiResponse.Fail("Token khÃ´ng há»£p lá»‡"));
-
+                //truy vaansn data
                 var conversations = await _conversationCollection
-                    .Find(x => x.Participants.Any(p => p.UserId == currentUserId))
-                    .SortByDescending(x => x.LastMessageAt)
+                    .Find(x => x.Participants.Any(p => p.UserId == currentUserId)) //Tìm tất cả conversation có chứa user hiện tại trong danh sách Participants.
+                    .SortByDescending(x => x.LastMessageAt) //Conversation nào có tin nhắn mới nhất thì lên đầu.
                     .ThenByDescending(x => x.UpdatedAt)
                     .ToListAsync();
 
+                //format data cho FE
                 var data = new List<object>();
 
                 foreach (var conversation in conversations)
@@ -244,90 +259,97 @@ namespace BunnyChat.Controllers
                     data.Add(await FormatConversation(conversation, currentUserId));
                 }
 
-                return Ok(ApiResponse.Success("Láº¥y danh sÃ¡ch conversation thÃ nh cÃ´ng", data));
+                return Ok(ApiResponse.Success("Lây danh sách conversation thành công", data));
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Lá»—i khi láº¥y conversations");
+                Console.WriteLine("Lỗi khi lây conversations");
                 return StatusCode(500, ApiResponse.Fail(ex.Message));
             }
         }
 
-        // Láº¥y danh sÃ¡ch group chat cá»§a user hiá»‡n táº¡i, dÃ¹ng cho sidebar frontend.
-        [HttpGet("groups")]
-        public async Task<IActionResult> GetGroups()
-        {
-            try
-            {
-                var currentUserId = GetUserId();
+        // Lấy danh sÃ¡ch group chat của user hiệnh tại, dÃ¹ng cho sidebar frontend.
+        // [HttpGet("groups")]
+        // public async Task<IActionResult> GetGroups()
+        // {
+        //     try
+        //     {
+        //         var currentUserId = GetUserId();
 
-                if (string.IsNullOrWhiteSpace(currentUserId))
-                    return Unauthorized(ApiResponse.Fail("Token khÃ´ng há»£p lá»‡"));
+        //         var groups = await _conversationCollection
+        //             .Find(x => x.Type == "group" && x.Participants.Any(p => p.UserId == currentUserId))
+        //             .SortByDescending(x => x.LastMessageAt)
+        //             .ThenByDescending(x => x.UpdatedAt)
+        //             .ToListAsync();
 
-                var groups = await _conversationCollection
-                    .Find(x => x.Type == "group" && x.Participants.Any(p => p.UserId == currentUserId))
-                    .SortByDescending(x => x.LastMessageAt)
-                    .ThenByDescending(x => x.UpdatedAt)
-                    .ToListAsync();
+        //         var data = new List<object>();
 
-                var data = new List<object>();
+        //         foreach (var group in groups)
+        //         {
+        //             data.Add(await FormatConversation(group, currentUserId));
+        //         }
 
-                foreach (var group in groups)
-                {
-                    data.Add(await FormatConversation(group, currentUserId));
-                }
-
-                return Ok(ApiResponse.Success("Láº¥y danh sÃ¡ch nhÃ³m thÃ nh cÃ´ng", data));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Lá»—i khi láº¥y danh sÃ¡ch nhÃ³m");
-                return StatusCode(500, ApiResponse.Fail(ex.Message));
-            }
-        }
+        //         return Ok(ApiResponse.Success("Láº¥y danh sÃ¡ch nhÃ³m thÃ nh cÃ´ng", data));
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         Console.WriteLine("Lá»—i khi láº¥y danh sÃ¡ch nhÃ³m");
+        //         return StatusCode(500, ApiResponse.Fail(ex.Message));
+        //     }
+        // }
 
         // Thêm thành viên mới vào nhóm chat. Nếu user đã ở trong nhóm thì không thêm trùng.
+
+
         [HttpPost("{conversationId}/members")]
+        // Thêm các user chưa có trong nhóm vào danh sách thành viên. Nhóm đã đc tạo
         public async Task<IActionResult> AddGroupMembers(string conversationId, AddGroupMembersDTORequest request)
         {
             try
             {
                 var currentUserId = GetUserId();
 
-                if (string.IsNullOrWhiteSpace(currentUserId))
-                    return Unauthorized(ApiResponse.Fail("Token khÃ´ng há»£p lá»‡"));
-
+                //check thieeu data
                 if (request.MemberIds == null || !request.MemberIds.Any())
-                    return BadRequest(ApiResponse.Fail("Danh sÃ¡ch thÃ nh viÃªn khÃ´ng Ä‘Æ°á»£c trá»‘ng"));
+                    return BadRequest(ApiResponse.Fail("Danh sách thành viên ko để trống"));
 
+                //tìm coversation
                 var conversation = await FindConversationById(conversationId);
 
                 if (conversation == null)
-                    return NotFound(ApiResponse.Fail("Conversation khÃ´ng tá»“n táº¡i"));
+                    return NotFound(ApiResponse.Fail("Conversation không tồn tại"));
 
+                //kiểm tra có phải groyup ko ? 
                 if (conversation.Type != "group")
-                    return BadRequest(ApiResponse.Fail("Chá»‰ cÃ³ thá»ƒ thÃªm thÃ nh viÃªn vÃ o nhÃ³m chat"));
+                    return BadRequest(ApiResponse.Fail("Chỉ có thể thêm thành viên vào nhÃ³m chat"));
 
+                // Kiểm tra người gọi có trong nhóm không
                 if (!ConversationHelper.IsParticipant(conversation, currentUserId))
-                    return Forbid();
+                    return Forbid(); //403: ko có quyền
 
+                //lấy membver4 cũ
                 var oldMemberIds = ConversationHelper.GetParticipantIds(conversation);
+
+                // lọc member mới
                 var newMemberIds = request.MemberIds
                     .Where(x => !string.IsNullOrWhiteSpace(x))
                     .Distinct()
-                    .Where(x => !oldMemberIds.Contains(x))
+                    .Where(x => !oldMemberIds.Contains(x)) // loại mem cũ
                     .ToList();
 
+                // chặn việc thêm trùng thành viên vào nhóm. Các thành viên đã có trong gr => ko thêm ai đc => Trả 409
                 if (!newMemberIds.Any())
-                    return Conflict(ApiResponse.Fail("CÃ¡c user nÃ y Ä‘Ã£ thuá»™c nhÃ³m chat"));
+                    return Conflict(ApiResponse.Fail("Các user này đã thuộc nhóm chat"));
 
+                // kiểm tra user có tồn tại ko
                 foreach (var memberId in newMemberIds)
                 {
                     var user = await FindUserById(memberId);
                     if (user == null)
-                        return NotFound(ApiResponse.Fail($"KhÃ´ng tÃ¬m tháº¥y user {memberId}"));
+                        return NotFound(ApiResponse.Fail($"Ko tìm thây user {memberId}"));
                 }
 
+                //thêm vào ds thành viên
                 foreach (var memberId in newMemberIds)
                 {
                     conversation.Participants.Add(new Participant
@@ -336,18 +358,23 @@ namespace BunnyChat.Controllers
                         JoinedAt = DateTime.UtcNow
                     });
 
+                    // unread cho thành viên mới, vì mới vào => =0
                     if (!conversation.UnreadCounts.ContainsKey(memberId))
                         conversation.UnreadCounts[memberId] = 0;
                 }
 
+                //update thời gian 
                 conversation.UpdatedAt = DateTime.UtcNow;
 
+                //update lên data
                 await _conversationCollection.ReplaceOneAsync(
                     x => x.Id == conversation.Id,
                     conversation
                 );
 
+                // gửi realtime
                 var allMemberIds = ConversationHelper.GetParticipantIds(conversation);
+                // vòng lặp để gửi realtime cho từng id trong gr
                 foreach (var memberId in allMemberIds)
                 {
                     await _chatHub.Clients
@@ -356,52 +383,59 @@ namespace BunnyChat.Controllers
                 }
 
                 return Ok(ApiResponse.Success(
-                    "ThÃªm thÃ nh viÃªn vÃ o nhÃ³m thÃ nh cÃ´ng",
+                    "Thêm thành viên thành công",
                     await FormatConversation(conversation, currentUserId)
                 ));
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Lá»—i khi thÃªm thÃ nh viÃªn vÃ o nhÃ³m");
+                Console.WriteLine("lỗi khi thêm thành viên vào nhóm");
                 return StatusCode(500, ApiResponse.Fail(ex.Message));
             }
         }
 
         // Lấy tin nhắn theo conversation, hỗ trợ phân trang bằng cursor createdAt.
         [HttpGet("{conversationId}/messages")]
-        public async Task<IActionResult> GetMessages(string conversationId, int limit = 50, DateTime? cursor = null)
+        public async Task<IActionResult> GetMessages(string conversationId, int limit = 50, DateTime? cursor = null) // lấy 50 tn
         {
             try
             {
                 var currentUserId = GetUserId();
 
-                if (string.IsNullOrWhiteSpace(currentUserId))
-                    return Unauthorized(ApiResponse.Fail("Token khÃ´ng há»£p lá»‡"));
-
+                //tìm conversationm theo id
                 var conversation = await FindConversationById(conversationId);
 
+                //check tồn tại
                 if (conversation == null)
-                    return NotFound(ApiResponse.Fail("Conversation khÃ´ng tá»“n táº¡i"));
+                    return NotFound(ApiResponse.Fail("Conversation không tồn tại "));
 
+                // check quyền, Chỉ thành viên trong conversation mới được xem tin nhắn.
                 if (!ConversationHelper.IsParticipant(conversation, currentUserId))
                     return Forbid();
 
+                //tạo filter để querry, chỉ lấy tn thuộc conver này
                 var filter = Builders<Message>.Filter.Eq(x => x.ConversationId, conversationId);
 
+                // Nếu có cursor thì lấy tin cũ hơn. Lt: Less than: nhỏ hơn
                 if (cursor.HasValue)
                 {
                     filter &= Builders<Message>.Filter.Lt(x => x.CreatedAt, cursor.Value);
                 }
 
+                //giới hạn tn trả về
                 var pageSize = Math.Clamp(limit, 1, 100);
+
+                //querrt tn
                 var messages = await _messageCollection
                     .Find(filter)
                     .SortByDescending(x => x.CreatedAt)
-                    .Limit(pageSize + 1)
+                    .Limit(pageSize + 1) // lấy +1 để bt còn trang sau ko.
                     .ToListAsync();
 
+                //tạo next cursor
                 DateTime? nextCursor = null;
 
+                //nếu lấy dư đc 1 tin => lấy time của tin dư làm nextCursor, xóa tin dư khỏi res
                 if (messages.Count > pageSize)
                 {
                     nextCursor = messages.Last().CreatedAt;
@@ -409,13 +443,16 @@ namespace BunnyChat.Controllers
                 }
 
                 var data = new List<object>();
+
+                //đảo thứ tự cũ lên mới xuống
                 foreach (var message in messages.OrderBy(x => x.CreatedAt))
                 {
+                    //format cho từng message
                     data.Add(await FormatMessage(message, currentUserId));
                 }
 
                 return Ok(ApiResponse.Success(
-                    "Láº¥y tin nháº¯n thÃ nh cÃ´ng",
+                    "Lấy tin nhắn thành công",
                     new
                     {
                         messages = data,
@@ -425,33 +462,34 @@ namespace BunnyChat.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Lá»—i khi láº¥y tin nháº¯n");
+                Console.WriteLine("Lỗi khi lấy tin nhắn");
                 return StatusCode(500, ApiResponse.Fail(ex.Message));
             }
         }
 
-        // Gá»­i tin nháº¯n vÃ o conversation Ä‘Ã£ tá»“n táº¡i.
+        // Gửi tin nhắn vào conversation
         [HttpPost("{conversationId}/messages")]
+        // Gửi tin nhắn mới vào conversation và phát realtime qua SignalR.
         public async Task<IActionResult> SendMessage(string conversationId, SendMessageDTORequest request)
+        // Task<IActionResult>: trả về 1 HTTP res
         {
             try
             {
                 var currentUserId = GetUserId();
 
-                if (string.IsNullOrWhiteSpace(currentUserId))
-                    return Unauthorized(ApiResponse.Fail("Token khÃ´ng há»£p lá»‡"));
-
+                //check thiếu nd, check tồn tại conveer, check quyền
                 if (string.IsNullOrWhiteSpace(request.Content))
-                    return BadRequest(ApiResponse.Fail("Thiáº¿u ná»™i dung tin nháº¯n"));
+                    return BadRequest(ApiResponse.Fail("Thiếu nội dung tin nhắn"));
 
                 var conversation = await FindConversationById(conversationId);
 
                 if (conversation == null)
-                    return NotFound(ApiResponse.Fail("Conversation khÃ´ng tá»“n táº¡i"));
+                    return NotFound(ApiResponse.Fail("Conversation Không tồn tại"));
 
                 if (!ConversationHelper.IsParticipant(conversation, currentUserId))
                     return Forbid();
 
+                //tạo object message
                 var message = new Message
                 {
                     ConversationId = conversationId,
@@ -461,17 +499,22 @@ namespace BunnyChat.Controllers
                     UpdatedAt = DateTime.UtcNow
                 };
 
+                //lưu tin nhắn vào data
                 await _messageCollection.InsertOneAsync(message);
 
+                // Cập nhật unread trong Conversation
                 ConversationHelper.UpdateAfterCreateMessage(conversation, message, currentUserId);
 
+                //update coversation
                 await _conversationCollection.ReplaceOneAsync(
                     x => x.Id == conversation.Id,
                     conversation
                 );
 
+                //format lại message
                 var messageData = await FormatMessage(message, currentUserId);
 
+                //gửi signalR
                 await _chatHub.Clients
                     .Group(ChatHub.ConversationGroup(conversationId))
                     .SendAsync("new-message", new
@@ -482,53 +525,57 @@ namespace BunnyChat.Controllers
                     });
 
                 return StatusCode(201, ApiResponse.Success(
-                    "Gá»­i tin nháº¯n thÃ nh cÃ´ng",
+                    "Gửi tin nhắn thành công",
                     messageData
                 ));
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Lá»—i khi gá»­i tin nháº¯n");
+                Console.WriteLine("Lỗi khi gửi tin nhắn");
                 return StatusCode(500, ApiResponse.Fail(ex.Message));
             }
         }
 
         // ÄÃ¡nh dáº¥u tin nháº¯n cuá»‘i trong conversation lÃ  Ä‘Ã£ xem.
         [HttpPatch("{conversationId}/seen")]
+        // Đánh dấu tin nhắn cuối là đã xem cho user hiện tại.
         public async Task<IActionResult> MarkAsSeen(string conversationId)
         {
             try
             {
                 var currentUserId = GetUserId();
 
-                if (string.IsNullOrWhiteSpace(currentUserId))
-                    return Unauthorized(ApiResponse.Fail("Token khÃ´ng há»£p lá»‡"));
-
                 var conversation = await FindConversationById(conversationId);
 
                 if (conversation == null)
-                    return NotFound(ApiResponse.Fail("Conversation khÃ´ng tá»“n táº¡i"));
+                    return NotFound(ApiResponse.Fail("Conversation Lkhoong tồn tại "));
 
                 if (!ConversationHelper.IsParticipant(conversation, currentUserId))
                     return Forbid();
 
+                // kiểm tra conversation có tin nhắn hay ko 
                 if (conversation.LastMessage == null)
-                    return Ok(ApiResponse.Success("KhÃ´ng cÃ³ tin nháº¯n Ä‘á»ƒ Ä‘Ã¡nh dáº¥u Ä‘Ã£ xem"));
+                    return Ok(ApiResponse.Success("Không có tin nhắn để đánh dấu đã xem"));
 
+                // kiểm tra người gửi
                 if (conversation.LastMessage.SenderId == currentUserId)
-                    return Ok(ApiResponse.Success("NgÆ°á»i gá»­i khÃ´ng cáº§n Ä‘Ã¡nh dáº¥u Ä‘Ã£ xem"));
+                    return Ok(ApiResponse.Success("Người gửi ko cần đánh dấu đã xem"));
 
+                // thêm vào seen by
                 if (!conversation.SeenBy.Contains(currentUserId))
                     conversation.SeenBy.Add(currentUserId);
 
+                //reset unread
                 conversation.UnreadCounts[currentUserId] = 0;
                 conversation.UpdatedAt = DateTime.UtcNow;
 
+                // update data
                 await _conversationCollection.ReplaceOneAsync(
                     x => x.Id == conversation.Id,
                     conversation
                 );
 
+                //gửi signalR
                 await _chatHub.Clients
                     .Group(ChatHub.ConversationGroup(conversationId))
                     .SendAsync("read-message", new
@@ -537,7 +584,7 @@ namespace BunnyChat.Controllers
                         lastMessage = conversation.LastMessage
                     });
 
-                return Ok(ApiResponse.Success("ÄÃ£ Ä‘Ã¡nh dáº¥u Ä‘Ã£ xem", new
+                return Ok(ApiResponse.Success("Đã đánh dấu đã xem", new
                 {
                     seenBy = conversation.SeenBy,
                     myUnreadCount = 0

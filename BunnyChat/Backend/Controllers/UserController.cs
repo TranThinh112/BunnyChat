@@ -47,6 +47,7 @@ namespace BunnyChat.Controllers
         //API lay toan bo user
         [AllowAnonymous]
         [HttpGet]
+        // Lấy toàn bộ user, chủ yếu dùng để kiểm tra dữ liệu khi phát triển.
         public async Task<IEnumerable<User>> Get() //IEnumerable: danh sach cac user, Task: async, ActionResult: tra ve 200, 404, 500, có thể là map or list
         {
             return await _usersCollection.Find(FilterDefinition<User>.Empty).ToListAsync();
@@ -55,6 +56,7 @@ namespace BunnyChat.Controllers
         //API láy dữ liệu user đang login
         [Authorize]
         [HttpGet("me")]
+        // Lấy thông tin tài khoản đang đăng nhập theo access token.
         public async Task<IActionResult> GetMe()
         {
             try
@@ -133,6 +135,7 @@ namespace BunnyChat.Controllers
 //lấy profile user khi tìm kiếm
         [Authorize]
         [HttpGet("{id}/profile")]
+        // Lấy hồ sơ công khai của user để hiển thị trong modal profile.
         public async Task<IActionResult> GetProfile(string id)
         {
             try
@@ -167,6 +170,7 @@ namespace BunnyChat.Controllers
         //API update Thong tin user đang login
         [Authorize]
         [HttpPatch("me")]
+        // Cập nhật thông tin cá nhân của user hiện tại.
         public async Task<ActionResult> UpdateInformation(UserInformationDTORequest request)
         {
             try
@@ -280,6 +284,7 @@ namespace BunnyChat.Controllers
         //API serach username, email người khác
         [Authorize]
         [HttpGet("search")]
+        // Tìm kiếm user theo username, email, họ tên hoặc searchName không dấu.
         public async Task<IActionResult> Search(string? q)
         {
             try

@@ -21,9 +21,9 @@ namespace BunnyChat.Helper
         }
 
         // Cập nhật cache tin nhắn cuối và số tin chưa đọc sau khi tạo message mới.
-        // đếm số tin nhắn chưa đọc của từng người
+            // đếm số tin nhắn chưa đọc của từng người
         // Khi UserA gửi tin nhắn, hệ thống đánh dấu UserA là đã xem,
-        // tăng số tin chưa đọc cho các thành viên khác lên 1, giữ UserA là 0 tin chưa đọc, rồi cập nhật thời gian thay đổi của conversation.
+            // tăng số tin chưa đọc cho các thành viên khác lên 1, giữ UserA là 0 tin chưa đọc, rồi cập nhật thời gian thay đổi của conversation.
         public static void UpdateAfterCreateMessage(
             Conversation conversation,
             Message message,

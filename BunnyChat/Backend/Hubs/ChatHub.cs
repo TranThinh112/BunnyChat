@@ -20,7 +20,7 @@ namespace BunnyChat.Backend.Hubs
         // Lấy userId từ access token đã được JWT middleware xác thực.
         private string? GetUserId()
         {
-            return Context.User?.FindFirst("userId")?.Value;
+            return Context.User?.FindFirst("userId")?.Value; //vì sginalR ko có HTTP context
         }
 
         // Tạo tên group riêng cho từng user để gửi sự kiện cá nhân như conversation mới.
@@ -29,7 +29,7 @@ namespace BunnyChat.Backend.Hubs
             return $"user:{userId}";
         }
 
-        // Tạo tên group riêng cho từng conversation để gửi realtime message.
+        // Tạo tên group riêng cho từng conversation để gửi realtime message. Những ai đang mở Conversation này sẽ join vào group đó.
         public static string ConversationGroup(string conversationId)
         {
             return $"conversation:{conversationId}";
@@ -60,13 +60,14 @@ namespace BunnyChat.Backend.Hubs
                 .Find(x => x.Id == conversationId)
                 .FirstOrDefaultAsync();
 
+            // kiểm tra quyền xem có đc join conversation ko 
             if (conversation == null || !ConversationHelper.IsParticipant(conversation, userId))
                 return;
 
             await Groups.AddToGroupAsync(Context.ConnectionId, ConversationGroup(conversationId));
         }
 
-        // Client gọi hàm này khi không cần nghe realtime của một conversation nữa.
+        // Client gọi hàm này khi không cần nghe realtime của một conversation nữa. Khi user đóng cửa sổ chat của coversation đó
         public async Task LeaveConversation(string conversationId)
         {
             if (string.IsNullOrWhiteSpace(conversationId))
