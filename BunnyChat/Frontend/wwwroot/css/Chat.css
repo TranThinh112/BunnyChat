@@ -707,3 +707,132 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
         height: 40px;
     }
 }
+
+/* Brand layout mới: các icon nằm cùng hàng, không dùng tọa độ kéo lệch trên mobile. */
+.brand-card .notification-bell {
+    position: relative;
+    inset: auto;
+    flex: 0 0 auto;
+}
+
+.brand-actions {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+@media (min-width: 721px) {
+    .brand-card {
+        padding: 0 14px;
+        gap: 10px;
+    }
+
+    .brand-card .notification-bell {
+        width: 36px;
+        height: 36px;
+    }
+
+    .mobile-sidebar-close {
+        display: none;
+    }
+}
+
+@media (max-width: 720px) {
+    .brand-card {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 9px;
+        min-height: 52px;
+        padding: 0 9px;
+    }
+
+    .brand-card .notification-bell {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        z-index: 1;
+    }
+
+    body:has(.chat-sidebar.open) .notification-bell {
+        display: grid;
+    }
+
+    .brand-name {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .brand-actions {
+        margin-left: auto;
+        gap: 7px;
+    }
+
+    .mobile-sidebar-close {
+        position: static;
+        flex: 0 0 auto;
+        width: 34px;
+        height: 34px;
+        font-size: 22px;
+    }
+
+    .theme-toggle {
+        width: 54px;
+        height: 28px;
+    }
+
+    .chat-topbar {
+        display: grid;
+        grid-template-columns: 34px 38px minmax(0, 1fr) 38px;
+        align-items: center;
+        gap: 8px;
+        min-height: 76px;
+        padding: max(8px, env(safe-area-inset-top)) 12px 8px;
+    }
+
+    .sidebar-toggle,
+    .info-button {
+        margin: 0;
+        justify-self: center;
+        align-self: center;
+    }
+
+    .chat-avatar {
+        justify-self: center;
+        align-self: center;
+    }
+
+    .chat-heading {
+        align-self: center;
+    }
+}
+
+@media (max-width: 420px) {
+    .brand-card {
+        gap: 7px;
+        padding: 0 8px;
+    }
+
+    .brand-card .notification-bell,
+    .mobile-sidebar-close {
+        width: 32px;
+        height: 32px;
+    }
+
+    .theme-toggle {
+        width: 50px;
+        height: 27px;
+    }
+
+    .theme-toggle.on .toggle-bunny {
+        transform: translateX(22px);
+    }
+
+    .chat-topbar {
+        grid-template-columns: 32px 36px minmax(0, 1fr) 36px;
+        gap: 7px;
+        min-height: 76px;
+        padding-inline: 10px;
+    }
+}

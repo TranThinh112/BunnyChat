@@ -3,21 +3,22 @@
     ViewData["Title"] = "Chat";
 }
 
-<button class="notification-bell" type="button" id="openFriendRequestsBtn" aria-label="Thông báo lời mời kết bạn">
-    <svg><use href="#icon-bell"></use></svg>
-    <b id="friendRequestBadge" hidden>0</b>
-</button>
-
 <div class="chat-app">
     @* phan sidebar ben trai  *@
  
     <aside class="chat-sidebar" id="chatSidebar">
-        <button class="mobile-sidebar-close" id="closeSidebarBtn" type="button" aria-label="Đóng danh sách chat">×</button>
         <header class="brand-card">
-            <span class="brand-name"><span class="brand-bunny" aria-hidden="true"></span>BunnyChat</span>
-            <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Chuyển giao diện">
-                <i class="toggle-bunny"></i>
+            <button class="notification-bell" type="button" id="openFriendRequestsBtn" aria-label="Thông báo lời mời kết bạn">
+                <svg><use href="#icon-bell"></use></svg>
+                <b id="friendRequestBadge" hidden>0</b>
             </button>
+            <span class="brand-name"><span class="brand-bunny" aria-hidden="true"></span>BunnyChat</span>
+            <span class="brand-actions">
+                <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Chuyển giao diện">
+                    <i class="toggle-bunny"></i>
+                </button>
+                <button class="mobile-sidebar-close" id="closeSidebarBtn" type="button" aria-label="Đóng danh sách chat">×</button>
+            </span>
         </header>
 
 @* vùng search bạn bè *@
