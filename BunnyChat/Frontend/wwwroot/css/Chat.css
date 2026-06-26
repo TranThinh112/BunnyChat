@@ -464,3 +464,195 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
     .chat-heading small { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .notification-bell { left: 10px; bottom: calc(72px + env(safe-area-inset-bottom)); width: 32px; height: 32px; }
 }
+
+/* Override mobile cuối file: giữ layout chat gọn trong viewport nhỏ và tránh các nút nổi đè nội dung. */
+@media (max-width: 720px) {
+    html,
+    body {
+        height: 100dvh;
+        overflow: hidden;
+    }
+
+    .chat-app,
+    .chat-main {
+        width: 100vw;
+        height: 100dvh;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    .chat-sidebar {
+        height: 100dvh;
+        max-height: 100dvh;
+        padding: max(12px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom));
+        overflow: hidden;
+        box-shadow: 20px 0 45px rgba(0,0,0,.22);
+    }
+
+    .chat-sidebar.open {
+        display: flex;
+    }
+
+    .brand-card {
+        min-height: 50px;
+        padding-left: 56px;
+        padding-right: 58px;
+    }
+
+    .brand-name {
+        min-width: 0;
+        gap: 8px;
+        font-size: 16px;
+    }
+
+    .theme-toggle {
+        flex: 0 0 auto;
+        width: 58px;
+    }
+
+    .notification-bell {
+        display: none;
+        top: max(19px, calc(env(safe-area-inset-top) + 7px));
+        left: 24px;
+        bottom: auto;
+        z-index: 43;
+    }
+
+    body:has(.chat-sidebar.open) .notification-bell {
+        display: grid;
+    }
+
+    .mobile-sidebar-close {
+        top: max(19px, calc(env(safe-area-inset-top) + 7px));
+        right: 22px;
+        z-index: 44;
+    }
+
+    .sidebar-search {
+        flex: 0 0 auto;
+    }
+
+    .search-box.open {
+        height: 48px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 48px;
+        gap: 8px;
+    }
+
+    .search-box button {
+        width: 48px;
+        min-width: 48px;
+    }
+
+    #searchResult {
+        left: 0;
+        right: 0;
+        max-height: min(52dvh, 360px);
+    }
+
+    .chat-lists {
+        flex: 1 1 auto;
+        min-height: 0;
+        display: grid;
+        grid-template-rows: minmax(150px, .86fr) minmax(190px, 1.14fr);
+        gap: 10px;
+    }
+
+    .list-content {
+        min-height: 0;
+        overflow-y: auto;
+    }
+
+    .create-group-button {
+        flex: 0 0 auto;
+        margin-top: 7px;
+        padding: 11px 12px;
+    }
+
+    .profile-card {
+        flex: 0 0 auto;
+        min-height: 58px;
+        padding: 10px 0 0;
+    }
+
+    .chat-main {
+        grid-template-rows: minmax(70px, auto) minmax(0, 1fr) minmax(64px, auto);
+    }
+
+    .chat-topbar {
+        min-height: 70px;
+        padding: max(8px, env(safe-area-inset-top)) 10px 8px;
+    }
+
+    .chat-heading strong {
+        max-width: 100%;
+    }
+
+    .message-area {
+        min-height: 0;
+        padding: 14px 12px;
+    }
+
+    .message {
+        max-width: 92%;
+    }
+
+    .message p {
+        padding: 9px 12px;
+        font-size: 13px;
+    }
+
+    .message-composer {
+        min-height: 64px;
+        grid-template-columns: minmax(0, 1fr) 46px;
+        padding: 8px 10px max(8px, env(safe-area-inset-bottom));
+    }
+
+    .message-composer input {
+        width: 100%;
+    }
+
+    .group-info-panel {
+        width: min(360px, 100vw);
+    }
+}
+
+@media (max-width: 420px) {
+    .chat-sidebar {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .brand-card {
+        padding-left: 52px;
+        padding-right: 54px;
+    }
+
+    .brand-name {
+        font-size: 15px;
+    }
+
+    .compose-button {
+        height: 50px;
+        padding: 0 12px;
+    }
+
+    .chat-lists {
+        grid-template-rows: minmax(138px, .82fr) minmax(178px, 1.18fr);
+    }
+
+    .conversation-card {
+        min-height: 58px;
+        padding: 8px 10px;
+    }
+
+    .avatar {
+        width: 36px;
+        height: 36px;
+    }
+
+    .profile-card .avatar {
+        width: 40px;
+        height: 40px;
+    }
+}

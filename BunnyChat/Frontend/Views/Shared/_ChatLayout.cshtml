@@ -13,12 +13,12 @@
     </script>
     <link rel="stylesheet" href="~/css/Chat.css" asp-append-version="true" />
 </head>
-<body style="display:none">
+<body>
     @RenderBody()
 
     <script src="https://cdn.jsdelivr.net/npm/@@microsoft/signalr@8.0.7/dist/browser/signalr.min.js"></script>
-    <script type="module" src="~/js/ChatAPI/ChatAction.js"></script>
-    <script type="module" src="~/js/ChatAPI/Protect_Chat.js"></script>
+    <script type="module" src="~/js/ChatAPI/Protect_Chat.js" asp-append-version="true"></script>
+    <script type="module" src="~/js/ChatAPI/ChatAction.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

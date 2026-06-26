@@ -8,6 +8,11 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
 }
+
+.auth-shell {
+    min-height: 100vh;
+    width: 100%;
+}
 body::before{
     content:"";
     position: fixed;
@@ -106,6 +111,7 @@ position: relative;
 .logo img {
     width: 220px;
     height: auto;
+    max-width: 100%;
 
 }
 
@@ -402,5 +408,145 @@ footer {
 
     .first-last{
         grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Override mobile cuối file để auth không bị lệch ngang trên Safari/Chrome mobile. */
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .auth-page {
+        min-height: calc(100dvh - 50px);
+        height: auto;
+        align-items: center;
+        padding: 12px;
+    }
+
+    .auth-card {
+        width: min(95vw, 420px);
+        min-height: 0;
+        height: min(650px, calc(100dvh - 82px));
+        max-height: calc(100dvh - 82px);
+        border-radius: 22px;
+    }
+
+    .form-container {
+        min-width: 0;
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        padding: 22px 20px;
+        overflow-y: auto;
+    }
+
+    .overlay {
+        height: 120px;
+        opacity: .16;
+        pointer-events: none;
+    }
+
+    .overlay img {
+        object-fit: cover;
+    }
+
+    .logo {
+        margin-top: 70px;
+        margin-bottom: 14px;
+    }
+
+    .logo img {
+        width: 118px;
+    }
+
+    .auth-title {
+        margin-bottom: 6px;
+        font-size: 28px;
+        white-space: nowrap;
+    }
+
+    .auth-subtitle {
+        margin-bottom: 18px;
+        font-size: 14px;
+    }
+
+    .auth-form input {
+        height: 48px;
+        font-size: 15px;
+    }
+
+    .auth-form input:focus {
+        transform: none;
+    }
+
+    .auth-btn {
+        height: 50px;
+        margin-top: 18px;
+    }
+
+    footer {
+        height: 50px;
+        font-size: 18px;
+    }
+}
+
+/* Màn rất nhỏ: form đăng ký xếp một cột để không cắt ô Tên. */
+@media (max-width: 420px) {
+    .auth-page {
+        padding: 8px;
+    }
+
+    .auth-card {
+        width: calc(100vw - 18px);
+        height: min(650px, calc(100dvh - 76px));
+        max-height: calc(100dvh - 76px);
+        border-radius: 20px;
+    }
+
+    .form-container {
+        padding: 18px 16px;
+    }
+
+    .overlay {
+        height: 105px;
+    }
+
+    .logo {
+        margin-top: 56px;
+    }
+
+    .logo img {
+        width: 96px;
+    }
+
+    .auth-title {
+        font-size: 26px;
+    }
+
+    .auth-subtitle {
+        font-size: 13px;
+    }
+
+    .first-last {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .auth-form {
+        gap: 12px;
+    }
+
+    .input-box {
+        margin-bottom: 6px;
+    }
+
+    .auth-form input {
+        height: 46px;
+    }
+
+    .auth-link,
+    .auth-forgot {
+        font-size: 14px;
     }
 }
