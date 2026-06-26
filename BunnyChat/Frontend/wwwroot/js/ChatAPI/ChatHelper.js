@@ -61,7 +61,7 @@ export function userField(user, camelName, pascalName = "") {
 }
 
 // Hàm phụ được gọi bởi renderCurrentUser() và messageSender().
-// Dùng để tạo tên hiển thị của user từ displayName, họ tên hoặc username.
+// Dùng để tạo tên hiển thị của user từ displayName, họ tên hoặc username. kiểm tra lần lượt các điều kiện
 export function userDisplayName(user) {
     return valueOr(
         user?.displayname || user?.displayName || user?.DisplayName ||
@@ -116,9 +116,9 @@ export function isFriend(friends = [], userId) {
 // Hàm phụ được gọi bởi createConversationCard().
 // Dùng để kiểm tra đã có lời mời kết bạn pending với user chưa.
 export function hasPendingRequest(friendRequests, userId) {
-    return [...(friendRequests?.received || []), ...(friendRequests?.sent || [])]
+    return [...(friendRequests?.received || []), ...(friendRequests?.sent || [])] // gopop 2 mảng thành 1
         .some(request => itemId(request.user) === userId);
-}
+} 
 
 // Hàm phụ được gọi bởi createAddGroupMembersForm().
 // Dùng để lấy danh sách id thành viên hiện có trong nhóm, tránh hiển thị người đã thuộc nhóm.
