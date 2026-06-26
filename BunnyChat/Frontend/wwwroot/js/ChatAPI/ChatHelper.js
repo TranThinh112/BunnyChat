@@ -7,10 +7,10 @@ export function valueOr(value, fallback = "Chưa cập nhật") {
 // Hàm phụ được gọi bởi createAvatar() và createMessageAvatar().
 // Dùng để lấy chữ cái đầu tiên làm avatar khi user/conversation chưa có ảnh.
 export function initialOf(value) {
-    return valueOr(value, "?").charAt(0).toUpperCase();
+    return valueOr(value, "?").charAt(0).toUpperCase(); //<=> value || fallback, charAt: lấy chữ đầu
 }
 
-// Hàm phụ được gọi bởi createAvatar(), renderCurrentUser(), messageSender(), openSettingsModal().
+// Hàm phụ được gọi bởi createAvamh tar(), renderCurrentUser(), messageSender(), openSettingsModal().
 // Dùng để đọc avatarUrl với nhiều kiểu tên field khác nhau từ response cũ/mới.
 export function avatarUrlOf(source) {
     return source?.avatarUrl || source?.AvatarUrl || source?.avatarURL || source?.AvatarURL || source?.photoUrl || source?.imageUrl || "";
@@ -30,14 +30,16 @@ export function setEmpty(container, text) {
 export function createAvatar(source) {
     const name = typeof source === "string" ? source : conversationName(source);
     const avatarUrl = typeof source === "string" ? "" : avatarUrlOf(source);
+
+    //tạo thẻ span
     const avatar = document.createElement("span");
-    avatar.className = "avatar";
+    avatar.className = "avatar";  //<span class="avatar"></span>
 
     if (avatarUrl) {
         const image = document.createElement("img");
-        image.src = avatarUrl;
-        image.alt = name;
-        avatar.appendChild(image);
+        image.src = avatarUrl; // gán link
+        image.alt = name; //gán name alt
+        avatar.appendChild(image); //đưa ảnh vào span
     } else {
         avatar.textContent = initialOf(name);
     }
@@ -49,7 +51,7 @@ export function createAvatar(source) {
 // Dùng để đổ avatar mới vào element đã có sẵn trong layout.
 export function renderAvatarInto(element, source) {
     const avatar = createAvatar(source);
-    element.replaceChildren(...avatar.childNodes);
+    element.replaceChildren(...avatar.childNodes);  //Lấy tất cả node con của avatar.
 }
 
 // Hàm phụ được gọi bởi userDisplayName() và openSettingsModal().
