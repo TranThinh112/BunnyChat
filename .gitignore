@@ -1,0 +1,17 @@
+bin/
+obj/
+out/
+artifacts/
+.vs/
+.vscode/
+.agents/
+.codex/
+.understand-anything/
+
+*.user
+*.suo
+*.pdb
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
